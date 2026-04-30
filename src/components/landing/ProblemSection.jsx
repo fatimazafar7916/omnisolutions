@@ -235,15 +235,6 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
 
         return (
           <g key={`wire-${i}`}>
-            {/* Debug: Show card center position */}
-            <circle
-              cx={cardCenterX}
-              cy={5}
-              r="3"
-              fill="red"
-              opacity="0.8"
-            />
-            
             {/* Background glow wire */}
             {isVisible && (
               <motion.path
@@ -258,7 +249,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
                 transition={{ duration: 1.4, delay: i * 0.12, ease: "easeInOut" }}
               />
             )}
-            {/* Main wire - make more visible */}
+            {/* Main wire */}
             {isVisible && (
               <motion.path
                 d={pathD}
