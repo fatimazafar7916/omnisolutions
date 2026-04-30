@@ -187,14 +187,13 @@ function AnimatedCounter({ value, duration = 2000, prefix = "", suffix = "" }) {
 /* ── Flowing Wire SVG between cards and convergence point ── */
 function WireSystem({ cardCount, containerWidth, isVisible }) {
   const svgHeight = 220;
-  const gap = 12; // Gap between cards
-  const totalGaps = (cardCount - 1) * gap;
-  const availableWidth = containerWidth - totalGaps;
-  const cardWidth = availableWidth / cardCount;
   
   // Check if mobile view (only show 3 wires on mobile)
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const visibleCards = isMobile ? 3 : cardCount;
+  
+  // On mobile, we need to calculate positions based on 3-column grid
+  // On desktop, based on 6-column grid (but showing all cards)
 
   return (
     <svg
@@ -222,19 +221,29 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
         </filter>
       </defs>
 
-      {CORE_PROBLEMS.slice(0, visibleCards).map((prob, i) => {
-        // Calculate card center position accounting for gaps
-        const cardCenterX = (cardWidth * i) + (gap * i) + (cardWidth / 2);
+      {/* Create wires for visible cards */}
+      {Array.from({ length: visibleCards }, (_, i) => {
+        // Calculate card center position for 3-column grid on mobile
+        const cardCenterX = (containerWidth / visibleCards) * (i + 0.5);
         const convergeX = containerWidth / 2;
         const controlY = svgHeight * 0.6;
 
         // SAME curved wires on mobile and desktop - converging to center
         const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
 
-        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, convergeX=${convergeX}, pathD=${pathD}`); // Debug log
+        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, containerWidth=${containerWidth}, visibleCards=${visibleCards}`);
 
         return (
-          <g key={`wire-${i}-${prob.id}`}>
+          <g key={`wire-${i}`}>
+            {/* Debug: Show card center position */}
+            <circle
+              cx={cardCenterX}
+              cy={5}
+              r="3"
+              fill="red"
+              opacity="0.8"
+            />
+            
             {/* Background glow wire */}
             {isVisible && (
               <motion.path
@@ -242,7 +251,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
                 fill="none"
                 stroke={`url(#wire-grad-${i})`}
                 strokeWidth="4"
-                strokeOpacity="0.3"
+                strokeOpacity="0.5"
                 filter="url(#wire-glow)"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
