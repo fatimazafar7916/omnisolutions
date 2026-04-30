@@ -325,7 +325,9 @@ const CallInterface = ({ data, isActive }) => (
     color: '#065F46',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '300px',
+    height: '320px',
+    display: 'flex',
+    flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(16, 185, 129, 0.08)',
     border: '1px solid rgba(16, 185, 129, 0.1)'
   }}>
@@ -373,15 +375,19 @@ const CallInterface = ({ data, isActive }) => (
       background: 'rgba(255, 255, 255, 0.8)', 
       backdropFilter: 'blur(10px)',
       borderRadius: '16px', 
-      padding: '20px', 
-      marginBottom: '20px',
+      padding: '18px', 
+      marginBottom: '16px',
       border: '1px solid rgba(16, 185, 129, 0.15)',
       position: 'relative',
-      zIndex: 2
+      zIndex: 2,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column'
     }}>
-      <div style={{ fontSize: '20px', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em', color: '#064E3B' }}>{data.caller}</div>
-      <div style={{ fontSize: '15px', opacity: 0.8, marginBottom: '4px', fontWeight: '500', color: '#065F46' }}>{data.phone}</div>
-      <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#047857' }}>{data.location}</div>
+      <div style={{ fontSize: '18px', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em', color: '#064E3B' }}>{data.caller}</div>
+      <div style={{ fontSize: '14px', opacity: 0.8, marginBottom: '4px', fontWeight: '500', color: '#065F46' }}>{data.phone}</div>
+      <div style={{ fontSize: '12px', opacity: 0.7, fontWeight: '500', color: '#047857', marginBottom: '8px' }}>{data.location}</div>
+      <div style={{ fontSize: '11px', opacity: 0.6, fontWeight: '500', color: '#047857', marginTop: 'auto' }}>Premium rental inquiry - High priority customer seeking luxury vehicle for weekend event</div>
     </div>
 
     {/* Call status */}
@@ -430,7 +436,9 @@ const InstagramInterface = ({ data, isActive }) => (
     color: '#831843',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '300px',
+    height: '320px',
+    display: 'flex',
+    flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(228, 64, 95, 0.08)',
     border: '1px solid rgba(228, 64, 95, 0.1)'
   }}>
@@ -460,27 +468,30 @@ const InstagramInterface = ({ data, isActive }) => (
 
     {/* Message thread */}
     <div style={{ 
-      background: 'rgba(255,255,255,0.15)', 
+      background: 'rgba(255, 255, 255, 0.8)', 
       backdropFilter: 'blur(10px)',
       borderRadius: '16px', 
-      padding: '20px', 
-      marginBottom: '20px',
-      border: '1px solid rgba(255,255,255,0.2)',
+      padding: '18px', 
+      marginBottom: '16px',
+      border: '1px solid rgba(228, 64, 95, 0.15)',
       position: 'relative',
-      zIndex: 2
+      zIndex: 2,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column'
     }}>
-      <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '12px', letterSpacing: '-0.01em' }}>{data.username}</div>
+      <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '10px', letterSpacing: '-0.01em', color: '#831843' }}>{data.username}</div>
       
       {/* Incoming message */}
       <div style={{ 
-        background: 'rgba(255,255,255,0.25)', 
-        borderRadius: '16px 16px 16px 4px', 
-        padding: '12px 16px', 
-        marginBottom: '12px',
-        fontSize: '13px',
-        lineHeight: '1.5',
+        background: 'rgba(228, 64, 95, 0.1)', 
+        borderRadius: '12px 12px 12px 4px', 
+        padding: '10px 12px', 
+        marginBottom: '10px',
+        fontSize: '12px',
+        lineHeight: '1.4',
         fontWeight: '500',
-        border: '1px solid rgba(255,255,255,0.2)'
+        border: '1px solid rgba(228, 64, 95, 0.2)'
       }}>
         {data.message}
       </div>
@@ -491,15 +502,16 @@ const InstagramInterface = ({ data, isActive }) => (
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
         style={{ 
-          background: 'rgba(255,255,255,0.35)', 
-          borderRadius: '16px 16px 4px 16px', 
-          padding: '12px 16px',
-          fontSize: '13px',
-          marginLeft: '24px',
-          lineHeight: '1.5',
+          background: 'rgba(228, 64, 95, 0.15)', 
+          borderRadius: '12px 12px 4px 12px', 
+          padding: '10px 12px',
+          fontSize: '12px',
+          marginLeft: '20px',
+          lineHeight: '1.4',
           fontWeight: '500',
-          border: '1px solid rgba(255,255,255,0.3)',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+          border: '1px solid rgba(228, 64, 95, 0.25)',
+          boxShadow: '0 2px 8px rgba(228, 64, 95, 0.1)',
+          flex: 1
         }}
       >
         {data.reply}
@@ -536,7 +548,9 @@ const ReviewInterface = ({ data, isActive }) => (
     color: '#92400E',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '300px',
+    height: '320px',
+    display: 'flex',
+    flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(251, 191, 36, 0.08)',
     border: '1px solid rgba(251, 191, 36, 0.1)'
   }}>
@@ -643,7 +657,9 @@ const FollowupInterface = ({ data, isActive }) => (
     color: '#5B21B6',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '300px',
+    height: '320px',
+    display: 'flex',
+    flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(139, 92, 246, 0.08)',
     border: '1px solid rgba(139, 92, 246, 0.1)'
   }}>
@@ -749,7 +765,9 @@ const VIPInterface = ({ data, isActive }) => (
     color: '#BE185D',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '300px',
+    height: '320px',
+    display: 'flex',
+    flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(236, 72, 153, 0.08)',
     border: '1px solid rgba(236, 72, 153, 0.1)'
   }}>
