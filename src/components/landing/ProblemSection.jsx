@@ -886,7 +886,7 @@ export default function ProblemSection() {
             display: none !important;
           }
           
-          /* HIDE icon and stat number section at top */
+          /* HIDE the colored stat box at top (icon + stat number section) */
           .problem-cards-grid > div > div:nth-child(2) {
             display: none !important;
           }
@@ -949,21 +949,21 @@ export default function ProblemSection() {
             min-height: auto !important;
           }
           
-          /* Label - much smaller */
+          /* Label - smaller (MONTHLY REVENUE LOSS text) */
           .metrics-grid > div > div:first-child span {
-            font-size: 7px !important;
-            letter-spacing: 0.08em !important;
+            font-size: 8px !important;
+            letter-spacing: 0.06em !important;
           }
           
-          /* Main number - smaller */
+          /* Main number - smaller (17-19px range) */
           .metrics-grid > div > div:nth-child(2) span {
-            font-size: 18px !important;
+            font-size: 17px !important;
           }
           
           /* Trend text - smaller */
           .metrics-grid > div > div:nth-child(2) div {
-            font-size: 6px !important;
-            margin-top: 1px !important;
+            font-size: 7px !important;
+            margin-top: 2px !important;
           }
           
           /* Hide step bars on mobile */
@@ -973,8 +973,8 @@ export default function ProblemSection() {
           
           /* Description - smaller */
           .metrics-grid p {
-            font-size: 7px !important;
-            line-height: 1.3 !important;
+            font-size: 8px !important;
+            line-height: 1.4 !important;
           }
         }
         
@@ -1030,7 +1030,7 @@ export default function ProblemSection() {
           }
           
           .metrics-grid > div > div:nth-child(2) span {
-            font-size: 16px !important;
+            font-size: 15px !important;
           }
         }
       `}</style>
