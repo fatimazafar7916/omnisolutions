@@ -319,26 +319,27 @@ const AnimatedStatsStrip = () => {
 // Call Interface Graphics
 const CallInterface = ({ data, isActive }) => (
   <div style={{
-    background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    background: 'linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%)',
     borderRadius: '24px',
     padding: '28px',
-    color: 'white',
+    color: '#065F46',
     position: 'relative',
     overflow: 'hidden',
     minHeight: '300px',
-    boxShadow: '0 20px 60px rgba(16, 185, 129, 0.3)'
+    boxShadow: '0 8px 32px rgba(16, 185, 129, 0.08)',
+    border: '1px solid rgba(16, 185, 129, 0.1)'
   }}>
     {/* Animated background waves */}
     <motion.div
       animate={isActive ? {
-        scale: [1, 1.2, 1],
-        opacity: [0.1, 0.25, 0.1]
+        scale: [1, 1.05, 1],
+        opacity: [0.1, 0.15, 0.1]
       } : {}}
-      transition={{ duration: 3, repeat: Infinity }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       style={{
         position: 'absolute',
         inset: 0,
-        background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 60%)',
+        background: 'radial-gradient(circle at 30% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 60%)',
         borderRadius: '24px'
       }}
     />
@@ -347,40 +348,40 @@ const CallInterface = ({ data, isActive }) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
       <motion.div
         animate={isActive ? { rotate: 360 } : {}}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         style={{
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: 'rgba(16, 185, 129, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+          border: '1px solid rgba(16, 185, 129, 0.2)'
         }}
       >
-        <Phone size={22} strokeWidth={2.5} />
+        <Phone size={22} strokeWidth={2} color="#10B981" />
       </motion.div>
       <div>
-        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Incoming Call</div>
-        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Answering automatically...</div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#065F46' }}>Incoming Call</div>
+        <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#047857' }}>Answering automatically...</div>
       </div>
     </div>
 
     {/* Caller info */}
     <div style={{ 
-      background: 'rgba(255,255,255,0.15)', 
+      background: 'rgba(255, 255, 255, 0.8)', 
       backdropFilter: 'blur(10px)',
       borderRadius: '16px', 
       padding: '20px', 
       marginBottom: '20px',
-      border: '1px solid rgba(255,255,255,0.2)',
+      border: '1px solid rgba(16, 185, 129, 0.15)',
       position: 'relative',
       zIndex: 2
     }}>
-      <div style={{ fontSize: '20px', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em' }}>{data.caller}</div>
-      <div style={{ fontSize: '15px', opacity: 0.95, marginBottom: '4px', fontWeight: '500' }}>{data.phone}</div>
-      <div style={{ fontSize: '13px', opacity: 0.85, fontWeight: '500' }}>{data.location}</div>
+      <div style={{ fontSize: '20px', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em', color: '#064E3B' }}>{data.caller}</div>
+      <div style={{ fontSize: '15px', opacity: 0.8, marginBottom: '4px', fontWeight: '500', color: '#065F46' }}>{data.phone}</div>
+      <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#047857' }}>{data.location}</div>
     </div>
 
     {/* Call status */}
@@ -406,7 +407,7 @@ const CallInterface = ({ data, isActive }) => (
     <motion.div
       initial={{ width: '0%' }}
       animate={isActive ? { width: '100%' } : { width: '0%' }}
-      transition={{ duration: 2 }}
+      transition={{ duration: 3, ease: "easeInOut" }}
       style={{
         position: 'absolute',
         bottom: 0,
@@ -423,36 +424,37 @@ const CallInterface = ({ data, isActive }) => (
 // Instagram DM Interface Graphics
 const InstagramInterface = ({ data, isActive }) => (
   <div style={{
-    background: 'linear-gradient(135deg, #E4405F 0%, #C13584 50%, #833AB4 100%)',
+    background: 'linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%)',
     borderRadius: '24px',
     padding: '28px',
-    color: 'white',
+    color: '#831843',
     position: 'relative',
     overflow: 'hidden',
     minHeight: '300px',
-    boxShadow: '0 20px 60px rgba(228, 64, 95, 0.35)'
+    boxShadow: '0 8px 32px rgba(228, 64, 95, 0.08)',
+    border: '1px solid rgba(228, 64, 95, 0.1)'
   }}>
     {/* Instagram header */}
     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
       <motion.div
         animate={isActive ? { rotate: [0, 360] } : {}}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         style={{
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: 'rgba(228, 64, 95, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+          border: '1px solid rgba(228, 64, 95, 0.2)'
         }}
       >
-        <MessageCircle size={22} strokeWidth={2.5} />
+        <MessageCircle size={22} strokeWidth={2} color="#E4405F" />
       </motion.div>
       <div>
-        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Instagram DM</div>
-        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Auto-replying...</div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#831843' }}>Instagram DM</div>
+        <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#BE185D' }}>Auto-replying...</div>
       </div>
     </div>
 
@@ -487,7 +489,7 @@ const InstagramInterface = ({ data, isActive }) => (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
         style={{ 
           background: 'rgba(255,255,255,0.35)', 
           borderRadius: '16px 16px 4px 16px', 
@@ -528,14 +530,15 @@ const InstagramInterface = ({ data, isActive }) => (
 // Google Review Interface Graphics
 const ReviewInterface = ({ data, isActive }) => (
   <div style={{
-    background: 'linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%)',
+    background: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)',
     borderRadius: '24px',
     padding: '28px',
-    color: 'white',
+    color: '#92400E',
     position: 'relative',
     overflow: 'hidden',
     minHeight: '300px',
-    boxShadow: '0 20px 60px rgba(251, 191, 36, 0.35)'
+    boxShadow: '0 8px 32px rgba(251, 191, 36, 0.08)',
+    border: '1px solid rgba(251, 191, 36, 0.1)'
   }}>
     {/* Google header */}
     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
@@ -546,18 +549,18 @@ const ReviewInterface = ({ data, isActive }) => (
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: 'rgba(251, 191, 36, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+          border: '1px solid rgba(251, 191, 36, 0.2)'
         }}
       >
-        <Star size={22} strokeWidth={2.5} />
+        <Star size={22} strokeWidth={2} color="#FBBF24" />
       </motion.div>
       <div>
-        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Google Review</div>
-        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Responding...</div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#92400E' }}>Google Review</div>
+        <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#B45309' }}>Responding...</div>
       </div>
     </div>
 
@@ -578,8 +581,8 @@ const ReviewInterface = ({ data, isActive }) => (
           {[...Array(data.rating)].map((_, i) => (
             <motion.div
               key={i}
-              animate={isActive ? { scale: [1, 1.3, 1] } : {}}
-              transition={{ delay: i * 0.1, duration: 0.6, repeat: Infinity, repeatDelay: 2 }}
+              animate={isActive ? { scale: [1, 1.15, 1] } : {}}
+              transition={{ delay: i * 0.2, duration: 1, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
             >
               <Star size={14} fill="currentColor" strokeWidth={0} />
             </motion.div>
@@ -595,7 +598,7 @@ const ReviewInterface = ({ data, isActive }) => (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ delay: 0.9 }}
+        transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
         style={{ 
           background: 'rgba(255,255,255,0.25)', 
           borderRadius: '12px', 
@@ -634,14 +637,15 @@ const ReviewInterface = ({ data, isActive }) => (
 // Follow-up Email Interface Graphics
 const FollowupInterface = ({ data, isActive }) => (
   <div style={{
-    background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
+    background: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%)',
     borderRadius: '24px',
     padding: '28px',
-    color: 'white',
+    color: '#5B21B6',
     position: 'relative',
     overflow: 'hidden',
     minHeight: '300px',
-    boxShadow: '0 20px 60px rgba(139, 92, 246, 0.35)'
+    boxShadow: '0 8px 32px rgba(139, 92, 246, 0.08)',
+    border: '1px solid rgba(139, 92, 246, 0.1)'
   }}>
     {/* Email header */}
     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
@@ -652,18 +656,18 @@ const FollowupInterface = ({ data, isActive }) => (
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: 'rgba(139, 92, 246, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+          border: '1px solid rgba(139, 92, 246, 0.2)'
         }}
       >
-        <Send size={22} strokeWidth={2.5} />
+        <Send size={22} strokeWidth={2} color="#8B5CF6" />
       </motion.div>
       <div>
-        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Follow-up Email</div>
-        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Sending...</div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#5B21B6' }}>Follow-up Email</div>
+        <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#7C3AED' }}>Sending...</div>
       </div>
     </div>
 
@@ -684,7 +688,7 @@ const FollowupInterface = ({ data, isActive }) => (
       <motion.div
         initial={{ opacity: 0 }}
         animate={isActive ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
         style={{ 
           fontSize: '12px', 
           lineHeight: 1.6,
@@ -721,7 +725,7 @@ const FollowupInterface = ({ data, isActive }) => (
     {/* Sending animation */}
     <motion.div
       animate={isActive ? { x: ['-100%', '100%'] } : {}}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       style={{
         position: 'absolute',
         bottom: 0,
@@ -739,14 +743,15 @@ const FollowupInterface = ({ data, isActive }) => (
 // VIP Client Interface Graphics
 const VIPInterface = ({ data, isActive }) => (
   <div style={{
-    background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 50%, #BE185D 100%)',
+    background: 'linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%)',
     borderRadius: '24px',
     padding: '28px',
-    color: 'white',
+    color: '#BE185D',
     position: 'relative',
     overflow: 'hidden',
     minHeight: '300px',
-    boxShadow: '0 20px 60px rgba(236, 72, 153, 0.35)'
+    boxShadow: '0 8px 32px rgba(236, 72, 153, 0.08)',
+    border: '1px solid rgba(236, 72, 153, 0.1)'
   }}>
     {/* Floating hearts animation */}
     {isActive && [...Array(4)].map((_, i) => (
@@ -754,21 +759,21 @@ const VIPInterface = ({ data, isActive }) => (
         key={i}
         animate={{
           y: [0, -120],
-          opacity: [0, 1, 0],
-          scale: [0.4, 1.2, 0.4],
-          x: [0, (i % 2 === 0 ? 20 : -20)]
+          opacity: [0, 0.8, 0],
+          scale: [0.4, 1, 0.4],
+          x: [0, (i % 2 === 0 ? 15 : -15)]
         }}
         transition={{
-          duration: 3.5,
+          duration: 4,
           repeat: Infinity,
-          delay: i * 0.6,
+          delay: i * 0.8,
           ease: "easeOut"
         }}
         style={{
           position: 'absolute',
           right: `${15 + i * 18}px`,
           top: '60%',
-          fontSize: '20px',
+          fontSize: '18px',
           filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
         }}
       >
@@ -785,18 +790,18 @@ const VIPInterface = ({ data, isActive }) => (
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: 'rgba(236, 72, 153, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+          border: '1px solid rgba(236, 72, 153, 0.2)'
         }}
       >
-        <Heart size={22} strokeWidth={2.5} fill="currentColor" />
+        <Heart size={22} strokeWidth={2} fill="#EC4899" color="#EC4899" />
       </motion.div>
       <div>
-        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>VIP Client Care</div>
-        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Sending personal message...</div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#BE185D' }}>VIP Client Care</div>
+        <div style={{ fontSize: '13px', opacity: 0.7, fontWeight: '500', color: '#DB2777' }}>Sending personal message...</div>
       </div>
     </div>
 
@@ -833,7 +838,7 @@ const VIPInterface = ({ data, isActive }) => (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={isActive ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
         style={{ 
           fontSize: '12px', 
           lineHeight: 1.6,
@@ -894,7 +899,7 @@ const AIActivityDisplay = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentActivity((prev) => (prev + 1) % AI_ACTIVITIES.length);
-    }, 3000); // Slightly longer to appreciate the graphics
+    }, 4000); // Increased from 3000 to 4000 for more time to appreciate each interface
 
     return () => clearInterval(interval);
   }, []);
@@ -928,35 +933,32 @@ const AIActivityDisplay = () => {
       maxWidth: '420px',
       height: '450px',
       display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
       paddingTop: '20px'
     }}>
       {/* Main Activity Interface - Animated Graphics */}
       <motion.div
         key={currentActivity}
-        initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
-        animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-        exit={{ opacity: 0, rotateY: -90, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
         transition={{ 
-          duration: 0.6,
-          ease: "easeOut"
+          duration: 0.8,
+          ease: "easeInOut"
         }}
         style={{
           width: '340px',
           position: 'relative',
-          transformStyle: 'preserve-3d'
+          marginBottom: '24px'
         }}
       >
         {renderActivityInterface()}
       </motion.div>
 
-      {/* Activity Indicators - Enhanced */}
+      {/* Activity Indicators - Separate Tab Section */}
       <div style={{
-        position: 'absolute',
-        bottom: '30px',
-        left: '50%',
-        transform: 'translateX(-50%)',
         display: 'flex',
         gap: '12px',
         background: 'rgba(255, 255, 255, 0.98)',
@@ -964,7 +966,9 @@ const AIActivityDisplay = () => {
         padding: '14px 24px',
         borderRadius: '28px',
         boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
-        border: '1px solid rgba(255, 255, 255, 0.5)'
+        border: '1px solid rgba(255, 255, 255, 0.5)',
+        marginTop: 'auto',
+        marginBottom: '20px'
       }}>
         {AI_ACTIVITIES.map((activityItem, index) => {
           const getIcon = (type) => {
@@ -984,31 +988,31 @@ const AIActivityDisplay = () => {
             <motion.div
               key={activityItem.id}
               animate={{
-                scale: currentActivity === index ? 1.25 : 1,
-                opacity: currentActivity === index ? 1 : 0.5,
+                scale: currentActivity === index ? 1.15 : 1,
+                opacity: currentActivity === index ? 1 : 0.6,
                 rotate: currentActivity === index ? [0, 360] : 0
               }}
               transition={{ 
-                duration: currentActivity === index ? 2 : 0.3,
+                duration: currentActivity === index ? 12 : 0.5,
                 repeat: currentActivity === index ? Infinity : 0,
-                ease: currentActivity === index ? "linear" : "easeOut"
+                ease: currentActivity === index ? "linear" : "easeInOut"
               }}
               style={{
                 width: '40px',
                 height: '40px',
                 borderRadius: '14px',
                 background: currentActivity === index 
-                  ? `${activityItem.color}25` 
+                  ? `${activityItem.color}20` 
                   : 'transparent',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 border: currentActivity === index 
-                  ? `2.5px solid ${activityItem.color}` 
-                  : '2.5px solid transparent',
+                  ? `2px solid ${activityItem.color}` 
+                  : '2px solid transparent',
                 cursor: 'pointer',
                 boxShadow: currentActivity === index 
-                  ? `0 4px 16px ${activityItem.color}40`
+                  ? `0 4px 16px ${activityItem.color}30`
                   : 'none'
               }}
             >
