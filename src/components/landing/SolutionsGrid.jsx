@@ -188,317 +188,504 @@ const PRODUCTS = [
 // ─── Styles ──────────────────────────────────────────────────────────────────
 
 const styles = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap');
 
-.ag-root {
-  background: #FCFCFE;
-  font-family: 'DM Sans', sans-serif;
-  color: #141419;
-  min-height: 100vh;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0a0a0a;
+  --ink-2: #1a1a1a;
+  --ink-3: #2a2a2a;
+  --paper: #ffffff;
+  --paper-2: #fafafa;
+  --paper-3: #f5f5f5;
+  --accent: #7B74DC;
+  --accent-dim: #6B63CC;
+  --accent-light: #9B94EC;
+  --rule: rgba(10,10,10,0.12);
+  --rule-heavy: rgba(10,10,10,0.35);
+  --sans: 'Syne', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --serif: 'Instrument Serif', serif;
 }
 
-.ag-section {
-  padding: 100px 24px 120px;
-  width: 100%;
-  margin: 0;
+.sg-root {
+  background: var(--paper);
+  font-family: var(--sans);
+  color: var(--ink);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* grain overlay */
+.sg-root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.6;
+}
+
+/* ── Section ── */
+.sg-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 100px 48px 140px;
+  position: relative;
 }
 
 /* ── Header ── */
-.ag-header {
-  text-align: center;
-  margin-bottom: 80px;
+.sg-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 80px;
+  align-items: end;
+  padding-bottom: 64px;
+  border-bottom: 2px solid var(--rule-heavy);
+  margin-bottom: 0;
 }
 
-.ag-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .22em;
+.sg-header-left {}
+
+.sg-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #7B74DC;
-  margin-bottom: 24px;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
-.ag-eyebrow::before,
-.ag-eyebrow::after {
-  content: '';
+.sg-kicker-line {
   display: block;
-  width: 28px;
+  width: 32px;
   height: 1px;
-  background: #7B74DC;
-  flex-shrink: 0;
+  background: var(--ink);
 }
 
-.ag-headline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(56px, 7.5vw, 104px);
-  font-weight: 900;
-  color: #141419;
-  line-height: .90;
-  letter-spacing: -.05em;
-  margin: 0 0 24px 0;
+.sg-headline {
+  font-family: var(--sans);
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
 }
 
-.ag-headline em {
+.sg-headline em {
+  font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
-  color: #7B74DC;
+  color: var(--ink-3);
+  display: block;
 }
 
-.ag-desc {
-  font-size: 16px;
-  color: #6E6D7A;
-  line-height: 1.8;
-  max-width: 500px;
-  margin: 0 auto;
+.sg-header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 24px;
+  padding-bottom: 4px;
 }
 
-/* ── Solutions Grid ── */
-.ag-grid {
+.sg-desc {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-3);
+  max-width: 380px;
+}
+
+.sg-count-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--accent);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+
+.sg-count-pill-num {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* ── List ── */
+.sg-list {
+  list-style: none;
+}
+
+.sg-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 60px;
-}
-
-.ag-card {
-  background: linear-gradient(135deg, #ffffff 0%, #fefeff 100%);
-  border: 1px solid rgba(227, 226, 235, 0.6);
-  border-radius: 12px;
-  padding: 24px 20px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  grid-template-columns: 56px 320px 1fr auto;
+  align-items: center;
+  gap: 0 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: default;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 1px 8px rgba(20, 20, 25, 0.04);
+  transition: background 0.2s ease;
 }
 
-.ag-card::before {
+.sg-row::before {
   content: '';
   position: absolute;
+  left: -48px;
+  right: -48px;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #7B74DC 0%, #9B94EC 50%, #7B74DC 100%);
+  bottom: 0;
+  background: var(--ink);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.ag-card:hover::before {
+.sg-row:hover::before {
   opacity: 1;
 }
 
-.ag-card:hover {
-  border-color: rgba(123, 116, 220, 0.3);
-  box-shadow: 
-    0 4px 20px rgba(123, 116, 220, 0.12),
-    0 1px 8px rgba(20, 20, 25, 0.06);
-  transform: translateY(-3px);
+.sg-row:hover .sg-row-num,
+.sg-row:hover .sg-row-name,
+.sg-row:hover .sg-row-cat {
+  color: var(--paper);
 }
 
-.ag-card-header {
+.sg-row:hover .sg-row-feature-text {
+  color: var(--accent);
+}
+
+.sg-row:hover .sg-row-dot {
+  background: var(--accent);
+}
+
+.sg-row:hover .sg-icon-box {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+/* z-index so content sits above the ::before */
+.sg-row > * { position: relative; z-index: 1; }
+
+.sg-row-left {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 16px;
+  grid-column: 1 / 3;
+  overflow: hidden;
 }
 
-.ag-icon {
-  width: 32px;
-  height: 32px;
+.sg-row-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(10,10,10,0.3);
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+  transition: color 0.25s ease;
+  letter-spacing: 0.04em;
+}
+
+.sg-icon-box {
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #7B74DC;
+  border: 1px solid var(--rule-heavy);
+  border-radius: 8px;
+  color: var(--ink);
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-.ag-card:hover .ag-icon {
-  transform: scale(1.1);
-  color: #6B63CC;
+.sg-row-name {
+  font-size: clamp(15px, 1.5vw, 19px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.ag-card-title {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: #141419;
-  letter-spacing: -.01em;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.ag-feature-line {
-  font-size: 13px;
-  color: #6E6D7A;
-  line-height: 1.5;
-  min-height: 20px;
+.sg-row-middle {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  background: rgba(123, 116, 220, 0.03);
-  border-radius: 8px;
-  border-left: 2px solid #7B74DC;
+  gap: 10px;
+  overflow: hidden;
+  min-width: 0;
+  grid-column: 3 / 4;
 }
 
-.ag-feature-line::before {
-  content: '';
-  width: 3px;
-  height: 3px;
-  background: #7B74DC;
+.sg-row-dot {
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  margin-right: 10px;
+  background: rgba(10,10,10,0.3);
   flex-shrink: 0;
+  transition: background 0.25s ease;
+}
+
+.sg-row-feature-text {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: color 0.25s ease;
+}
+
+.sg-row-right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: flex-end;
+}
+
+.sg-row-cat {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.4);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+  border: 1px solid var(--rule);
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 /* ── Bottom CTA ── */
-.ag-bottom {
-  margin-top: 80px;
-  padding: 48px;
-  background: #141419;
-  border-radius: 20px;
-  text-align: center;
+.sg-cta {
+  margin-top: 96px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: 48px 56px;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
 }
 
-.ag-bottom-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 700;
-  color: #FCFCFE;
-  letter-spacing: -.025em;
+.sg-cta::before {
+  content: 'ALL 12';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--sans);
+  font-size: 140px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sg-cta-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
   margin-bottom: 12px;
 }
 
-.ag-bottom-sub {
-  font-size: 16px;
-  color: rgba(252,252,254,.6);
-  margin-bottom: 32px;
-}
-
-.ag-start-btn {
-  padding: 16px 40px;
-  background: #7B74DC;
-  border: none;
-  border-radius: 100px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+.sg-cta-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
   color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.sg-cta-title span {
+  color: var(--accent);
+}
+
+.sg-cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.sg-cta-sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  text-align: right;
+  line-height: 1.6;
+}
+
+.sg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 14px 28px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: .03em;
+  transition: background 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
 }
 
-.ag-start-btn:hover { 
-  background: #6B63CC;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(123, 116, 220, 0.4);
+.sg-btn:hover {
+  background: var(--accent-dim);
+  transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
-  .ag-section { 
-    padding: 64px 16px 80px; 
-  }
-  
-  .ag-grid {
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .sg-section { padding: 64px 24px 100px; }
+
+  .sg-header {
     grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 50px;
+    gap: 32px;
+    padding-bottom: 48px;
   }
-  
-  .ag-card {
-    padding: 20px 18px;
+
+  .sg-header-right { max-width: 100%; }
+
+  .sg-row {
+    grid-template-columns: 40px 1fr auto;
+    gap: 6px 12px;
+    padding: 18px 0;
   }
-  
-  .ag-card-header {
-    gap: 10px;
-    margin-bottom: 14px;
+
+  .sg-row-left {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    gap: 12px;
   }
-  
-  .ag-icon {
-    width: 28px;
-    height: 28px;
+
+  .sg-row-middle {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    padding-left: 52px;
   }
-  
-  .ag-card-title {
-    font-size: 14px;
+
+  .sg-row-right {
+    grid-column: 3 / 4;
+    grid-row: 1;
+    align-items: flex-start;
+    padding-top: 4px;
   }
-  
-  .ag-feature-line {
-    font-size: 12px;
-    padding: 10px 14px;
+
+  .sg-row::before {
+    left: -24px;
+    right: -24px;
   }
-  
-  .ag-bottom {
-    margin-top: 50px;
-    padding: 28px 20px;
+
+  .sg-cta {
+    grid-template-columns: 1fr;
+    padding: 36px 32px;
+    gap: 24px;
   }
+
+  .sg-cta-right {
+    align-items: flex-start;
+  }
+
+  .sg-cta-sub { text-align: left; }
+}
+
+@media (max-width: 540px) {
+  .sg-row-name { font-size: 15px; white-space: normal; }
+  .sg-row-cat { display: none; }
 }
 `;
 
-// ─── Animated Feature Line Component ─────────────────────────────────────────
+// ─── Animated Feature Text ────────────────────────────────────────────────────
 
-function AnimatedFeatureLine({ features }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+function FeatureTicker({ features }) {
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % features.length);
-    }, 2500);
-
-    return () => clearInterval(interval);
+    const t = setInterval(() => setIdx(i => (i + 1) % features.length), 2800);
+    return () => clearInterval(t);
   }, [features.length]);
 
   return (
-    <div className="ag-feature-line">
+    <div className="sg-row-middle">
+      <span className="sg-row-dot" />
       <AnimatePresence mode="wait">
         <motion.span
-          key={currentIndex}
+          key={idx}
+          className="sg-row-feature-text"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
         >
-          {features[currentIndex]}
+          {features[idx]}
         </motion.span>
       </AnimatePresence>
     </div>
   );
 }
 
-// ─── Solution Card Component ─────────────────────────────────────────────────
+// ─── Row Component ────────────────────────────────────────────────────────────
 
-function SolutionCard({ product, index }) {
+function ProductRow({ product, index }) {
   const Icon = product.icon;
+  const num = String(index + 1).padStart(2, "0");
 
   return (
-    <motion.div
-      className="ag-card"
-      initial={{ opacity: 0, y: 20, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.5, 
-        delay: index * 0.06, 
-        ease: [0.16, 1, 0.3, 1] 
-      }}
-      whileHover={{ 
-        scale: 1.01,
-        transition: { duration: 0.2 }
-      }}
+    <motion.li
+      className="sg-row"
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.4, delay: index * 0.04, ease: [0.4, 0, 0.2, 1] }}
     >
-      <div className="ag-card-header">
-        <div className="ag-icon">
-          <Icon size={20} strokeWidth={1.8} />
+      {/* Left: number + icon + name */}
+      <div className="sg-row-left">
+        <span className="sg-row-num">{num}</span>
+        <div className="sg-icon-box">
+          <Icon size={16} strokeWidth={2} />
         </div>
-        <h3 className="ag-card-title">{product.name}</h3>
+        <span className="sg-row-name">{product.name}</span>
       </div>
-      
-      <AnimatedFeatureLine features={product.features} />
-    </motion.div>
+
+      {/* Middle: animated feature */}
+      <FeatureTicker features={product.features} />
+
+      {/* Right: category badge */}
+      <div className="sg-row-right">
+        <span className="sg-row-cat">{product.category}</span>
+      </div>
+    </motion.li>
   );
 }
 
@@ -508,55 +695,76 @@ export default function SolutionsGrid() {
   return (
     <>
       <style>{styles}</style>
-      <div className="ag-root">
-        <section id="solutions" className="ag-section">
+      <div className="sg-root">
+        <section id="solutions" className="sg-section">
+
           {/* ── Header ── */}
           <motion.div
-            className="ag-header"
+            className="sg-header"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <div className="sg-header-left">
+              <div className="sg-kicker">
+                <span className="sg-kicker-line" />
+                The Complete AI Stack
+              </div>
+              <h2 className="sg-headline">
+                12 AI
+                <em>Employees.</em>
+              </h2>
+            </div>
+
+            <div className="sg-header-right">
+              <p className="sg-desc">
+                Every touchpoint covered. Every lead captured. Every booking
+                closed — around the clock, without a single hire.
+              </p>
+              <div className="sg-count-pill">
+                <span className="sg-count-pill-num">12</span>
+                tools · one subscription
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Product List ── */}
+          <ul className="sg-list">
+            {PRODUCTS.map((product, index) => (
+              <ProductRow key={product.id} product={product} index={index} />
+            ))}
+          </ul>
+
+          {/* ── CTA ── */}
+          <motion.div
+            className="sg-cta"
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="ag-eyebrow">The Full Stack</div>
-            <h2 className="ag-headline">
-              12 AI
-              <br />
-              <em>Employees.</em>
-            </h2>
-            <p className="ag-desc">
-              Every touchpoint covered. Every lead captured. Every booking closed — around the
-              clock, without a single hire.
-            </p>
-          </motion.div>
-
-          {/* ── Solutions Grid ── */}
-          <div className="ag-grid">
-            {PRODUCTS.map((product, index) => (
-              <SolutionCard 
-                key={product.id} 
-                product={product} 
-                index={index} 
-              />
-            ))}
-          </div>
-
-          {/* ── Bottom CTA ── */}
-          <motion.div
-            className="ag-bottom"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.2 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             <div>
-              <div className="ag-bottom-title">All 12 tools. One subscription.</div>
-              <div className="ag-bottom-sub">
-                No per-tool pricing. No hidden fees. Cancel anytime.
+              <div className="sg-cta-label">Ready to automate?</div>
+              <div className="sg-cta-title">
+                All 12 tools.<br />
+                <span>One price.</span>
               </div>
             </div>
-            <button className="ag-start-btn">Start Free Trial →</button>
+            <div className="sg-cta-right">
+              <p className="sg-cta-sub">
+                No per-tool pricing.<br />
+                No hidden fees. Cancel anytime.
+              </p>
+              <button className="sg-btn">
+                Start Free Trial
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M5 10.5L9.5 7 5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
           </motion.div>
+
         </section>
       </div>
     </>
