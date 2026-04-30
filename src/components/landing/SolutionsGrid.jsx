@@ -491,7 +491,7 @@ const styles = `
 
 /* Tablet portrait */
 @media (max-width: 768px) {
-  .sg-inner { padding: 64px 20px 88px; }
+  .sg-inner { padding: 48px 20px 64px; }
 
   /* header */
   .sg-head { margin-bottom: 40px; }
@@ -543,7 +543,7 @@ const styles = `
 
 /* Mobile */
 @media (max-width: 480px) {
-  .sg-inner { padding: 52px 16px 72px; }
+  .sg-inner { padding: 40px 16px 56px; }
 
   /* header */
   .sg-h2 { font-size: clamp(32px, 10vw, 44px); }

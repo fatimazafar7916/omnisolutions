@@ -315,16 +315,16 @@ const styles = `
 }
 
 @media (max-width: 768px) {
-  .hiw-inner { padding: 72px 20px 88px; }
-  .hiw-head { margin-bottom: 48px; }
+  .hiw-inner { padding: 48px 20px 64px; }
+  .hiw-head { margin-bottom: 40px; }
   .hiw-h2 { font-size: clamp(32px, 8vw, 48px); margin-bottom: 16px; }
   .hiw-sub { font-size: 15px; }
-  .hiw-cta { grid-template-columns: 1fr; padding: 36px 28px; gap: 24px; }
+  .hiw-cta { grid-template-columns: 1fr; padding: 32px 24px; gap: 20px; }
   .hiw-btn { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
-  .hiw-inner { padding: 56px 16px 72px; }
+  .hiw-inner { padding: 40px 16px 56px; }
   .hiw-card { padding: 24px 20px 20px; border-radius: 16px; }
   .hiw-cta { padding: 28px 20px; border-radius: 16px; }
 }
