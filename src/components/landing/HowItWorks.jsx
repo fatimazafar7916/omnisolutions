@@ -66,6 +66,8 @@ export default function HowItWorks() {
         padding: "120px 24px",
         overflow: "hidden",
         position: "relative",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
       {/* Decorative background number */}
@@ -88,7 +90,7 @@ export default function HowItWorks() {
         3
       </div>
 
-      <div style={{ width: "100%", position: "relative" }}>
+      <div style={{ width: "100%", maxWidth: "1280px", position: "relative" }}>
         {/* ── Header Row ── */}
         <div
           style={{

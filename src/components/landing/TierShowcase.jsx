@@ -105,14 +105,14 @@ export default function TierShowcase() {
         }}
       />
 
-      <div style={{ width: "100%", position: "relative" }}>
+      <div style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", position: "relative" }}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 64 }}
+          style={{ textAlign: "center", marginBottom: 64, display: "flex", flexDirection: "column", alignItems: "center" }}
         >
           <span
             style={{

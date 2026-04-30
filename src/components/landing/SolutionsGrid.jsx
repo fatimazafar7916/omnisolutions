@@ -235,6 +235,9 @@ const styles = `
   margin: 0 auto;
   padding: 100px 48px 140px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ── Header ── */
@@ -246,6 +249,8 @@ const styles = `
   padding-bottom: 64px;
   border-bottom: 2px solid var(--rule-heavy);
   margin-bottom: 0;
+  width: 100%;
+  max-width: 1280px;
 }
 
 .sg-header-left {}
@@ -325,6 +330,8 @@ const styles = `
 /* ── List ── */
 .sg-list {
   list-style: none;
+  width: 100%;
+  max-width: 1280px;
 }
 
 .sg-row {

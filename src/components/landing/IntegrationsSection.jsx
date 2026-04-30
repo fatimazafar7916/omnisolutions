@@ -545,7 +545,7 @@ export default function IntegrationsSection() {
         50+
       </span>
 
-      <div style={{ width: "100%", padding: "0 32px", position: "relative" }}>
+      <div style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", padding: "0 32px", position: "relative" }}>
         {/* ── Header ── */}
         <div
           ref={headerRef}
@@ -721,7 +721,7 @@ export default function IntegrationsSection() {
 
       {/* ── Stats bar ── */}
       <div
-        style={{ width: "100%", padding: "48px 32px 0", position: "relative" }}
+        style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", padding: "48px 32px 0", position: "relative" }}
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -731,6 +731,7 @@ export default function IntegrationsSection() {
           style={{
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             gap: 48,
             flexWrap: "wrap",
           }}

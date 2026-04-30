@@ -33,10 +33,11 @@ export default function FAQSection() {
   const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" style={{ background: "#FFFFFF", padding: "100px 24px" }}>
+    <section id="faq" style={{ background: "#FFFFFF", padding: "100px 24px", display: "flex", justifyContent: "center" }}>
       <div
         style={{
           width: "100%",
+          maxWidth: "1280px",
           padding: "100px 24px",
           display: "grid",
           gridTemplateColumns: "1fr",

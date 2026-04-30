@@ -11,8 +11,8 @@ const TRUST = [
 
 export default function CTASection() {
   return (
-    <section id="cta" style={{ background: "#FCFCFE" }}>
-      <div style={{ width: "100%", padding: "100px 24px" }}>
+    <section id="cta" style={{ background: "#FCFCFE", display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "100%", maxWidth: "1280px", padding: "100px 24px" }}>
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}

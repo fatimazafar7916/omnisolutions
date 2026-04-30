@@ -672,14 +672,14 @@ function ProblemConvergenceSection() {
         pointerEvents: "none",
       }} />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 36px", position: "relative" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 36px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 56 }}
+          style={{ textAlign: "center", marginBottom: 56, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
           <div style={{
             display: "inline-flex",

@@ -141,6 +141,9 @@ export default function StatsStrip() {
         background: "#000000",
         position: "relative",
         overflow: "hidden",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       {/* Animated background pattern */}
@@ -189,7 +192,7 @@ export default function StatsStrip() {
         }}
       />
 
-      <div style={{ width: "100%", position: "relative", zIndex: 1 }}>
+      <div style={{ width: "100%", maxWidth: "1280px", position: "relative", zIndex: 1, margin: "0 auto" }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -198,7 +201,10 @@ export default function StatsStrip() {
           transition={{ duration: 0.6 }}
           style={{
             textAlign: "center",
-            marginBottom: "clamp(16px, 3vw, 24px)"
+            marginBottom: "clamp(16px, 3vw, 24px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <h2
