@@ -95,12 +95,12 @@ export default function HowItWorks() {
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            gap: 40,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 24,
             marginBottom: 80,
-            flexWrap: "wrap",
+            textAlign: "center",
           }}
         >
           <motion.div
@@ -108,7 +108,7 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
-            style={{ maxWidth: 580 }}
+            style={{ maxWidth: 800, width: "100%" }}
           >
             <span
               style={{
@@ -163,8 +163,8 @@ export default function HowItWorks() {
               fontSize: 16,
               color: "#5A6E62",
               lineHeight: 1.7,
-              maxWidth: 320,
-              margin: 0,
+              maxWidth: 600,
+              margin: "0 auto",
               paddingBottom: 4,
             }}
           >
