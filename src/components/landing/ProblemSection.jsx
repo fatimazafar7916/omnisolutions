@@ -358,12 +358,14 @@ function MetricImpact({ isVisible }) {
   ];
 
   return (
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 16,
-      width: "100%",
-    }}>
+    <div 
+      className="metrics-grid"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 16,
+        width: "100%",
+      }}>
       {metrics.map((metric, mi) => (
         <motion.div
           key={metric.label}
@@ -672,7 +674,9 @@ function ProblemConvergenceSection() {
         pointerEvents: "none",
       }} />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 36px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div 
+        className="problem-section-container"
+        style={{ maxWidth: 1100, margin: "0 auto", padding: "0 36px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
         {/* Section header */}
         <motion.div
@@ -724,14 +728,16 @@ function ProblemConvergenceSection() {
 
         {/* Problem Cards Row */}
         <div ref={wrapRef} style={{ width: "100%" }}>
-          <div style={{
-            display: "flex",
-            gap: 12,
-            marginBottom: 0,
-            flexWrap: "nowrap",
-            overflowX: "auto",
-            paddingBottom: 4,
-          }}>
+          <div 
+            className="problem-cards-grid"
+            style={{
+              display: "flex",
+              gap: 12,
+              marginBottom: 0,
+              flexWrap: "nowrap",
+              overflowX: "auto",
+              paddingBottom: 4,
+            }}>
             {CORE_PROBLEMS.map((problem, i) => (
               <ProblemCard
                 key={problem.id}
@@ -743,7 +749,7 @@ function ProblemConvergenceSection() {
           </div>
 
           {/* Wire System */}
-          <div style={{ marginTop: 0, position: "relative" }}>
+          <div className="wire-system-wrapper" style={{ marginTop: 0, position: "relative" }}>
             <WireSystem
               cardCount={CORE_PROBLEMS.length}
               containerWidth={containerWidth}
@@ -793,7 +799,9 @@ function ProblemConvergenceSection() {
           </motion.div>
 
           {/* Metric Impact Cards */}
-          <MetricImpact isVisible={isVisible} />
+          <div className="metrics-wrapper">
+            <MetricImpact isVisible={isVisible} />
+          </div>
 
           {/* Bottom CTA hint */}
           <motion.div
@@ -836,5 +844,99 @@ function ProblemConvergenceSection() {
 
 /* ── Main Component ── */
 export default function ProblemSection() {
-  return <ProblemConvergenceSection />;
+  return (
+    <>
+      <ProblemConvergenceSection />
+      <style>{`
+        /* Mobile Responsive Styles */
+        
+        /* Mobile: Stack cards vertically, hide wire system */
+        @media (max-width: 768px) {
+          .problem-section-container {
+            padding: 0 16px !important;
+          }
+          
+          .problem-cards-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            overflow-x: visible !important;
+            padding-bottom: 0 !important;
+          }
+          
+          .problem-cards-grid > div {
+            min-height: auto !important;
+            padding: 16px 14px !important;
+          }
+          
+          /* Hide wire system on mobile */
+          .wire-system-wrapper {
+            display: none !important;
+          }
+          
+          /* Stack metrics vertically on mobile */
+          .metrics-grid {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          
+          .metrics-grid > div {
+            padding: 16px 14px !important;
+          }
+        }
+        
+        /* Tablet: 2 columns for problem cards */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .problem-section-container {
+            padding: 0 24px !important;
+          }
+          
+          .problem-cards-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 14px !important;
+            overflow-x: visible !important;
+          }
+          
+          .wire-system-wrapper {
+            display: none !important;
+          }
+          
+          .metrics-grid {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+          }
+        }
+        
+        /* Small mobile: even more compact */
+        @media (max-width: 480px) {
+          .problem-section-container {
+            padding: 0 12px !important;
+          }
+          
+          .problem-cards-grid > div {
+            padding: 14px 12px !important;
+            min-height: auto !important;
+          }
+          
+          .metrics-grid > div {
+            padding: 14px 12px !important;
+          }
+          
+          /* Smaller fonts on mobile */
+          .problem-cards-grid h4 {
+            font-size: 14px !important;
+          }
+          
+          .problem-cards-grid p {
+            font-size: 11px !important;
+          }
+          
+          .metrics-grid h3 {
+            font-size: 11px !important;
+          }
+        }
+      `}</style>
+    </>
+  );
 }
