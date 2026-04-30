@@ -970,8 +970,8 @@ export default function ProblemSection() {
           
           /* Label - smaller (MONTHLY REVENUE LOSS text) */
           .metrics-grid > div > div:first-child span {
-            font-size: 8px !important;
-            letter-spacing: 0.06em !important;
+            font-size: 7px !important;
+            letter-spacing: 0.05em !important;
           }
           
           /* Main number - smaller (17-19px range) */
