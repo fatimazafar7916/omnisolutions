@@ -195,6 +195,9 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
   // Check if mobile view (only show 3 wires on mobile)
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const visibleCards = isMobile ? 3 : cardCount;
+  
+  // On mobile, wires go straight down from each card (no convergence)
+  // On desktop, wires converge to center point
 
   return (
     <svg
@@ -224,7 +227,10 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
       {CORE_PROBLEMS.slice(0, visibleCards).map((prob, i) => {
         // Calculate card center position accounting for gaps
         const cardCenterX = (cardWidth * i) + (gap * i) + (cardWidth / 2);
-        const convergeX = containerWidth / 2;
+        
+        // Mobile: wires go straight down from each card
+        // Desktop: wires converge to center
+        const convergeX = isMobile ? cardCenterX : containerWidth / 2;
         const controlY = svgHeight * 0.6;
 
         const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
@@ -279,12 +285,25 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
                 }}
               />
             )}
+            
+            {/* End point dot for each wire on mobile */}
+            {isMobile && isVisible && (
+              <motion.circle
+                cx={convergeX}
+                cy={svgHeight - 20}
+                r="6"
+                fill={prob.color}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.6 + i * 0.1 }}
+              />
+            )}
           </g>
         );
       })}
 
-      {/* Convergence point glow */}
-      {isVisible && (
+      {/* Convergence point glow - only on desktop */}
+      {!isMobile && isVisible && (
         <>
           <motion.circle
             cx={containerWidth / 2}
