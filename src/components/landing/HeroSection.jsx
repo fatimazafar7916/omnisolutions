@@ -5,52 +5,89 @@ import AgentOrbit from "./AgentOrbit";
 
 const TRUST = ["No long-term contract", "Live in 14 days", "14-day refund", "Bank-level security", "24/7 US support", "Works with existing systems"];
 
-// AI Activity Animation Data
+// AI Activity Animation Data with Graphics
 const AI_ACTIVITIES = [
   {
     id: 1,
-    icon: Phone,
+    type: "call",
     title: "Incoming Call",
     subtitle: "Answering in 0.8s",
     color: "#2A9D8F",
     bgColor: "rgba(42, 157, 143, 0.1)",
-    detail: "Premium Rental Inquiry"
+    detail: "Premium Rental Inquiry",
+    data: {
+      caller: "Sarah Johnson",
+      phone: "+1 (555) 123-4567",
+      location: "Miami, FL",
+      duration: "0:08",
+      status: "Connected"
+    }
   },
   {
     id: 2,
-    icon: MessageCircle,
+    type: "instagram",
     title: "Instagram DM",
     subtitle: "Reply sent instantly",
     color: "#E1306C",
     bgColor: "rgba(225, 48, 108, 0.1)",
-    detail: "Booking confirmation"
+    detail: "Booking confirmation",
+    data: {
+      username: "@carlos_miami",
+      message: "How much for the Urus this weekend?",
+      reply: "Hi Carlos! The Urus is $450/day for weekends. Available Sat-Sun. Book now?",
+      time: "2s",
+      status: "Replied"
+    }
   },
   {
     id: 3,
-    icon: Star,
+    type: "review",
     title: "Google Review",
     subtitle: "5-star response posted",
     color: "#FFA500",
     bgColor: "rgba(255, 165, 0, 0.1)",
-    detail: "Thank you message"
+    detail: "Thank you message",
+    data: {
+      reviewer: "Mike Rodriguez",
+      rating: 5,
+      review: "Amazing service! The Lamborghini was perfect for my anniversary.",
+      response: "Thank you Mike! We're thrilled you had an amazing anniversary. Looking forward to serving you again!",
+      time: "11s",
+      status: "Responded"
+    }
   },
   {
     id: 4,
-    icon: Send,
+    type: "followup",
     title: "Follow-up Sent",
     subtitle: "Booking reminder",
     color: "#7B74DC",
     bgColor: "rgba(123, 116, 220, 0.1)",
-    detail: "Pickup details shared"
+    detail: "Pickup details shared",
+    data: {
+      client: "Jessica L.",
+      subject: "Your McLaren 720S pickup tomorrow",
+      message: "Hi Jessica! Your McLaren is ready for pickup at 9 AM. Location: 1234 Ocean Dr. Need anything else?",
+      time: "5s",
+      status: "Sent"
+    }
   },
   {
     id: 5,
-    icon: Heart,
+    type: "vip",
     title: "VIP Client",
     subtitle: "Birthday wish sent",
     color: "#FF6B6B",
     bgColor: "rgba(255, 107, 107, 0.1)",
-    detail: "Personal touch added"
+    detail: "Personal touch added",
+    data: {
+      client: "David Chen",
+      occasion: "Birthday",
+      message: "Happy Birthday David! 🎉 As our VIP client, enjoy 20% off your next exotic rental. Make it special!",
+      gift: "20% VIP Discount",
+      time: "1s",
+      status: "Delivered"
+    }
   }
 ];
 
@@ -277,226 +314,746 @@ const AnimatedStatsStrip = () => {
     </div>
   );
 };
-// Minimal AI Activity Component - Clean Card Design
+// Animated Graphics Components for Each Activity Type
+
+// Call Interface Graphics
+const CallInterface = ({ data, isActive }) => (
+  <div style={{
+    background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    borderRadius: '24px',
+    padding: '28px',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '300px',
+    boxShadow: '0 20px 60px rgba(16, 185, 129, 0.3)'
+  }}>
+    {/* Animated background waves */}
+    <motion.div
+      animate={isActive ? {
+        scale: [1, 1.2, 1],
+        opacity: [0.1, 0.25, 0.1]
+      } : {}}
+      transition={{ duration: 3, repeat: Infinity }}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 60%)',
+        borderRadius: '24px'
+      }}
+    />
+    
+    {/* Call header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+      <motion.div
+        animate={isActive ? { rotate: 360 } : {}}
+        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+        }}
+      >
+        <Phone size={22} strokeWidth={2.5} />
+      </motion.div>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Incoming Call</div>
+        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Answering automatically...</div>
+      </div>
+    </div>
+
+    {/* Caller info */}
+    <div style={{ 
+      background: 'rgba(255,255,255,0.15)', 
+      backdropFilter: 'blur(10px)',
+      borderRadius: '16px', 
+      padding: '20px', 
+      marginBottom: '20px',
+      border: '1px solid rgba(255,255,255,0.2)',
+      position: 'relative',
+      zIndex: 2
+    }}>
+      <div style={{ fontSize: '20px', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em' }}>{data.caller}</div>
+      <div style={{ fontSize: '15px', opacity: 0.95, marginBottom: '4px', fontWeight: '500' }}>{data.phone}</div>
+      <div style={{ fontSize: '13px', opacity: 0.85, fontWeight: '500' }}>{data.location}</div>
+    </div>
+
+    {/* Call status */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <motion.div
+          animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#34D399',
+            boxShadow: '0 0 12px rgba(52, 211, 153, 0.8)'
+          }}
+        />
+        <span style={{ fontSize: '13px', fontWeight: '600' }}>{data.status}</span>
+      </div>
+      <div style={{ fontSize: '18px', fontWeight: '700', letterSpacing: '-0.01em' }}>{data.duration}</div>
+    </div>
+
+    {/* Response time indicator */}
+    <motion.div
+      initial={{ width: '0%' }}
+      animate={isActive ? { width: '100%' } : { width: '0%' }}
+      transition={{ duration: 2 }}
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        height: '4px',
+        background: 'linear-gradient(90deg, #34D399 0%, #10B981 100%)',
+        borderRadius: '0 0 24px 24px',
+        boxShadow: '0 -2px 8px rgba(52, 211, 153, 0.4)'
+      }}
+    />
+  </div>
+);
+
+// Instagram DM Interface Graphics
+const InstagramInterface = ({ data, isActive }) => (
+  <div style={{
+    background: 'linear-gradient(135deg, #E4405F 0%, #C13584 50%, #833AB4 100%)',
+    borderRadius: '24px',
+    padding: '28px',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '300px',
+    boxShadow: '0 20px 60px rgba(228, 64, 95, 0.35)'
+  }}>
+    {/* Instagram header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+      <motion.div
+        animate={isActive ? { rotate: [0, 360] } : {}}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        }}
+      >
+        <MessageCircle size={22} strokeWidth={2.5} />
+      </motion.div>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Instagram DM</div>
+        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Auto-replying...</div>
+      </div>
+    </div>
+
+    {/* Message thread */}
+    <div style={{ 
+      background: 'rgba(255,255,255,0.15)', 
+      backdropFilter: 'blur(10px)',
+      borderRadius: '16px', 
+      padding: '20px', 
+      marginBottom: '20px',
+      border: '1px solid rgba(255,255,255,0.2)',
+      position: 'relative',
+      zIndex: 2
+    }}>
+      <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '12px', letterSpacing: '-0.01em' }}>{data.username}</div>
+      
+      {/* Incoming message */}
+      <div style={{ 
+        background: 'rgba(255,255,255,0.25)', 
+        borderRadius: '16px 16px 16px 4px', 
+        padding: '12px 16px', 
+        marginBottom: '12px',
+        fontSize: '13px',
+        lineHeight: '1.5',
+        fontWeight: '500',
+        border: '1px solid rgba(255,255,255,0.2)'
+      }}>
+        {data.message}
+      </div>
+      
+      {/* AI Reply */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ delay: 0.6 }}
+        style={{ 
+          background: 'rgba(255,255,255,0.35)', 
+          borderRadius: '16px 16px 4px 16px', 
+          padding: '12px 16px',
+          fontSize: '13px',
+          marginLeft: '24px',
+          lineHeight: '1.5',
+          fontWeight: '500',
+          border: '1px solid rgba(255,255,255,0.3)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+        }}
+      >
+        {data.reply}
+      </motion.div>
+    </div>
+
+    {/* Status */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <motion.div
+          animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#34D399',
+            boxShadow: '0 0 12px rgba(52, 211, 153, 0.8)'
+          }}
+        />
+        <span style={{ fontSize: '13px', fontWeight: '600' }}>{data.status}</span>
+      </div>
+      <div style={{ fontSize: '15px', fontWeight: '700' }}>{data.time}</div>
+    </div>
+  </div>
+);
+
+// Google Review Interface Graphics
+const ReviewInterface = ({ data, isActive }) => (
+  <div style={{
+    background: 'linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%)',
+    borderRadius: '24px',
+    padding: '28px',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '300px',
+    boxShadow: '0 20px 60px rgba(251, 191, 36, 0.35)'
+  }}>
+    {/* Google header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+      <motion.div
+        animate={isActive ? { rotate: [0, 360] } : {}}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        }}
+      >
+        <Star size={22} strokeWidth={2.5} />
+      </motion.div>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Google Review</div>
+        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Responding...</div>
+      </div>
+    </div>
+
+    {/* Review content */}
+    <div style={{ 
+      background: 'rgba(255,255,255,0.15)', 
+      backdropFilter: 'blur(10px)',
+      borderRadius: '16px', 
+      padding: '20px', 
+      marginBottom: '20px',
+      border: '1px solid rgba(255,255,255,0.2)',
+      position: 'relative',
+      zIndex: 2
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>{data.reviewer}</div>
+        <div style={{ display: 'flex', gap: '3px' }}>
+          {[...Array(data.rating)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+              transition={{ delay: i * 0.1, duration: 0.6, repeat: Infinity, repeatDelay: 2 }}
+            >
+              <Star size={14} fill="currentColor" strokeWidth={0} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      <div style={{ fontSize: '13px', marginBottom: '16px', opacity: 0.95, lineHeight: '1.5', fontWeight: '500' }}>
+        {data.review}
+      </div>
+      
+      {/* AI Response */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ delay: 0.9 }}
+        style={{ 
+          background: 'rgba(255,255,255,0.25)', 
+          borderRadius: '12px', 
+          padding: '12px 16px',
+          fontSize: '12px',
+          borderLeft: '4px solid rgba(255,255,255,0.6)',
+          lineHeight: '1.5',
+          fontWeight: '500'
+        }}
+      >
+        <strong style={{ display: 'block', marginBottom: '4px' }}>Our Response:</strong> {data.response}
+      </motion.div>
+    </div>
+
+    {/* Status */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <motion.div
+          animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#34D399',
+            boxShadow: '0 0 12px rgba(52, 211, 153, 0.8)'
+          }}
+        />
+        <span style={{ fontSize: '13px', fontWeight: '600' }}>{data.status}</span>
+      </div>
+      <div style={{ fontSize: '15px', fontWeight: '700' }}>{data.time}</div>
+    </div>
+  </div>
+);
+
+// Follow-up Email Interface Graphics
+const FollowupInterface = ({ data, isActive }) => (
+  <div style={{
+    background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
+    borderRadius: '24px',
+    padding: '28px',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '300px',
+    boxShadow: '0 20px 60px rgba(139, 92, 246, 0.35)'
+  }}>
+    {/* Email header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+      <motion.div
+        animate={isActive ? { rotate: [0, 360] } : {}}
+        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        }}
+      >
+        <Send size={22} strokeWidth={2.5} />
+      </motion.div>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Follow-up Email</div>
+        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Sending...</div>
+      </div>
+    </div>
+
+    {/* Email content */}
+    <div style={{ 
+      background: 'rgba(255,255,255,0.15)', 
+      backdropFilter: 'blur(10px)',
+      borderRadius: '16px', 
+      padding: '20px', 
+      marginBottom: '20px',
+      border: '1px solid rgba(255,255,255,0.2)',
+      position: 'relative',
+      zIndex: 2
+    }}>
+      <div style={{ fontSize: '13px', opacity: 0.85, marginBottom: '6px', fontWeight: '500' }}>To: {data.client}</div>
+      <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '16px', letterSpacing: '-0.01em' }}>{data.subject}</div>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isActive ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 0.4 }}
+        style={{ 
+          fontSize: '12px', 
+          lineHeight: 1.6,
+          background: 'rgba(255,255,255,0.15)',
+          borderRadius: '12px',
+          padding: '16px',
+          fontWeight: '500',
+          border: '1px solid rgba(255,255,255,0.2)'
+        }}
+      >
+        {data.message}
+      </motion.div>
+    </div>
+
+    {/* Status */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <motion.div
+          animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#34D399',
+            boxShadow: '0 0 12px rgba(52, 211, 153, 0.8)'
+          }}
+        />
+        <span style={{ fontSize: '13px', fontWeight: '600' }}>{data.status}</span>
+      </div>
+      <div style={{ fontSize: '15px', fontWeight: '700' }}>{data.time}</div>
+    </div>
+
+    {/* Sending animation */}
+    <motion.div
+      animate={isActive ? { x: ['-100%', '100%'] } : {}}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '40%',
+        height: '4px',
+        background: 'rgba(255,255,255,0.7)',
+        borderRadius: '0 0 24px 24px',
+        boxShadow: '0 0 12px rgba(255,255,255,0.5)'
+      }}
+    />
+  </div>
+);
+
+// VIP Client Interface Graphics
+const VIPInterface = ({ data, isActive }) => (
+  <div style={{
+    background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 50%, #BE185D 100%)',
+    borderRadius: '24px',
+    padding: '28px',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '300px',
+    boxShadow: '0 20px 60px rgba(236, 72, 153, 0.35)'
+  }}>
+    {/* Floating hearts animation */}
+    {isActive && [...Array(4)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          y: [0, -120],
+          opacity: [0, 1, 0],
+          scale: [0.4, 1.2, 0.4],
+          x: [0, (i % 2 === 0 ? 20 : -20)]
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          delay: i * 0.6,
+          ease: "easeOut"
+        }}
+        style={{
+          position: 'absolute',
+          right: `${15 + i * 18}px`,
+          top: '60%',
+          fontSize: '20px',
+          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+        }}
+      >
+        ❤️
+      </motion.div>
+    ))}
+
+    {/* VIP header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+      <motion.div
+        animate={isActive ? { rotate: [0, 360], scale: [1, 1.1, 1] } : {}}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        }}
+      >
+        <Heart size={22} strokeWidth={2.5} fill="currentColor" />
+      </motion.div>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>VIP Client Care</div>
+        <div style={{ fontSize: '13px', opacity: 0.9, fontWeight: '500' }}>Sending personal message...</div>
+      </div>
+    </div>
+
+    {/* VIP content */}
+    <div style={{ 
+      background: 'rgba(255,255,255,0.15)', 
+      backdropFilter: 'blur(10px)',
+      borderRadius: '16px', 
+      padding: '20px', 
+      marginBottom: '20px',
+      border: '1px solid rgba(255,255,255,0.2)',
+      position: 'relative',
+      zIndex: 2
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+        <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>{data.client}</div>
+        <div style={{ 
+          background: 'linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)', 
+          padding: '4px 12px', 
+          borderRadius: '16px', 
+          fontSize: '11px',
+          fontWeight: '700',
+          boxShadow: '0 2px 8px rgba(252, 211, 77, 0.4)',
+          letterSpacing: '0.02em'
+        }}>
+          ⭐ VIP
+        </div>
+      </div>
+      
+      <div style={{ fontSize: '13px', marginBottom: '6px', opacity: 0.85, fontWeight: '500' }}>
+        Occasion: <strong>{data.occasion}</strong>
+      </div>
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={isActive ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+        transition={{ delay: 0.6 }}
+        style={{ 
+          fontSize: '12px', 
+          lineHeight: 1.6,
+          background: 'rgba(255,255,255,0.2)',
+          borderRadius: '12px',
+          padding: '16px',
+          marginBottom: '12px',
+          fontWeight: '500',
+          border: '1px solid rgba(255,255,255,0.3)'
+        }}
+      >
+        {data.message}
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ delay: 0.9 }}
+        style={{ 
+          background: 'linear-gradient(135deg, rgba(252, 211, 77, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%)', 
+          borderRadius: '10px', 
+          padding: '10px 14px',
+          fontSize: '12px',
+          fontWeight: '700',
+          textAlign: 'center',
+          border: '1px solid rgba(252, 211, 77, 0.4)',
+          boxShadow: '0 4px 12px rgba(252, 211, 77, 0.2)'
+        }}
+      >
+        🎁 {data.gift}
+      </motion.div>
+    </div>
+
+    {/* Status */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <motion.div
+          animate={isActive ? { scale: [1, 1.3, 1] } : {}}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#34D399',
+            boxShadow: '0 0 12px rgba(52, 211, 153, 0.8)'
+          }}
+        />
+        <span style={{ fontSize: '13px', fontWeight: '600' }}>{data.status}</span>
+      </div>
+      <div style={{ fontSize: '15px', fontWeight: '700' }}>{data.time}</div>
+    </div>
+  </div>
+);
+// Enhanced AI Activity Display with Animated Graphics
 const AIActivityDisplay = () => {
   const [currentActivity, setCurrentActivity] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentActivity((prev) => (prev + 1) % AI_ACTIVITIES.length);
-    }, 2000);
+    }, 3000); // Slightly longer to appreciate the graphics
 
     return () => clearInterval(interval);
   }, []);
 
   const activity = AI_ACTIVITIES[currentActivity];
-  const IconComponent = activity.icon;
+
+  // Render the appropriate interface based on activity type
+  const renderActivityInterface = () => {
+    const isActive = true; // Always active for the current activity
+    
+    switch (activity.type) {
+      case 'call':
+        return <CallInterface data={activity.data} isActive={isActive} />;
+      case 'instagram':
+        return <InstagramInterface data={activity.data} isActive={isActive} />;
+      case 'review':
+        return <ReviewInterface data={activity.data} isActive={isActive} />;
+      case 'followup':
+        return <FollowupInterface data={activity.data} isActive={isActive} />;
+      case 'vip':
+        return <VIPInterface data={activity.data} isActive={isActive} />;
+      default:
+        return <CallInterface data={activity.data} isActive={isActive} />;
+    }
+  };
 
   return (
     <div style={{
       position: 'relative',
       width: '100%',
       maxWidth: '420px',
-      height: '380px',
+      height: '450px',
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      paddingTop: '20px'
     }}>
-      {/* Main Activity Card - Minimal Design */}
+      {/* Main Activity Interface - Animated Graphics */}
       <motion.div
         key={currentActivity}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
+        animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+        exit={{ opacity: 0, rotateY: -90, scale: 0.8 }}
         transition={{ 
-          duration: 0.4,
+          duration: 0.6,
           ease: "easeOut"
         }}
         style={{
-          background: '#FFFFFF',
-          borderRadius: '20px',
-          padding: '32px 24px',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-          border: '1px solid rgba(0, 0, 0, 0.04)',
-          textAlign: 'center',
-          width: '280px',
+          width: '340px',
           position: 'relative',
-          overflow: 'hidden'
+          transformStyle: 'preserve-3d'
         }}
       >
-        {/* Subtle Background Accent */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '3px',
-            background: `linear-gradient(90deg, ${activity.color} 0%, ${activity.color}80 100%)`,
-            borderRadius: '20px 20px 0 0'
-          }}
-        />
-        
-        {/* Icon - Minimal Style */}
-        <motion.div
-          animate={{ 
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: '16px',
-            background: `${activity.color}10`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 20px',
-            border: `1px solid ${activity.color}20`
-          }}
-        >
-          <IconComponent size={24} color={activity.color} />
-        </motion.div>
-
-        {/* Content */}
-        <div>
-          <h3 style={{
-            fontFamily: "'Bricolage Grotesque', sans-serif",
-            fontWeight: 600,
-            fontSize: '18px',
-            color: '#1F2937',
-            margin: '0 0 8px',
-            letterSpacing: '-0.01em'
-          }}>
-            {activity.title}
-          </h3>
-          
-          <p style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: '14px',
-            color: activity.color,
-            fontWeight: 500,
-            margin: '0 0 12px'
-          }}>
-            {activity.subtitle}
-          </p>
-          
-          <p style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: '13px',
-            color: '#6B7280',
-            margin: 0,
-            lineHeight: 1.4
-          }}>
-            {activity.detail}
-          </p>
-        </div>
+        {renderActivityInterface()}
       </motion.div>
 
-      {/* Minimal Activity Indicators - Floating */}
+      {/* Activity Indicators - Enhanced */}
       <div style={{
         position: 'absolute',
-        bottom: '20px',
+        bottom: '30px',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '8px',
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        padding: '8px 16px',
-        borderRadius: '20px',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-        border: '1px solid rgba(0, 0, 0, 0.04)'
+        gap: '12px',
+        background: 'rgba(255, 255, 255, 0.98)',
+        backdropFilter: 'blur(20px)',
+        padding: '14px 24px',
+        borderRadius: '28px',
+        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+        border: '1px solid rgba(255, 255, 255, 0.5)'
       }}>
         {AI_ACTIVITIES.map((activityItem, index) => {
-          const IconComp = activityItem.icon;
+          const getIcon = (type) => {
+            switch (type) {
+              case 'call': return Phone;
+              case 'instagram': return MessageCircle;
+              case 'review': return Star;
+              case 'followup': return Send;
+              case 'vip': return Heart;
+              default: return Phone;
+            }
+          };
+          
+          const IconComp = getIcon(activityItem.type);
+          
           return (
             <motion.div
               key={activityItem.id}
               animate={{
-                scale: currentActivity === index ? 1.1 : 1,
-                opacity: currentActivity === index ? 1 : 0.4
+                scale: currentActivity === index ? 1.25 : 1,
+                opacity: currentActivity === index ? 1 : 0.5,
+                rotate: currentActivity === index ? [0, 360] : 0
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ 
+                duration: currentActivity === index ? 2 : 0.3,
+                repeat: currentActivity === index ? Infinity : 0,
+                ease: currentActivity === index ? "linear" : "easeOut"
+              }}
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '10px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '14px',
                 background: currentActivity === index 
-                  ? `${activityItem.color}15` 
+                  ? `${activityItem.color}25` 
                   : 'transparent',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 border: currentActivity === index 
-                  ? `1px solid ${activityItem.color}30` 
-                  : '1px solid transparent'
+                  ? `2.5px solid ${activityItem.color}` 
+                  : '2.5px solid transparent',
+                cursor: 'pointer',
+                boxShadow: currentActivity === index 
+                  ? `0 4px 16px ${activityItem.color}40`
+                  : 'none'
               }}
             >
               <IconComp 
-                size={16} 
-                color={currentActivity === index ? activityItem.color : '#9CA3AF'} 
+                size={20} 
+                color={currentActivity === index ? activityItem.color : '#9CA3AF'}
+                strokeWidth={2.5}
               />
             </motion.div>
           );
         })}
       </div>
 
-      {/* "All AI agents working together" - Minimal Badge */}
+      {/* Rotating Background Elements */}
       <motion.div
-        animate={{
-          opacity: [0.7, 1, 0.7]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         style={{
           position: 'absolute',
-          top: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontSize: '11px',
-          color: '#7B74DC',
-          fontFamily: "'DM Sans', sans-serif",
-          fontWeight: 500,
-          background: 'rgba(123, 116, 220, 0.08)',
-          padding: '6px 12px',
-          borderRadius: '16px',
-          border: '1px solid rgba(123, 116, 220, 0.15)',
-          whiteSpace: 'nowrap'
+          top: '60px',
+          right: '20px',
+          width: '100px',
+          height: '100px',
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${AI_ACTIVITIES[currentActivity]?.color}10 0%, transparent 70%)`,
+          pointerEvents: 'none',
+          zIndex: -1
         }}
-      >
-        <Users size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} />
-        All AI agents working together
-      </motion.div>
-
-      {/* Subtle Corner Decorations */}
-      <div style={{
-        position: 'absolute',
-        top: '40px',
-        right: '40px',
-        width: '60px',
-        height: '60px',
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${AI_ACTIVITIES[currentActivity]?.color}08 0%, transparent 70%)`,
-        pointerEvents: 'none'
-      }} />
+      />
       
-      <div style={{
-        position: 'absolute',
-        bottom: '60px',
-        left: '40px',
-        width: '40px',
-        height: '40px',
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${AI_ACTIVITIES[(currentActivity + 2) % AI_ACTIVITIES.length]?.color}06 0%, transparent 70%)`,
-        pointerEvents: 'none'
-      }} />
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: 'absolute',
+          bottom: '120px',
+          left: '10px',
+          width: '70px',
+          height: '70px',
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${AI_ACTIVITIES[(currentActivity + 2) % AI_ACTIVITIES.length]?.color}08 0%, transparent 70%)`,
+          pointerEvents: 'none',
+          zIndex: -1
+        }}
+      />
     </div>
   );
 };
