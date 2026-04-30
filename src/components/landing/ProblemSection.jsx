@@ -191,6 +191,10 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
   const totalGaps = (cardCount - 1) * gap;
   const availableWidth = containerWidth - totalGaps;
   const cardWidth = availableWidth / cardCount;
+  
+  // Check if mobile view (only show 3 wires on mobile)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const visibleCards = isMobile ? 3 : cardCount;
 
   return (
     <svg
@@ -200,7 +204,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
       style={{ overflow: "visible", display: "block" }}
     >
       <defs>
-        {CORE_PROBLEMS.map((p, i) => (
+        {CORE_PROBLEMS.slice(0, visibleCards).map((p, i) => (
           <linearGradient key={p.id} id={`wire-grad-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#22C55E" stopOpacity="0.9" />
             <stop offset="40%" stopColor="#F59E0B" stopOpacity="0.85" />
@@ -217,7 +221,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
         </filter>
       </defs>
 
-      {CORE_PROBLEMS.map((prob, i) => {
+      {CORE_PROBLEMS.slice(0, visibleCards).map((prob, i) => {
         // Calculate card center position accounting for gaps
         const cardCenterX = (cardWidth * i) + (gap * i) + (cardWidth / 2);
         const convergeX = containerWidth / 2;
