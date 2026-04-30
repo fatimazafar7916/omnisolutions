@@ -231,10 +231,22 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
         // SAME curved wires on mobile and desktop - converging to center
         const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
 
-        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, containerWidth=${containerWidth}, visibleCards=${visibleCards}`);
+        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, containerWidth=${containerWidth}, visibleCards=${visibleCards}, pathD=${pathD}`);
 
         return (
           <g key={`wire-${i}`}>
+            {/* Debug: Show wire start position */}
+            <circle
+              cx={cardCenterX}
+              cy={5}
+              r="5"
+              fill="lime"
+              opacity="1"
+            />
+            <text x={cardCenterX} y={25} fill="black" fontSize="12" textAnchor="middle">
+              Wire {i + 1}
+            </text>
+            
             {/* Background glow wire */}
             {isVisible && (
               <motion.path
