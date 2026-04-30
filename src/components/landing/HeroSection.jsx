@@ -197,8 +197,8 @@ const AnimatedStatsStrip = () => {
         style={{
           background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(20px)',
-          borderRadius: '16px',
-          padding: '20px',
+          borderRadius: '14px',
+          padding: '16px',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
           border: '1px solid rgba(255, 255, 255, 0.3)',
           textAlign: 'center',
@@ -320,12 +320,12 @@ const AnimatedStatsStrip = () => {
 const CallInterface = ({ data, isActive }) => (
   <div style={{
     background: 'linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%)',
-    borderRadius: '24px',
-    padding: '28px',
+    borderRadius: '20px',
+    padding: '20px',
     color: '#065F46',
     position: 'relative',
     overflow: 'hidden',
-    height: '320px',
+    height: '280px',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(16, 185, 129, 0.08)',
@@ -347,7 +347,7 @@ const CallInterface = ({ data, isActive }) => (
     />
     
     {/* Call header */}
-    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', position: 'relative', zIndex: 2 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', position: 'relative', zIndex: 2 }}>
       <motion.div
         animate={isActive ? { rotate: 360 } : {}}
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -374,9 +374,9 @@ const CallInterface = ({ data, isActive }) => (
     <div style={{ 
       background: 'rgba(255, 255, 255, 0.8)', 
       backdropFilter: 'blur(10px)',
-      borderRadius: '16px', 
-      padding: '18px', 
-      marginBottom: '16px',
+      borderRadius: '14px', 
+      padding: '14px', 
+      marginBottom: '12px',
       border: '1px solid rgba(16, 185, 129, 0.15)',
       position: 'relative',
       zIndex: 2,
@@ -431,12 +431,12 @@ const CallInterface = ({ data, isActive }) => (
 const InstagramInterface = ({ data, isActive }) => (
   <div style={{
     background: 'linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%)',
-    borderRadius: '24px',
-    padding: '28px',
+    borderRadius: '20px',
+    padding: '20px',
     color: '#831843',
     position: 'relative',
     overflow: 'hidden',
-    height: '320px',
+    height: '280px',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(228, 64, 95, 0.08)',
@@ -543,12 +543,12 @@ const InstagramInterface = ({ data, isActive }) => (
 const ReviewInterface = ({ data, isActive }) => (
   <div style={{
     background: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)',
-    borderRadius: '24px',
-    padding: '28px',
+    borderRadius: '20px',
+    padding: '20px',
     color: '#92400E',
     position: 'relative',
     overflow: 'hidden',
-    height: '320px',
+    height: '280px',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(251, 191, 36, 0.08)',
@@ -652,12 +652,12 @@ const ReviewInterface = ({ data, isActive }) => (
 const FollowupInterface = ({ data, isActive }) => (
   <div style={{
     background: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%)',
-    borderRadius: '24px',
-    padding: '28px',
+    borderRadius: '20px',
+    padding: '20px',
     color: '#5B21B6',
     position: 'relative',
     overflow: 'hidden',
-    height: '320px',
+    height: '280px',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(139, 92, 246, 0.08)',
@@ -760,12 +760,12 @@ const FollowupInterface = ({ data, isActive }) => (
 const VIPInterface = ({ data, isActive }) => (
   <div style={{
     background: 'linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%)',
-    borderRadius: '24px',
-    padding: '28px',
+    borderRadius: '20px',
+    padding: '20px',
     color: '#BE185D',
     position: 'relative',
     overflow: 'hidden',
-    height: '320px',
+    height: '280px',
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 32px rgba(236, 72, 153, 0.08)',
@@ -949,12 +949,12 @@ const AIActivityDisplay = () => {
       position: 'relative',
       width: '100%',
       maxWidth: '420px',
-      height: '450px',
+      height: '400px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      paddingTop: '20px'
+      paddingTop: '12px'
     }}>
       {/* Main Activity Interface - Animated Graphics */}
       <motion.div
@@ -969,7 +969,7 @@ const AIActivityDisplay = () => {
         style={{
           width: '340px',
           position: 'relative',
-          marginBottom: '24px'
+          marginBottom: '16px'
         }}
       >
         {renderActivityInterface()}
@@ -981,12 +981,12 @@ const AIActivityDisplay = () => {
         gap: '12px',
         background: 'rgba(255, 255, 255, 0.98)',
         backdropFilter: 'blur(20px)',
-        padding: '14px 24px',
+        padding: '10px 20px',
         borderRadius: '28px',
         boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
         border: '1px solid rgba(255, 255, 255, 0.5)',
         marginTop: 'auto',
-        marginBottom: '20px'
+        marginBottom: '12px'
       }}>
         {AI_ACTIVITIES.map((activityItem, index) => {
           const getIcon = (type) => {
@@ -1154,7 +1154,7 @@ export default function HeroSection() {
       <div
         style={{
           width: "100%",
-          padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 24px)",
+          padding: "clamp(20px, 4vw, 40px) clamp(12px, 3vw, 20px)",
           position: "relative",
           zIndex: 1,
         }}
@@ -1163,7 +1163,7 @@ export default function HeroSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr",
-            gap: "clamp(32px, 6vw, 48px)",
+            gap: "clamp(20px, 4vw, 32px)",
             maxWidth: "1400px",
             margin: "0 auto"
           }}
@@ -1182,12 +1182,12 @@ export default function HeroSection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 8,
-                padding: "10px 18px",
+                gap: 6,
+                padding: "6px 14px",
                 borderRadius: 100,
                 border: "1px solid rgba(42,157,143,0.25)",
                 background: "rgba(42,157,143,0.08)",
-                marginBottom: 28,
+                marginBottom: 16,
                 position: 'relative',
                 overflow: 'hidden'
               }}
@@ -1305,7 +1305,7 @@ export default function HeroSection() {
                 color: "#6E6D7A",
                 lineHeight: 1.65,
                 maxWidth: "540px",
-                margin: "22px 0 16px",
+                margin: "12px 0 12px",
               }}
             >
               Aiaura answers every call, every DM, every email — 24/7, in any language, in your brand voice.
@@ -1321,9 +1321,9 @@ export default function HeroSection() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
-                margin: "16px 0 32px",
-                padding: "12px 16px",
+                gap: 6,
+                margin: "12px 0 20px",
+                padding: "8px 12px",
                 borderRadius: 12,
                 background: "rgba(123,116,220,0.05)",
                 border: "1px solid rgba(123,116,220,0.1)",
@@ -1351,8 +1351,8 @@ export default function HeroSection() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 12,
-                marginBottom: 36,
+                gap: 10,
+                marginBottom: 20,
               }}
             >
               <a
@@ -1361,8 +1361,8 @@ export default function HeroSection() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: 8,
-                  padding: "16px 32px",
+                  gap: 6,
+                  padding: "12px 24px",
                   borderRadius: 100,
                   background: "linear-gradient(135deg, #7B74DC 0%, #9B8CE8 100%)",
                   color: "#FCFCFE",
@@ -1399,8 +1399,8 @@ export default function HeroSection() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: 8,
-                  padding: "16px 32px",
+                  gap: 6,
+                  padding: "12px 24px",
                   borderRadius: 100,
                   background: "rgba(255,255,255,0.8)",
                   backdropFilter: "blur(10px)",
@@ -1442,8 +1442,8 @@ export default function HeroSection() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 6,
-                    padding: "5px 12px",
+                    gap: 4,
+                    padding: "4px 10px",
                     borderRadius: 100,
                     background: "#F5F3FF",
                     fontFamily: "'DM Sans', sans-serif",
