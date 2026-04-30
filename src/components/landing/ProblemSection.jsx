@@ -848,9 +848,9 @@ export default function ProblemSection() {
     <>
       <ProblemConvergenceSection />
       <style>{`
-        /* Mobile Responsive Styles - Show only first 3 problem cards */
+        /* Mobile Responsive Styles - Clean and optimized */
         
-        /* Mobile: Show only first 3 problem cards, hide last 3 */
+        /* Mobile: Show only first 3 problem cards, hide badges/icons */
         @media (max-width: 768px) {
           .problem-section-container {
             padding: 0 12px !important;
@@ -865,7 +865,7 @@ export default function ProblemSection() {
             padding-bottom: 0 !important;
           }
           
-          /* HIDE cards 4, 5, 6 on mobile - show only first 3 */
+          /* HIDE cards 4, 5, 6 on mobile */
           .problem-cards-grid > div:nth-child(4),
           .problem-cards-grid > div:nth-child(5),
           .problem-cards-grid > div:nth-child(6) {
@@ -873,73 +873,108 @@ export default function ProblemSection() {
           }
           
           .problem-cards-grid > div {
-            min-height: 200px !important;
-            padding: 12px 10px !important;
+            min-height: 180px !important;
+            padding: 10px 8px !important;
           }
           
+          /* HIDE urgency badge (CRITICAL/HIGH/MEDIUM) */
+          .problem-cards-grid > div > div:first-child {
+            display: none !important;
+          }
+          
+          /* HIDE icon and stat number section at top */
+          .problem-cards-grid > div > div:nth-child(2) {
+            display: none !important;
+          }
+          
+          /* Title - smaller and readable */
           .problem-cards-grid h4 {
             font-size: 11px !important;
-            margin-bottom: 5px !important;
-            line-height: 1.3 !important;
+            margin-bottom: 4px !important;
+            line-height: 1.2 !important;
+            margin-top: 0 !important;
           }
           
+          /* Description - shorter, smaller */
           .problem-cards-grid p {
-            font-size: 9px !important;
-            line-height: 1.4 !important;
-            margin-bottom: 8px !important;
+            font-size: 8px !important;
+            line-height: 1.3 !important;
+            margin-bottom: 6px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 4 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
           }
           
-          /* Stat numbers */
-          .problem-cards-grid > div > div:nth-child(2) span:first-child {
-            font-size: 16px !important;
+          /* Real-time alert - smaller */
+          .problem-cards-grid > div > div:last-child {
+            margin-top: 6px !important;
+            padding: 6px 8px !important;
+            border-radius: 6px !important;
           }
           
-          /* Icons */
-          .problem-cards-grid > div > div:nth-child(2) > div:first-child {
-            width: 30px !important;
-            height: 30px !important;
-            font-size: 15px !important;
+          .problem-cards-grid > div > div:last-child p {
+            font-size: 7px !important;
+            padding-left: 12px !important;
           }
           
-          /* Keep wire system visible - only 3 wires now */
+          .problem-cards-grid > div > div:last-child > div {
+            width: 4px !important;
+            height: 4px !important;
+            left: 6px !important;
+          }
+          
+          /* Keep wire system visible */
           .wire-system-wrapper {
             display: block !important;
             margin-top: -10px !important;
           }
           
           .wire-system-wrapper svg {
-            height: 140px !important;
+            height: 120px !important;
           }
           
-          /* 3 metrics in a row on mobile */
+          /* 3 metrics in a row - SMALLER FONTS */
           .metrics-grid {
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 8px !important;
           }
           
           .metrics-grid > div {
-            padding: 12px 10px !important;
+            padding: 10px 8px !important;
             min-height: auto !important;
           }
           
+          /* Label - much smaller */
           .metrics-grid > div > div:first-child span {
-            font-size: 9px !important;
+            font-size: 7px !important;
+            letter-spacing: 0.08em !important;
           }
           
+          /* Main number - smaller */
           .metrics-grid > div > div:nth-child(2) span {
-            font-size: 20px !important;
+            font-size: 18px !important;
           }
           
+          /* Trend text - smaller */
           .metrics-grid > div > div:nth-child(2) div {
-            font-size: 8px !important;
+            font-size: 6px !important;
+            margin-top: 1px !important;
           }
           
+          /* Hide step bars on mobile */
+          .metrics-grid > div > div:nth-child(3) {
+            display: none !important;
+          }
+          
+          /* Description - smaller */
           .metrics-grid p {
-            font-size: 8px !important;
+            font-size: 7px !important;
+            line-height: 1.3 !important;
           }
         }
         
-        /* Tablet: Show all 6 cards in 3 columns */
+        /* Tablet: Show all 6 cards */
         @media (min-width: 769px) and (max-width: 1024px) {
           .problem-section-container {
             padding: 0 20px !important;
@@ -962,15 +997,15 @@ export default function ProblemSection() {
           }
         }
         
-        /* Very small mobile: Still show only 3 cards */
+        /* Very small mobile: Even more compact */
         @media (max-width: 480px) {
           .problem-cards-grid {
             gap: 6px !important;
           }
           
           .problem-cards-grid > div {
-            padding: 10px 8px !important;
-            min-height: 180px !important;
+            padding: 8px 6px !important;
+            min-height: 160px !important;
           }
           
           .problem-cards-grid h4 {
@@ -978,7 +1013,8 @@ export default function ProblemSection() {
           }
           
           .problem-cards-grid p {
-            font-size: 8px !important;
+            font-size: 7px !important;
+            -webkit-line-clamp: 3 !important;
           }
           
           .metrics-grid {
@@ -986,7 +1022,11 @@ export default function ProblemSection() {
           }
           
           .metrics-grid > div {
-            padding: 10px 8px !important;
+            padding: 8px 6px !important;
+          }
+          
+          .metrics-grid > div > div:nth-child(2) span {
+            font-size: 16px !important;
           }
         }
       `}</style>
