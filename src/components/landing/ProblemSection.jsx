@@ -881,13 +881,13 @@ export default function ProblemSection() {
             padding: 10px 8px !important;
           }
           
-          /* HIDE urgency badge (CRITICAL/HIGH/MEDIUM) */
-          .problem-cards-grid > div > div:first-child {
+          /* HIDE urgency badge (CRITICAL/HIGH/MEDIUM) - first absolute positioned div */
+          .problem-cards-grid > div > div:nth-child(1) {
             display: none !important;
           }
           
-          /* HIDE the colored stat box at top (icon + stat number section) */
-          .problem-cards-grid > div > div:nth-child(2) {
+          /* HIDE the flex container with icon and stat ($47K, 2.3min, 94%) - 4th div */
+          .problem-cards-grid > div > div:nth-child(4) {
             display: none !important;
           }
           
