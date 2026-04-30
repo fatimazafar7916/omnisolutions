@@ -848,92 +848,138 @@ export default function ProblemSection() {
     <>
       <ProblemConvergenceSection />
       <style>{`
-        /* Mobile Responsive Styles */
+        /* Mobile Responsive Styles - Keep same layout, just smaller */
         
-        /* Mobile: Stack cards vertically, hide wire system */
+        /* Mobile: 3 columns for cards, keep wire system */
         @media (max-width: 768px) {
           .problem-section-container {
-            padding: 0 16px !important;
+            padding: 0 12px !important;
           }
           
+          /* Show 3 cards per row on mobile */
           .problem-cards-grid {
             display: grid !important;
-            grid-template-columns: 1fr !important;
-            gap: 16px !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
             overflow-x: visible !important;
             padding-bottom: 0 !important;
           }
           
           .problem-cards-grid > div {
-            min-height: auto !important;
-            padding: 16px 14px !important;
+            min-height: 220px !important;
+            padding: 10px 8px !important;
           }
           
-          /* Hide wire system on mobile */
+          .problem-cards-grid h4 {
+            font-size: 10px !important;
+            margin-bottom: 4px !important;
+            line-height: 1.2 !important;
+          }
+          
+          .problem-cards-grid p {
+            font-size: 8px !important;
+            line-height: 1.3 !important;
+            margin-bottom: 8px !important;
+          }
+          
+          /* Smaller stat numbers */
+          .problem-cards-grid > div > div:first-child span:first-child {
+            font-size: 16px !important;
+          }
+          
+          /* Smaller icons */
+          .problem-cards-grid > div > div:first-child > div:first-child {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 14px !important;
+          }
+          
+          /* Keep wire system visible but smaller */
           .wire-system-wrapper {
-            display: none !important;
+            display: block !important;
+            margin-top: -10px !important;
           }
           
-          /* Stack metrics vertically on mobile */
+          .wire-system-wrapper svg {
+            height: 150px !important;
+          }
+          
+          /* 3 metrics in a row on mobile */
           .metrics-grid {
-            grid-template-columns: 1fr !important;
-            gap: 12px !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
           }
           
           .metrics-grid > div {
-            padding: 16px 14px !important;
+            padding: 10px 8px !important;
+            min-height: auto !important;
+          }
+          
+          .metrics-grid > div > div:first-child span {
+            font-size: 9px !important;
+          }
+          
+          .metrics-grid > div > div:nth-child(2) span {
+            font-size: 20px !important;
+          }
+          
+          .metrics-grid > div > div:nth-child(2) div {
+            font-size: 7px !important;
+          }
+          
+          .metrics-grid p {
+            font-size: 7px !important;
           }
         }
         
-        /* Tablet: 2 columns for problem cards */
+        /* Tablet: Keep 3 columns */
         @media (min-width: 769px) and (max-width: 1024px) {
           .problem-section-container {
-            padding: 0 24px !important;
+            padding: 0 20px !important;
           }
           
           .problem-cards-grid {
             display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 14px !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 10px !important;
             overflow-x: visible !important;
-          }
-          
-          .wire-system-wrapper {
-            display: none !important;
-          }
-          
-          .metrics-grid {
-            grid-template-columns: 1fr !important;
-            gap: 14px !important;
-          }
-        }
-        
-        /* Small mobile: even more compact */
-        @media (max-width: 480px) {
-          .problem-section-container {
-            padding: 0 12px !important;
           }
           
           .problem-cards-grid > div {
             padding: 14px 12px !important;
-            min-height: auto !important;
           }
           
-          .metrics-grid > div {
-            padding: 14px 12px !important;
+          .metrics-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 10px !important;
+          }
+        }
+        
+        /* Very small mobile: Still 3 columns but even more compact */
+        @media (max-width: 480px) {
+          .problem-cards-grid {
+            gap: 6px !important;
           }
           
-          /* Smaller fonts on mobile */
+          .problem-cards-grid > div {
+            padding: 8px 6px !important;
+            min-height: 200px !important;
+          }
+          
           .problem-cards-grid h4 {
-            font-size: 14px !important;
+            font-size: 9px !important;
           }
           
           .problem-cards-grid p {
-            font-size: 11px !important;
+            font-size: 7px !important;
           }
           
-          .metrics-grid h3 {
-            font-size: 11px !important;
+          .metrics-grid {
+            gap: 6px !important;
+          }
+          
+          .metrics-grid > div {
+            padding: 8px 6px !important;
           }
         }
       `}</style>
