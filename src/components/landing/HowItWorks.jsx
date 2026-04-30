@@ -51,7 +51,7 @@ const styles = `
 .hiw-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 40px 120px;
+  padding: 64px 40px 80px;
   position: relative;
 }
 

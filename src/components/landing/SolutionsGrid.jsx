@@ -106,7 +106,7 @@ const styles = `
 .sg-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 40px 120px;
+  padding: 64px 40px 80px;
   position: relative;
   z-index: 1;
 }

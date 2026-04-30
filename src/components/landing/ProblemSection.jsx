@@ -654,7 +654,7 @@ function ProblemConvergenceSection() {
       style={{
         background: "#FCFCFE",
         borderTop: "1px solid #E3E2EB",
-        padding: "72px 0 80px",
+        padding: "56px 0 64px",
         fontFamily: "'DM Sans',system-ui,sans-serif",
         position: "relative",
         overflow: "hidden",

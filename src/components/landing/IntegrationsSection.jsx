@@ -101,7 +101,7 @@ export default function IntegrationsSection() {
       id="integrations"
       style={{
         background: "#F1F0F5",
-        padding: "clamp(60px, 10vw, 100px) 0 clamp(50px, 8vw, 80px)",
+        padding: "clamp(48px, 8vw, 72px) 0 clamp(40px, 6vw, 64px)",
         position: "relative",
         overflow: "hidden",
       }}
