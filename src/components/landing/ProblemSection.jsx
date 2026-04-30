@@ -204,8 +204,9 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
       style={{ overflow: "visible", display: "block" }}
     >
       <defs>
-        {CORE_PROBLEMS.slice(0, visibleCards).map((p, i) => (
-          <linearGradient key={p.id} id={`wire-grad-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        {/* Create gradients for each visible card */}
+        {Array.from({ length: visibleCards }, (_, i) => (
+          <linearGradient key={`grad-${i}`} id={`wire-grad-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#22C55E" stopOpacity="0.9" />
             <stop offset="40%" stopColor="#F59E0B" stopOpacity="0.85" />
             <stop offset="100%" stopColor="#EF4444" stopOpacity="1" />
@@ -230,29 +231,31 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
         // SAME curved wires on mobile and desktop - converging to center
         const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
 
+        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, convergeX=${convergeX}, pathD=${pathD}`); // Debug log
+
         return (
-          <g key={prob.id}>
+          <g key={`wire-${i}-${prob.id}`}>
             {/* Background glow wire */}
             {isVisible && (
               <motion.path
                 d={pathD}
                 fill="none"
                 stroke={`url(#wire-grad-${i})`}
-                strokeWidth="3"
-                strokeOpacity="0.25"
+                strokeWidth="4"
+                strokeOpacity="0.3"
                 filter="url(#wire-glow)"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 1.4, delay: i * 0.12, ease: "easeInOut" }}
               />
             )}
-            {/* Main wire */}
+            {/* Main wire - make more visible */}
             {isVisible && (
               <motion.path
                 d={pathD}
                 fill="none"
                 stroke={`url(#wire-grad-${i})`}
-                strokeWidth="2"
+                strokeWidth="3"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
