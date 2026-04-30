@@ -243,9 +243,6 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
               fill="lime"
               opacity="1"
             />
-            <text x={cardCenterX} y={25} fill="black" fontSize="12" textAnchor="middle">
-              Wire {i + 1}
-            </text>
             
             {/* Background glow wire */}
             {isVisible && (
