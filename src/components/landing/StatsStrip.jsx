@@ -348,11 +348,42 @@ export default function StatsStrip() {
 
       {/* Mobile-specific CSS */}
       <style>{`
-        /* Mobile: Stack in 2 columns */
+        /* Mobile: 3 columns for first row, 2 for second row */
         @media (max-width: 480px) {
           .stats-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 12px !important;
+            grid-template-columns: repeat(6, 1fr) !important;
+            gap: 10px !important;
+          }
+          
+          .stats-grid > div:nth-child(1),
+          .stats-grid > div:nth-child(2),
+          .stats-grid > div:nth-child(3) {
+            grid-column: span 2;
+          }
+          
+          .stats-grid > div:nth-child(4),
+          .stats-grid > div:nth-child(5) {
+            grid-column: span 3;
+          }
+          
+          /* Smaller fonts for mobile */
+          .stats-grid > div {
+            padding: 10px 8px !important;
+            min-height: 100px !important;
+          }
+          
+          .stats-grid > div > div:first-child {
+            font-size: 32px !important;
+            margin-bottom: 4px !important;
+          }
+          
+          .stats-grid > div h3 {
+            font-size: 11px !important;
+            margin-bottom: 4px !important;
+          }
+          
+          .stats-grid > div p {
+            font-size: 9px !important;
           }
         }
         
@@ -360,7 +391,15 @@ export default function StatsStrip() {
         @media (max-width: 360px) {
           .stats-grid {
             grid-template-columns: 1fr !important;
-            gap: 16px !important;
+            gap: 12px !important;
+          }
+          
+          .stats-grid > div:nth-child(1),
+          .stats-grid > div:nth-child(2),
+          .stats-grid > div:nth-child(3),
+          .stats-grid > div:nth-child(4),
+          .stats-grid > div:nth-child(5) {
+            grid-column: span 1 !important;
           }
         }
         
