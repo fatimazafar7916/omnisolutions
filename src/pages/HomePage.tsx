@@ -5,7 +5,6 @@ import StatsStrip from '@/components/landing/StatsStrip';
 import ProblemSection from '@/components/landing/ProblemSection';
 import SolutionsGrid from '@/components/landing/SolutionsGrid';
 import HowItWorks from '@/components/landing/HowItWorks';
-import TierShowcase from '@/components/landing/TierShowcase';
 import IntegrationsSection from '@/components/landing/IntegrationsSection';
 import FAQSection from '@/components/landing/FAQSection';
 import CTASection from '@/components/landing/CTASection';
@@ -32,7 +31,6 @@ export default function HomePage() {
       <ProblemSection />
       <SolutionsGrid />
       <HowItWorks />
-      <TierShowcase />
       <IntegrationsSection />
       <FAQSection />
       <CTASection />
