@@ -348,50 +348,72 @@ export default function StatsStrip() {
 
       {/* Mobile-specific CSS */}
       <style>{`
-        /* Mobile: 3 columns for first row, 2 for second row */
+        /* Mobile: 3 cards in first row, 2 wider cards in second row */
         @media (max-width: 480px) {
           .stats-grid {
+            display: grid !important;
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 10px !important;
+            gap: 8px !important;
           }
           
+          /* First 3 cards: each spans 2 columns (2+2+2 = 6, fills row) */
           .stats-grid > div:nth-child(1),
           .stats-grid > div:nth-child(2),
           .stats-grid > div:nth-child(3) {
             grid-column: span 2;
           }
           
+          /* Last 2 cards: each spans 3 columns (3+3 = 6, fills row, wider cards) */
           .stats-grid > div:nth-child(4),
           .stats-grid > div:nth-child(5) {
             grid-column: span 3;
           }
           
-          /* Smaller fonts for mobile */
+          /* Compact sizing for mobile */
           .stats-grid > div {
-            padding: 10px 8px !important;
-            min-height: 100px !important;
+            padding: 12px 8px !important;
+            min-height: 110px !important;
+            border-radius: 12px !important;
           }
           
+          /* Smaller number size */
           .stats-grid > div > div:first-child {
-            font-size: 32px !important;
+            font-size: 28px !important;
             margin-bottom: 4px !important;
           }
           
+          /* Smaller label */
           .stats-grid > div h3 {
-            font-size: 11px !important;
-            margin-bottom: 4px !important;
+            font-size: 10px !important;
+            margin-bottom: 3px !important;
+            line-height: 1.2 !important;
           }
           
+          /* Smaller description */
           .stats-grid > div p {
-            font-size: 9px !important;
+            font-size: 8px !important;
+            line-height: 1.3 !important;
+          }
+          
+          /* Smaller success indicator dot */
+          .stats-grid > div > div:first-child > div {
+            width: 12px !important;
+            height: 12px !important;
+            top: -6px !important;
+            right: -6px !important;
+          }
+          
+          .stats-grid > div > div:first-child > div > div {
+            width: 6px !important;
+            height: 6px !important;
           }
         }
         
-        /* Small Mobile: Single column */
+        /* Small Mobile: Single column fallback */
         @media (max-width: 360px) {
           .stats-grid {
             grid-template-columns: 1fr !important;
-            gap: 12px !important;
+            gap: 10px !important;
           }
           
           .stats-grid > div:nth-child(1),
@@ -407,7 +429,7 @@ export default function StatsStrip() {
         @media (min-width: 481px) and (max-width: 768px) {
           .stats-grid {
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 16px !important;
+            gap: 14px !important;
           }
         }
         
