@@ -233,7 +233,10 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
         const convergeX = isMobile ? cardCenterX : containerWidth / 2;
         const controlY = svgHeight * 0.6;
 
-        const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
+        // On mobile: make wires more visible by going straight down
+        const pathD = isMobile 
+          ? `M ${cardCenterX} 0 L ${cardCenterX} ${svgHeight - 20}` // Straight line on mobile
+          : `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`; // Curved on desktop
 
         return (
           <g key={prob.id}>
@@ -243,7 +246,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
                 d={pathD}
                 fill="none"
                 stroke={`url(#wire-grad-${i})`}
-                strokeWidth="3"
+                strokeWidth={isMobile ? "5" : "3"} // Thicker glow on mobile
                 strokeOpacity="0.25"
                 filter="url(#wire-glow)"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -257,7 +260,7 @@ function WireSystem({ cardCount, containerWidth, isVisible }) {
                 d={pathD}
                 fill="none"
                 stroke={`url(#wire-grad-${i})`}
-                strokeWidth="2"
+                strokeWidth={isMobile ? "3" : "2"} // Thicker on mobile
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
