@@ -14,176 +14,176 @@ import {
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const CATEGORY_COLORS = {
-  "Voice AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Messaging AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Sales AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Operations AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Reputation AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Revenue AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Analytics AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-  "Retention AI": { accent: "#7B74DC", bg: "#F5F3FF", text: "#4D4699" },
-};
-
-const CATEGORY_ICONS = {
-  "Voice AI": Mic,
-  "Messaging AI": MessageSquare,
-  "Sales AI": DollarSign,
-  "Operations AI": RefreshCw,
-  "Reputation AI": Star,
-  "Revenue AI": TrendingUp,
-  "Analytics AI": BarChart2,
-  "Retention AI": Heart,
-};
-
 const PRODUCTS = [
   {
     id: 1,
     name: "AI Receptionist",
-    tagline: "24/7 Voice + SMS Booking Agent",
-    status: "LIVE",
     category: "Voice AI",
-    desc: "Answers every call instantly — qualifies leads, books rentals, sends confirmations. Works 24/7 in your brand voice, any language.",
-    impact: "Captures 73% of after-hours bookings you'd otherwise lose.",
-    stat: "73%",
-    statLabel: "calls answered 24/7",
-    cta: "See Demo",
+    icon: Mic,
+    features: [
+      "Attends calls 24/7",
+      "Supports multiple languages",
+      "Speaks the user's language",
+      "Handles 100 calls at once",
+      "Answers within 3 seconds",
+      "Transfers important calls to team members"
+    ]
   },
   {
     id: 2,
     name: "AI Email + Text Marketing",
-    tagline: "Instagram + WhatsApp Auto-Responder",
-    status: "LIVE",
     category: "Messaging AI",
-    desc: "Replies to DMs in under 8 seconds with pricing, availability, and booking links. Follows up until they convert.",
-    impact: "Converts 78% more DM leads than manual replies.",
-    stat: "78%",
-    statLabel: "faster DM response",
-    cta: "See Demo",
+    icon: MessageSquare,
+    features: [
+      "Responds to DMs in 8 seconds",
+      "Works on Instagram & WhatsApp",
+      "Sends pricing automatically",
+      "Shares availability instantly",
+      "Follows up until conversion",
+      "Personalizes every message"
+    ]
   },
   {
     id: 3,
     name: "AI Follow-up Assistant",
-    tagline: "Smart Lead Nurture Sequences",
-    status: "LIVE",
     category: "Sales AI",
-    desc: "Automatically follows up on quotes, abandoned carts, and cold leads with personalized messages until they book.",
-    impact: "Turns 10% quote-to-close rate into 40%.",
-    stat: "4×",
-    statLabel: "close rate boost",
-    cta: "See Demo",
+    icon: DollarSign,
+    features: [
+      "Follows up on quotes automatically",
+      "Recovers abandoned bookings",
+      "Nurtures cold leads persistently",
+      "Sends personalized messages",
+      "Tracks engagement levels",
+      "Converts 4x more leads"
+    ]
   },
   {
     id: 4,
     name: "AI Lead Qualifier",
-    tagline: "Instant Lead Scoring & Routing",
-    status: "LIVE",
     category: "Sales AI",
-    desc: "Qualifies every inquiry instantly, scores leads, routes hot prospects to sales, nurtures cold leads automatically.",
-    impact: "Recovers $420K in silent revenue loss per location per year.",
-    stat: "$420K",
-    statLabel: "revenue recovered",
-    cta: "See Demo",
+    icon: DollarSign,
+    features: [
+      "Qualifies leads instantly",
+      "Scores prospects automatically",
+      "Routes hot leads to sales",
+      "Nurtures cold leads",
+      "Recovers $420K revenue yearly",
+      "Works 24/7 without breaks"
+    ]
   },
   {
     id: 5,
     name: "AI Review Manager",
-    tagline: "Reputation + Review Guard",
-    status: "LIVE",
     category: "Reputation AI",
-    desc: "Monitors reviews across Google, Yelp, and social. Responds instantly, escalates issues, requests reviews from happy clients.",
-    impact: "Maintains 4.1★+ rating and prevents 22× booking loss per complaint.",
-    stat: "22×",
-    statLabel: "booking loss prevented",
-    cta: "See Demo",
+    icon: Star,
+    features: [
+      "Monitors Google & Yelp reviews",
+      "Responds to reviews instantly",
+      "Escalates negative feedback",
+      "Requests reviews from happy clients",
+      "Maintains 4.1+ star rating",
+      "Prevents 22x booking loss"
+    ]
   },
   {
     id: 6,
     name: "AI Omnichannel Responder",
-    tagline: "Unified Inbox for All Channels",
-    status: "SOON",
     category: "Messaging AI",
-    desc: "Manages calls, DMs, emails, SMS, and web chat from one AI-powered inbox. Never miss a lead from any channel.",
-    impact: "Eliminates channel blindspots and captures every inquiry.",
-    stat: "100%",
-    statLabel: "channel coverage",
-    cta: "Join Waitlist",
+    icon: MessageSquare,
+    features: [
+      "Manages all communication channels",
+      "Unifies calls, DMs, emails, SMS",
+      "Never misses a lead",
+      "Provides 100% channel coverage",
+      "Works from one AI inbox",
+      "Eliminates channel blindspots"
+    ]
   },
   {
     id: 7,
     name: "AI Quote & Booking Assistant",
-    tagline: "Instant Dynamic Pricing Engine",
-    status: "LIVE",
     category: "Sales AI",
-    desc: "Generates personalized quotes in real-time based on fleet, season, demand, and customer profile. Sends quotes in under 1 minute.",
-    impact: "Sends quotes 12× faster and eliminates 60% quote delays.",
-    stat: "12×",
-    statLabel: "faster than manual",
-    cta: "See Demo",
+    icon: DollarSign,
+    features: [
+      "Generates quotes in real-time",
+      "Considers fleet availability",
+      "Adjusts for seasonal demand",
+      "Personalizes customer pricing",
+      "Sends quotes in under 1 minute",
+      "12x faster than manual process"
+    ]
   },
   {
     id: 8,
-    name: "AI Upsell",
-    tagline: "Add-On Revenue Maximizer",
-    status: "LIVE",
+    name: "AI Upsell Assistant",
     category: "Revenue AI",
-    desc: "Offers insurance, GPS, child seats, chauffeur upgrades at booking and via SMS before pickup. Never leaves money on the table.",
-    impact: "Captures $280 avg add-on revenue per rental.",
-    stat: "$280",
-    statLabel: "avg add-on per rental",
-    cta: "See Demo",
+    icon: TrendingUp,
+    features: [
+      "Offers insurance upgrades",
+      "Suggests GPS add-ons",
+      "Recommends child seats",
+      "Proposes chauffeur services",
+      "Sends SMS before pickup",
+      "Captures $280 avg per rental"
+    ]
   },
   {
     id: 9,
-    name: "AI VIP & Relationship Mgr",
-    tagline: "Repeat Client Re-Engagement Engine",
-    status: "SOON",
+    name: "AI VIP & Relationship Manager",
     category: "Retention AI",
-    desc: "Tracks past renters, sends birthday offers, seasonal promotions, and 'we miss you' campaigns. Turns one-time renters into loyal clients.",
-    impact: "Drives 3.2× more repeat bookings.",
-    stat: "3.2×",
-    statLabel: "more repeat bookings",
-    cta: "Join Waitlist",
+    icon: Heart,
+    features: [
+      "Tracks past rental history",
+      "Sends birthday offers",
+      "Creates seasonal promotions",
+      "Runs 'we miss you' campaigns",
+      "Builds customer loyalty",
+      "Drives 3.2x repeat bookings"
+    ]
   },
   {
     id: 10,
     name: "AI Customer Support 24/7",
-    tagline: "Paperwork + ID Verification Bot",
-    status: "LIVE",
     category: "Operations AI",
-    desc: "Sends rental agreements, collects signatures, verifies IDs, confirms insurance — all automated. Eliminates onboarding friction.",
-    impact: "Reduces onboarding drop-off by 82%.",
-    stat: "82%",
-    statLabel: "drop-off reduction",
-    cta: "See Demo",
+    icon: RefreshCw,
+    features: [
+      "Sends rental agreements",
+      "Collects digital signatures",
+      "Verifies customer IDs",
+      "Confirms insurance coverage",
+      "Eliminates onboarding friction",
+      "Reduces drop-off by 82%"
+    ]
   },
   {
     id: 11,
     name: "AI Website Chatbot",
-    tagline: "24/7 Website Lead Capture",
-    status: "SOON",
     category: "Operations AI",
-    desc: "Engages every website visitor instantly, answers questions, collects contact info, books rentals — even when you're asleep.",
-    impact: "Captures 82% of after-hours website inquiries.",
-    stat: "82%",
-    statLabel: "after-hours capture",
-    cta: "Join Waitlist",
+    icon: RefreshCw,
+    features: [
+      "Engages website visitors instantly",
+      "Answers questions 24/7",
+      "Collects contact information",
+      "Books rentals automatically",
+      "Works while you sleep",
+      "Captures 82% after-hours inquiries"
+    ]
   },
   {
     id: 12,
     name: "AI Business Manager",
-    tagline: "Revenue + Lead Analytics Dashboard",
-    status: "LIVE",
     category: "Analytics AI",
-    desc: "Tracks every lead source, conversion rate, revenue per channel, and AI performance in real-time. Makes invisible revenue visible.",
-    impact: "Reveals 38% of hidden revenue opportunities.",
-    stat: "38%",
-    statLabel: "hidden revenue found",
-    cta: "See Demo",
-  },
+    icon: BarChart2,
+    features: [
+      "Tracks all lead sources",
+      "Monitors conversion rates",
+      "Analyzes revenue per channel",
+      "Reports AI performance",
+      "Updates data in real-time",
+      "Reveals 38% hidden revenue"
+    ]
+  }
 ];
-
-const ALL_CATS = ["All", ...Array.from(new Set(PRODUCTS.map((p) => p.category)))];
 
 // ─── Styles ──────────────────────────────────────────────────────────────────
 
@@ -205,17 +205,12 @@ const styles = `
 
 /* ── Header ── */
 .ag-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: end;
-  padding-bottom: 56px;
-  border-bottom: 1.5px solid #141419;
-  margin-bottom: 0;
+  text-align: center;
+  margin-bottom: 80px;
 }
 
 .ag-eyebrow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 14px;
   font-size: 10px;
@@ -226,7 +221,8 @@ const styles = `
   margin-bottom: 24px;
 }
 
-.ag-eyebrow::before {
+.ag-eyebrow::before,
+.ag-eyebrow::after {
   content: '';
   display: block;
   width: 28px;
@@ -242,7 +238,7 @@ const styles = `
   color: #141419;
   line-height: .90;
   letter-spacing: -.05em;
-  margin: 0;
+  margin: 0 0 24px 0;
 }
 
 .ag-headline em {
@@ -251,446 +247,257 @@ const styles = `
   color: #7B74DC;
 }
 
-.ag-header-right {
-  padding-bottom: 6px;
-}
-
 .ag-desc {
-  font-size: 15px;
+  font-size: 16px;
   color: #6E6D7A;
   line-height: 1.8;
-  max-width: 340px;
-  margin-bottom: 36px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.ag-counts {
-  display: flex;
-  gap: 40px;
-}
-
-.ag-count-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  font-weight: 700;
-  color: #141419;
-  line-height: 1;
-  letter-spacing: -.04em;
-}
-
-.ag-count-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #6E6D7A;
-  margin-top: 6px;
-}
-
-/* ── Filter strip ── */
-.ag-filters {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid #E3E2EB;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 0 24px;
-}
-
-.ag-filters::-webkit-scrollbar { display: none; }
-
-.ag-filter-btn {
-  appearance: none;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 18px 16px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(9px, 1.5vw, 11px);
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #6E6D7A;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color .2s, border-color .2s;
-  margin-bottom: -1px;
-  flex-shrink: 0;
-}
-
-.ag-filter-btn:hover { color: #141419; }
-
-.ag-filter-btn.active {
-  color: #141419;
-  border-bottom-color: #141419;
-}
-
-@media (min-width: 768px) {
-  .ag-filters {
-    padding: 0 64px;
-  }
-  .ag-filter-btn {
-    padding: 18px 22px 16px;
-  }
-}
-
-/* ── Product rows ── */
-.ag-list {
-  margin-top: 0;
-}
-
-.ag-row {
-  position: relative;
+/* ── Solutions Grid ── */
+.ag-grid {
   display: grid;
-  grid-template-columns: 56px minmax(0,1.1fr) minmax(0,1.6fr) 140px 90px;
-  gap: 0 36px;
-  align-items: center;
-  padding: 32px 0;
-  border-bottom: 1px solid #E3E2EB;
-  cursor: pointer;
-  transition: background .2s;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 60px;
 }
 
-.ag-row::before {
+.ag-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fefeff 100%);
+  border: 1px solid rgba(227, 226, 235, 0.6);
+  border-radius: 12px;
+  padding: 24px 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(20, 20, 25, 0.04);
+}
+
+.ag-card::before {
   content: '';
   position: absolute;
-  inset: 0 -64px;
-  background: transparent;
-  transition: background .25s;
-  pointer-events: none;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7B74DC 0%, #9B94EC 50%, #7B74DC 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.ag-row:hover::before { background: rgba(123,116,220,.035); }
-
-.ag-row > * { position: relative; z-index: 1; }
-
-.ag-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #6E6D7A;
-  letter-spacing: .04em;
-  line-height: 1;
-  user-select: none;
+.ag-card:hover::before {
+  opacity: 1;
 }
 
-.ag-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: #141419;
-  letter-spacing: -.025em;
-  line-height: 1.1;
-  margin-bottom: 5px;
+.ag-card:hover {
+  border-color: rgba(123, 116, 220, 0.3);
+  box-shadow: 
+    0 4px 20px rgba(123, 116, 220, 0.12),
+    0 1px 8px rgba(20, 20, 25, 0.06);
+  transform: translateY(-3px);
 }
 
-.ag-tagline {
-  font-size: 12px;
-  color: #6E6D7A;
-  font-weight: 400;
-  line-height: 1.45;
-}
-
-.ag-row-desc {
-  font-size: 12.5px;
-  color: #6E6D7A;
-  line-height: 1.7;
-}
-
-.ag-stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -.03em;
-  line-height: 1;
-}
-
-.ag-stat-label {
-  font-size: 10px;
-  color: #6E6D7A;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin-top: 5px;
-  line-height: 1.3;
-}
-
-.ag-status {
+.ag-card-header {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 7px;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.ag-dot {
-  width: 6px; 
-  height: 6px;
+.ag-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7B74DC;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ag-card:hover .ag-icon {
+  transform: scale(1.1);
+  color: #6B63CC;
+}
+
+.ag-card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #141419;
+  letter-spacing: -.01em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ag-feature-line {
+  font-size: 13px;
+  color: #6E6D7A;
+  line-height: 1.5;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(123, 116, 220, 0.03);
+  border-radius: 8px;
+  border-left: 2px solid #7B74DC;
+}
+
+.ag-feature-line::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background: #7B74DC;
   border-radius: 50%;
+  margin-right: 10px;
   flex-shrink: 0;
 }
 
-.ag-dot-live { background: #7B74DC; }
-.ag-dot-soon { background: #6E6D7A; }
-
-.ag-status-text {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.ag-status-live { color: #7B74DC; }
-.ag-status-soon { color: #6E6D7A; }
-
-/* ── Expanded panel ── */
-.ag-expand {
-  grid-column: 1 / -1;
-  overflow: hidden;
-}
-
-.ag-expand-inner {
-  display: grid;
-  grid-template-columns: 56px minmax(0,1fr) auto;
-  gap: 0 36px;
-  align-items: start;
-  padding: 24px 0 8px;
-  border-top: 1px solid #E3E2EB;
-  margin-top: 16px;
-}
-
-.ag-expand-body { 
-  font-size: 14px; 
-  color: #6E6D7A; 
-  line-height: 1.8; 
-}
-
-.ag-impact-block {
-  border-left: 2px solid;
-  border-radius: 0;
-  padding-left: 18px;
-  min-width: 220px;
-  max-width: 280px;
-}
-
-.ag-impact-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.ag-impact-text {
-  font-size: 14px;
-  font-weight: 500;
-  color: #141419;
-  line-height: 1.55;
-  margin-bottom: 20px;
-}
-
-.ag-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 11px 24px;
-  border-radius: 100px;
-  border: 1.5px solid;
-  background: transparent;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .06em;
-  cursor: pointer;
-  transition: background .2s, color .2s;
-}
-
-/* ── Category badge ── */
-.ag-cat-pill {
-  display: inline-block;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 4px 11px;
-  border-radius: 100px;
-  margin-bottom: 12px;
-}
-
-/* ── Bottom bar ── */
+/* ── Bottom CTA ── */
 .ag-bottom {
-  margin-top: 72px;
-  padding: 44px 52px;
+  margin-top: 80px;
+  padding: 48px;
   background: #141419;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  text-align: center;
 }
 
 .ag-bottom-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(20px, 2.2vw, 26px);
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
   color: #FCFCFE;
   letter-spacing: -.025em;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 .ag-bottom-sub {
-  font-size: 13px;
-  color: rgba(252,252,254,.4);
+  font-size: 16px;
+  color: rgba(252,252,254,.6);
+  margin-bottom: 32px;
 }
 
 .ag-start-btn {
-  padding: 15px 38px;
+  padding: 16px 40px;
   background: #7B74DC;
   border: none;
   border-radius: 100px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  white-space: nowrap;
-  transition: opacity .2s, transform .15s;
+  transition: all 0.2s ease;
   letter-spacing: .03em;
 }
 
 .ag-start-btn:hover { 
-  opacity: .88; 
-  transform: scale(1.03); 
+  background: #6B63CC;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(123, 116, 220, 0.4);
 }
 
-@media (max-width: 900px) {
-  .ag-section { padding: 64px 12px 80px; }
-  .ag-header { grid-template-columns: 1fr; gap: 32px; }
-  .ag-row {
-    grid-template-columns: 40px minmax(0,1fr) 90px 72px;
+@media (max-width: 768px) {
+  .ag-section { 
+    padding: 64px 16px 80px; 
   }
-  .ag-row-desc { display: none; }
-}
-
-@media (max-width: 600px) {
-  .ag-row { grid-template-columns: 36px minmax(0,1fr) 72px; }
-  .ag-stat-num { font-size: 22px; }
-  .ag-status { display: none; }
-  .ag-expand-inner { grid-template-columns: 1fr; gap: 20px; }
-  .ag-bottom { padding: 32px 28px; }
+  
+  .ag-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 50px;
+  }
+  
+  .ag-card {
+    padding: 20px 18px;
+  }
+  
+  .ag-card-header {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  
+  .ag-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .ag-card-title {
+    font-size: 14px;
+  }
+  
+  .ag-feature-line {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  
+  .ag-bottom {
+    margin-top: 50px;
+    padding: 28px 20px;
+  }
 }
 `;
 
-// ─── Product Row ─────────────────────────────────────────────────────────────
+// ─── Animated Feature Line Component ─────────────────────────────────────────
 
-function ProductRow({ product, index, isExpanded, onToggle }) {
-  const colors = CATEGORY_COLORS[product.category] ?? CATEGORY_COLORS["Voice AI"];
-  const Icon = CATEGORY_ICONS[product.category] ?? Sparkles;
-  const isLive = product.status === "LIVE";
+function AnimatedFeatureLine({ features }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % features.length);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [features.length]);
+
+  return (
+    <div className="ag-feature-line">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {features[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Solution Card Component ─────────────────────────────────────────────────
+
+function SolutionCard({ product, index }) {
+  const Icon = product.icon;
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.38, delay: index * 0.045, ease: [0.16, 1, 0.3, 1] }}
+      className="ag-card"
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.06, 
+        ease: [0.16, 1, 0.3, 1] 
+      }}
+      whileHover={{ 
+        scale: 1.01,
+        transition: { duration: 0.2 }
+      }}
     >
-      <div
-        className="ag-row"
-        onClick={onToggle}
-        role="button"
-        aria-expanded={isExpanded}
-        tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && onToggle()}
-      >
-        {/* Index number */}
-        <div className="ag-num">{String(index + 1).padStart(2, "0")}</div>
-
-        {/* Name + tagline */}
-        <div>
-          <div className="ag-name">{product.name}</div>
-          <div className="ag-tagline">{product.tagline}</div>
+      <div className="ag-card-header">
+        <div className="ag-icon">
+          <Icon size={20} strokeWidth={1.8} />
         </div>
-
-        {/* Short desc (hidden on mobile) */}
-        <div className="ag-row-desc" aria-hidden="true">
-          {product.desc.length > 100 ? product.desc.slice(0, 100) + "…" : product.desc}
-        </div>
-
-        {/* Stat */}
-        <div>
-          <div className="ag-stat-num" style={{ color: colors.accent }}>
-            {product.stat}
-          </div>
-          <div className="ag-stat-label">{product.statLabel}</div>
-        </div>
-
-        {/* Status */}
-        <div className="ag-status">
-          <span className={`ag-dot ag-dot-${isLive ? "live" : "soon"}`} />
-          <span className={`ag-status-text ag-status-${isLive ? "live" : "soon"}`}>
-            {isLive ? "Live" : "Soon"}
-          </span>
-        </div>
-
-        {/* Expanded panel */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              className="ag-expand"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="ag-expand-inner">
-                {/* Spacer aligns with index column */}
-                <div />
-
-                {/* Full description */}
-                <div>
-                  <span
-                    className="ag-cat-pill"
-                    style={{ background: colors.bg, color: colors.text }}
-                  >
-                    <Icon
-                      size={9}
-                      style={{ display: "inline", marginRight: 5, verticalAlign: "middle" }}
-                    />
-                    {product.category}
-                  </span>
-                  <p className="ag-expand-body">{product.desc}</p>
-                </div>
-
-                {/* Impact + CTA */}
-                <div>
-                  <div className="ag-impact-block" style={{ borderLeftColor: colors.accent }}>
-                    <div className="ag-impact-label" style={{ color: colors.accent }}>
-                      Impact
-                    </div>
-                    <div className="ag-impact-text">{product.impact}</div>
-                  </div>
-                  <button
-                    className="ag-cta"
-                    style={{ borderColor: colors.accent, color: colors.text }}
-                    onClick={(e) => e.stopPropagation()}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = colors.accent;
-                      e.currentTarget.style.color = "#fff";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = colors.text;
-                    }}
-                  >
-                    {product.cta} &rarr;
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <h3 className="ag-card-title">{product.name}</h3>
       </div>
+      
+      <AnimatedFeatureLine features={product.features} />
     </motion.div>
   );
 }
@@ -698,35 +505,6 @@ function ProductRow({ product, index, isExpanded, onToggle }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function SolutionsGrid() {
-  const [activeFilter, setActiveFilter] = useState("Voice AI");
-  const [expanded, setExpanded] = useState(null);
-
-  // Auto-rotate through categories every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveFilter((current) => {
-        const currentIndex = ALL_CATS.indexOf(current);
-        const nextIndex = (currentIndex + 1) % ALL_CATS.length;
-        const nextCategory = ALL_CATS[nextIndex];
-
-        // Expand first product in the new category
-        const firstProduct = PRODUCTS.find((p) =>
-          nextCategory === "All" ? true : p.category === nextCategory,
-        );
-        if (firstProduct) {
-          setExpanded(firstProduct.id);
-        }
-
-        return nextCategory;
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const filtered =
-    activeFilter === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === activeFilter);
-
   return (
     <>
       <style>{styles}</style>
@@ -740,80 +518,30 @@ export default function SolutionsGrid() {
             viewport={{ once: true }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div>
-              <div className="ag-eyebrow">The Full Stack</div>
-              <h2 className="ag-headline">
-                12 AI
-                <br />
-                <em>Employees.</em>
-              </h2>
-            </div>
-            <div className="ag-header-right">
-              <p className="ag-desc">
-                Every touchpoint covered. Every lead captured. Every booking closed — around the
-                clock, without a single hire.
-              </p>
-              <div className="ag-counts">
-                {[
-                  ["9", "Live Now"],
-                  ["3", "Coming Soon"],
-                  ["12", "Total Tools"],
-                ].map(([n, l]) => (
-                  <div key={l}>
-                    <div className="ag-count-num">{n}</div>
-                    <div className="ag-count-label">{l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <div className="ag-eyebrow">The Full Stack</div>
+            <h2 className="ag-headline">
+              12 AI
+              <br />
+              <em>Employees.</em>
+            </h2>
+            <p className="ag-desc">
+              Every touchpoint covered. Every lead captured. Every booking closed — around the
+              clock, without a single hire.
+            </p>
           </motion.div>
 
-          {/* ── Filter strip ── */}
-          <motion.div
-            className="ag-filters"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            {ALL_CATS.map((cat) => (
-              <button
-                key={cat}
-                className={`ag-filter-btn${activeFilter === cat ? " active" : ""}`}
-                onClick={() => {
-                  setActiveFilter(cat);
-                  setExpanded(null);
-                }}
-              >
-                {cat}
-              </button>
+          {/* ── Solutions Grid ── */}
+          <div className="ag-grid">
+            {PRODUCTS.map((product, index) => (
+              <SolutionCard 
+                key={product.id} 
+                product={product} 
+                index={index} 
+              />
             ))}
-          </motion.div>
-
-          {/* ── Product list ── */}
-          <div className="ag-list">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFilter}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {filtered.map((product, i) => (
-                  <ProductRow
-                    key={product.id}
-                    product={product}
-                    index={i}
-                    isExpanded={expanded === product.id}
-                    onToggle={() => setExpanded(expanded === product.id ? null : product.id)}
-                  />
-                ))}
-              </motion.div>
-            </AnimatePresence>
           </div>
 
-          {/* ── Bottom bar ── */}
+          {/* ── Bottom CTA ── */}
           <motion.div
             className="ag-bottom"
             initial={{ opacity: 0, y: 28 }}
@@ -827,7 +555,7 @@ export default function SolutionsGrid() {
                 No per-tool pricing. No hidden fees. Cancel anytime.
               </div>
             </div>
-            <button className="ag-start-btn">Start Free Trial &rarr;</button>
+            <button className="ag-start-btn">Start Free Trial →</button>
           </motion.div>
         </section>
       </div>
