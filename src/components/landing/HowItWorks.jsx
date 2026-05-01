@@ -75,7 +75,7 @@ const styles = `
 
 .hiw-head {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 40px;
 }
 
 .hiw-eyebrow {
@@ -85,23 +85,23 @@ const styles = `
   background: rgba(42,157,143,0.08);
   border: 1px solid rgba(42,157,143,0.22);
   border-radius: 100px;
-  padding: 4px 14px 4px 8px;
+  padding: 4px 12px 4px 8px;
   font-family: 'DM Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #2A9D8F;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .hiw-h2 {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(24px, 3.5vw, 40px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: #141419;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .hiw-h2 em {
@@ -112,29 +112,29 @@ const styles = `
 }
 
 .hiw-sub {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   color: #6E6D7A;
-  max-width: 520px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
 .hiw-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 72px;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
 .hiw-card {
   background: #fff;
   border: 1px solid #E3E2EB;
-  border-radius: 16px;
-  padding: 24px 20px 20px;
+  border-radius: 12px;
+  padding: 18px 16px 16px;
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
@@ -142,7 +142,7 @@ const styles = `
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 16px;
+  border-radius: 12px;
   background: linear-gradient(135deg, var(--accent), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -150,8 +150,8 @@ const styles = `
 }
 
 .hiw-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.07);
   border-color: var(--accent);
 }
 
@@ -161,80 +161,79 @@ const styles = `
 
 .hiw-card-num {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 28px;
-  height: 28px;
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: -0.01em;
   color: var(--accent);
 }
 
 .hiw-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
 .hiw-card:hover .hiw-card-icon {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .hiw-card-title {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
   color: #141419;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hiw-card-desc {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12px;
+  line-height: 1.55;
   color: #6E6D7A;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex: 1;
 }
 
 .hiw-card-divider {
-  width: 40px;
-  height: 2px;
+  width: 28px;
+  height: 1.5px;
   border-radius: 2px;
   background: var(--accent);
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .hiw-card-items {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .hiw-card-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 6px;
 }
 
 .hiw-card-check {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--accent-light);
   display: flex;
@@ -245,33 +244,33 @@ const styles = `
 }
 
 .hiw-card-item-text {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
   color: #3D3C47;
   font-weight: 500;
 }
 
 .hiw-cta {
-  padding: 36px 44px;
+  padding: 28px 36px;
   background: linear-gradient(135deg, #7B74DC 0%, #6B63CC 100%);
-  border-radius: 16px;
+  border-radius: 14px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(123,116,220,0.3);
+  box-shadow: 0 8px 28px rgba(123,116,220,0.25);
 }
 
 .hiw-cta::before {
   content: '';
   position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -281,21 +280,21 @@ const styles = `
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hiw-cta-title {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(20px, 2.5vw, 28px);
+  font-size: clamp(18px, 2.2vw, 24px);
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
   color: #fff;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .hiw-cta-sub {
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(255,255,255,0.5);
   line-height: 1.5;
 }
@@ -304,47 +303,46 @@ const styles = `
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 13px 26px;
+  padding: 11px 22px;
   background: #2A9D8F;
   border: none;
-  border-radius: 10px;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  border-radius: 8px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   color: #fff;
   cursor: pointer;
   transition: all 0.22s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(42,157,143,0.4);
+  box-shadow: 0 4px 12px rgba(42,157,143,0.35);
   position: relative;
   z-index: 1;
 }
 
 .hiw-btn:hover {
   background: #248A7A;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(42,157,143,0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(42,157,143,0.45);
 }
 
 @media (max-width: 900px) {
-  .hiw-grid { grid-template-columns: 1fr; gap: 20px; }
-  .hiw-card { padding: 28px 24px 24px; }
+  .hiw-grid { grid-template-columns: 1fr; gap: 12px; }
+  .hiw-card { padding: 18px 16px; }
 }
 
 @media (max-width: 768px) {
-  .hiw-inner { padding: 48px 20px 64px; }
-  .hiw-head { margin-bottom: 40px; }
-  .hiw-h2 { font-size: clamp(32px, 8vw, 48px); margin-bottom: 16px; }
-  .hiw-sub { font-size: 15px; }
-  .hiw-cta { grid-template-columns: 1fr; padding: 32px 24px; gap: 20px; }
+  .hiw-inner { padding: 40px 20px 48px; }
+  .hiw-head { margin-bottom: 32px; }
+  .hiw-h2 { font-size: clamp(24px, 7vw, 36px); margin-bottom: 12px; }
+  .hiw-sub { font-size: 13px; }
+  .hiw-cta { grid-template-columns: 1fr; padding: 24px 20px; gap: 16px; }
   .hiw-btn { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
-  .hiw-inner { padding: 40px 16px 56px; }
-  .hiw-card { padding: 24px 20px 20px; border-radius: 16px; }
-  .hiw-cta { padding: 28px 20px; border-radius: 16px; }
+  .hiw-inner { padding: 32px 16px 40px; }
+  .hiw-card { padding: 16px 14px; border-radius: 10px; }
+  .hiw-cta { padding: 20px 16px; border-radius: 12px; }
 }
 `;
 
@@ -398,7 +396,7 @@ export default function HowItWorks() {
                   <div className="hiw-card-num">{step.n}</div>
 
                   <div className="hiw-card-icon">
-                    <Icon size={22} strokeWidth={1.8} style={{ color: step.accent }} />
+                    <Icon size={18} strokeWidth={1.8} style={{ color: step.accent }} />
                   </div>
 
                   <h3 className="hiw-card-title">{step.title}</h3>
@@ -437,7 +435,7 @@ export default function HowItWorks() {
             </div>
             <button className="hiw-btn">
               Start Free Trial
-              <ArrowRight size={15} strokeWidth={2.2} />
+              <ArrowRight size={13} strokeWidth={2.2} />
             </button>
           </motion.div>
 
