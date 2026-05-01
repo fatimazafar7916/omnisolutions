@@ -82,50 +82,42 @@ function StatCard({ stat, index, isVisible }) {
       animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7))",
-        backdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.3)",
-        borderRadius: 20,
-        padding: "24px 20px",
+        background: "#fff",
+        border: "1px solid #E5E7EB",
+        borderRadius: 12,
+        padding: "16px 14px",
         textAlign: "center",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Animated background glow */}
-      <div style={{
-        position: "absolute",
-        top: 0, left: 0, right: 0, bottom: 0,
-        background: `linear-gradient(135deg, ${C}10, transparent)`,
-        opacity: 0.5,
-      }} />
-      
       <div style={{ position: "relative", zIndex: 1 }}>
         <div style={{
-          fontFamily: "'Bricolage Grotesque',sans-serif",
-          fontWeight: 900,
-          fontSize: "clamp(28px,4vw,36px)",
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+          fontWeight: 800,
+          fontSize: "clamp(20px,3vw,28px)",
           background: `linear-gradient(135deg, ${C}, #6366F1)`,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
           letterSpacing: "-0.02em",
-          marginBottom: 4,
+          marginBottom: 2,
+          lineHeight: 1.1,
         }}>
           {stat.number.includes('%') ? `${count}%` : count}{stat.number.includes('+') ? '+' : ''}
         </div>
         <div style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: 14,
-          fontWeight: 700,
+          fontSize: 12,
+          fontWeight: 600,
           color: "#111827",
-          marginBottom: 2,
+          marginBottom: 1,
         }}>
           {stat.label}
         </div>
         <div style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: 11,
+          fontSize: 10,
           color: GR,
         }}>
           {stat.sublabel}
@@ -149,16 +141,16 @@ function ReasonCard({ reason, index, isVisible }) {
       style={{
         background: "#fff",
         border: "1px solid #E5E7EB",
-        borderRadius: 24,
-        padding: "32px 28px",
+        borderRadius: 14,
+        padding: "18px 16px",
         position: "relative",
         overflow: "hidden",
         cursor: "default",
-        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-        transform: isHovered ? "translateX(-8px) scale(1.02)" : "translateX(0) scale(1)",
+        transition: "all 0.3s ease",
+        transform: isHovered ? "translateX(-4px)" : "translateX(0)",
         boxShadow: isHovered 
-          ? "0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(123,116,220,0.2)"
-          : "0 8px 25px rgba(0,0,0,0.08)",
+          ? "0 8px 24px rgba(0,0,0,0.08)"
+          : "0 2px 8px rgba(0,0,0,0.04)",
       }}
     >
       {/* Animated side accent */}
@@ -177,37 +169,35 @@ function ReasonCard({ reason, index, isVisible }) {
       {/* Number badge */}
       <div style={{
         position: "absolute",
-        top: 24,
-        right: 24,
-        width: 40,
-        height: 40,
+        top: 16,
+        right: 16,
+        width: 28,
+        height: 28,
         borderRadius: "50%",
-        background: `linear-gradient(135deg, ${C}15, ${C}05)`,
-        border: `2px solid ${C}20`,
+        background: `${C}10`,
+        border: `1px solid ${C}20`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transition: "all 0.3s ease",
-        transform: isHovered ? "scale(1.1)" : "scale(1)",
       }}>
         <span style={{
-          fontFamily: "'Bricolage Grotesque',sans-serif",
-          fontSize: 16,
-          fontWeight: 800,
+          fontFamily: "'Inter',sans-serif",
+          fontSize: 11,
+          fontWeight: 700,
           color: C,
         }}>
           {reason.number}
         </span>
       </div>
 
-      <div style={{ paddingRight: 60 }}>
+      <div style={{ paddingRight: 44 }}>
         <h3 style={{
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
           fontWeight: 700,
-          fontSize: "clamp(16px,1.8vw,20px)",
+          fontSize: "clamp(14px,1.5vw,16px)",
           color: "#111827",
           letterSpacing: "-0.01em",
-          margin: "0 0 12px",
+          margin: "0 0 8px",
           lineHeight: 1.3,
         }}>
           {reason.title}
@@ -215,10 +205,10 @@ function ReasonCard({ reason, index, isVisible }) {
 
         <p style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: "clamp(13px,1.2vw,14px)",
+          fontSize: "clamp(12px,1.1vw,13px)",
           color: "#6B7280",
-          lineHeight: 1.6,
-          margin: "0 0 16px",
+          lineHeight: 1.55,
+          margin: "0 0 12px",
         }}>
           {reason.description}
         </p>
@@ -227,11 +217,11 @@ function ReasonCard({ reason, index, isVisible }) {
         <div style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: 6,
-          background: `linear-gradient(135deg, ${C}08, ${C}03)`,
+          gap: 5,
+          background: `${C}08`,
           border: `1px solid ${C}20`,
-          borderRadius: 10,
-          padding: "6px 12px",
+          borderRadius: 8,
+          padding: "4px 10px",
         }}>
           <div style={{
             width: 4,
@@ -241,7 +231,7 @@ function ReasonCard({ reason, index, isVisible }) {
           }} />
           <span style={{
             fontFamily: "'DM Sans',sans-serif",
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: 600,
             color: C,
           }}>
@@ -263,8 +253,8 @@ function TrustPoint({ text, index, isVisible }) {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: 12,
-        padding: "8px 0",
+        gap: 10,
+        padding: "6px 0",
       }}
     >
       <div style={{
@@ -310,11 +300,11 @@ export default function WhyAiauraSection() {
       ref={sectionRef}
       style={{
         background: "linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%)",
-        padding: "100px 0 120px",
+        padding: "64px 0 72px",
         fontFamily: "'DM Sans',system-ui,sans-serif",
         position: "relative",
         overflow: "hidden",
-        scrollMarginTop: "80px", // Account for fixed navbar
+        scrollMarginTop: "80px",
       }}
     >
       {/* Animated background elements */}
@@ -344,9 +334,9 @@ export default function WhyAiauraSection() {
         <div style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: 80,
+          gap: 48,
           alignItems: "center",
-          marginBottom: 80,
+          marginBottom: 48,
         }}>
           {/* Left: Hero Content */}
           <motion.div
@@ -408,7 +398,7 @@ export default function WhyAiauraSection() {
             <div style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 16,
+              gap: 10,
             }}>
               {HERO_CONTENT.left.stats.map((stat, index) => (
                 <StatCard
@@ -425,7 +415,7 @@ export default function WhyAiauraSection() {
           <div style={{
             display: "flex",
             flexDirection: "column",
-            gap: 24,
+            gap: 12,
           }}>
             {HERO_CONTENT.right.reasons.map((reason, index) => (
               <ReasonCard
@@ -441,8 +431,8 @@ export default function WhyAiauraSection() {
         {/* Bottom Section: Trust + CTA */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 400px",
-          gap: 60,
+          gridTemplateColumns: "1fr 360px",
+          gap: 40,
           alignItems: "start",
         }}>
           {/* Trust Points */}
@@ -481,8 +471,8 @@ export default function WhyAiauraSection() {
             transition={{ duration: 0.6, delay: 2.2 }}
             style={{
               background: "linear-gradient(135deg, #111827, #1F2937)",
-              borderRadius: 24,
-              padding: "40px 32px",
+              borderRadius: 16,
+              padding: "28px 24px",
               textAlign: "center",
               position: "relative",
               overflow: "hidden",
