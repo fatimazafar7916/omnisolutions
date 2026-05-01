@@ -1174,11 +1174,11 @@ export default function HeroSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 6,
-                padding: "6px 14px",
+                padding: "4px 12px",
                 borderRadius: 100,
                 border: "1px solid rgba(42,157,143,0.25)",
                 background: "rgba(42,157,143,0.08)",
-                marginBottom: 16,
+                marginBottom: 20,
                 position: 'relative',
                 overflow: 'hidden'
               }}
@@ -1216,8 +1216,8 @@ export default function HeroSection() {
                   ease: "easeInOut"
                 }}
                 style={{
-                  width: 8,
-                  height: 8,
+                  width: 6,
+                  height: 6,
                   borderRadius: "50%",
                   background: "#2A9D8F",
                   position: 'relative',
@@ -1228,7 +1228,7 @@ export default function HeroSection() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
-                  fontSize: 14,
+                  fontSize: 12,
                   color: "#2A9D8F",
                   position: 'relative',
                   zIndex: 2
@@ -1248,16 +1248,16 @@ export default function HeroSection() {
                 style={{
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                   fontWeight: 700,
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.03em",
-                  margin: "0 0 6px",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.02em",
+                  margin: "0 0 20px",
                   color: "#141419",
                 }}
               >
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(38px, 6.2vw, 82px)",
+                    fontSize: "clamp(32px, 4.5vw, 56px)",
                   }}
                 >
                   AI employees
@@ -1265,7 +1265,7 @@ export default function HeroSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(38px, 6.2vw, 82px)",
+                    fontSize: "clamp(32px, 4.5vw, 56px)",
                     fontFamily: "'Instrument Serif', serif",
                     fontStyle: "italic",
                     fontWeight: 400,
@@ -1277,7 +1277,7 @@ export default function HeroSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(38px, 6.2vw, 82px)",
+                    fontSize: "clamp(32px, 4.5vw, 56px)",
                   }}
                 >
                   for car rental USA operators.
@@ -1292,16 +1292,16 @@ export default function HeroSection() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(15px, 1.8vw, 18px)",
+                fontSize: "clamp(14px, 1.2vw, 16px)",
                 color: "#6E6D7A",
-                lineHeight: 1.65,
-                maxWidth: "540px",
-                margin: "12px 0 12px",
+                lineHeight: 1.6,
+                maxWidth: "520px",
+                margin: "0 0 24px",
               }}
             >
               Aiaura answers every call, every DM, every email — 24/7, in any language, in your brand voice.
               <br />
-              <strong style={{ color: "#141419" }}>You only handle deals that are ready to close.</strong>
+              <strong style={{ color: "#141419", fontWeight: 500 }}>You only handle deals that are ready to close.</strong>
             </motion.p>
 
             {/* All AI Agents Working Together Line - Enhanced Mobile */}
