@@ -1247,10 +1247,10 @@ export default function HeroSection() {
             >
               <h1
                 style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 600,
-                  lineHeight: 1.0,
-                  letterSpacing: "-0.04em",
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.03em",
                   margin: "0 0 6px",
                   color: "#141419",
                 }}
