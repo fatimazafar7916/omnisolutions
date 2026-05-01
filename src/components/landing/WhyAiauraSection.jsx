@@ -548,11 +548,23 @@ export default function WhyAiauraSection() {
       </div>
 
       <style>{`
-        /* Mobile Responsive */
+        /* Mobile Responsive - 100% Optimized */
+        
+        /* Large Desktop */
+        @media (min-width: 1400px) {
+          section > div {
+            max-width: 1500px !important;
+          }
+        }
+        
+        /* Desktop to Tablet */
         @media (max-width: 1200px) {
           section > div > div:first-child {
             grid-template-columns: 1fr !important;
-            gap: 60px !important;
+            gap: 50px !important;
+          }
+          
+          section > div > div:first-child > div:first-child {
             text-align: center !important;
           }
           
@@ -562,13 +574,14 @@ export default function WhyAiauraSection() {
           }
         }
         
-        @media (max-width: 768px) {
+        /* Tablet */
+        @media (max-width: 1024px) {
           section {
-            padding: 80px 0 90px !important;
+            padding: 70px 0 80px !important;
           }
           
           section > div {
-            padding: 0 24px !important;
+            padding: 0 32px !important;
           }
           
           section > div > div:first-child {
@@ -576,17 +589,273 @@ export default function WhyAiauraSection() {
             margin-bottom: 60px !important;
           }
           
+          section > div > div:first-child > div:first-child h1 {
+            font-size: clamp(32px,6vw,48px) !important;
+          }
+          
+          section > div > div:first-child > div:first-child p {
+            font-size: clamp(16px,2.5vw,20px) !important;
+          }
+        }
+        
+        /* Mobile Large */
+        @media (max-width: 768px) {
+          section {
+            padding: 60px 0 70px !important;
+          }
+          
+          section > div {
+            padding: 0 20px !important;
+          }
+          
+          section > div > div:first-child {
+            gap: 32px !important;
+            margin-bottom: 50px !important;
+          }
+          
+          /* Hero content mobile */
+          section > div > div:first-child > div:first-child > div:first-child {
+            padding: 6px 16px !important;
+            margin-bottom: 24px !important;
+          }
+          
+          section > div > div:first-child > div:first-child h1 {
+            font-size: clamp(28px,8vw,40px) !important;
+            margin-bottom: 12px !important;
+          }
+          
+          section > div > div:first-child > div:first-child p {
+            font-size: clamp(15px,4vw,18px) !important;
+            margin-bottom: 32px !important;
+          }
+          
+          /* Stats grid mobile - 3 columns but smaller */
+          section > div > div:first-child > div:first-child > div:last-child {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
+          }
+          
+          /* Reason cards mobile */
+          section > div > div:first-child > div:last-child {
+            gap: 16px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div {
+            padding: 24px 20px !important;
+            border-radius: 16px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:first-child {
+            top: 16px !important;
+            right: 16px !important;
+            width: 32px !important;
+            height: 32px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:first-child span {
+            font-size: 14px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:last-child {
+            padding-right: 40px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div h3 {
+            font-size: clamp(16px,4vw,20px) !important;
+            margin-bottom: 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div p {
+            font-size: clamp(13px,3.5vw,15px) !important;
+            margin-bottom: 16px !important;
+          }
+          
+          /* Bottom section mobile */
+          section > div > div:last-child {
+            gap: 32px !important;
+          }
+          
+          section > div > div:last-child > div:first-child h3 {
+            font-size: clamp(20px,5vw,26px) !important;
+            margin-bottom: 20px !important;
+          }
+          
+          section > div > div:last-child > div:last-child {
+            padding: 32px 24px !important;
+          }
+        }
+        
+        /* Mobile Medium */
+        @media (max-width: 640px) {
+          section {
+            padding: 50px 0 60px !important;
+          }
+          
+          section > div {
+            padding: 0 16px !important;
+          }
+          
+          /* Stats mobile - stack vertically on very small screens */
           section > div > div:first-child > div:first-child > div:last-child {
             grid-template-columns: 1fr !important;
             gap: 12px !important;
+            max-width: 280px !important;
+            margin: 0 auto !important;
           }
           
-          section > div > div:first-child > div:last-child {
-            gap: 20px !important;
+          /* Reason cards - more compact */
+          section > div > div:first-child > div:last-child > div {
+            padding: 20px 16px !important;
           }
           
-          section > div > div:last-child {
-            gap: 32px !important;
+          section > div > div:first-child > div:last-child > div > div:last-child {
+            padding-right: 36px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div h3 {
+            font-size: 16px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div p {
+            font-size: 13px !important;
+          }
+        }
+        
+        /* Mobile Small */
+        @media (max-width: 480px) {
+          section {
+            padding: 40px 0 50px !important;
+          }
+          
+          section > div {
+            padding: 0 12px !important;
+          }
+          
+          section > div > div:first-child > div:first-child h1 {
+            font-size: clamp(24px,9vw,32px) !important;
+            line-height: 1.1 !important;
+          }
+          
+          section > div > div:first-child > div:first-child p {
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+          }
+          
+          /* Stats - even more compact */
+          section > div > div:first-child > div:first-child > div:last-child > div {
+            padding: 16px 12px !important;
+          }
+          
+          section > div > div:first-child > div:first-child > div:last-child > div > div:last-child > div:first-child {
+            font-size: clamp(20px,6vw,24px) !important;
+          }
+          
+          /* Reason cards - ultra compact */
+          section > div > div:first-child > div:last-child > div {
+            padding: 16px 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:first-child {
+            width: 28px !important;
+            height: 28px !important;
+            top: 12px !important;
+            right: 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:first-child span {
+            font-size: 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:last-child {
+            padding-right: 32px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div h3 {
+            font-size: 14px !important;
+            margin-bottom: 8px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div p {
+            font-size: 12px !important;
+            margin-bottom: 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:last-child > div:last-child {
+            padding: 8px 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div > div:last-child > div:last-child span {
+            font-size: 12px !important;
+          }
+          
+          /* Trust section mobile */
+          section > div > div:last-child > div:first-child h3 {
+            font-size: 18px !important;
+          }
+          
+          section > div > div:last-child > div:first-child > div > div {
+            padding: 6px 0 !important;
+          }
+          
+          section > div > div:last-child > div:first-child > div > div span {
+            font-size: 13px !important;
+          }
+          
+          /* CTA mobile */
+          section > div > div:last-child > div:last-child {
+            padding: 24px 16px !important;
+          }
+          
+          section > div > div:last-child > div:last-child h3 {
+            font-size: 18px !important;
+          }
+          
+          section > div > div:last-child > div:last-child p {
+            font-size: 14px !important;
+            margin-bottom: 20px !important;
+          }
+          
+          section > div > div:last-child > div:last-child button {
+            font-size: 14px !important;
+            padding: 14px 24px !important;
+          }
+        }
+        
+        /* Mobile Extra Small */
+        @media (max-width: 360px) {
+          section > div > div:first-child > div:first-child h1 {
+            font-size: 22px !important;
+          }
+          
+          section > div > div:first-child > div:first-child p {
+            font-size: 13px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div h3 {
+            font-size: 13px !important;
+          }
+          
+          section > div > div:first-child > div:last-child > div p {
+            font-size: 11px !important;
+          }
+        }
+        
+        /* Landscape Mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+          section {
+            padding: 30px 0 40px !important;
+          }
+          
+          section > div > div:first-child {
+            margin-bottom: 30px !important;
+          }
+          
+          section > div > div:first-child > div:first-child h1 {
+            margin-bottom: 8px !important;
+          }
+          
+          section > div > div:first-child > div:first-child p {
+            margin-bottom: 20px !important;
           }
         }
       `}</style>
