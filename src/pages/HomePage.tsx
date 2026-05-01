@@ -4,6 +4,7 @@ import HeroSection from '@/components/landing/HeroSection';
 import StatsStrip from '@/components/landing/StatsStrip';
 import ProblemSection from '@/components/landing/ProblemSection';
 import SolutionsGrid from '@/components/landing/SolutionsGrid';
+import WhyAiauraSection from '@/components/landing/WhyAiauraSection';
 import HowItWorks from '@/components/landing/HowItWorks';
 import IntegrationsSection from '@/components/landing/IntegrationsSection';
 import FAQSection from '@/components/landing/FAQSection';
@@ -30,6 +31,7 @@ export default function HomePage() {
       <StatsStrip />
       <ProblemSection />
       <SolutionsGrid />
+      <WhyAiauraSection />
       <HowItWorks />
       <IntegrationsSection />
       <FAQSection />
