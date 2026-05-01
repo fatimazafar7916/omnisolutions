@@ -39,7 +39,7 @@ export default function FAQSection() {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr",
-          gap: 64,
+          gap: 48,
         }}
       >
         {/* Left */}
@@ -53,12 +53,12 @@ export default function FAQSection() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 600,
-              fontSize: 11,
-              letterSpacing: "0.16em",
+              fontSize: 10,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "#7B74DC",
               display: "block",
-              marginBottom: 16,
+              marginBottom: 12,
             }}
           >
             FAQ
@@ -66,13 +66,13 @@ export default function FAQSection() {
 
           <h2
             style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(28px, 3.5vw, 48px)",
-              letterSpacing: "-0.035em",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(24px, 3vw, 40px)",
+              letterSpacing: "-0.02em",
               color: "#141419",
-              lineHeight: 1.1,
-              margin: "0 0 20px",
+              lineHeight: 1.15,
+              margin: "0 0 16px",
             }}
           >
             Common questions,{" "}
@@ -91,10 +91,10 @@ export default function FAQSection() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 15,
+              fontSize: 14,
               color: "#6E6D7A",
-              lineHeight: 1.65,
-              maxWidth: 340,
+              lineHeight: 1.6,
+              maxWidth: 300,
             }}
           >
             Still have questions? Book a 20-minute call with our team — no sales pressure, just
@@ -105,13 +105,13 @@ export default function FAQSection() {
             href="#cta"
             style={{
               display: "inline-flex",
-              marginTop: 20,
-              padding: "12px 24px",
+              marginTop: 16,
+              padding: "10px 20px",
               borderRadius: 100,
               background: "#F5F3FF",
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 600,
-              fontSize: 14,
+              fontSize: 13,
               color: "#4D4699",
               textDecoration: "none",
             }}
@@ -121,7 +121,7 @@ export default function FAQSection() {
         </motion.div>
 
         {/* Right — accordion */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {FAQS.map((f, i) => (
             <motion.div
               key={i}
@@ -130,7 +130,7 @@ export default function FAQSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
               style={{
-                borderRadius: 14,
+                borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #EDE8DE",
                 background: open === i ? "#FAFAF8" : "#fff",
@@ -144,7 +144,7 @@ export default function FAQSection() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   gap: 16,
-                  padding: "18px 22px",
+                  padding: "14px 18px",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -153,11 +153,11 @@ export default function FAQSection() {
               >
                 <span
                   style={{
-                    fontFamily: "'Bricolage Grotesque', sans-serif",
+                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                     fontWeight: 600,
-                    fontSize: "clamp(14px, 1.5vw, 16px)",
+                    fontSize: "clamp(13px, 1.3vw, 15px)",
                     color: "#141419",
-                    lineHeight: 1.3,
+                    lineHeight: 1.4,
                   }}
                 >
                   {f.q}
@@ -165,8 +165,8 @@ export default function FAQSection() {
 
                 <span
                   style={{
-                    width: 28,
-                    height: 28,
+                    width: 24,
+                    height: 24,
                     borderRadius: "50%",
                     background: open === i ? "#7B74DC" : "#F5F3FF",
                     display: "flex",
@@ -177,9 +177,9 @@ export default function FAQSection() {
                   }}
                 >
                   {open === i ? (
-                    <Minus size={13} color="#fff" />
+                    <Minus size={11} color="#fff" />
                   ) : (
-                    <Plus size={13} color="#7B74DC" />
+                    <Plus size={11} color="#7B74DC" />
                   )}
                 </span>
               </button>
@@ -195,11 +195,11 @@ export default function FAQSection() {
                   >
                     <p
                       style={{
-                        padding: "0 22px 18px",
+                        padding: "0 18px 14px",
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "clamp(13px, 1.4vw, 15px)",
+                        fontSize: "clamp(12px, 1.2vw, 14px)",
                         color: "#6E6D7A",
-                        lineHeight: 1.65,
+                        lineHeight: 1.6,
                         margin: 0,
                       }}
                     >
