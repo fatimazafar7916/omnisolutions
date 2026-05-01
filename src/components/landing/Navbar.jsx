@@ -47,7 +47,9 @@ export default function Navbar() {
         <div
           style={{
             width: "100%",
-            padding: "0 24px",
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 40px",
             height: 68,
             display: "flex",
             alignItems: "center",

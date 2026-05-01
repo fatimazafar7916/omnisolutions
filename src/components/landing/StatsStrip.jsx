@@ -192,7 +192,7 @@ export default function StatsStrip() {
         }}
       />
 
-      <div style={{ width: "100%", maxWidth: "1280px", position: "relative", zIndex: 1, margin: "0 auto" }}>
+      <div style={{ width: "100%", maxWidth: "1200px", position: "relative", zIndex: 1, margin: "0 auto" }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

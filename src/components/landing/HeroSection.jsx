@@ -1164,8 +1164,9 @@ export default function HeroSection() {
             display: "grid",
             gridTemplateColumns: "1fr",
             gap: "clamp(20px, 4vw, 32px)",
-            maxWidth: "1400px",
-            margin: "0 auto"
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 40px"
           }}
           className="hero-grid"
         >

@@ -340,7 +340,7 @@ export default function WhyAiauraSection() {
       }} />
 
       <div style={{
-        maxWidth: 1400,
+        maxWidth: 1200,
         margin: "0 auto",
         padding: "0 40px",
         position: "relative",

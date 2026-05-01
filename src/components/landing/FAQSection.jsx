@@ -37,7 +37,7 @@ export default function FAQSection() {
       <div
         style={{
           width: "100%",
-          maxWidth: "1280px",
+          maxWidth: "1200px",
           padding: "0 24px",
           display: "grid",
           gridTemplateColumns: "1fr",
