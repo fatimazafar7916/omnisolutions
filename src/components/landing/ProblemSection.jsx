@@ -682,7 +682,7 @@ function ProblemConvergenceSection() {
 
       <div 
         className="problem-section-container"
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "0 36px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        style={{ maxWidth: 1100, margin: "0 auto", padding: "0 36px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
         {/* Section header */}
         <motion.div
