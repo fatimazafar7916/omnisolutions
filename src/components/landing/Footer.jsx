@@ -8,8 +8,17 @@ const COLS = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#141419", borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-      <div style={{ width: "100%", padding: "64px 24px 32px" }}>
+    <footer style={{ 
+      background: "#141419", 
+      borderTop: "1px solid rgba(255,255,255,0.04)",
+      marginBottom: 0,
+      paddingBottom: 0,
+    }}>
+      <div style={{ 
+        width: "100%", 
+        padding: "64px 24px 32px",
+        margin: 0,
+      }}>
         <div
           style={{
             display: "grid",
@@ -131,12 +140,51 @@ export default function Footer() {
       </div>
 
       <style>{`
+        /* Ensure no extra spacing on mobile */
+        footer {
+          margin-bottom: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        
         @media (min-width: 640px) {
           .footer-grid {
             grid-template-columns: repeat(4, 1fr) !important;
           }
           .footer-brand {
             grid-column: 1 / 2 !important;
+          }
+        }
+        
+        @media (max-width: 639px) {
+          footer > div {
+            padding: 48px 20px 24px !important;
+          }
+          
+          .footer-grid {
+            gap: 32px !important;
+            margin-bottom: 32px !important;
+          }
+          
+          .footer-brand {
+            margin-bottom: 16px !important;
+          }
+          
+          footer > div > div:last-child {
+            padding-top: 20px !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            text-align: center !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          footer > div {
+            padding: 40px 16px 20px !important;
+          }
+          
+          .footer-grid {
+            gap: 24px !important;
+            margin-bottom: 24px !important;
           }
         }
       `}</style>

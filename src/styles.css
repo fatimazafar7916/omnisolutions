@@ -44,6 +44,24 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    min-height: 100vh;
+  }
+
+  /* Ensure no extra spacing at bottom */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
   }
 
   ::selection {
