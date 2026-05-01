@@ -148,20 +148,20 @@ export default function IntegrationsSection() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 500,
-                fontSize: 11,
-                letterSpacing: "0.18em",
+                fontSize: 10,
+                letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color: "#2A9D8F",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 8,
-                marginBottom: 18,
+                gap: 6,
+                marginBottom: 16,
               }}
             >
               <span
                 style={{
                   display: "inline-block",
-                  width: 20,
+                  width: 16,
                   height: 1,
                   background: "#2A9D8F",
                 }}
@@ -170,7 +170,7 @@ export default function IntegrationsSection() {
               <span
                 style={{
                   display: "inline-block",
-                  width: 20,
+                  width: 16,
                   height: 1,
                   background: "#2A9D8F",
                 }}
@@ -179,13 +179,13 @@ export default function IntegrationsSection() {
 
             <h2
               style={{
-                fontFamily: "'Bricolage Grotesque', sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(32px, 4.5vw, 64px)",
-                letterSpacing: "-0.04em",
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(28px, 4vw, 48px)",
+                letterSpacing: "-0.02em",
                 color: "#141419",
-                lineHeight: 1.1,
-                margin: "0 0 20px",
+                lineHeight: 1.15,
+                margin: "0 0 16px",
               }}
             >
               Plugs into your{" "}
@@ -204,11 +204,11 @@ export default function IntegrationsSection() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: 15,
+                fontSize: 14,
                 color: "#5A6E61",
-                lineHeight: 1.75,
+                lineHeight: 1.6,
                 margin: "0 auto",
-                maxWidth: 540,
+                maxWidth: 500,
               }}
             >
               No rip-and-replace. No migration headaches. We connect directly into the tools you
