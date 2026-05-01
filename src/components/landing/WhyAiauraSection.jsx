@@ -3,96 +3,217 @@ import { motion } from "framer-motion";
 
 /* ── Colors ── */
 const C = "#7B74DC";
-const CL = "#F5F3FF";
 const GR = "#6E6D7A";
 
-/* ── Why Aiaura Data - Clean Split Layout ── */
-const MAIN_REASONS = [
-  {
-    id: "industry-built",
-    title: "Built Exclusively for Car Rentals",
-    description: "Not a generic chatbot. Every AI employee understands rental terminology, insurance requirements, mileage policies, and seasonal pricing strategies.",
-    highlight: "50,000+ rental conversations trained",
-    color: "#7B74DC"
+/* ── Hero Split Content ── */
+const HERO_CONTENT = {
+  left: {
+    badge: "Why Aiaura Wins",
+    title: "While competitors sell promises,",
+    titleAccent: "we deliver guaranteed results",
+    subtitle: "47 US rental companies chose Aiaura over generic AI tools. Here's the proof.",
+    stats: [
+      { number: "320%", label: "Revenue Increase", sublabel: "Guaranteed in 60 days" },
+      { number: "14", label: "Days to Deploy", sublabel: "Not 6+ months" },
+      { number: "47", label: "US Companies", sublabel: "Already trust us" }
+    ]
   },
-  {
-    id: "fast-deployment", 
-    title: "Live in 14 Days, Not Months",
-    description: "While competitors take 6+ months to configure, we deploy your complete AI workforce in 2 weeks with pre-built integrations and zero technical setup.",
-    highlight: "14-day guaranteed deployment",
-    color: "#F59E0B"
-  },
-  {
-    id: "proven-results",
-    title: "Guaranteed 3.2x Revenue Increase",
-    description: "Our operators see an average 320% increase in after-hours bookings within 60 days. Real data from 47 US rental companies with money-back guarantee.",
-    highlight: "320% average revenue boost",
-    color: "#10B981"
+  right: {
+    reasons: [
+      {
+        number: "01",
+        title: "Built for Car Rentals Only",
+        description: "Not a generic chatbot. Trained on 50,000+ real rental conversations. Understands insurance, mileage policies, seasonal pricing.",
+        highlight: "Industry-Specific AI"
+      },
+      {
+        number: "02", 
+        title: "Guaranteed Results or Refund",
+        description: "320% average revenue increase within 60 days. Real data from 47 companies. 100% money-back guarantee if you don't see results.",
+        highlight: "Risk-Free Promise"
+      },
+      {
+        number: "03",
+        title: "Live in 14 Days Maximum",
+        description: "Pre-built integrations, instant voice cloning, zero technical setup. While competitors take months, we deploy in 2 weeks.",
+        highlight: "Lightning Fast Setup"
+      }
+    ]
   }
-];
+};
 
-const TRUST_POINTS = [
-  "47 US rental companies trust Aiaura",
-  "SOC 2 certified enterprise security", 
-  "100% US-based data and support team",
-  "24/7 system monitoring and uptime",
-  "Transparent pricing with no hidden fees",
+const TRUST_PROOF = [
+  "SOC 2 certified enterprise security",
+  "100% US-based data and support", 
+  "24/7 monitoring with 99.9% uptime",
+  "Transparent pricing, no hidden fees",
   "Human backup always available"
 ];
 
-/* ── Clean Reason Card ── */
+/* ── Animated Stats Card ── */
+function StatCard({ stat, index, isVisible }) {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    if (isVisible) {
+      const target = parseInt(stat.number);
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          setCount(target);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, 16);
+      
+      return () => clearInterval(timer);
+    }
+  }, [isVisible, stat.number]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      style={{
+        background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7))",
+        backdropFilter: "blur(20px)",
+        border: "1px solid rgba(255,255,255,0.3)",
+        borderRadius: 20,
+        padding: "24px 20px",
+        textAlign: "center",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Animated background glow */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0, bottom: 0,
+        background: `linear-gradient(135deg, ${C}10, transparent)`,
+        opacity: 0.5,
+      }} />
+      
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div style={{
+          fontFamily: "'Bricolage Grotesque',sans-serif",
+          fontWeight: 900,
+          fontSize: "clamp(28px,4vw,36px)",
+          background: `linear-gradient(135deg, ${C}, #6366F1)`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          letterSpacing: "-0.02em",
+          marginBottom: 4,
+        }}>
+          {stat.number.includes('%') ? `${count}%` : count}{stat.number.includes('+') ? '+' : ''}
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans',sans-serif",
+          fontSize: 14,
+          fontWeight: 700,
+          color: "#111827",
+          marginBottom: 2,
+        }}>
+          {stat.label}
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans',sans-serif",
+          fontSize: 11,
+          color: GR,
+        }}>
+          {stat.sublabel}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Reason Card with Advanced Animation ── */
 function ReasonCard({ reason, index, isVisible }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.7, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: 50 }}
+      animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+      transition={{ duration: 0.8, delay: 0.8 + index * 0.2, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
         background: "#fff",
         border: "1px solid #E5E7EB",
-        borderRadius: 20,
+        borderRadius: 24,
         padding: "32px 28px",
         position: "relative",
         overflow: "hidden",
         cursor: "default",
-        transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-        transform: isHovered ? "translateY(-8px)" : "translateY(0)",
+        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+        transform: isHovered ? "translateX(-8px) scale(1.02)" : "translateX(0) scale(1)",
         boxShadow: isHovered 
-          ? "0 20px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(123,116,220,0.1)"
-          : "0 4px 12px rgba(0,0,0,0.04)",
+          ? "0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(123,116,220,0.2)"
+          : "0 8px 25px rgba(0,0,0,0.08)",
       }}
     >
-      {/* Subtle top accent */}
+      {/* Animated side accent */}
+      <motion.div
+        style={{
+          position: "absolute",
+          left: 0, top: 0, bottom: 0,
+          width: isHovered ? 6 : 3,
+          background: `linear-gradient(180deg, ${C}, #6366F1)`,
+          borderRadius: "0 4px 4px 0",
+          transition: "width 0.3s ease",
+        }}
+      />
+
+      {/* Number badge */}
       <div style={{
         position: "absolute",
-        top: 0, left: 0, right: 0,
-        height: 2,
-        background: reason.color,
-        opacity: isHovered ? 1 : 0.3,
-        transition: "opacity 0.4s ease",
-      }} />
+        top: 24,
+        right: 24,
+        width: 40,
+        height: 40,
+        borderRadius: "50%",
+        background: `linear-gradient(135deg, ${C}15, ${C}05)`,
+        border: `2px solid ${C}20`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "all 0.3s ease",
+        transform: isHovered ? "scale(1.1)" : "scale(1)",
+      }}>
+        <span style={{
+          fontFamily: "'Bricolage Grotesque',sans-serif",
+          fontSize: 16,
+          fontWeight: 800,
+          color: C,
+        }}>
+          {reason.number}
+        </span>
+      </div>
 
-      {/* Content */}
-      <div>
+      <div style={{ paddingRight: 60 }}>
         <h3 style={{
           fontFamily: "'Bricolage Grotesque',sans-serif",
-          fontWeight: 700,
-          fontSize: "clamp(18px,2vw,24px)",
+          fontWeight: 800,
+          fontSize: "clamp(20px,2.2vw,26px)",
           color: "#111827",
           letterSpacing: "-0.025em",
           margin: "0 0 16px",
-          lineHeight: 1.3,
+          lineHeight: 1.2,
         }}>
           {reason.title}
         </h3>
 
         <p style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: "clamp(14px,1.4vw,16px)",
+          fontSize: "clamp(15px,1.5vw,17px)",
           color: "#6B7280",
           lineHeight: 1.6,
           margin: "0 0 20px",
@@ -102,17 +223,25 @@ function ReasonCard({ reason, index, isVisible }) {
 
         {/* Highlight badge */}
         <div style={{
-          display: "inline-block",
-          background: `${reason.color}10`,
-          border: `1px solid ${reason.color}30`,
-          borderRadius: 8,
-          padding: "8px 16px",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          background: `linear-gradient(135deg, ${C}08, ${C}03)`,
+          border: `1px solid ${C}20`,
+          borderRadius: 12,
+          padding: "10px 16px",
         }}>
+          <div style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            background: C,
+          }} />
           <span style={{
             fontFamily: "'DM Sans',sans-serif",
-            fontSize: 13,
+            fontSize: 14,
             fontWeight: 600,
-            color: reason.color,
+            color: C,
           }}>
             {reason.highlight}
           </span>
@@ -122,25 +251,25 @@ function ReasonCard({ reason, index, isVisible }) {
   );
 }
 
-/* ── Trust List Item ── */
-function TrustItem({ text, index, isVisible }) {
+/* ── Trust Point ── */
+function TrustPoint({ text, index, isVisible }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+      transition={{ duration: 0.5, delay: 2.0 + index * 0.1 }}
       style={{
         display: "flex",
         alignItems: "center",
         gap: 12,
-        padding: "12px 0",
+        padding: "8px 0",
       }}
     >
       <div style={{
-        width: 6,
-        height: 6,
+        width: 8,
+        height: 8,
         borderRadius: "50%",
-        background: C,
+        background: `linear-gradient(135deg, ${C}, #6366F1)`,
         flexShrink: 0,
       }} />
       <span style={{
@@ -155,7 +284,7 @@ function TrustItem({ text, index, isVisible }) {
   );
 }
 
-/* ── Main Why Aiaura Section ── */
+/* ── Main Component ── */
 export default function WhyAiauraSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -167,7 +296,7 @@ export default function WhyAiauraSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -177,166 +306,212 @@ export default function WhyAiauraSection() {
     <section
       ref={sectionRef}
       style={{
-        background: "#FAFBFC",
-        padding: "80px 0 88px",
+        background: "linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%)",
+        padding: "100px 0 120px",
         fontFamily: "'DM Sans',system-ui,sans-serif",
         position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Animated background elements */}
       <div style={{
-        maxWidth: 1200,
+        position: "absolute",
+        top: "10%",
+        left: "-20%",
+        width: 600,
+        height: 600,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, ${C}08 0%, transparent 70%)`,
+        pointerEvents: "none",
+      }} />
+      <div style={{
+        position: "absolute",
+        bottom: "20%",
+        right: "-15%",
+        width: 400,
+        height: 400,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      <div style={{
+        maxWidth: 1400,
         margin: "0 auto",
         padding: "0 40px",
         position: "relative",
       }}>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          style={{
-            textAlign: "center",
-            marginBottom: 72,
-            maxWidth: 800,
-            margin: "0 auto 72px",
-          }}
-        >
-          <div style={{
-            display: "inline-block",
-            background: CL,
-            border: `1px solid ${C}20`,
-            borderRadius: 20,
-            padding: "6px 18px",
-            marginBottom: 24,
-          }}>
-            <span style={{
-              fontFamily: "'DM Sans',sans-serif",
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              color: C,
-            }}>
-              Why Choose Aiaura
-            </span>
-          </div>
-
-          <h2 style={{
-            fontFamily: "'Bricolage Grotesque',sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(32px,5vw,52px)",
-            color: "#111827",
-            letterSpacing: "-0.03em",
-            margin: "0 0 20px",
-            lineHeight: 1.1,
-          }}>
-            While others promise,<br />
-            <span style={{ color: C }}>we deliver results</span>
-          </h2>
-
-          <p style={{
-            fontFamily: "'DM Sans',sans-serif",
-            fontSize: "clamp(16px,1.8vw,20px)",
-            color: "#6B7280",
-            lineHeight: 1.6,
-            margin: 0,
-          }}>
-            47 US rental companies chose Aiaura over generic AI tools.<br />
-            Here's why our system works when others fail.
-          </p>
-        </motion.div>
-
-        {/* Two Column Layout */}
+        {/* Hero Split Layout */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 400px",
-          gap: 64,
-          alignItems: "start",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 80,
+          alignItems: "center",
+          marginBottom: 80,
         }}>
-          {/* Left: Main Reasons */}
+          {/* Left: Hero Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <div style={{
+              display: "inline-block",
+              background: `linear-gradient(135deg, ${C}15, ${C}08)`,
+              border: `1px solid ${C}30`,
+              borderRadius: 25,
+              padding: "8px 20px",
+              marginBottom: 32,
+            }}>
+              <span style={{
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: 13,
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                color: C,
+              }}>
+                {HERO_CONTENT.left.badge}
+              </span>
+            </div>
+
+            <h1 style={{
+              fontFamily: "'Bricolage Grotesque',sans-serif",
+              fontWeight: 900,
+              fontSize: "clamp(36px,5.5vw,64px)",
+              color: "#111827",
+              letterSpacing: "-0.04em",
+              margin: "0 0 16px",
+              lineHeight: 1.05,
+            }}>
+              {HERO_CONTENT.left.title}<br />
+              <span style={{
+                background: `linear-gradient(135deg, ${C}, #6366F1)`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>
+                {HERO_CONTENT.left.titleAccent}
+              </span>
+            </h1>
+
+            <p style={{
+              fontFamily: "'DM Sans',sans-serif",
+              fontSize: "clamp(18px,2vw,22px)",
+              color: "#6B7280",
+              lineHeight: 1.6,
+              margin: "0 0 40px",
+            }}>
+              {HERO_CONTENT.left.subtitle}
+            </p>
+
+            {/* Stats Grid */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 16,
+            }}>
+              {HERO_CONTENT.left.stats.map((stat, index) => (
+                <StatCard
+                  key={index}
+                  stat={stat}
+                  index={index}
+                  isVisible={isVisible}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Reasons */}
           <div style={{
             display: "flex",
             flexDirection: "column",
             gap: 24,
           }}>
-            {MAIN_REASONS.map((reason, index) => (
+            {HERO_CONTENT.right.reasons.map((reason, index) => (
               <ReasonCard
-                key={reason.id}
+                key={reason.number}
                 reason={reason}
                 index={index}
                 isVisible={isVisible}
               />
             ))}
           </div>
+        </div>
 
-          {/* Right: Trust & CTA */}
-          <div style={{
-            position: "sticky",
-            top: 40,
-          }}>
-            {/* Trust Points */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              style={{
-                background: "#fff",
-                border: "1px solid #E5E7EB",
-                borderRadius: 16,
-                padding: "28px 24px",
-                marginBottom: 24,
-              }}
-            >
+        {/* Bottom Section: Trust + CTA */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 400px",
+          gap: 60,
+          alignItems: "start",
+        }}>
+          {/* Trust Points */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 1.8 }}
+          >
+            <h3 style={{
+              fontFamily: "'Bricolage Grotesque',sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(24px,3vw,32px)",
+              color: "#111827",
+              margin: "0 0 24px",
+            }}>
+              Trusted by rental operators nationwide
+            </h3>
+            
+            <div>
+              {TRUST_PROOF.map((point, index) => (
+                <TrustPoint
+                  key={index}
+                  text={point}
+                  index={index}
+                  isVisible={isVisible}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Enhanced CTA */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 2.2 }}
+            style={{
+              background: "linear-gradient(135deg, #111827, #1F2937)",
+              borderRadius: 24,
+              padding: "40px 32px",
+              textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Animated background pattern */}
+            <div style={{
+              position: "absolute",
+              top: 0, left: 0, right: 0, bottom: 0,
+              background: `linear-gradient(135deg, ${C}20, transparent)`,
+              opacity: 0.1,
+            }} />
+            
+            <div style={{ position: "relative", zIndex: 1 }}>
               <h3 style={{
                 fontFamily: "'Bricolage Grotesque',sans-serif",
-                fontWeight: 700,
-                fontSize: 18,
-                color: "#111827",
-                margin: "0 0 20px",
-              }}>
-                Trusted nationwide
-              </h3>
-              
-              <div>
-                {TRUST_POINTS.map((point, index) => (
-                  <TrustItem
-                    key={index}
-                    text={point}
-                    index={index}
-                    isVisible={isVisible}
-                  />
-                ))}
-              </div>
-            </motion.div>
-
-            {/* CTA Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.4 }}
-              style={{
-                background: "linear-gradient(135deg, #7B74DC, #6366F1)",
-                borderRadius: 16,
-                padding: "32px 28px",
-                textAlign: "center",
-                color: "#fff",
-              }}
-            >
-              <h3 style={{
-                fontFamily: "'Bricolage Grotesque',sans-serif",
-                fontWeight: 700,
-                fontSize: 20,
+                fontWeight: 800,
+                fontSize: 24,
                 margin: "0 0 12px",
                 color: "#fff",
               }}>
-                See the difference
+                Ready to see the proof?
               </h3>
               
               <p style={{
                 fontFamily: "'DM Sans',sans-serif",
-                fontSize: 14,
-                opacity: 0.9,
-                margin: "0 0 24px",
+                fontSize: 16,
+                color: "rgba(255,255,255,0.8)",
+                margin: "0 0 28px",
                 lineHeight: 1.5,
               }}>
                 Book a 15-minute demo and see your exact revenue opportunity calculated live.
@@ -344,49 +519,52 @@ export default function WhyAiauraSection() {
               
               <button style={{
                 fontFamily: "'DM Sans',sans-serif",
-                fontSize: 15,
-                fontWeight: 600,
-                color: C,
-                background: "#fff",
+                fontSize: 16,
+                fontWeight: 700,
+                color: "#111827",
+                background: "linear-gradient(135deg, #fff, #F9FAFB)",
                 border: "none",
-                borderRadius: 10,
-                padding: "14px 28px",
+                borderRadius: 12,
+                padding: "16px 32px",
                 cursor: "pointer",
-                transition: "all 0.2s ease",
+                transition: "all 0.3s ease",
                 width: "100%",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-1px)";
-                e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+                e.target.style.transform = "translateY(-2px)";
+                e.target.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "none";
+                e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
               }}
               >
-                Book Your Demo →
+                Book Your Revenue Demo →
               </button>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
       <style>{`
         /* Mobile Responsive */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
+          section > div > div:first-child {
+            grid-template-columns: 1fr !important;
+            gap: 60px !important;
+            text-align: center !important;
+          }
+          
           section > div > div:last-child {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
-          }
-          
-          section > div > div:last-child > div:last-child {
-            position: static !important;
           }
         }
         
         @media (max-width: 768px) {
           section {
-            padding: 60px 0 68px !important;
+            padding: 80px 0 90px !important;
           }
           
           section > div {
@@ -394,15 +572,21 @@ export default function WhyAiauraSection() {
           }
           
           section > div > div:first-child {
-            margin-bottom: 48px !important;
+            gap: 40px !important;
+            margin-bottom: 60px !important;
+          }
+          
+          section > div > div:first-child > div:first-child > div:last-child {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          
+          section > div > div:first-child > div:last-child {
+            gap: 20px !important;
           }
           
           section > div > div:last-child {
             gap: 32px !important;
-          }
-          
-          section > div > div:last-child > div:first-child > div {
-            padding: 24px 20px !important;
           }
         }
       `}</style>
