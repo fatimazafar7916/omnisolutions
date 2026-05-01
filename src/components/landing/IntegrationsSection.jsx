@@ -151,7 +151,7 @@ export default function IntegrationsSection() {
                 fontSize: 10,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#2A9D8F",
+                color: "#22C55E",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 6,
@@ -163,7 +163,7 @@ export default function IntegrationsSection() {
                   display: "inline-block",
                   width: 16,
                   height: 1,
-                  background: "#2A9D8F",
+                  background: "#22C55E",
                 }}
               />
               Integrations
@@ -172,7 +172,7 @@ export default function IntegrationsSection() {
                   display: "inline-block",
                   width: 16,
                   height: 1,
-                  background: "#2A9D8F",
+                  background: "#22C55E",
                 }}
               />
             </span>
@@ -194,7 +194,7 @@ export default function IntegrationsSection() {
                   fontFamily: "'Instrument Serif', serif",
                   fontWeight: 400,
                   fontStyle: "italic",
-                  color: "#2A9D8F",
+                  color: "#22C55E",
                 }}
               >
                 existing stack.

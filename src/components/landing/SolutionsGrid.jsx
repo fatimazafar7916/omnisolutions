@@ -11,7 +11,7 @@ import {
 const PRODUCTS = [
   {
     id: 1, name: "AI Receptionist", category: "Voice AI", icon: Mic,
-    color: "#7B74DC", colorLight: "#F5F3FF", colorBorder: "#C4B5FD",
+    color: "#22C55E", colorLight: "#F0FDF4", colorBorder: "#BBF7D0",
     features: ["Attends calls 24/7","Supports multiple languages","Speaks the user's language","Handles 100 calls at once","Answers within 3 seconds","Transfers important calls to team members"],
     stat: "100", statSuffix: " calls", statLabel: "simultaneously",
   },
@@ -71,7 +71,7 @@ const PRODUCTS = [
   },
   {
     id: 11, name: "AI Website Chatbot", category: "Operations AI", icon: RefreshCw,
-    color: "#7B74DC", colorLight: "#F5F3FF", colorBorder: "#C4B5FD",
+    color: "#22C55E", colorLight: "#F0FDF4", colorBorder: "#BBF7D0",
     features: ["Engages website visitors instantly","Answers questions 24/7","Collects contact information","Books rentals automatically","Works while you sleep","Captures 82% after-hours inquiries"],
     stat: "82%", statSuffix: "", statLabel: "after-hours captured",
   },
@@ -105,7 +105,7 @@ const styles = `
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(123,116,220,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(34,197,94,0.12) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
@@ -142,22 +142,22 @@ const styles = `
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(123,116,220,0.08);
-  border: 1px solid rgba(123,116,220,0.22);
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.22);
   border-radius: 100px;
   padding: 4px 14px 4px 8px;
   font-family: 'DM Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7B74DC;
+  color: #22C55E;
   margin-bottom: 20px;
 }
 
 .sg-eyebrow-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: #7B74DC;
+  background: #22C55E;
   animation: sg-breathe 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
@@ -179,7 +179,7 @@ const styles = `
 .sg-h2 em {
   font-style: italic;
   font-weight: 700;
-  color: #7B74DC;
+  color: #22C55E;
 }
 
 .sg-sub {
@@ -213,7 +213,7 @@ const styles = `
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
-.sg-badge svg { color: #7B74DC; flex-shrink: 0; }
+.sg-badge svg { color: #22C55E; flex-shrink: 0; }
 
 /* ── Filter tabs ── */
 .sg-filters {
@@ -241,8 +241,8 @@ const styles = `
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
-.sg-ftab:hover { border-color: #7B74DC; color: #7B74DC; background: rgba(123,116,220,0.04); }
-.sg-ftab.on { background: #7B74DC; border-color: #7B74DC; color: #fff; box-shadow: 0 4px 14px rgba(123,116,220,0.3); }
+.sg-ftab:hover { border-color: #22C55E; color: #22C55E; background: rgba(34,197,94,0.04); }
+.sg-ftab.on { background: #22C55E; border-color: #22C55E; color: #fff; box-shadow: 0 4px 14px rgba(34,197,94,0.3); }
 
 /* ── Grid ── */
 .sg-grid {
@@ -419,7 +419,7 @@ const styles = `
   position: absolute;
   top: -120px; right: -120px;
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(123,116,220,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(34,197,94,0.2) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -442,13 +442,13 @@ const styles = `
   font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #7B74DC;
+  color: #22C55E;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.sg-cta-tag::before { content:''; display:block; width:16px; height:1px; background:#7B74DC; }
+.sg-cta-tag::before { content:''; display:block; width:16px; height:1px; background:#22C55E; }
 
 .sg-cta-title {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -459,7 +459,7 @@ const styles = `
   color: #fff;
 }
 
-.sg-cta-title span { color: #7B74DC; }
+.sg-cta-title span { color: #22C55E; }
 
 .sg-cta-right {
   display: flex;
@@ -483,7 +483,7 @@ const styles = `
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #7B74DC;
+  background: var(--brand-gradient);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -495,13 +495,13 @@ const styles = `
   cursor: pointer;
   transition: all 0.22s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(123,116,220,0.35);
+  box-shadow: 0 4px 16px rgba(34,197,94,0.35);
 }
 
 .sg-btn:hover {
-  background: #6B63CC;
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(123,116,220,0.45);
+  box-shadow: 0 8px 28px rgba(34,197,94,0.45);
+  filter: brightness(1.1);
 }
 
 /* ── Responsive ── */

@@ -65,28 +65,37 @@ export default function Navbar() {
             pointerEvents: "all",
           }}
         >
-          {/* Logo circle */}
+          {/* Logo */}
           <a
             href="/"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 36,
               height: 36,
-              borderRadius: "50%",
+              borderRadius: 100,
               background: "#141419",
               textDecoration: "none",
               flexShrink: 0,
-              marginLeft: 4,
+              padding: "0 14px",
+              marginLeft: 2,
             }}
           >
             <span style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontWeight: 800,
-              fontSize: 14,
-              color: "#7B74DC",
-              letterSpacing: "-0.02em",
+              fontSize: 13,
+              color: "#22C55E",
+              letterSpacing: "0.04em",
+            }}>
+              AIAUR
+            </span>
+            <span style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 800,
+              fontSize: 13,
+              color: "#A3E635",
+              letterSpacing: "0.04em",
             }}>
               A
             </span>
@@ -110,8 +119,8 @@ export default function Navbar() {
                   whiteSpace: "nowrap",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(123,116,220,0.08)";
-                  e.currentTarget.style.color = "#7B74DC";
+                  e.currentTarget.style.background = "rgba(34,197,94,0.08)";
+                  e.currentTarget.style.color = "#22C55E";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = "transparent";
@@ -138,19 +147,22 @@ export default function Navbar() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 600,
                 fontSize: 13,
-                background: "#141419",
+                background: "var(--brand-gradient)",
                 color: "#fff",
                 textDecoration: "none",
-                transition: "all 0.2s",
+                transition: "all 0.3s ease",
                 whiteSpace: "nowrap",
+                boxShadow: "0 4px 16px rgba(34,197,94,0.3)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#2D2C38";
-                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(34,197,94,0.4)";
+                e.currentTarget.style.filter = "brightness(1.1)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "#141419";
                 e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(34,197,94,0.3)";
+                e.currentTarget.style.filter = "brightness(1)";
               }}
             >
               Book a Call <ArrowUpRight size={13} />
@@ -211,22 +223,22 @@ export default function Navbar() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{
-                  width: 32, height: 32, borderRadius: "50%",
+                  height: 32, borderRadius: 100,
                   background: "#141419",
                   display: "flex", alignItems: "center", justifyContent: "center",
+                  padding: "0 12px",
                 }}>
                   <span style={{
                     fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontWeight: 800, fontSize: 13, color: "#7B74DC",
+                    fontWeight: 800, fontSize: 12, color: "#22C55E",
+                    letterSpacing: "0.04em",
+                  }}>AIAUR</span>
+                  <span style={{
+                    fontFamily: "'Bricolage Grotesque', sans-serif",
+                    fontWeight: 800, fontSize: 12, color: "#A3E635",
+                    letterSpacing: "0.04em",
                   }}>A</span>
                 </div>
-                <span style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 700, fontSize: 16, color: "#141419",
-                  letterSpacing: "-0.02em",
-                }}>
-                  AIAUR<span style={{ color: "#2A9D8F" }}>A</span>
-                </span>
               </div>
               <button
                 onClick={() => setOpen(false)}
@@ -285,7 +297,7 @@ export default function Navbar() {
                   width: "100%",
                   padding: "13px",
                   borderRadius: 100,
-                  background: "#141419",
+                  background: "var(--brand-gradient)",
                   color: "#fff",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,

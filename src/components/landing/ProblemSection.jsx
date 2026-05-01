@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 /* ── Colours (original light palette) ── */
-const C    = "#7B74DC";
-const CL   = "#F5F3FF";
-const CLL  = "rgba(123,116,220,0.07)";
+const C    = "#22C55E";
+const CL   = "#F0FDF4";
+const CLL  = "rgba(34,197,94,0.07)";
 const RED  = "#EF4444";
 const REDL = "#FEF2F2";
 const GR   = "#6E6D7A";
@@ -47,9 +47,9 @@ const CORE_PROBLEMS = [
     title: "Zero Follow-Up System",
     desc: "Your $2,400 average booking requires 5.2 touchpoints to close. Without automated follow-up, 94% of quotes die after the first interaction — that's $180K in abandoned revenue.",
     realTimeMsg: "This month: 23 quotes sent, 2 bookings confirmed",
-    color: "#8B5CF6",
-    colorLight: "#F5F3FF",
-    colorBorder: "#C4B5FD",
+    color: "#22C55E",
+    colorLight: "#F0FDF4",
+    colorBorder: "#BBF7D0",
     metricImpact: { revenue: -40, bookings: -38, leads: -22 },
     urgencyLevel: "CRITICAL",
   },
@@ -357,7 +357,7 @@ function MetricImpact({ isVisible }) {
       trend: "↗ +8 vs last month", 
       description: "Confirmed bookings lost to competitors",
       steps: [100, 79, 58, 40, 27, 16, 9],
-      color: "#8B5CF6",
+      color: "#22C55E",
       suffix: "/month",
       prefix: "",
     },
@@ -671,8 +671,8 @@ function ProblemConvergenceSection() {
         position: "absolute",
         inset: 0,
         backgroundImage: `
-          linear-gradient(rgba(123,116,220,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(123,116,220,0.04) 1px, transparent 1px)
+          linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px)
         `,
         backgroundSize: "48px 48px",
         pointerEvents: "none",

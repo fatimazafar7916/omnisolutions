@@ -61,8 +61,8 @@ const AI_ACTIVITIES = [
     type: "followup",
     title: "Follow-up Sent",
     subtitle: "Booking reminder",
-    color: "#7B74DC",
-    bgColor: "rgba(123, 116, 220, 0.1)",
+    color: "#22C55E",
+    bgColor: "rgba(34, 197, 94, 0.1)",
     detail: "Pickup details shared",
     data: {
       client: "Jessica L.",
@@ -679,7 +679,7 @@ const FollowupInterface = ({ data, isActive }) => (
           border: '1px solid rgba(139, 92, 246, 0.2)'
         }}
       >
-        <Send size={22} strokeWidth={2} color="#8B5CF6" />
+        <Send size={22} strokeWidth={2} color="#22C55E" />
       </motion.div>
       <div>
         <div style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em', color: '#5B21B6' }}>Follow-up Email</div>
@@ -1269,7 +1269,7 @@ export default function HeroSection() {
                     fontFamily: "'Instrument Serif', serif",
                     fontStyle: "italic",
                     fontWeight: 400,
-                    color: "#7B74DC",
+                    color: "#22C55E",
                   }}
                 >
                   specifically built
@@ -1327,7 +1327,7 @@ export default function HeroSection() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: 14,
                   fontWeight: 600,
-                  color: "#7B74DC",
+                  color: "#22C55E",
                 }}
               >
                 All AI agents working together seamlessly
@@ -1355,24 +1355,24 @@ export default function HeroSection() {
                   gap: 6,
                   padding: "12px 24px",
                   borderRadius: 100,
-                  background: "linear-gradient(135deg, #7B74DC 0%, #9B8CE8 100%)",
-                  color: "#FCFCFE",
+                  background: "var(--brand-gradient)",
+                  color: "#fff",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: 15,
                   textDecoration: "none",
                   transition: "all 0.3s ease",
-                  boxShadow: "0 8px 32px rgba(123,116,220,0.25)",
+                  boxShadow: "0 8px 32px rgba(34,197,94,0.25)",
                   position: 'relative',
                   overflow: 'hidden'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow = "0 16px 48px rgba(123,116,220,0.35)";
+                  e.currentTarget.style.boxShadow = "0 16px 48px rgba(34,197,94,0.35)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "";
-                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(123,116,220,0.25)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(34,197,94,0.25)";
                 }}
               >
                 Book a Call →
@@ -1395,8 +1395,8 @@ export default function HeroSection() {
                   borderRadius: 100,
                   background: "rgba(255,255,255,0.8)",
                   backdropFilter: "blur(10px)",
-                  color: "#7B74DC",
-                  border: "1.5px solid rgba(123,116,220,0.2)",
+                  color: "#22C55E",
+                  border: "1.5px solid rgba(34,197,94,0.2)",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: 15,
@@ -1404,7 +1404,7 @@ export default function HeroSection() {
                   transition: "all 0.3s ease"
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(123,116,220,0.08)";
+                  e.currentTarget.style.background = "rgba(34,197,94,0.08)";
                   e.currentTarget.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
@@ -1443,7 +1443,7 @@ export default function HeroSection() {
                     color: "#6E6D7A",
                   }}
                 >
-                  <CheckCircle size={11} color="#2A9D8F" />
+                  <CheckCircle size={11} color="#22C55E" />
                   {t}
                 </span>
               ))}
