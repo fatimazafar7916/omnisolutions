@@ -514,11 +514,11 @@ function ProblemCard({ problem, index, isVisible }) {
         minHeight: 280,
       }}
     >
-      {/* Urgency indicator */}
+      {/* Urgency indicator - moved to left */}
       <div style={{
         position: "absolute",
         top: 12,
-        right: 12,
+        left: 12,
         background: problem.urgencyLevel === 'CRITICAL' ? '#FEF2F2' : problem.urgencyLevel === 'HIGH' ? '#FFFBEB' : '#F0F9FF',
         border: `1px solid ${problem.urgencyLevel === 'CRITICAL' ? '#FECACA' : problem.urgencyLevel === 'HIGH' ? '#FDE68A' : '#BAE6FD'}`,
         borderRadius: 6,
