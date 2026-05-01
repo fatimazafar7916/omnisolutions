@@ -41,12 +41,12 @@ const MAIN_BENEFITS = [
 ];
 
 const TRUST_INDICATORS = [
-  { icon: "🏆", label: "47 US Companies", value: "Trust Aiaura" },
-  { icon: "🔒", label: "SOC 2 Certified", value: "Enterprise Security" },
-  { icon: "🇺🇸", label: "100% US-Based", value: "Data & Support" },
-  { icon: "📞", label: "24/7 Monitoring", value: "Never Goes Down" },
-  { icon: "💰", label: "Transparent Pricing", value: "No Hidden Fees" },
-  { icon: "🤝", label: "Human Backup", value: "Always Available" }
+  { icon: "★", label: "47 US Companies", value: "Trust Aiaura" },
+  { icon: "⚡", label: "SOC 2 Certified", value: "Enterprise Security" },
+  { icon: "◉", label: "100% US-Based", value: "Data & Support" },
+  { icon: "●", label: "24/7 Monitoring", value: "Never Goes Down" },
+  { icon: "▲", label: "Transparent Pricing", value: "No Hidden Fees" },
+  { icon: "◆", label: "Human Backup", value: "Always Available" }
 ];
 
 /* ── Hero Benefit Card ── */
