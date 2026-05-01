@@ -553,18 +553,7 @@ function ProblemCard({ problem, index, isVisible }) {
         pointerEvents: "none",
       }} />
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-        <div style={{
-          width: 38, height: 38,
-          borderRadius: 10,
-          background: problem.colorLight,
-          border: `1px solid ${problem.colorBorder}`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 18,
-          flexShrink: 0,
-        }}>
-          {problem.icon}
-        </div>
+      <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", marginBottom: 10 }}>
         <div style={{ textAlign: "right" }}>
           <span style={{
             fontFamily: "'Bricolage Grotesque',sans-serif",
