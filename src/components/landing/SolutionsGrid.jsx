@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   Mic, MessageSquare, DollarSign, RefreshCw,
   Star, TrendingUp, BarChart2, Heart, ArrowRight,
-  Zap, CheckCircle2, ChevronRight,
+  Zap, CheckCircle2, ChevronRight, Activity, Shield, Sparkles
 } from "lucide-react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -23,49 +23,49 @@ const PRODUCTS = [
   },
   {
     id: 3, name: "AI Follow-up Assistant", category: "Sales AI", icon: DollarSign,
-    color: "#059669", colorLight: "#ECFDF5", colorBorder: "#6EE7B7",
+    color: "#10B981", colorLight: "#ECFDF5", colorBorder: "#6EE7B7",
     features: ["Follows up on quotes automatically","Recovers abandoned bookings","Nurtures cold leads persistently","Sends personalized messages","Tracks engagement levels","Converts 4x more leads"],
     stat: "4x", statSuffix: "", statLabel: "more conversions",
   },
   {
     id: 4, name: "AI Lead Qualifier", category: "Sales AI", icon: DollarSign,
-    color: "#D97706", colorLight: "#FFFBEB", colorBorder: "#FDE68A",
+    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A",
     features: ["Qualifies leads instantly","Scores prospects automatically","Routes hot leads to sales","Nurtures cold leads","Recovers $420K revenue yearly","Works 24/7 without breaks"],
     stat: "$420K", statSuffix: "", statLabel: "recovered yearly",
   },
   {
     id: 5, name: "AI Review Manager", category: "Reputation AI", icon: Star,
-    color: "#DB2777", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
+    color: "#EC4899", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
     features: ["Monitors Google & Yelp reviews","Responds to reviews instantly","Escalates negative feedback","Requests reviews from happy clients","Maintains 4.1+ star rating","Prevents 22x booking loss"],
     stat: "4.1★", statSuffix: "", statLabel: "rating maintained",
   },
   {
     id: 6, name: "AI Omnichannel Responder", category: "Messaging AI", icon: MessageSquare,
-    color: "#7C3AED", colorLight: "#F5F3FF", colorBorder: "#C4B5FD",
+    color: "#8B5CF6", colorLight: "#F5F3FF", colorBorder: "#C4B5FD",
     features: ["Manages all communication channels","Unifies calls, DMs, emails, SMS","Never misses a lead","Provides 100% channel coverage","Works from one AI inbox","Eliminates channel blindspots"],
     stat: "100%", statSuffix: "", statLabel: "channel coverage",
   },
   {
     id: 7, name: "AI Quote & Booking Assistant", category: "Sales AI", icon: DollarSign,
-    color: "#0D9488", colorLight: "#F0FDFA", colorBorder: "#99F6E4",
+    color: "#14B8A6", colorLight: "#F0FDFA", colorBorder: "#99F6E4",
     features: ["Generates quotes in real-time","Considers fleet availability","Adjusts for seasonal demand","Personalizes customer pricing","Sends quotes in under 1 minute","12x faster than manual process"],
     stat: "12x", statSuffix: "", statLabel: "faster quoting",
   },
   {
     id: 8, name: "AI Upsell Assistant", category: "Revenue AI", icon: TrendingUp,
-    color: "#EA580C", colorLight: "#FFF7ED", colorBorder: "#FED7AA",
+    color: "#F97316", colorLight: "#FFF7ED", colorBorder: "#FED7AA",
     features: ["Offers insurance upgrades","Suggests GPS add-ons","Recommends child seats","Proposes chauffeur services","Sends SMS before pickup","Captures $280 avg per rental"],
     stat: "$280", statSuffix: "", statLabel: "avg per rental",
   },
   {
     id: 9, name: "AI VIP & Relationship Manager", category: "Retention AI", icon: Heart,
-    color: "#DC2626", colorLight: "#FEF2F2", colorBorder: "#FECACA",
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA",
     features: ["Tracks past rental history","Sends birthday offers","Creates seasonal promotions","Runs 'we miss you' campaigns","Builds customer loyalty","Drives 3.2x repeat bookings"],
     stat: "3.2x", statSuffix: "", statLabel: "repeat bookings",
   },
   {
-    id: 10, name: "AI Customer Support 24/7", category: "Operations AI", icon: RefreshCw,
-    color: "#0891B2", colorLight: "#ECFEFF", colorBorder: "#A5F3FC",
+    id: 10, name: "AI Customer Support 24/7", category: "Operations AI", icon: Shield,
+    color: "#0EA5E9", colorLight: "#F0F9FF", colorBorder: "#BAE6FD",
     features: ["Sends rental agreements","Collects digital signatures","Verifies customer IDs","Confirms insurance coverage","Eliminates onboarding friction","Reduces drop-off by 82%"],
     stat: "82%", statSuffix: "", statLabel: "less drop-off",
   },
@@ -77,7 +77,7 @@ const PRODUCTS = [
   },
   {
     id: 12, name: "AI Business Manager", category: "Analytics AI", icon: BarChart2,
-    color: "#059669", colorLight: "#ECFDF5", colorBorder: "#6EE7B7",
+    color: "#10B981", colorLight: "#F0FDF4", colorBorder: "#BBF7D0",
     features: ["Tracks all lead sources","Monitors conversion rates","Analyzes revenue per channel","Reports AI performance","Updates data in real-time","Reveals 38% hidden revenue"],
     stat: "38%", statSuffix: "", statLabel: "hidden revenue found",
   },
@@ -91,7 +91,7 @@ const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap');
 
 .sg-wrap { 
-  background: #FCFCFE; 
+  background: #fff; 
   font-family: 'DM Sans', system-ui, sans-serif; 
   color: #141419; 
   position: relative; 
@@ -100,13 +100,14 @@ const styles = `
   padding-bottom: var(--section-py);
 }
 
-/* subtle dot grid */
-.sg-wrap::before {
-  content: '';
+.sg-bg-glow {
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(34,197,94,0.12) 1px, transparent 1px);
-  background-size: 28px 28px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 80vh;
+  background: radial-gradient(circle at center, rgba(34,197,94,0.05) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -121,692 +122,486 @@ const styles = `
   z-index: 1;
 }
 
-@media (max-width: 1024px) {
-  .sg-inner {
-    padding-left: var(--container-px-tablet);
-    padding-right: var(--container-px-tablet);
-  }
-}
-
-@media (max-width: 768px) {
-  .sg-inner {
-    padding-left: var(--container-px-mobile);
-    padding-right: var(--container-px-mobile);
-  }
-}
-
 /* ── Header ── */
-.sg-head { text-align: center; margin-bottom: 48px; }
+.sg-head { text-align: center; margin-bottom: 64px; }
 
 .sg-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(34,197,94,0.08);
-  border: 1px solid rgba(34,197,94,0.22);
+  gap: 8px;
+  background: #F0FDF4;
+  border: 1px solid #DCFCE7;
   border-radius: 100px;
-  padding: 4px 14px 4px 8px;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #22C55E;
-  margin-bottom: 20px;
-}
-
-.sg-eyebrow-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #22C55E;
-  animation: sg-breathe 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-@keyframes sg-breathe {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.4; transform: scale(0.75); }
-}
-
-.sg-h2 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #141419;
-  margin-bottom: 16px;
-}
-
-.sg-h2 em {
-  font-style: italic;
-  font-weight: 700;
-  color: #22C55E;
-}
-
-.sg-sub {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #6E6D7A;
-  max-width: 480px;
-  margin: 0 auto 28px;
-}
-
-.sg-badges {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.sg-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-  border: 1px solid #E3E2EB;
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #6E6D7A;
-  letter-spacing: 0.06em;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.sg-badge svg { color: #22C55E; flex-shrink: 0; }
-
-/* ── Filter tabs ── */
-.sg-filters {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 52px;
-  flex-wrap: wrap;
-}
-
-.sg-ftab {
-  background: #fff;
-  border: 1px solid #E3E2EB;
-  border-radius: 100px;
-  padding: 7px 18px;
+  padding: 6px 16px 6px 10px;
   font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: #166534;
+  margin-bottom: 24px;
+}
+
+.sg-eyebrow-icon {
+  width: 18px; height: 18px;
+  background: #22C55E;
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sg-h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #141419;
+  margin-bottom: 20px;
+}
+
+.sg-h2 span {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sg-sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #6E6D7A;
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+
+/* ── Filter tabs ── */
+.sg-filters-container {
+  position: relative;
+  margin-bottom: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.sg-filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #F8F7FB;
+  padding: 4px;
+  border-radius: 100px;
+  border: 1px solid #F0EFF5;
+}
+
+.sg-ftab {
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   color: #6E6D7A;
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-.sg-ftab:hover { border-color: #22C55E; color: #22C55E; background: rgba(34,197,94,0.04); }
-.sg-ftab.on { background: #22C55E; border-color: #22C55E; color: #fff; box-shadow: 0 4px 14px rgba(34,197,94,0.3); }
-
-/* ── Grid ── */
-.sg-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 72px;
-}
-
-/* ── Card ── */
-.sg-card {
-  background: #fff;
-  border: 1px solid #E3E2EB;
-  border-radius: 20px;
-  padding: 24px 20px 20px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  cursor: default;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.sg-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--c);
-  box-shadow: 0 12px 40px -8px var(--cg);
-}
-
-/* top accent line */
-.sg-card-line {
-  position: absolute;
-  top: 0; left: 16%; right: 16%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--c), transparent);
-  border-radius: 0 0 4px 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.sg-card:hover .sg-card-line { opacity: 1; }
-
-
-
-/* icon */
-.sg-card-icon {
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-.sg-card:hover .sg-card-icon { transform: scale(1.1); }
-
-/* category */
-.sg-card-cat {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-/* name */
-.sg-card-name {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  color: #141419;
-  margin-bottom: 14px;
-}
-
-/* stat box */
-.sg-card-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 5px;
-  padding: 8px 10px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  border: 1px solid var(--cb);
-  transition: background 0.25s ease;
-}
-.sg-card:hover .sg-card-stat { background: var(--cl) !important; }
-
-.sg-card-stat-num {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.sg-card-stat-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: #6E6D7A;
-  letter-spacing: 0.06em;
-  line-height: 1.4;
-}
-
-/* ── Ticker row ── */
-.sg-ticker-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  background: #FAFAFA;
-  border: 1px solid #EEECF8;
-  border-radius: 10px;
-  min-height: 40px;
-  overflow: hidden;
-  flex: 1;
-}
-
-.sg-ticker-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.sg-ticker-text {
-  font-size: 12px;
-  color: #3D3C47;
-  line-height: 1.35;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* progress bar under ticker */
-.sg-ticker-bar-wrap {
-  height: 2px;
-  background: #EEECF8;
-  border-radius: 2px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-
-.sg-ticker-bar-fill {
-  height: 100%;
-  width: 100%;
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: sg-bar-fill var(--tick-ms, 2600ms) linear forwards;
-}
-
-@keyframes sg-bar-fill {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-/* wide card */
-.sg-card-wide { grid-column: span 2; }
-
-.sg-cta {
-  background: #141419;
-  border-radius: 16px;
-  padding: 40px 48px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 40px;
-  position: relative;
-  overflow: hidden;
-}
-
-.sg-cta::before {
-  content: '';
-  position: absolute;
-  top: -120px; right: -120px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(34,197,94,0.2) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.sg-cta::after {
-  content: '12';
-  position: absolute;
-  right: 56px; bottom: -24px;
-  font-family: 'Inter', sans-serif;
-  font-size: 160px;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  color: rgba(255,255,255,0.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-.sg-cta-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #22C55E;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.sg-cta-tag::before { content:''; display:block; width:16px; height:1px; background:#22C55E; }
-
-.sg-cta-title {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: #fff;
-}
-
-.sg-cta-title span { color: #22C55E; }
-
-.sg-cta-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-  flex-shrink: 0;
   position: relative;
   z-index: 1;
 }
 
-.sg-cta-note {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.38);
-  text-align: right;
-  line-height: 1.7;
+.sg-ftab:hover { color: #141419; }
+.sg-ftab.on { color: #fff; }
+
+.sg-ftab-bg {
+  position: absolute;
+  inset: 0;
+  background: #22C55E;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(34,197,94,0.3);
+  z-index: -1;
 }
 
-.sg-btn {
-  display: inline-flex;
+/* ── Grid ── */
+.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+/* ── Card ── */
+.sg-card-outer {
+  position: relative;
+  height: 100%;
+}
+
+.sg-card {
+  background: #fff;
+  border: 1px solid #F0EFF5;
+  border-radius: 24px;
+  padding: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.sg-card:hover {
+  border-color: var(--c);
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px -16px var(--cg);
+}
+
+.sg-card-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--c), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+.sg-card:hover .sg-card-glow { opacity: 0.1; }
+
+.sg-card-icon-wrap {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  background: var(--cl);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  color: var(--c);
+  transition: all 0.4s ease;
+}
+.sg-card:hover .sg-card-icon-wrap {
+  background: var(--c);
+  color: #fff;
+  transform: rotate(5deg) scale(1.1);
+  box-shadow: 0 8px 16px var(--cg);
+}
+
+.sg-card-cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94A3B8;
+  margin-bottom: 8px;
+}
+
+.sg-card-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #141419;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.sg-card-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #F8FAFC;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.sg-card-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--c);
+  letter-spacing: -0.02em;
+}
+
+.sg-card-stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748B;
+  line-height: 1.3;
+}
+
+.sg-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.sg-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.sg-feature-check {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--cl);
+  color: var(--c);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.sg-card-cta {
+  margin-top: 28px;
+  display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+.sg-card:hover .sg-card-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── CTA Banner ── */
+.sg-banner {
+  background: #111827;
+  border-radius: 32px;
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.sg-banner-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(34,197,94,0.15) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, rgba(163,230,53,0.1) 0, transparent 50%);
+  pointer-events: none;
+}
+
+.sg-banner-content { position: relative; z-index: 1; max-width: 540px; }
+
+.sg-banner-h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.sg-banner-h2 span { color: #22C55E; }
+
+.sg-banner-p {
+  font-size: 18px;
+  color: #9CA3AF;
+  line-height: 1.6;
+}
+
+.sg-banner-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.sg-banner-btn {
   background: var(--brand-gradient);
   color: #fff;
   border: none;
-  border-radius: 10px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  padding: 12px 22px;
+  border-radius: 100px;
+  padding: 18px 40px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.22s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(34,197,94,0.35);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(34,197,94,0.3);
 }
 
-.sg-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(34,197,94,0.45);
-  filter: brightness(1.1);
+.sg-banner-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(34,197,94,0.4);
 }
 
 /* ── Responsive ── */
-
-/* Tablet landscape */
-@media (max-width: 1100px) {
-  .sg-grid { grid-template-columns: repeat(3, 1fr); }
-  .sg-card-wide { grid-column: span 2; }
+@media (max-width: 1024px) {
+  .sg-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .sg-banner { padding: 48px; flex-direction: column; text-align: center; }
+  .sg-banner-actions { align-items: center; }
+  .sg-banner-content { max-width: 100%; }
 }
 
-/* Tablet portrait */
-@media (max-width: 768px) {
-  .sg-inner { padding: 48px 20px 64px; }
-
-  /* header */
-  .sg-head { margin-bottom: 40px; }
-  .sg-eyebrow { font-size: 9px; padding: 5px 14px 5px 9px; margin-bottom: 20px; }
-  .sg-h2 { font-size: clamp(36px, 9vw, 56px); margin-bottom: 14px; }
-  .sg-sub { font-size: 15px; margin-bottom: 24px; }
-  .sg-badges { gap: 7px; }
-  .sg-badge { font-size: 9px; padding: 5px 11px; }
-
-  /* filters — horizontal scroll on mobile */
-  .sg-filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding-bottom: 4px;
-    margin-bottom: 36px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .sg-filters::-webkit-scrollbar { display: none; }
-  .sg-ftab { flex-shrink: 0; padding: 7px 16px; font-size: 9px; }
-
-  /* grid */
-  .sg-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 48px; }
-  .sg-card-wide { grid-column: span 2; }
-
-  /* card internals */
-  .sg-card { padding: 18px 16px 16px; border-radius: 16px; }
-  .sg-card-idx { top: 14px; right: 14px; font-size: 9px; }
-  .sg-card-icon { width: 36px; height: 36px; border-radius: 9px; }
-  .sg-card-cat { font-size: 8px; }
-  .sg-card-name { font-size: 13px; }
-  .sg-card-stat { padding: 8px 10px; margin-bottom: 10px; }
-  .sg-card-stat-num { font-size: 20px; }
-  .sg-card-stat-lbl { font-size: 8px; }
-  .sg-ticker-row { padding: 8px 10px; min-height: 36px; }
-  .sg-ticker-text { font-size: 11px; }
-
-  /* CTA */
-  .sg-cta { grid-template-columns: 1fr; padding: 32px 24px; gap: 20px; border-radius: 16px; }
-  .sg-cta::before { width: 260px; height: 260px; top: -80px; right: -80px; }
-  .sg-cta::after { display: none; }
-  .sg-cta-tag { font-size: 9px; margin-bottom: 10px; }
-  .sg-cta-title { font-size: clamp(24px, 6vw, 34px); }
-  .sg-cta-right { align-items: flex-start; }
-  .sg-cta-note { text-align: left; font-size: 10px; }
-  .sg-btn { font-size: 13px; padding: 13px 22px; border-radius: 10px; }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .sg-inner { padding: 40px 16px 56px; }
-
-  /* header */
-  .sg-h2 { font-size: clamp(32px, 10vw, 44px); }
-  .sg-sub { font-size: 14px; }
-  .sg-badges { gap: 6px; }
-
-  /* single column grid */
-  .sg-grid { grid-template-columns: 1fr; gap: 8px; margin-bottom: 36px; }
-  .sg-card-wide { grid-column: span 1; }
-
-  /* card — full width, comfortable touch target */
-  .sg-card { padding: 16px 14px 14px; border-radius: 14px; }
-  .sg-card-name { font-size: 14px; }
-  .sg-card-stat-num { font-size: 22px; }
-  .sg-ticker-text { font-size: 12px; }
-  .sg-ticker-row { min-height: 38px; }
-
-  /* CTA */
-  .sg-cta { padding: 28px 20px; gap: 18px; border-radius: 14px; }
-  .sg-cta-title { font-size: clamp(22px, 7vw, 30px); }
-  .sg-btn { width: 100%; justify-content: center; }
+@media (max-width: 640px) {
+  .sg-grid { grid-template-columns: 1fr; }
+  .sg-ftab { padding: 8px 16px; font-size: 12px; }
+  .sg-banner { padding: 40px 24px; }
+  .sg-card { padding: 24px; }
 }
 `;
 
-// ─── Feature Ticker ───────────────────────────────────────────────────────────
-
-const TICK_DURATION = 2600; // ms per feature
-
-function FeatureTicker({ features, color }) {
-  const [idx, setIdx] = useState(0);
-
-  // Reset index when the feature list changes (filter switch)
-  useEffect(() => { setIdx(0); }, [features]);
-
-  // Advance index on each tick
-  useEffect(() => {
-    const t = setInterval(
-      () => setIdx((i) => (i + 1) % features.length),
-      TICK_DURATION
-    );
-    return () => clearInterval(t);
-  }, [features.length]);
-
-  return (
-    <div style={{ flex: 1, minWidth: 0 }}>
-      {/* animated text line */}
-      <div className="sg-ticker-row">
-        <span className="sg-ticker-dot" style={{ background: color }} />
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={idx}
-            className="sg-ticker-text"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            {features[idx]}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-
-      {/* progress bar — pure CSS linear fill, restarted via key */}
-      <div className="sg-ticker-bar-wrap">
-        <div
-          key={`${idx}-${color}`}
-          className="sg-ticker-bar-fill"
-          style={{
-            background: color,
-            "--tick-ms": `${TICK_DURATION}ms`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-// ─── Card ─────────────────────────────────────────────────────────────────────
-
-function ProductCard({ product, index, wide }) {
+function ProductCard({ product, index }) {
   const Icon = product.icon;
-
+  
   return (
     <motion.div
-      className={`sg-card${wide ? " sg-card-wide" : ""}`}
-      style={{
-        "--c":  product.color,
-        "--cg": `${product.color}40`,
-        "--cl": product.colorLight,
-        "--cb": product.colorBorder,
-      }}
-      initial={{ opacity: 0, y: 24 }}
+      layout
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className="sg-card-outer"
+      style={{
+        "--c": product.color,
+        "--cg": `${product.color}20`,
+        "--cl": product.colorLight,
+      }}
     >
-      <div className="sg-card-line" />
-
-      {/* icon + category + name row */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
-        <div className="sg-card-icon">
-          <Icon size={22} strokeWidth={1.9} style={{ color: product.color }} />
+      <div className="sg-card">
+        <div className="sg-card-glow" />
+        
+        <div className="sg-card-icon-wrap">
+          <Icon size={24} strokeWidth={2.2} />
         </div>
-        <div style={{ minWidth: 0 }}>
-          <div className="sg-card-cat" style={{ color: product.color, marginBottom: 4 }}>{product.category}</div>
-          <div className="sg-card-name" style={{ marginBottom: 0 }}>{product.name}</div>
+        
+        <div className="sg-card-cat">{product.category}</div>
+        <h3 className="sg-card-name">{product.name}</h3>
+        
+        <div className="sg-card-stat-row">
+          <span className="sg-card-stat-num">{product.stat}{product.statSuffix}</span>
+          <span className="sg-card-stat-label">{product.statLabel}</span>
+        </div>
+        
+        <div className="sg-features-list">
+          {product.features.slice(0, 4).map((f, i) => (
+            <div key={i} className="sg-feature-item">
+              <div className="sg-feature-check">
+                <CheckCircle2 size={12} strokeWidth={3} />
+              </div>
+              {f}
+            </div>
+          ))}
+        </div>
+        
+        <div className="sg-card-cta">
+          Explore Feature <ArrowRight size={14} />
         </div>
       </div>
-
-      {/* stat box */}
-      <div className="sg-card-stat" style={{ background: "#FAFAFA", marginBottom: 12 }}>
-        <span className="sg-card-stat-num" style={{ color: product.color }}>
-          {product.stat}{product.statSuffix}
-        </span>
-        <span className="sg-card-stat-lbl">{product.statLabel}</span>
-      </div>
-
-      {/* animated feature ticker */}
-      <FeatureTicker features={product.features} color={product.color} />
     </motion.div>
   );
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-
 export default function SolutionsGrid() {
   const [active, setActive] = useState("All");
 
-  const list = active === "All"
-    ? PRODUCTS
-    : PRODUCTS.filter((p) => p.category === active);
+  const filtered = active === "All" 
+    ? PRODUCTS 
+    : PRODUCTS.filter(p => p.category === active);
 
   return (
-    <>
+    <section id="solutions" className="sg-wrap">
       <style>{styles}</style>
-      <div className="sg-wrap">
-        <div className="sg-inner">
+      <div className="sg-bg-glow" />
+      
+      <div className="sg-inner">
+        <motion.div 
+          className="sg-head"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="sg-eyebrow">
+            <div className="sg-eyebrow-icon"><Sparkles size={10} /></div>
+            The 24/7 Autopilot Stack
+          </div>
+          
+          <h2 className="sg-h2">
+            12 AI Employees.<br />
+            <span>One Unified Team.</span>
+          </h2>
+          
+          <p className="sg-sub">
+            The only complete AI infrastructure built specifically for car rental operators. 
+            Replace manual tasks with autonomous agents that never sleep.
+          </p>
+        </motion.div>
 
-          {/* Header */}
-          <motion.div
-            className="sg-head"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="sg-eyebrow">
-              <span className="sg-eyebrow-dot" />
-              The Complete AI Stack
-            </div>
-
-            <h2 className="sg-h2">
-              12 AI&nbsp;<em>Employees.</em>
-            </h2>
-
-            <p className="sg-sub">
-              Every touchpoint covered. Every lead captured. Every booking
-              closed — around the clock, without a single hire.
-            </p>
-
-            <div className="sg-badges">
-              <span className="sg-badge"><Zap size={10} /> Always on · 24/7</span>
-              <span className="sg-badge"><CheckCircle2 size={10} /> 12 tools · one subscription</span>
-              <span className="sg-badge"><ChevronRight size={10} /> No per-tool pricing</span>
-            </div>
-          </motion.div>
-
-          {/* Filters */}
-          <motion.div
-            className="sg-filters"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          >
+        <div className="sg-filters-container">
+          <div className="sg-filters">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                className={`sg-ftab${active === cat ? " on" : ""}`}
+                className={`sg-ftab ${active === cat ? "on" : ""}`}
                 onClick={() => setActive(cat)}
               >
                 {cat}
+                {active === cat && (
+                  <motion.div 
+                    layoutId="activeTab"
+                    className="sg-ftab-bg"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
               </button>
             ))}
-          </motion.div>
-
-          {/* Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              className="sg-grid"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {list.map((product, index) => {
-                const wide = active === "All" && (index === 4 || index === 9);
-                return (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    index={index}
-                    wide={wide}
-                  />
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* CTA */}
-          <motion.div
-            className="sg-cta"
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div>
-              <div className="sg-cta-tag">Ready to automate?</div>
-              <div className="sg-cta-title">
-                All 12 tools.<br />
-                <span>One price.</span>
-              </div>
-            </div>
-
-            <div className="sg-cta-right">
-              <p className="sg-cta-note">
-                No per-tool pricing.<br />
-                No hidden fees. Cancel anytime.
-              </p>
-              <button className="sg-btn">
-                Start Free Trial
-                <ArrowRight size={14} strokeWidth={2.2} />
-              </button>
-            </div>
-          </motion.div>
-
+          </div>
         </div>
+
+        <motion.div layout className="sg-grid">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((product, index) => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                index={index}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.div 
+          className="sg-banner"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="sg-banner-mesh" />
+          <div className="sg-banner-content">
+            <div className="sg-eyebrow" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" }}>
+              <Zap size={10} fill="#fff" /> Limited Implementation Slots
+            </div>
+            <h2 className="sg-banner-h2">
+              Get all 12 agents for<br />
+              <span>the price of one hire.</span>
+            </h2>
+            <p className="sg-banner-p">
+              Stop stitching together dozens of tools. Aiaura provides a complete, 
+              pre-trained AI workforce that's live in 14 days.
+            </p>
+          </div>
+          
+          <div className="sg-banner-actions">
+            <button className="sg-banner-btn">
+              Start Free Trial <ArrowRight size={20} />
+            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 500 }}>
+              <Shield size={14} /> 14-day money-back guarantee
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </>
+    </section>
   );
 }
