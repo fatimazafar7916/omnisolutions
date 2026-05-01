@@ -1256,7 +1256,7 @@ export default function HeroSection() {
               <h1
                 style={{
                   fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   lineHeight: 1.0,
                   letterSpacing: "-0.04em",
                   margin: "0 0 6px",
