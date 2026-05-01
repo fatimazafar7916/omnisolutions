@@ -21,7 +21,7 @@ export default function CTASection() {
           style={{
             borderRadius: 24,
             background: "var(--brand-gradient)",
-            padding: "clamp(40px, 6vw, 72px) clamp(28px, 5vw, 64px)",
+            padding: "clamp(32px, 5vw, 52px) clamp(24px, 4vw, 40px)",
             position: "relative",
             overflow: "hidden",
             textAlign: "center",
@@ -75,8 +75,8 @@ export default function CTASection() {
               style={{
                 fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(28px, 4vw, 52px)",
-                letterSpacing: "-0.02em",
+                fontSize: "clamp(24px, 3.5vw, 42px)",
+                letterSpacing: "-0.03em",
                 color: "#fff",
                 lineHeight: 1.1,
                 margin: "0 0 4px",
@@ -90,7 +90,7 @@ export default function CTASection() {
                 fontFamily: "'Instrument Serif', serif",
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(28px, 4vw, 52px)",
+                fontSize: "clamp(24px, 3.5vw, 42px)",
                 color: "#FFFFFF",
                 lineHeight: 1.1,
                 margin: "0 0 24px",

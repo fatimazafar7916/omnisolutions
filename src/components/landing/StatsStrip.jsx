@@ -108,12 +108,10 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
   
   // Green highlight when animation is complete and target is reached
   const getColor = () => {
-    if (!isComplete) return "#FFFFFF";
+    if (!isComplete) return "#141419";
     
-    // Show green for completed animations
-    if (isPercentage && target === 100) return "#22C55E"; // Green for 100%
-    
-    return "#FFFFFF";
+    // Show brand green for completed animations at target
+    return "#22C55E";
   };
 
   return (
@@ -138,7 +136,7 @@ export default function StatsStrip() {
     <section
       className="global-section"
       style={{
-        background: "#000000",
+        background: "#FFFFFF",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -155,8 +153,8 @@ export default function StatsStrip() {
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.04,
           backgroundImage: "radial-gradient(circle, #22C55E 1px, transparent 1px)",
+          opacity: 0.08,
           backgroundSize: "28px 28px",
         }}
       />
@@ -193,7 +191,7 @@ export default function StatsStrip() {
               fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
               fontWeight: 700,
               fontSize: "clamp(18px, 3vw, 26px)",
-              color: "#FFFFFF",
+              color: "#141419",
               margin: "0 0 8px",
               letterSpacing: "-0.02em"
             }}
@@ -204,7 +202,7 @@ export default function StatsStrip() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(12px, 1.5vw, 14px)",
-              color: "#9CA3AF",
+              color: "#6E6D7A",
               margin: 0,
               maxWidth: "480px",
               marginLeft: "auto",
@@ -239,10 +237,10 @@ export default function StatsStrip() {
               style={{ 
                 textAlign: "center", 
                 width: "100%",
-                background: "rgba(255, 255, 255, 0.02)",
-                borderRadius: "10px",
-                padding: "clamp(10px, 2vw, 16px)",
-                border: "1px solid rgba(255, 255, 255, 0.05)",
+                background: "#F8F7FB",
+                borderRadius: "16px",
+                padding: "clamp(16px, 2.5vw, 24px)",
+                border: "1px solid #F0EFF5",
                 backdropFilter: "blur(10px)",
                 minHeight: "clamp(90px, 14vw, 120px)"
               }}
@@ -264,7 +262,7 @@ export default function StatsStrip() {
                   suffix={stat.suffix}
                   isPercentage={stat.isPercentage}
                 />
-                <span style={{ color: "#FFFFFF" }}>{stat.suffix}</span>
+                <span style={{ color: "inherit" }}>{stat.suffix}</span>
                 
                 {stat.isPercentage && (
                   <motion.div
@@ -300,7 +298,7 @@ export default function StatsStrip() {
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 600,
                   fontSize: "clamp(11px, 2vw, 14px)",
-                  color: "#FFFFFF",
+                  color: "#141419",
                   margin: "0 0 clamp(2px, 1vw, 4px)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.2
@@ -314,7 +312,7 @@ export default function StatsStrip() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "clamp(9px, 1.5vw, 11px)",
-                  color: "#9CA3AF",
+                  color: "#6E6D7A",
                   margin: 0,
                   lineHeight: 1.3
                 }}
