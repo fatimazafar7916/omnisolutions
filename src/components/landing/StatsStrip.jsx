@@ -144,64 +144,45 @@ export default function StatsStrip() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        paddingTop: "clamp(28px, 4vw, 48px)",
+        paddingBottom: "clamp(28px, 4vw, 48px)",
       }}
     >
       {/* Animated background pattern */}
       <motion.div
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%"]
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.05,
+          opacity: 0.04,
           backgroundImage: "radial-gradient(circle, #10B981 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
+          backgroundSize: "28px 28px",
         }}
       />
-
-      {/* Subtle glow effects */}
-      <div
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: "10%",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)",
-          pointerEvents: "none"
-        }}
-      />
-      
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20%",
-          right: "10%",
-          width: "150px",
-          height: "150px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(123, 116, 220, 0.1) 0%, transparent 70%)",
-          pointerEvents: "none"
-        }}
-      />
+      <div style={{
+        position: "absolute", top: "20%", left: "10%",
+        width: "140px", height: "140px", borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+        pointerEvents: "none"
+      }} />
+      <div style={{
+        position: "absolute", bottom: "20%", right: "10%",
+        width: "100px", height: "100px", borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(123,116,220,0.08) 0%, transparent 70%)",
+        pointerEvents: "none"
+      }} />
 
       <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           style={{
             textAlign: "center",
-            marginBottom: "clamp(16px, 3vw, 24px)",
+            marginBottom: "clamp(12px, 2vw, 20px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -209,11 +190,11 @@ export default function StatsStrip() {
         >
           <h2
             style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(24px, 5vw, 36px)",
+              fontSize: "clamp(18px, 3vw, 26px)",
               color: "#FFFFFF",
-              margin: "0 0 12px",
+              margin: "0 0 8px",
               letterSpacing: "-0.02em"
             }}
           >
@@ -222,10 +203,10 @@ export default function StatsStrip() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(14px, 3vw, 18px)",
+              fontSize: "clamp(12px, 1.5vw, 14px)",
               color: "#9CA3AF",
               margin: 0,
-              maxWidth: "600px",
+              maxWidth: "480px",
               marginLeft: "auto",
               marginRight: "auto"
             }}
@@ -234,23 +215,23 @@ export default function StatsStrip() {
           </p>
         </motion.div>
 
-        {/* Stats Grid - Mobile Responsive */}
+        {/* Stats Grid */}
         <div
           className="stats-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "clamp(12px, 3vw, 24px)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+            gap: "clamp(8px, 2vw, 16px)",
             justifyItems: "center",
           }}
         >
           {STATS.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ 
                 scale: 1.02,
                 transition: { duration: 0.2 }
@@ -259,22 +240,22 @@ export default function StatsStrip() {
                 textAlign: "center", 
                 width: "100%",
                 background: "rgba(255, 255, 255, 0.02)",
-                borderRadius: "clamp(12px, 3vw, 16px)",
-                padding: "clamp(12px, 3vw, 20px)",
+                borderRadius: "10px",
+                padding: "clamp(10px, 2vw, 16px)",
                 border: "1px solid rgba(255, 255, 255, 0.05)",
                 backdropFilter: "blur(10px)",
-                minHeight: "clamp(120px, 20vw, 160px)"
+                minHeight: "clamp(90px, 14vw, 120px)"
               }}
             >
-              {/* Big animated number - Mobile Responsive */}
+              {/* Big animated number */}
               <div
                 style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 800,
-                  fontSize: "clamp(28px, 8vw, 64px)",
-                  letterSpacing: "-0.04em",
+                  fontSize: "clamp(22px, 5vw, 40px)",
+                  letterSpacing: "-0.03em",
                   lineHeight: 1,
-                  marginBottom: "clamp(4px, 2vw, 8px)",
+                  marginBottom: "clamp(3px, 1vw, 6px)",
                   position: "relative"
                 }}
               >
@@ -285,7 +266,6 @@ export default function StatsStrip() {
                 />
                 <span style={{ color: "#FFFFFF" }}>{stat.suffix}</span>
                 
-                {/* Success indicator for completed percentages */}
                 {stat.isPercentage && (
                   <motion.div
                     initial={{ scale: 0, opacity: 0 }}
@@ -293,10 +273,10 @@ export default function StatsStrip() {
                     transition={{ delay: 1.5, duration: 0.3 }}
                     style={{
                       position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      width: "16px",
-                      height: "16px",
+                      top: "-6px",
+                      right: "-6px",
+                      width: "12px",
+                      height: "12px",
                       borderRadius: "50%",
                       background: "#10B981",
                       display: "flex",
@@ -305,8 +285,8 @@ export default function StatsStrip() {
                     }}
                   >
                     <div style={{
-                      width: "8px",
-                      height: "8px",
+                      width: "6px",
+                      height: "6px",
                       borderRadius: "50%",
                       background: "#FFFFFF"
                     }} />
@@ -314,14 +294,14 @@ export default function StatsStrip() {
                 )}
               </div>
 
-              {/* Label - Mobile Responsive */}
+              {/* Label */}
               <h3
                 style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 600,
-                  fontSize: "clamp(12px, 3.5vw, 20px)",
+                  fontSize: "clamp(11px, 2vw, 14px)",
                   color: "#FFFFFF",
-                  margin: "0 0 clamp(4px, 1.5vw, 8px)",
+                  margin: "0 0 clamp(2px, 1vw, 4px)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.2
                 }}
@@ -329,11 +309,11 @@ export default function StatsStrip() {
                 {stat.label}
               </h3>
 
-              {/* Description - Mobile Responsive */}
+              {/* Description */}
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(10px, 2.5vw, 14px)",
+                  fontSize: "clamp(9px, 1.5vw, 11px)",
                   color: "#9CA3AF",
                   margin: 0,
                   lineHeight: 1.3
