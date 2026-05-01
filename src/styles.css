@@ -25,7 +25,7 @@
     
     /* Layout Tokens */
     --container-max-width: 1280px;
-    --section-py: clamp(64px, 8vw, 120px);
+    --section-py: clamp(40px, 5vw, 72px);
     --container-px: 40px;
     --container-px-tablet: 32px;
     --container-px-mobile: 20px;
