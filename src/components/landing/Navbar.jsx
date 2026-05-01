@@ -34,11 +34,13 @@ export default function Navbar() {
         style={{
           position: "fixed",
           top: 16,
-          left: "50%",
-          transform: "translateX(-50%)",
+          left: 0,
+          right: 0,
           zIndex: 100,
-          width: "calc(100% - 48px)",
-          maxWidth: 900,
+          display: "flex",
+          justifyContent: "center",
+          padding: "0 24px",
+          pointerEvents: "none",
         }}
       >
         <div
@@ -47,17 +49,20 @@ export default function Navbar() {
             alignItems: "center",
             justifyContent: "space-between",
             background: scrolled
-              ? "rgba(255,255,255,0.95)"
-              : "rgba(255,255,255,0.88)",
+              ? "rgba(255,255,255,0.97)"
+              : "rgba(255,255,255,0.90)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
             border: "1px solid rgba(0,0,0,0.08)",
             borderRadius: 100,
-            padding: "8px 8px 8px 16px",
+            padding: "6px 6px 6px 6px",
             boxShadow: scrolled
               ? "0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)"
               : "0 4px 16px rgba(0,0,0,0.08)",
             transition: "all 0.3s ease",
+            width: "100%",
+            maxWidth: 860,
+            pointerEvents: "all",
           }}
         >
           {/* Logo circle */}
@@ -73,6 +78,7 @@ export default function Navbar() {
               background: "#141419",
               textDecoration: "none",
               flexShrink: 0,
+              marginLeft: 4,
             }}
           >
             <span style={{
@@ -86,8 +92,8 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* Desktop nav links */}
-          <div className="nav-links-desktop" style={{ display: "none" }}>
+          {/* Desktop nav links - centered */}
+          <div className="nav-links-desktop" style={{ display: "none", flex: 1, justifyContent: "center" }}>
             {LINKS.map((l) => (
               <a
                 key={l.label}
@@ -118,7 +124,7 @@ export default function Navbar() {
           </div>
 
           {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             {/* Desktop CTA */}
             <a
               href="#cta"
@@ -300,6 +306,8 @@ export default function Navbar() {
             display: flex !important;
             align-items: center;
             gap: 2px;
+            flex: 1;
+            justify-content: center;
           }
           .hamburger-btn {
             display: none !important;
@@ -311,12 +319,6 @@ export default function Navbar() {
         @media (max-width: 767px) {
           .nav-cta-desktop {
             display: none !important;
-          }
-        }
-        @media (max-width: 480px) {
-          /* Navbar pill width on small screens */
-          div[style*="calc(100% - 48px)"] {
-            width: calc(100% - 32px) !important;
           }
         }
       `}</style>
