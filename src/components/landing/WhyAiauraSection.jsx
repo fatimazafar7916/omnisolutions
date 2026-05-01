@@ -11,11 +11,11 @@ const HERO_CONTENT = {
     badge: "Why Aiaura Wins",
     title: "While competitors sell promises,",
     titleAccent: "we deliver guaranteed results",
-    subtitle: "47 US rental companies chose Aiaura over generic AI tools. Here's the proof.",
+    subtitle: "Over 200 US rental companies chose Aiaura over generic AI tools. Here's the proof.",
     stats: [
-      { number: "320%", label: "Revenue Increase", sublabel: "Guaranteed in 60 days" },
-      { number: "14", label: "Days to Deploy", sublabel: "Not 6+ months" },
-      { number: "47", label: "US Companies", sublabel: "Already trust us" }
+      { number: "285%", label: "Revenue Increase", sublabel: "Average in 90 days" },
+      { number: "12", label: "Days to Deploy", sublabel: "Not 6+ months" },
+      { number: "200+", label: "US Companies", sublabel: "Already trust us" }
     ]
   },
   right: {
@@ -23,19 +23,19 @@ const HERO_CONTENT = {
       {
         number: "01",
         title: "Built for Car Rentals Only",
-        description: "Not a generic chatbot. Trained on 50,000+ real rental conversations. Understands insurance, mileage policies, seasonal pricing.",
+        description: "Not a generic chatbot. Trained on 150,000+ real rental conversations. Understands insurance, mileage policies, seasonal pricing.",
         highlight: "Industry-Specific AI"
       },
       {
         number: "02", 
         title: "Guaranteed Results or Refund",
-        description: "320% average revenue increase within 60 days. Real data from 47 companies. 100% money-back guarantee if you don't see results.",
+        description: "285% average revenue increase within 90 days. Real data from 200+ companies. 100% money-back guarantee if you don't see results.",
         highlight: "Risk-Free Promise"
       },
       {
         number: "03",
-        title: "Live in 14 Days Maximum",
-        description: "Pre-built integrations, instant voice cloning, zero technical setup. While competitors take months, we deploy in 2 weeks.",
+        title: "Live in 12 Days Maximum",
+        description: "Pre-built integrations, instant voice cloning, zero technical setup. While competitors take months, we deploy in under 2 weeks.",
         highlight: "Lightning Fast Setup"
       }
     ]
@@ -43,8 +43,9 @@ const HERO_CONTENT = {
 };
 
 const TRUST_PROOF = [
-  "SOC 2 certified enterprise security",
-  "100% US-based data and support", 
+  "200+ US rental companies trust Aiaura",
+  "SOC 2 certified enterprise security", 
+  "100% US-based data and support team", 
   "24/7 monitoring with 99.9% uptime",
   "Transparent pricing, no hidden fees",
   "Human backup always available"
@@ -461,7 +462,7 @@ export default function WhyAiauraSection() {
               color: "#111827",
               margin: "0 0 24px",
             }}>
-              Trusted by rental operators nationwide
+              Trusted by 200+ rental operators nationwide
             </h3>
             
             <div>
