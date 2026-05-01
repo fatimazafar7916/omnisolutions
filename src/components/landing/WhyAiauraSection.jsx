@@ -9,46 +9,46 @@ const GR = "#6E6D7A";
 const HERO_CONTENT = {
   left: {
     badge: "Why Aiaura Wins",
-    title: "While competitors sell promises,",
-    titleAccent: "we deliver guaranteed results",
-    subtitle: "15+ US rental companies chose Aiaura over generic AI tools. Here's the proof.",
+    title: "Others promise help,",
+    titleAccent: "we give you real results",
+    subtitle: "15+ US car rental owners chose Aiaura over simple AI tools. Here is the proof.",
     stats: [
-      { number: "285%", label: "Revenue Increase", sublabel: "Average in 90 days" },
-      { number: "14", label: "Days to Deploy", sublabel: "Not 6+ months" },
-      { number: "15+", label: "US Companies", sublabel: "Already trust us" }
+      { number: "285%", label: "More Money Made", sublabel: "Average in 90 days" },
+      { number: "14", label: "Days to Start", sublabel: "Ready in 2 weeks" },
+      { number: "15+", label: "US Owners", sublabel: "Already trust us" }
     ]
   },
   right: {
     reasons: [
       {
         number: "01",
-        title: "Built for Car Rentals Only",
-        description: "Not a generic chatbot. Trained on 25,000+ real rental conversations. Understands insurance, mileage policies, seasonal pricing.",
-        highlight: "Industry-Specific AI"
+        title: "Built only for car rentals",
+        description: "This is not a simple chat tool. Our AI knows how to talk to rental customers about insurance, mileage, and prices.",
+        highlight: "AI that knows rentals"
       },
       {
         number: "02", 
-        title: "Guaranteed Results or Refund",
-        description: "285% average revenue increase within 90 days. Real data from 15+ companies. 100% money-back guarantee if you don't see results.",
-        highlight: "Risk-Free Promise"
+        title: "Results or your money back",
+        description: "Our customers see a 285% jump in money made within 90 days. We give you your money back if you don't see results.",
+        highlight: "No-Risk Promise"
       },
       {
         number: "03",
-        title: "Live in 14 Days Maximum",
-        description: "Pre-built integrations, instant voice cloning, zero technical setup. While competitors take months, we deploy in 14 days.",
-        highlight: "Lightning Fast Setup"
+        title: "Ready in 14 days or less",
+        description: "Connects to your tools instantly with no technical work for you. While others take months, we start in just 14 days.",
+        highlight: "Very fast setup"
       }
     ]
   }
 };
 
 const TRUST_PROOF = [
-  "15+ US rental companies trust Aiaura",
-  "SOC 2 certified enterprise security", 
-  "100% US-based data and support team", 
-  "24/7 monitoring with 99.9% uptime",
-  "Transparent pricing, no hidden fees",
-  "Human backup always available"
+  "15+ US car rental owners trust Aiaura",
+  "Safe and secure for your business", 
+  "100% US-based support team", 
+  "Works all the time, day and night",
+  "Clear prices with no hidden costs",
+  "Real people always here to help"
 ];
 
 /* ── Animated Stats Card ── */

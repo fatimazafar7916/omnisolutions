@@ -20,7 +20,7 @@ const STATS = [
     value: 22,
     suffix: "+",
     label: "Languages",
-    desc: "Global communication",
+    desc: "Talks to everyone",
     isPercentage: false
   },
   { 
@@ -196,7 +196,7 @@ export default function StatsStrip() {
               letterSpacing: "-0.02em"
             }}
           >
-            Performance That Speaks for Itself
+            Real results you can see
           </h2>
           <p
             style={{
@@ -209,7 +209,7 @@ export default function StatsStrip() {
               marginRight: "auto"
             }}
           >
-            Real metrics from real car rental operators using Aiaura AI
+            Real numbers from real car rental owners using Aiaura AI
           </p>
         </motion.div>
 

@@ -10,80 +10,80 @@ import {
 
 const PRODUCTS = [
   {
-    id: 1, name: "AI Receptionist", category: "Voice AI", icon: Mic,
+    id: 1, name: "AI Phone Assistant", category: "Phone AI", icon: Mic,
     color: "#22C55E",
-    features: ["Attend calls 24/7","Supports multiple languages","Speaks the user's language","Handles 100 calls at once","Answers within 3 seconds","Transfers important calls to a team member"],
-    stat: "100", statSuffix: " calls", statLabel: "simultaneously",
+    features: ["Answers calls 24/7","Talks in many languages","Speaks like a real person","Handles 100 calls at once","Answers within 3 seconds","Sends important calls to your team"],
+    stat: "100", statSuffix: " calls", statLabel: "at once",
   },
   {
-    id: 2, name: "AI Email + Text Marketing", category: "Messaging AI", icon: MessageSquare,
+    id: 2, name: "AI Message Assistant", category: "Chat AI", icon: MessageSquare,
     color: "#22C55E",
-    features: ["Responds to DMs in 8 seconds","Works on Instagram & WhatsApp","Sends pricing automatically","Shares availability instantly","Follows up until conversion","Personalizes every message"],
-    stat: "8", statSuffix: "s", statLabel: "response time",
+    features: ["Replies to messages in 8 seconds","Works on Instagram & WhatsApp","Sends prices automatically","Shows when you are free","Follows up until they book","Talks to every customer personally"],
+    stat: "8", statSuffix: "s", statLabel: "reply time",
   },
   {
-    id: 3, name: "AI Follow-up Assistant", category: "Sales AI", icon: DollarSign,
+    id: 3, name: "AI Sales Assistant", category: "Selling AI", icon: DollarSign,
     color: "#22C55E",
-    features: ["Follows up on quotes automatically","Recovers abandoned bookings","Nurtures cold leads persistently","Sends personalized messages","Tracks engagement levels","Converts 4x more leads"],
-    stat: "4x", statSuffix: "", statLabel: "more conversions",
+    features: ["Follows up on quotes for you","Reminds people to finish booking","Keeps talking to cold leads","Sends personal messages","Sees who is interested","Gets 4x more bookings"],
+    stat: "4x", statSuffix: "", statLabel: "more bookings",
   },
   {
-    id: 4, name: "AI Lead Qualifier", category: "Sales AI", icon: DollarSign,
+    id: 4, name: "AI Customer Checker", category: "Selling AI", icon: DollarSign,
     color: "#22C55E",
-    features: ["Qualifies leads instantly","Scores prospects automatically","Routes hot leads to sales","Nurtures cold leads","Recovers $420K revenue yearly","Works 24/7 without breaks"],
-    stat: "$420K", statSuffix: "", statLabel: "recovered yearly",
+    features: ["Checks customers instantly","Scores leads automatically","Sends hot leads to you","Talks to old leads","Finds $420K extra money yearly","Works 24/7 with no breaks"],
+    stat: "$420K", statSuffix: "", statLabel: "found yearly",
   },
   {
-    id: 5, name: "AI Review Manager", category: "Reputation AI", icon: Star,
+    id: 5, name: "AI Review Helper", category: "Review AI", icon: Star,
     color: "#22C55E",
-    features: ["Monitors Google & Yelp reviews","Responds to reviews instantly","Escalates negative feedback","Requests reviews from happy clients","Maintains 4.1+ star rating","Prevents 22x booking loss"],
-    stat: "4.1★", statSuffix: "", statLabel: "rating maintained",
+    features: ["Watches Google & Yelp reviews","Replies to reviews instantly","Tells you about bad feedback","Asks happy customers for reviews","Keeps your rating high","Stops people from leaving"],
+    stat: "4.1★", statSuffix: "", statLabel: "rating kept",
   },
   {
-    id: 6, name: "AI Omnichannel Responder", category: "Messaging AI", icon: MessageSquare,
+    id: 6, name: "AI Universal Inbox", category: "Chat AI", icon: MessageSquare,
     color: "#22C55E",
-    features: ["Manages all communication channels","Unifies calls, DMs, emails, SMS","Never misses a lead","Provides 100% channel coverage","Works from one AI inbox","Eliminates channel blindspots"],
-    stat: "100%", statSuffix: "", statLabel: "channel coverage",
+    features: ["Handles all your chats in one place","One box for calls, DMs, emails, SMS","Never misses a lead again","Covers every way people talk to you","Easy to use AI inbox","No more missed messages"],
+    stat: "100%", statSuffix: "", statLabel: "always covered",
   },
   {
-    id: 7, name: "AI Quote & Booking Assistant", category: "Sales AI", icon: DollarSign,
+    id: 7, name: "AI Booking Helper", category: "Selling AI", icon: DollarSign,
     color: "#22C55E",
-    features: ["Generates quotes in real-time","Considers fleet availability","Adjusts for seasonal demand","Personalizes customer pricing","Sends quotes in under 1 minute","12x faster than manual process"],
-    stat: "12x", statSuffix: "", statLabel: "faster quoting",
+    features: ["Makes quotes in real-time","Checks which cars are free","Changes price for busy times","Gives customers their own price","Sends quotes in under 1 minute","12x faster than a person"],
+    stat: "12x", statSuffix: "", statLabel: "faster quotes",
   },
   {
-    id: 8, name: "AI Upsell Assistant", category: "Revenue AI", icon: TrendingUp,
+    id: 8, name: "AI Upgrade Assistant", category: "Money AI", icon: TrendingUp,
     color: "#22C55E",
-    features: ["Offers insurance upgrades","Suggests GPS add-ons","Recommends child seats","Proposes chauffeur services","Sends SMS before pickup","Captures $280 avg per rental"],
-    stat: "$280", statSuffix: "", statLabel: "avg per rental",
+    features: ["Offers insurance upgrades","Suggests GPS and extras","Asks if they need child seats","Offers personal drivers","Sends a text before pickup","Makes $280 more per rental"],
+    stat: "$280", statSuffix: "", statLabel: "more per rental",
   },
   {
-    id: 9, name: "AI VIP & Relationship Manager", category: "Retention AI", icon: Heart,
+    id: 9, name: "AI Customer Loyalty Helper", category: "Customer AI", icon: Heart,
     color: "#22C55E",
-    features: ["Tracks past rental history","Sends birthday offers","Creates seasonal promotions","Runs 'we miss you' campaigns","Builds customer loyalty","Drives 3.2x repeat bookings"],
+    features: ["Remembers old customers","Sends birthday deals","Shows special seasonal sales","Asks old customers to come back","Makes customers stay with you","Gets 3.2x more repeat bookings"],
     stat: "3.2x", statSuffix: "", statLabel: "repeat bookings",
   },
   {
-    id: 10, name: "AI Customer Support 24/7", category: "Operations AI", icon: Shield,
+    id: 10, name: "AI Help Desk", category: "Work AI", icon: Shield,
     color: "#22C55E",
-    features: ["Sends rental agreements","Collects digital signatures","Verifies customer IDs","Confirms insurance coverage","Eliminates onboarding friction","Reduces drop-off by 82%"],
+    features: ["Sends rental papers","Gets digital signatures","Checks customer IDs","Checks insurance papers","Makes signing up easy","Stops 82% of people from leaving"],
     stat: "82%", statSuffix: "", statLabel: "less drop-off",
   },
   {
-    id: 11, name: "AI Website Chatbot", category: "Operations AI", icon: RefreshCw,
+    id: 11, name: "AI Website Helper", category: "Work AI", icon: RefreshCw,
     color: "#22C55E",
-    features: ["Engages website visitors instantly","Answers questions 24/7","Collects contact information","Books rentals automatically","Works while you sleep","Captures 82% after-hours inquiries"],
-    stat: "82%", statSuffix: "", statLabel: "after-hours captured",
+    features: ["Talks to visitors instantly","Answers questions 24/7","Gets contact info for you","Books rentals for you","Works while you sleep","Gets 82% more leads at night"],
+    stat: "82%", statSuffix: "", statLabel: "night leads found",
   },
   {
-    id: 112, name: "AI Business Manager", category: "Analytics AI", icon: BarChart2,
+    id: 112, name: "AI Business Helper", category: "Report AI", icon: BarChart2,
     color: "#22C55E",
-    features: ["Tracks all lead sources","Monitors conversion rates","Analyzes revenue per channel","Reports AI performance","Updates data in real-time","Reveals 38% hidden revenue"],
-    stat: "38%", statSuffix: "", statLabel: "hidden revenue found",
+    features: ["Sees where customers come from","Checks booking rates","Sees how much money you make","Shows how the AI is doing","Updates everything instantly","Finds 38% more hidden money"],
+    stat: "38%", statSuffix: "", statLabel: "extra money found",
   },
 ];
 
-const CATEGORIES = ["All","Voice AI","Messaging AI","Sales AI","Reputation AI","Revenue AI","Retention AI","Operations AI","Analytics AI"];
+const CATEGORIES = ["All","Phone AI","Message AI","Selling AI","Review AI","Money AI","Customer AI","Work AI","Report AI"];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
@@ -384,11 +384,11 @@ export default function SolutionsGrid() {
         <div className="sg-head">
           <div className="sg-eyebrow">
             <Sparkles size={12} style={{ marginRight: 6 }} /> 
-            12 Specialized AI Solutions
+            12 AI Helpers for your business
           </div>
           <h2 className="sg-h2">
-            The Complete AI<br />
-            <span>Rental Infrastructure.</span>
+            Everything you need<br />
+            <span>to grow your business.</span>
           </h2>
         </div>
 
@@ -405,7 +405,7 @@ export default function SolutionsGrid() {
         <div className="sg-footer">
           <div className="sg-footer-trust">
             <div className="sg-trust-item">
-              <CheckCircle2 size={14} color="#22C55E" /> Live in 14 Days
+              <CheckCircle2 size={14} color="#22C55E" /> Ready in 14 Days
             </div>
             <div className="sg-trust-item">
               <CheckCircle2 size={14} color="#22C55E" /> No Setup Fees

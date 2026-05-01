@@ -15,10 +15,10 @@ const CORE_PROBLEMS = [
     id: "missed-calls",
     icon: "",
     stat: "$47K",
-    subtitle: "lost annually",
-    title: "Missed After-Hours Calls",
-    desc: "Every missed call after 6PM costs you $312 in lost revenue. With 150+ missed calls yearly, that's $47,000 walking away to competitors who answer 24/7.",
-    realTimeMsg: "Right now: 3 potential customers called in the last hour",
+    subtitle: "lost every year",
+    title: "Missing calls after you close",
+    desc: "Every missed call after 6PM costs you $312. With 150+ missed calls every year, that's $47,000 going to other companies who answer their phones 24/7.",
+    realTimeMsg: "Right now: 3 people called you in the last hour",
     color: "#EF4444",
     colorLight: "#FEF2F2",
     colorBorder: "#FECACA",
@@ -29,10 +29,10 @@ const CORE_PROBLEMS = [
     id: "slow-replies",
     icon: "",
     stat: "2.3min",
-    subtitle: "response window",
-    title: "Slow Response Times",
-    desc: "Industry data shows 67% of bookings go to whoever responds first. Your average 45-minute response time means losing 8 out of 10 hot leads to faster competitors.",
-    realTimeMsg: "Competitor advantage: They respond in under 90 seconds",
+    subtitle: "to get the deal",
+    title: "Taking too long to reply",
+    desc: "Most people book with whoever replies first. If you take 45 minutes to answer, you are losing 8 out of 10 customers to faster businesses.",
+    realTimeMsg: "Others are faster: They reply in under 90 seconds",
     color: "#F59E0B",
     colorLight: "#FFFBEB",
     colorBorder: "#FDE68A",
@@ -43,10 +43,10 @@ const CORE_PROBLEMS = [
     id: "no-followup",
     icon: "",
     stat: "94%",
-    subtitle: "quotes ignored",
-    title: "Zero Follow-Up System",
-    desc: "Your $2,400 average booking requires 5.2 touchpoints to close. Without automated follow-up, 94% of quotes die after the first interaction — that's $180K in abandoned revenue.",
-    realTimeMsg: "This month: 23 quotes sent, 2 bookings confirmed",
+    subtitle: "prices ignored",
+    title: "No one follows up",
+    desc: "Most big bookings need a few reminders to close. Without someone to follow up, 94% of your quotes are forgotten — that's $180,000 in lost money.",
+    realTimeMsg: "This month: 23 quotes sent, only 2 people booked",
     color: "#22C55E",
     colorLight: "#F0FDF4",
     colorBorder: "#BBF7D0",
@@ -58,9 +58,9 @@ const CORE_PROBLEMS = [
     icon: "",
     stat: "3.8★",
     subtitle: "Google rating",
-    title: "Review Management Crisis",
-    desc: "Your 3.8-star rating costs you 52% of potential bookings. Customers scroll past to 4.6+ rated competitors. Each unmanaged negative review loses you $8,400 in annual bookings.",
-    realTimeMsg: "Alert: 2 new negative reviews need immediate response",
+    title: "Not enough good reviews",
+    desc: "If your rating is low, half of your potential customers will go elsewhere. People want to see 4.6 stars or more. Every bad review costs you thousands of dollars.",
+    realTimeMsg: "Wait: You have 2 new bad reviews that need a reply",
     color: "#EC4899",
     colorLight: "#FDF2F8",
     colorBorder: "#F9A8D4",
@@ -71,10 +71,10 @@ const CORE_PROBLEMS = [
     id: "low-engagement",
     icon: "",
     stat: "71%",
-    subtitle: "never return",
-    title: "Customer Retention Failure",
-    desc: "71% of your satisfied customers book with competitors next time because you have no retention system. Each lost repeat customer costs you $4,800 in lifetime value.",
-    realTimeMsg: "This quarter: 34 past customers booked elsewhere",
+    subtitle: "never come back",
+    title: "Customers only book once",
+    desc: "Most of your happy customers book somewhere else next time because you don't reach out to them. Each customer who doesn't return costs you $4,800 over time.",
+    realTimeMsg: "This quarter: 34 old customers booked with someone else",
     color: "#06B6D4",
     colorLight: "#ECFEFF",
     colorBorder: "#A5F3FC",
@@ -85,10 +85,10 @@ const CORE_PROBLEMS = [
     id: "silent-visitors",
     icon: "",
     stat: "89%",
-    subtitle: "leave silently",
-    title: "Invisible Website Traffic",
-    desc: "89% of your 2,400 monthly visitors leave without a trace. No chat, no capture, no follow-up. That's 2,136 potential customers vanishing into thin air every month.",
-    realTimeMsg: "Today: 47 visitors browsed your services, 0 contacted you",
+    subtitle: "leave without booking",
+    title: "People visit but don't buy",
+    desc: "Most people who visit your website leave without saying a word. No chat, no info, no booking. That's over 2,000 people vanishing every single month.",
+    realTimeMsg: "Today: 47 people looked at your site, 0 contacted you",
     color: "#10B981",
     colorLight: "#ECFDF5",
     colorBorder: "#6EE7B7",
@@ -714,7 +714,7 @@ function ProblemConvergenceSection() {
             margin: "0 0 12px",
             lineHeight: 1.15,
           }}>
-            Your rental business is hemorrhaging money<br />
+            You are losing real money<br />
             <span style={{ color: RED }}>$23,400 every single month.</span>
           </h2>
 
@@ -726,7 +726,7 @@ function ProblemConvergenceSection() {
             margin: "0 auto",
             lineHeight: 1.6,
           }}>
-            These six operational gaps are costing you real money right now. Each problem compounds the others, creating a revenue death spiral that gets worse every month.
+            These six problems are costing you money right now. Every time you miss a call or message, you are letting profit walk away to your competitors.
           </p>
         </motion.div>
 
@@ -829,7 +829,7 @@ function ProblemConvergenceSection() {
               letterSpacing: "-0.01em",
               margin: "0 0 4px",
             }}>
-              The bleeding stops the moment you implement our system.
+              Stop losing money the moment you start using our system.
             </p>
             <p style={{
               fontFamily: "'DM Sans',sans-serif",
@@ -837,7 +837,7 @@ function ProblemConvergenceSection() {
               color: GR,
               margin: 0,
             }}>
-              See exactly how we plug each revenue leak — automatically.
+              See how we fix every problem for you — automatically.
             </p>
           </motion.div>
         </div>

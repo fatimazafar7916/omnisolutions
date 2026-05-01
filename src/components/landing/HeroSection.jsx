@@ -3,14 +3,14 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowUpRight, CheckCircle, Phone, MessageCircle, Star, Send, Heart, Users } from "lucide-react";
 import AgentOrbit from "./AgentOrbit";
 
-const TRUST = ["No long-term contract", "Live in 14 days", "14-day refund", "Bank-level security", "24/7 US support", "Works with existing systems"];
+const TRUST = ["Cancel anytime", "Ready in 14 days", "14-day money back", "Safe and secure", "24/7 Support", "Works with your tools"];
 
 // AI Activity Animation Data with Graphics
 const AI_ACTIVITIES = [
   {
     id: 1,
     type: "call",
-    title: "Incoming Call",
+    title: "Someone is calling",
     subtitle: "Answering in 0.8s",
     color: "#2A9D8F",
     bgColor: "rgba(42, 157, 143, 0.1)",
@@ -26,8 +26,8 @@ const AI_ACTIVITIES = [
   {
     id: 2,
     type: "instagram",
-    title: "Instagram DM",
-    subtitle: "Reply sent instantly",
+    title: "Instagram Message",
+    subtitle: "Sent a reply instantly",
     color: "#E1306C",
     bgColor: "rgba(225, 48, 108, 0.1)",
     detail: "Booking confirmation",
@@ -43,7 +43,7 @@ const AI_ACTIVITIES = [
     id: 3,
     type: "review",
     title: "Google Review",
-    subtitle: "5-star response posted",
+    subtitle: "Replied instantly",
     color: "#FFA500",
     bgColor: "rgba(255, 165, 0, 0.1)",
     detail: "Thank you message",
@@ -59,7 +59,7 @@ const AI_ACTIVITIES = [
   {
     id: 4,
     type: "followup",
-    title: "Follow-up Sent",
+    title: "Sent a Reminder",
     subtitle: "Booking reminder",
     color: "#22C55E",
     bgColor: "rgba(34, 197, 94, 0.1)",
@@ -75,8 +75,8 @@ const AI_ACTIVITIES = [
   {
     id: 5,
     type: "vip",
-    title: "VIP Client",
-    subtitle: "Birthday wish sent",
+    title: "VIP Customer",
+    subtitle: "Sent a birthday wish",
     color: "#FF6B6B",
     bgColor: "rgba(255, 107, 107, 0.1)",
     detail: "Personal touch added",
@@ -104,7 +104,7 @@ const AnimatedStatsStrip = () => {
   const stats = [
     {
       id: 'calls',
-      label: 'Calls Answered',
+      label: "Calls Answered",
       value: 100,
       suffix: '%',
       color: '#2A9D8F',
@@ -124,11 +124,11 @@ const AnimatedStatsStrip = () => {
       value: 22,
       suffix: '+',
       color: '#FF6B6B',
-      subtext: 'Global communication'
+      subtext: 'Talks with everyone'
     },
     {
       id: 'leads',
-      label: 'Leads Missed',
+      label: "Missed Calls",
       value: 0,
       suffix: '%',
       color: '#2A9D8F',
@@ -1234,7 +1234,7 @@ export default function HeroSection() {
                   zIndex: 2
                 }}
               >
-                24/7 AI Live — Answering Calls Now
+                24/7 AI — Answering your calls now
               </span>
             </motion.div>
 
@@ -1260,7 +1260,7 @@ export default function HeroSection() {
                     fontSize: "clamp(32px, 4.5vw, 56px)",
                   }}
                 >
-                  AI employees
+                  AI Assistants
                 </span>
                 <span
                   style={{
@@ -1272,7 +1272,7 @@ export default function HeroSection() {
                     color: "#22C55E",
                   }}
                 >
-                  specifically built
+                  specially built for
                 </span>
                 <span
                   style={{
@@ -1280,7 +1280,7 @@ export default function HeroSection() {
                     fontSize: "clamp(32px, 4.5vw, 56px)",
                   }}
                 >
-                  for car rental USA operators.
+                  car rental USA owners.
                 </span>
               </h1>
             </motion.div>
@@ -1299,9 +1299,9 @@ export default function HeroSection() {
                 margin: "0 0 24px",
               }}
             >
-              Aiaura answers every call, every DM, every email — 24/7, in any language, in your brand voice.
+              Aiaura answers every call, every message, and every email — 24/7, in any language.
               <br />
-              <strong style={{ color: "#141419", fontWeight: 500 }}>You only handle deals that are ready to close.</strong>
+              <strong style={{ color: "#141419", fontWeight: 500 }}>You only focus on customers who are ready to book.</strong>
             </motion.p>
 
             {/* All AI Agents Working Together Line - Enhanced Mobile */}
@@ -1375,7 +1375,7 @@ export default function HeroSection() {
                   e.currentTarget.style.boxShadow = "0 8px 32px rgba(34,197,94,0.25)";
                 }}
               >
-                Book a Call →
+                Book a Free Call
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -1412,7 +1412,7 @@ export default function HeroSection() {
                   e.currentTarget.style.transform = "";
                 }}
               >
-                See All Products
+                See how it works
               </a>
             </motion.div>
 
@@ -1583,15 +1583,15 @@ export default function HeroSection() {
           }
           
           .hero-grid h1 span {
-            font-size: clamp(32px, 8vw, 42px) !important;
+            font-size: clamp(28px, 7.5vw, 38px) !important;
             line-height: 1.1 !important;
           }
           
           .hero-grid p {
-            font-size: clamp(14px, 4vw, 16px) !important;
-            line-height: 1.6 !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            font-size: clamp(13.5px, 3.8vw, 15px) !important;
+            line-height: 1.5 !important;
+            margin: 0 auto 20px !important;
+            opacity: 0.8;
           }
           
           .hero-grid > div:first-child {
@@ -1606,14 +1606,36 @@ export default function HeroSection() {
         }
         
         @media (max-width: 479px) {
+          .hero-grid { gap: 16px !important; }
+          
           .hero-grid > div:first-child > div:nth-child(4) {
-            flex-direction: column !important;
-            align-items: center !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            margin-bottom: 24px !important;
           }
           
           .hero-grid > div:first-child > div:nth-child(4) > a {
+            flex: 1 !important;
+            min-width: 140px !important;
+            padding: 10px 16px !important;
+            font-size: 13px !important;
+          }
+
+          .hero-trust-row {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px 12px !important;
+            justify-content: center !important;
+            margin-top: 24px !important;
             width: 100% !important;
-            max-width: 280px !important;
+          }
+
+          .hero-trust-row > span {
+            justify-content: center !important;
+            font-size: 11px !important;
+            white-space: nowrap !important;
           }
         }
         

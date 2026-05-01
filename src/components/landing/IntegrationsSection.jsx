@@ -166,7 +166,7 @@ export default function IntegrationsSection() {
                   background: "#22C55E",
                 }}
               />
-              Integrations
+              Works with your tools
               <span
                 style={{
                   display: "inline-block",
@@ -197,7 +197,7 @@ export default function IntegrationsSection() {
                   color: "#22C55E",
                 }}
               >
-                existing stack.
+                tools you use.
               </span>
             </h2>
 
@@ -211,8 +211,7 @@ export default function IntegrationsSection() {
                 maxWidth: 500,
               }}
             >
-              No rip-and-replace. No migration headaches. We connect directly into the tools you
-              already pay for.
+              No need to change how you work. Aiaura works with all the tools you already use today.
             </p>
           </motion.div>
         </div>

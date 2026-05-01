@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
 
 const TRUST = [
-  "14-day money-back refund",
-  "No long-term contract",
-  "Bank-level security",
-  "Live in 14 days",
+  "14-day money back",
+  "Cancel anytime",
+  "Safe and secure",
+  "Ready in 14 days",
 ];
 
 export default function CTASection() {
@@ -70,7 +70,7 @@ export default function CTASection() {
                 letterSpacing: "0.05em",
               }}
             >
-              Start Recovering Revenue Today
+              Start growing your business today
             </span>
 
             <h2
@@ -111,8 +111,8 @@ export default function CTASection() {
                 margin: "0 auto 32px",
               }}
             >
-              Join US car rental operators who never miss a call, a DM, or a booking — ever again.
-              Set up in 14 days. No long-term contract.
+              Join US car rental owners who never miss a call or message again.
+              Ready in 14 days. Cancel anytime.
             </p>
 
             <div
@@ -174,7 +174,7 @@ export default function CTASection() {
                 onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
-                Explore Products
+                See how it works
               </a>
             </div>
 
