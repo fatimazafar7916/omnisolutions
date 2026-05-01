@@ -28,20 +28,20 @@ function LogoItem({ tool }) {
   const [imgOk, setImgOk] = useState(true);
   return (
     <motion.div
-      whileHover={{ scale: 1.1, y: -4 }}
+      whileHover={{ scale: 1.06, y: -3 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
       style={{
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "16px 24px",
+        padding: "12px 20px",
         background: "#FFFFFF",
-        borderRadius: 12,
+        borderRadius: 10,
         border: "1px solid rgba(0,0,0,0.06)",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
         cursor: "default",
         flexShrink: 0,
-        minWidth: 120,
+        minWidth: 100,
       }}
       title={tool.name}
     >
@@ -51,8 +51,8 @@ function LogoItem({ tool }) {
           alt={tool.name}
           onError={() => setImgOk(false)}
           style={{
-            maxWidth: 80,
-            maxHeight: 48,
+            maxWidth: 64,
+            maxHeight: 36,
             width: "auto",
             height: "auto",
             objectFit: "contain",
@@ -69,12 +69,12 @@ function LogoItem({ tool }) {
       ) : (
         <span
           style={{
-            width: 80,
-            height: 48,
-            borderRadius: 8,
+            width: 64,
+            height: 36,
+            borderRadius: 6,
             background: "linear-gradient(135deg, #E4E0D8, #D1CCC4)",
             color: "#888",
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: 700,
             display: "flex",
             alignItems: "center",
@@ -101,7 +101,7 @@ export default function IntegrationsSection() {
       id="integrations"
       style={{
         background: "#F1F0F5",
-        padding: "clamp(48px, 8vw, 72px) 0 clamp(40px, 6vw, 64px)",
+        padding: "clamp(40px, 6vw, 64px) 0 clamp(32px, 5vw, 56px)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -136,7 +136,7 @@ export default function IntegrationsSection() {
           ref={headerRef}
           style={{
             textAlign: "center",
-            marginBottom: "clamp(40px, 6vw, 64px)",
+            marginBottom: "clamp(32px, 5vw, 48px)",
           }}
         >
           <motion.div
@@ -223,7 +223,7 @@ export default function IntegrationsSection() {
         style={{
           overflow: "hidden",
           position: "relative",
-          padding: "20px 0",
+          padding: "12px 0",
         }}
       >
         {/* Fade masks */}
@@ -255,7 +255,7 @@ export default function IntegrationsSection() {
         <div
           style={{
             display: "flex",
-            gap: 20,
+            gap: 14,
             width: "max-content",
             animation: "int-scroll 40s linear infinite",
           }}
