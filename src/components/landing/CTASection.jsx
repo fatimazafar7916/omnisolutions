@@ -19,9 +19,9 @@ export default function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           style={{
-            borderRadius: 32,
+            borderRadius: 24,
             background: "#7B74DC",
-            padding: "clamp(48px, 7vw, 96px) clamp(32px, 6vw, 80px)",
+            padding: "clamp(40px, 6vw, 72px) clamp(28px, 5vw, 64px)",
             position: "relative",
             overflow: "hidden",
             textAlign: "center",
@@ -33,8 +33,8 @@ export default function CTASection() {
               position: "absolute",
               top: -80,
               right: -80,
-              width: 320,
-              height: 320,
+              width: 280,
+              height: 280,
               borderRadius: "50%",
               background: "rgba(42,157,143,0.10)",
               pointerEvents: "none",
@@ -45,8 +45,8 @@ export default function CTASection() {
               position: "absolute",
               bottom: -60,
               left: -60,
-              width: 240,
-              height: 240,
+              width: 200,
+              height: 200,
               borderRadius: "50%",
               background: "rgba(200,165,90,0.07)",
               pointerEvents: "none",
@@ -57,15 +57,15 @@ export default function CTASection() {
             <span
               style={{
                 display: "inline-block",
-                padding: "6px 16px",
+                padding: "5px 14px",
                 borderRadius: 100,
                 border: "1px solid rgba(255,255,255,0.3)",
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: 600,
                 color: "#FFFFFF",
-                marginBottom: 28,
-                letterSpacing: "0.06em",
+                marginBottom: 24,
+                letterSpacing: "0.05em",
               }}
             >
               Start Recovering Revenue Today
@@ -73,13 +73,13 @@ export default function CTASection() {
 
             <h2
               style={{
-                fontFamily: "'Bricolage Grotesque', sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(32px, 5vw, 66px)",
-                letterSpacing: "-0.04em",
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(28px, 4vw, 52px)",
+                letterSpacing: "-0.02em",
                 color: "#fff",
-                lineHeight: 1.0,
-                margin: "0 0 6px",
+                lineHeight: 1.1,
+                margin: "0 0 4px",
               }}
             >
               Stop losing rentals
@@ -90,10 +90,10 @@ export default function CTASection() {
                 fontFamily: "'Instrument Serif', serif",
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(32px, 5vw, 66px)",
+                fontSize: "clamp(28px, 4vw, 52px)",
                 color: "#FFFFFF",
-                lineHeight: 1.0,
-                margin: "0 0 28px",
+                lineHeight: 1.1,
+                margin: "0 0 24px",
               }}
             >
               to whoever picks up first.
@@ -102,11 +102,11 @@ export default function CTASection() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(15px, 1.8vw, 18px)",
+                fontSize: "clamp(14px, 1.4vw, 16px)",
                 color: "rgba(255,255,255,0.62)",
-                lineHeight: 1.65,
-                maxWidth: 560,
-                margin: "0 auto 40px",
+                lineHeight: 1.6,
+                maxWidth: 500,
+                margin: "0 auto 32px",
               }}
             >
               Join US car rental operators who never miss a call, a DM, or a booking — ever again.
@@ -117,9 +117,9 @@ export default function CTASection() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 12,
+                gap: 10,
                 justifyContent: "center",
-                marginBottom: 36,
+                marginBottom: 28,
               }}
             >
               <a
@@ -129,14 +129,14 @@ export default function CTASection() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
-                  padding: "15px 32px",
+                  gap: 6,
+                  padding: "12px 28px",
                   borderRadius: 100,
                   background: "#fff",
                   color: "#7B74DC",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 700,
-                  fontSize: 15,
+                  fontSize: 14,
                   textDecoration: "none",
                   transition: "transform 0.2s, box-shadow 0.2s",
                 }}
@@ -149,7 +149,7 @@ export default function CTASection() {
                   e.currentTarget.style.boxShadow = "";
                 }}
               >
-                Book a Free Call <ArrowUpRight size={16} />
+                Book a Free Call <ArrowUpRight size={14} />
               </a>
 
               <a
@@ -157,15 +157,15 @@ export default function CTASection() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
-                  padding: "15px 32px",
+                  gap: 6,
+                  padding: "12px 28px",
                   borderRadius: 100,
                   background: "transparent",
                   color: "#fff",
                   border: "1.5px solid rgba(255,255,255,0.2)",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 500,
-                  fontSize: 15,
+                  fontSize: 14,
                   textDecoration: "none",
                   transition: "background 0.2s",
                 }}
@@ -180,7 +180,7 @@ export default function CTASection() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "8px 24px",
+                gap: "6px 20px",
                 justifyContent: "center",
               }}
             >
@@ -190,13 +190,13 @@ export default function CTASection() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 7,
+                    gap: 6,
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 13,
+                    fontSize: 12,
                     color: "rgba(255,255,255,0.45)",
                   }}
                 >
-                  <CheckCircle size={13} color="#2A9D8F" /> {t}
+                  <CheckCircle size={12} color="#2A9D8F" /> {t}
                 </span>
               ))}
             </div>
