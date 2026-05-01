@@ -21,10 +21,12 @@ export default function CTASection() {
           style={{
             borderRadius: 24,
             background: "var(--brand-gradient)",
-            padding: "clamp(32px, 5vw, 52px) clamp(24px, 4vw, 40px)",
+            padding: "clamp(24px, 4vw, 42px) clamp(20px, 3vw, 32px)",
             position: "relative",
             overflow: "hidden",
             textAlign: "center",
+            maxWidth: 1000,
+            margin: "0 auto",
           }}
         >
           {/* Decoration */}
@@ -64,7 +66,7 @@ export default function CTASection() {
                 fontSize: 11,
                 fontWeight: 600,
                 color: "#FFFFFF",
-                marginBottom: 24,
+                marginBottom: 16,
                 letterSpacing: "0.05em",
               }}
             >
@@ -75,11 +77,11 @@ export default function CTASection() {
               style={{
                 fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(24px, 3.5vw, 42px)",
+                fontSize: "clamp(20px, 2.8vw, 34px)",
                 letterSpacing: "-0.03em",
                 color: "#fff",
                 lineHeight: 1.1,
-                margin: "0 0 4px",
+                margin: "0 0 2px",
               }}
             >
               Stop losing rentals
@@ -90,10 +92,10 @@ export default function CTASection() {
                 fontFamily: "'Instrument Serif', serif",
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(24px, 3.5vw, 42px)",
+                fontSize: "clamp(20px, 2.8vw, 34px)",
                 color: "#FFFFFF",
                 lineHeight: 1.1,
-                margin: "0 0 24px",
+                margin: "0 0 16px",
               }}
             >
               to whoever picks up first.
