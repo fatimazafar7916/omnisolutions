@@ -304,6 +304,7 @@ export default function WhyAiauraSection() {
 
   return (
     <section
+      id="why"
       ref={sectionRef}
       style={{
         background: "linear-gradient(180deg, #FAFBFC 0%, #F3F4F6 100%)",
@@ -311,6 +312,7 @@ export default function WhyAiauraSection() {
         fontFamily: "'DM Sans',system-ui,sans-serif",
         position: "relative",
         overflow: "hidden",
+        scrollMarginTop: "80px", // Account for fixed navbar
       }}
     >
       {/* Animated background elements */}
