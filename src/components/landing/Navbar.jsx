@@ -14,81 +14,80 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
+    const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
+      {/* Floating pill navbar */}
+      <motion.div
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
           zIndex: 100,
-          background: scrolled ? "rgba(252,252,254,0.92)" : "rgba(252,252,254,0)",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(123,116,220,0.08)" : "1px solid transparent",
-          transition: "background 0.35s, border-color 0.35s, backdrop-filter 0.35s",
+          width: "calc(100% - 48px)",
+          maxWidth: 900,
         }}
       >
         <div
-          className="section-container"
           style={{
-            height: 68,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            background: scrolled
+              ? "rgba(255,255,255,0.95)"
+              : "rgba(255,255,255,0.88)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            borderRadius: 100,
+            padding: "8px 8px 8px 16px",
+            boxShadow: scrolled
+              ? "0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)"
+              : "0 4px 16px rgba(0,0,0,0.08)",
+            transition: "all 0.3s ease",
           }}
         >
-          {/* Logo */}
+          {/* Logo circle */}
           <a
             href="/"
             style={{
               display: "flex",
-              alignItems: "baseline",
-              gap: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              background: "#141419",
               textDecoration: "none",
+              flexShrink: 0,
             }}
           >
-            <span
-              style={{
-                fontFamily: "'Bricolage Grotesque', sans-serif",
-                fontWeight: 800,
-                fontSize: 22,
-                color: "#7B74DC",
-                letterSpacing: "-0.03em",
-              }}
-            >
-              AIAUR
-            </span>
-            <span
-              style={{
-                fontFamily: "'Bricolage Grotesque', sans-serif",
-                fontWeight: 800,
-                fontSize: 22,
-                color: "#2A9D8F",
-                letterSpacing: "-0.03em",
-              }}
-            >
+            <span style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 800,
+              fontSize: 14,
+              color: "#7B74DC",
+              letterSpacing: "-0.02em",
+            }}>
               A
             </span>
           </a>
 
-          {/* Desktop links */}
-          <div style={{ display: "none" }} className="md-nav">
+          {/* Desktop nav links */}
+          <div className="nav-links-desktop" style={{ display: "none" }}>
             {LINKS.map((l) => (
               <a
                 key={l.label}
@@ -97,154 +96,178 @@ export default function Navbar() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 500,
                   fontSize: 14,
-                  color: "#6E6D7A",
+                  color: "#3D3C47",
                   textDecoration: "none",
-                  padding: "4px 0",
-                  transition: "color 0.2s",
+                  padding: "6px 14px",
+                  borderRadius: 100,
+                  transition: "all 0.2s",
+                  whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) => (e.target.style.color = "#7B74DC")}
-                onMouseLeave={(e) => (e.target.style.color = "#6E6D7A")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(123,116,220,0.08)";
+                  e.currentTarget.style.color = "#7B74DC";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.color = "#3D3C47";
+                }}
               >
                 {l.label}
               </a>
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <a
-            href="#cta"
-            className="nav-cta-desktop"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              padding: "10px 22px",
-              borderRadius: 100,
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
-              fontSize: 13,
-              background: "#7B74DC",
-              color: "#FCFCFE",
-              textDecoration: "none",
-              transition: "transform 0.2s, box-shadow 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(123,116,220,0.25)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            Book a Call <ArrowUpRight size={14} />
-          </a>
+          {/* Right side */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {/* Desktop CTA */}
+            <a
+              href="#cta"
+              className="nav-cta-desktop"
+              style={{
+                display: "none",
+                alignItems: "center",
+                gap: 6,
+                padding: "9px 20px",
+                borderRadius: 100,
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 600,
+                fontSize: 13,
+                background: "#141419",
+                color: "#fff",
+                textDecoration: "none",
+                transition: "all 0.2s",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#2D2C38";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#141419";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              Book a Call <ArrowUpRight size={13} />
+            </a>
 
-          {/* Hamburger */}
-          <button
-            onClick={() => setOpen(true)}
-            style={{
-              display: "flex",
-              padding: 8,
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              color: "#7B74DC",
-            }}
-            className="hamburger-btn"
-            aria-label="Open menu"
-          >
-            <Menu size={22} />
-          </button>
+            {/* Hamburger */}
+            <button
+              onClick={() => setOpen(true)}
+              className="hamburger-btn"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                background: "#141419",
+                border: "none",
+                cursor: "pointer",
+                color: "#fff",
+              }}
+              aria-label="Open menu"
+            >
+              <Menu size={16} />
+            </button>
+          </div>
         </div>
-      </motion.nav>
+      </motion.div>
 
       {/* Mobile overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{
               position: "fixed",
-              inset: 0,
+              top: 16,
+              left: 24,
+              right: 24,
               zIndex: 200,
-              background: "#FCFCFE",
-              display: "flex",
-              flexDirection: "column",
+              background: "#fff",
+              borderRadius: 24,
+              border: "1px solid rgba(0,0,0,0.08)",
+              boxShadow: "0 16px 48px rgba(0,0,0,0.15)",
+              overflow: "hidden",
             }}
           >
-            <div
-              style={{
-                padding: "16px 24px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                borderBottom: "1px solid rgba(123,116,220,0.08)",
-              }}
-            >
-              <span
-                style={{
+            {/* Mobile header */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "14px 16px",
+              borderBottom: "1px solid #F0EFF5",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{
+                  width: 32, height: 32, borderRadius: "50%",
+                  background: "#141419",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <span style={{
+                    fontFamily: "'Bricolage Grotesque', sans-serif",
+                    fontWeight: 800, fontSize: 13, color: "#7B74DC",
+                  }}>A</span>
+                </div>
+                <span style={{
                   fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 800,
-                  fontSize: 22,
-                  color: "#7B74DC",
-                  letterSpacing: "-0.03em",
-                }}
-              >
-                AIAUR<span style={{ color: "#2A9D8F" }}>A</span>
-              </span>
-
+                  fontWeight: 700, fontSize: 16, color: "#141419",
+                  letterSpacing: "-0.02em",
+                }}>
+                  AIAUR<span style={{ color: "#2A9D8F" }}>A</span>
+                </span>
+              </div>
               <button
                 onClick={() => setOpen(false)}
                 style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "#7B74DC",
+                  width: 32, height: 32, borderRadius: "50%",
+                  background: "#F5F4FA",
+                  border: "none", cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "#141419",
                 }}
                 aria-label="Close"
               >
-                <X size={22} />
+                <X size={15} />
               </button>
             </div>
 
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "0 32px",
-                gap: 12,
-              }}
-            >
+            {/* Mobile links */}
+            <div style={{ padding: "8px 8px" }}>
               {LINKS.map((l, i) => (
                 <motion.a
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, x: 24 }}
+                  initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07 }}
+                  transition={{ delay: i * 0.05 }}
                   style={{
-                    fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 36,
-                    color: "#7B74DC",
+                    display: "block",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 500,
+                    fontSize: 15,
+                    color: "#3D3C47",
                     textDecoration: "none",
-                    paddingBottom: 8,
-                    borderBottom: "1px solid rgba(123,116,220,0.07)",
+                    padding: "12px 16px",
+                    borderRadius: 12,
+                    transition: "background 0.2s",
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = "#F5F4FA"}
+                  onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
                 >
                   {l.label}
                 </motion.a>
               ))}
             </div>
 
-            <div style={{ padding: 24 }}>
+            {/* Mobile CTA */}
+            <div style={{ padding: "8px 16px 16px" }}>
               <a
                 href="#cta"
                 onClick={() => setOpen(false)}
@@ -252,18 +275,19 @@ export default function Navbar() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  gap: 8,
+                  gap: 6,
                   width: "100%",
-                  padding: "16px",
+                  padding: "13px",
                   borderRadius: 100,
-                  background: "#7B74DC",
-                  color: "#FCFCFE",
+                  background: "#141419",
+                  color: "#fff",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
+                  fontSize: 14,
                   textDecoration: "none",
                 }}
               >
-                Book a Call <ArrowUpRight size={16} />
+                Book a Call <ArrowUpRight size={14} />
               </a>
             </div>
           </motion.div>
@@ -272,9 +296,10 @@ export default function Navbar() {
 
       <style>{`
         @media (min-width: 768px) {
-          .md-nav {
+          .nav-links-desktop {
             display: flex !important;
-            gap: 36px;
+            align-items: center;
+            gap: 2px;
           }
           .hamburger-btn {
             display: none !important;
@@ -286,6 +311,12 @@ export default function Navbar() {
         @media (max-width: 767px) {
           .nav-cta-desktop {
             display: none !important;
+          }
+        }
+        @media (max-width: 480px) {
+          /* Navbar pill width on small screens */
+          div[style*="calc(100% - 48px)"] {
+            width: calc(100% - 32px) !important;
           }
         }
       `}</style>
