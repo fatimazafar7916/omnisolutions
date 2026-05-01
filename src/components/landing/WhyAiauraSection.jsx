@@ -166,10 +166,11 @@ function ReasonCard({ reason, index, isVisible }) {
         style={{
           position: "absolute",
           left: 0, top: 0, bottom: 0,
-          width: isHovered ? 6 : 3,
+          width: isHovered ? 4 : 2,
           background: `linear-gradient(180deg, ${C}, #6366F1)`,
-          borderRadius: "0 4px 4px 0",
+          borderRadius: "0 2px 2px 0",
           transition: "width 0.3s ease",
+          opacity: 0.6,
         }}
       />
 
@@ -646,6 +647,13 @@ export default function WhyAiauraSection() {
           section > div > div:first-child > div:last-child > div {
             padding: 24px 20px !important;
             border-radius: 16px !important;
+            border: 1px solid #E5E7EB !important;
+          }
+          
+          /* Make side accent more subtle on mobile */
+          section > div > div:first-child > div:last-child > div > div:first-child {
+            width: 2px !important;
+            opacity: 0.4 !important;
           }
           
           section > div > div:first-child > div:last-child > div > div:first-child {
@@ -706,9 +714,17 @@ export default function WhyAiauraSection() {
             margin: 0 auto !important;
           }
           
-          /* Reason cards - more compact */
+          /* Reason cards - more compact with subtle borders */
           section > div > div:first-child > div:last-child > div {
             padding: 20px 16px !important;
+            border: 1px solid #E5E7EB !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+          }
+          
+          /* Make side accent even more subtle */
+          section > div > div:first-child > div:last-child > div > div:first-child {
+            width: 1px !important;
+            opacity: 0.3 !important;
           }
           
           section > div > div:first-child > div:last-child > div > div:last-child {
