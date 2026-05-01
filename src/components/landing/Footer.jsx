@@ -40,7 +40,7 @@ export default function Footer() {
               }}
             >
               <span style={{ color: "#fff" }}>AIAUR</span>
-              <span style={{ color: "#2A9D8F" }}>A</span>
+              <span style={{ color: "#22C55E" }}>A</span>
             </div>
             <p
               style={{

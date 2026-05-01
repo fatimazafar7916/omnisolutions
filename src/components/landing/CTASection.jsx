@@ -20,7 +20,7 @@ export default function CTASection() {
           transition={{ duration: 0.7 }}
           style={{
             borderRadius: 24,
-            background: "#7B74DC",
+            background: "var(--brand-gradient)",
             padding: "clamp(40px, 6vw, 72px) clamp(28px, 5vw, 64px)",
             position: "relative",
             overflow: "hidden",
@@ -133,7 +133,7 @@ export default function CTASection() {
                   padding: "12px 28px",
                   borderRadius: 100,
                   background: "#fff",
-                  color: "#7B74DC",
+                  color: "#22C55E",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 700,
                   fontSize: 14,
@@ -196,7 +196,7 @@ export default function CTASection() {
                     color: "rgba(255,255,255,0.45)",
                   }}
                 >
-                  <CheckCircle size={12} color="#2A9D8F" /> {t}
+                  <CheckCircle size={12} color="#fff" /> {t}
                 </span>
               ))}
             </div>

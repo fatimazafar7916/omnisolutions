@@ -56,7 +56,7 @@ export default function FAQSection() {
               fontSize: 10,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#7B74DC",
+              color: "#22C55E",
               display: "block",
               marginBottom: 12,
             }}
@@ -81,7 +81,7 @@ export default function FAQSection() {
                 fontFamily: "'Instrument Serif', serif",
                 fontWeight: 400,
                 fontStyle: "italic",
-                color: "#2A9D8F",
+                color: "#22C55E",
               }}
             >
               straight answers.
@@ -108,11 +108,11 @@ export default function FAQSection() {
               marginTop: 16,
               padding: "10px 20px",
               borderRadius: 100,
-              background: "#F5F3FF",
+              background: "#F0FDF4",
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 600,
               fontSize: 13,
-              color: "#4D4699",
+              color: "#22C55E",
               textDecoration: "none",
             }}
           >
@@ -168,7 +168,7 @@ export default function FAQSection() {
                     width: 24,
                     height: 24,
                     borderRadius: "50%",
-                    background: open === i ? "#7B74DC" : "#F5F3FF",
+                    background: open === i ? "#22C55E" : "#F0FDF4",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -179,7 +179,7 @@ export default function FAQSection() {
                   {open === i ? (
                     <Minus size={11} color="#fff" />
                   ) : (
-                    <Plus size={11} color="#7B74DC" />
+                    <Plus size={11} color="#22C55E" />
                   )}
                 </span>
               </button>

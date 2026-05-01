@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 /* ── Colors ── */
-const C = "#7B74DC";
+const C = "#22C55E";
 const GR = "#6E6D7A";
 
 /* ── Hero Split Content ── */
@@ -96,7 +96,7 @@ function StatCard({ stat, index, isVisible }) {
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
           fontWeight: 800,
           fontSize: "clamp(20px,3vw,28px)",
-          background: `linear-gradient(135deg, ${C}, #6366F1)`,
+          background: "var(--brand-gradient)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -159,7 +159,7 @@ function ReasonCard({ reason, index, isVisible }) {
           position: "absolute",
           left: 0, top: 0, bottom: 0,
           width: isHovered ? 4 : 2,
-          background: `linear-gradient(180deg, ${C}, #6366F1)`,
+          background: "var(--brand-gradient)",
           borderRadius: "0 2px 2px 0",
           transition: "width 0.3s ease",
           opacity: 0.6,
@@ -261,7 +261,7 @@ function TrustPoint({ text, index, isVisible }) {
         width: 6,
         height: 6,
         borderRadius: "50%",
-        background: `linear-gradient(135deg, ${C}, #6366F1)`,
+        background: "var(--brand-gradient)",
         flexShrink: 0,
       }} />
       <span style={{
@@ -315,7 +315,7 @@ export default function WhyAiauraSection() {
         width: 600,
         height: 600,
         borderRadius: "50%",
-        background: `radial-gradient(circle, ${C}08 0%, transparent 70%)`,
+        background: `radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%)`,
         pointerEvents: "none",
       }} />
       <div style={{
@@ -375,7 +375,7 @@ export default function WhyAiauraSection() {
             }}>
               {HERO_CONTENT.left.title}<br />
               <span style={{
-                background: `linear-gradient(135deg, ${C}, #6366F1)`,
+                background: "var(--brand-gradient)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -482,7 +482,7 @@ export default function WhyAiauraSection() {
             <div style={{
               position: "absolute",
               top: 0, left: 0, right: 0, bottom: 0,
-              background: `linear-gradient(135deg, ${C}20, transparent)`,
+              background: `linear-gradient(135deg, rgba(34,197,94,0.20), transparent)`,
               opacity: 0.1,
             }} />
             
@@ -512,23 +512,25 @@ export default function WhyAiauraSection() {
                 fontFamily: "'DM Sans',sans-serif",
                 fontSize: 14,
                 fontWeight: 600,
-                color: "#111827",
-                background: "linear-gradient(135deg, #fff, #F9FAFB)",
+                color: "#fff",
+                background: "var(--brand-gradient)",
                 border: "none",
                 borderRadius: 10,
                 padding: "14px 28px",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
                 width: "100%",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                boxShadow: "0 4px 16px rgba(34,197,94,0.3)",
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = "translateY(-2px)";
-                e.target.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
+                e.target.style.boxShadow = "0 8px 24px rgba(34,197,94,0.4)";
+                e.target.style.filter = "brightness(1.1)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+                e.target.style.boxShadow = "0 4px 16px rgba(34,197,94,0.3)";
+                e.target.style.filter = "brightness(1)";
               }}
               >
                 Book Your Revenue Demo →

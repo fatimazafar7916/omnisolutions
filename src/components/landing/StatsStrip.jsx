@@ -111,7 +111,7 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
     if (!isComplete) return "#FFFFFF";
     
     // Show green for completed animations
-    if (isPercentage && target === 100) return "#10B981"; // Green for 100%
+    if (isPercentage && target === 100) return "#22C55E"; // Green for 100%
     
     return "#FFFFFF";
   };
@@ -156,7 +156,7 @@ export default function StatsStrip() {
           position: "absolute",
           inset: 0,
           opacity: 0.04,
-          backgroundImage: "radial-gradient(circle, #10B981 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, #22C55E 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -169,7 +169,7 @@ export default function StatsStrip() {
       <div style={{
         position: "absolute", bottom: "20%", right: "10%",
         width: "100px", height: "100px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(123,116,220,0.08) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%)",
         pointerEvents: "none"
       }} />
 
@@ -278,7 +278,7 @@ export default function StatsStrip() {
                       width: "12px",
                       height: "12px",
                       borderRadius: "50%",
-                      background: "#10B981",
+                      background: "#22C55E",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center"

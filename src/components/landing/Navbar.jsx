@@ -72,30 +72,27 @@ export default function Navbar() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              height: 36,
-              borderRadius: 100,
-              background: "#141419",
               textDecoration: "none",
               flexShrink: 0,
-              padding: "0 14px",
-              marginLeft: 2,
+              padding: "0 8px",
+              marginLeft: 8,
             }}
           >
             <span style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontWeight: 800,
-              fontSize: 13,
+              fontSize: 17,
               color: "#22C55E",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.02em",
             }}>
               AIAUR
             </span>
             <span style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontWeight: 800,
-              fontSize: 13,
+              fontSize: 17,
               color: "#A3E635",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.02em",
             }}>
               A
             </span>
@@ -223,20 +220,18 @@ export default function Navbar() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{
-                  height: 32, borderRadius: 100,
-                  background: "#141419",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  padding: "0 12px",
+                  padding: "0 4px",
                 }}>
                   <span style={{
                     fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontWeight: 800, fontSize: 12, color: "#22C55E",
-                    letterSpacing: "0.04em",
+                    fontWeight: 800, fontSize: 16, color: "#22C55E",
+                    letterSpacing: "0.02em",
                   }}>AIAUR</span>
                   <span style={{
                     fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontWeight: 800, fontSize: 12, color: "#A3E635",
-                    letterSpacing: "0.04em",
+                    fontWeight: 800, fontSize: 16, color: "#A3E635",
+                    letterSpacing: "0.02em",
                   }}>A</span>
                 </div>
               </div>

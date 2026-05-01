@@ -10,8 +10,8 @@ const STEPS = [
     items: [
       "Twilio, RingCentral, or your number",
     ],
-    accent: "#2A9D8F",
-    accentLight: "#D1FAE5",
+    accent: "#22C55E",
+    accentLight: "#F0FDF4",
   },
   {
     icon: Brain,
@@ -21,8 +21,8 @@ const STEPS = [
     items: [
       "Fleet inventory & pricing rules",
     ],
-    accent: "#7B74DC",
-    accentLight: "#EDE9FE",
+    accent: "#22C55E",
+    accentLight: "#F0FDF4",
   },
   {
     icon: Rocket,
@@ -90,7 +90,7 @@ const styles = `
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #2A9D8F;
+  color: #22C55E;
   margin-bottom: 16px;
 }
 
@@ -108,7 +108,7 @@ const styles = `
   font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 400;
-  color: #2A9D8F;
+  color: #22C55E;
 }
 
 .hiw-sub {
@@ -252,7 +252,7 @@ const styles = `
 
 .hiw-cta {
   padding: 28px 36px;
-  background: linear-gradient(135deg, #7B74DC 0%, #6B63CC 100%);
+  background: var(--brand-gradient);
   border-radius: 14px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -260,7 +260,7 @@ const styles = `
   gap: 24px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 28px rgba(123,116,220,0.25);
+  box-shadow: 0 8px 28px rgba(34,197,94,0.25);
 }
 
 .hiw-cta::before {
@@ -304,7 +304,7 @@ const styles = `
   align-items: center;
   gap: 6px;
   padding: 11px 22px;
-  background: #2A9D8F;
+  background: var(--brand-gradient);
   border: none;
   border-radius: 8px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -314,15 +314,15 @@ const styles = `
   cursor: pointer;
   transition: all 0.22s ease;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(42,157,143,0.35);
+  box-shadow: 0 4px 12px rgba(34,197,94,0.35);
   position: relative;
   z-index: 1;
 }
 
 .hiw-btn:hover {
-  background: #248A7A;
+  filter: brightness(1.1);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(42,157,143,0.45);
+  box-shadow: 0 6px 20px rgba(34,197,94,0.45);
 }
 
 @media (max-width: 900px) {
