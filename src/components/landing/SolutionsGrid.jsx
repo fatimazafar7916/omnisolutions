@@ -76,7 +76,7 @@ const PRODUCTS = [
     stat: "82%", statSuffix: "", statLabel: "after-hours captured",
   },
   {
-    id: 12, name: "AI Business Manager", category: "Analytics AI", icon: BarChart2,
+    id: 112, name: "AI Business Manager", category: "Analytics AI", icon: BarChart2,
     color: "#22C55E",
     features: ["Tracks all lead sources","Monitors conversion rates","Analyzes revenue per channel","Reports AI performance","Updates data in real-time","Reveals 38% hidden revenue"],
     stat: "38%", statSuffix: "", statLabel: "hidden revenue found",
@@ -232,15 +232,85 @@ const styles = `
   text-overflow: ellipsis;
 }
 
+/* ── Footer ── */
+.sg-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sg-footer-trust {
+  display: flex;
+  gap: 24px;
+}
+
+.sg-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.sg-footer-btn {
+  background: var(--brand-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(34,197,94,0.2);
+}
+
+.sg-footer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(34,197,94,0.3);
+}
+
 /* ── Responsive ── */
 @media (max-width: 1100px) {
   .sg-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
 }
 
-@media (max-width: 640px) {
-  .sg-grid { grid-template-columns: 1fr; gap: 32px; }
-  .sg-head { text-align: center; }
-  .sg-module { gap: 16px; }
+@media (max-width: 768px) {
+  .sg-head { text-align: center; margin-bottom: 40px; }
+  .sg-h2 { font-size: clamp(28px, 8vw, 40px); }
+  .sg-grid { gap: 32px; margin-bottom: 56px; }
+  
+  .sg-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .sg-footer-trust {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .sg-footer-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sg-grid { grid-template-columns: 1fr; gap: 28px; }
+  .sg-module { gap: 14px; }
+  .sg-mod-icon { width: 40px; height: 40px; border-radius: 12px; }
+  .sg-mod-name { font-size: 15px; }
+  .sg-mod-feature { font-size: 12px; }
 }
 `;
 
@@ -332,42 +402,17 @@ export default function SolutionsGrid() {
           ))}
         </div>
 
-        {/* Subtle Bottom Footer */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          paddingTop: 40,
-          borderTop: '1px solid #f1f5f9',
-          flexWrap: 'wrap',
-          gap: 20
-        }}>
-          <div style={{ display: 'flex', gap: 24 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B' }}>
+        <div className="sg-footer">
+          <div className="sg-footer-trust">
+            <div className="sg-trust-item">
               <CheckCircle2 size={14} color="#22C55E" /> Live in 14 Days
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B' }}>
+            <div className="sg-trust-item">
               <CheckCircle2 size={14} color="#22C55E" /> No Setup Fees
             </div>
           </div>
-          <button style={{
-            background: 'var(--brand-gradient)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 100,
-            padding: '12px 28px',
-            fontSize: 14,
-            fontWeight: 700,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            transition: 'all 0.3s ease',
-            boxShadow: '0 10px 20px rgba(34,197,94,0.2)'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
+          
+          <button className="sg-footer-btn">
             Start Free Trial <ArrowRight size={16} />
           </button>
         </div>
