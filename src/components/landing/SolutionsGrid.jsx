@@ -90,7 +90,15 @@ const CATEGORIES = ["All","Voice AI","Messaging AI","Sales AI","Reputation AI","
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap');
 
-.sg-wrap { background: #FCFCFE; font-family: 'DM Sans', system-ui, sans-serif; color: #141419; position: relative; overflow: hidden; }
+.sg-wrap { 
+  background: #FCFCFE; 
+  font-family: 'DM Sans', system-ui, sans-serif; 
+  color: #141419; 
+  position: relative; 
+  overflow: hidden;
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
 
 /* subtle dot grid */
 .sg-wrap::before {
@@ -104,11 +112,27 @@ const styles = `
 }
 
 .sg-inner {
-  max-width: 1200px;
+  width: 100%;
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 64px 40px 80px;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .sg-inner {
+    padding-left: var(--container-px-tablet);
+    padding-right: var(--container-px-tablet);
+  }
+}
+
+@media (max-width: 768px) {
+  .sg-inner {
+    padding-left: var(--container-px-mobile);
+    padding-right: var(--container-px-mobile);
+  }
 }
 
 /* ── Header ── */

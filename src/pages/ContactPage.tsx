@@ -20,8 +20,8 @@ export default function ContactPage() {
         />
       </Helmet>
       <Navbar />
-      <section className="bg-background">
-        <div className="mx-auto grid max-w-6xl gap-16 px-6 py-20 md:grid-cols-[1fr_1.1fr] md:items-start">
+      <section className="global-section bg-background">
+        <div className="section-container grid gap-16 md:grid-cols-[1fr_1.1fr] md:items-start">
           <div>
             <span className="text-sm font-semibold uppercase tracking-wider text-forest">
               Book a Demo

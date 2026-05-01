@@ -33,17 +33,14 @@ export default function FAQSection() {
   const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" style={{ background: "#FFFFFF", padding: "64px 24px", display: "flex", justifyContent: "center" }}>
+    <section id="faq" className="global-section" style={{ background: "#FFFFFF" }}>
       <div
+        className="faq-wrap section-container"
         style={{
-          width: "100%",
-          maxWidth: "1280px",
-          padding: "0 40px",
           display: "grid",
           gridTemplateColumns: "1fr",
           gap: 64,
         }}
-        className="faq-wrap"
       >
         {/* Left */}
         <motion.div

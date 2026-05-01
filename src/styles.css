@@ -22,6 +22,13 @@
     --danger: #b83535;
     --border: #e2ddd4;
     --border-2: #d4cec3;
+    
+    /* Layout Tokens */
+    --container-max-width: 1280px;
+    --section-py: clamp(64px, 8vw, 120px);
+    --container-px: 40px;
+    --container-px-tablet: 32px;
+    --container-px-mobile: 20px;
   }
 }
 
@@ -210,27 +217,36 @@
 
 
 /* ============================================
-   CONSISTENT SECTION PADDING ALIGNMENT
+   CONSISTENT SECTION LAYOUT SYSTEM
    ============================================ */
 
-/* Ensure consistent horizontal padding across all sections */
+.section-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
+  position: relative;
+}
+
+.global-section {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
 @media (max-width: 1024px) {
-  section > div:first-child {
-    padding-left: 32px !important;
-    padding-right: 32px !important;
+  .section-container {
+    padding-left: var(--container-px-tablet);
+    padding-right: var(--container-px-tablet);
   }
 }
 
 @media (max-width: 768px) {
-  section > div:first-child {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  section > div:first-child {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+  .section-container {
+    padding-left: var(--container-px-mobile);
+    padding-right: var(--container-px-mobile);
   }
 }

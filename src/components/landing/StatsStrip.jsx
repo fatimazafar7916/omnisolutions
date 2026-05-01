@@ -136,8 +136,8 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
 export default function StatsStrip() {
   return (
     <section
+      className="global-section"
       style={{
-        padding: "clamp(20px, 4vw, 32px) clamp(16px, 3vw, 20px)",
         background: "#000000",
         position: "relative",
         overflow: "hidden",
@@ -192,7 +192,7 @@ export default function StatsStrip() {
         }}
       />
 
-      <div style={{ width: "100%", maxWidth: "1280px", position: "relative", zIndex: 1, margin: "0 auto" }}>
+      <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -236,13 +236,13 @@ export default function StatsStrip() {
 
         {/* Stats Grid - Mobile Responsive */}
         <div
+          className="stats-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
             gap: "clamp(12px, 3vw, 24px)",
             justifyItems: "center",
           }}
-          className="stats-grid"
         >
           {STATS.map((stat, i) => (
             <motion.div

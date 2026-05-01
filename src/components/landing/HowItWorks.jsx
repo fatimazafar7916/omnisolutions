@@ -49,10 +49,28 @@ const styles = `
 }
 
 .hiw-inner {
-  max-width: 1200px;
+  width: 100%;
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 64px 40px 80px;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
   position: relative;
+}
+
+@media (max-width: 1024px) {
+  .hiw-inner {
+    padding-left: var(--container-px-tablet);
+    padding-right: var(--container-px-tablet);
+  }
+}
+
+@media (max-width: 768px) {
+  .hiw-inner {
+    padding-left: var(--container-px-mobile);
+    padding-right: var(--container-px-mobile);
+  }
 }
 
 .hiw-head {

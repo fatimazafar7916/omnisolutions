@@ -658,14 +658,12 @@ function ProblemConvergenceSection() {
 
   return (
     <section
+      id="problem"
       ref={sectionRef}
+      className="global-section"
       style={{
         background: "#FCFCFE",
         borderTop: "1px solid #E3E2EB",
-        padding: "56px 0 64px",
-        fontFamily: "'DM Sans',system-ui,sans-serif",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
       {/* Subtle background grid */}
@@ -681,8 +679,8 @@ function ProblemConvergenceSection() {
       }} />
 
       <div 
-        className="problem-section-container"
-        style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        className="problem-section-container section-container"
+        style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
         {/* Section header */}
         <motion.div

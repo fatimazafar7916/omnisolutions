@@ -18,12 +18,7 @@ export default function Footer() {
       position: "relative",
       bottom: 0,
     }}>
-      <div style={{ 
-        width: "100%", 
-        padding: "64px 24px 0px", // Remove bottom padding completely
-        margin: 0,
-        marginBottom: 0,
-      }}>
+      <div className="section-container" style={{ paddingTop: "64px" }}>
         <div
           style={{
             display: "grid",

@@ -29,7 +29,7 @@ export function Navbar() {
         scrolled ? "bg-background/85 backdrop-blur-md border-b border-border/60" : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="section-container flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2 font-display text-2xl text-forest-deep">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-forest-deep" />
           <span>Aiaura</span>

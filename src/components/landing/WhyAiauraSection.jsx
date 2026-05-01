@@ -339,12 +339,7 @@ export default function WhyAiauraSection() {
         pointerEvents: "none",
       }} />
 
-      <div style={{
-        maxWidth: 1400,
-        margin: "0 auto",
-        padding: "0 40px",
-        position: "relative",
-      }}>
+      <div className="section-container">
         {/* Hero Split Layout */}
         <div style={{
           display: "grid",
@@ -556,9 +551,7 @@ export default function WhyAiauraSection() {
         
         /* Large Desktop */
         @media (min-width: 1400px) {
-          section > div {
-            max-width: 1500px !important;
-          }
+          /* Standardized to global container */
         }
         
         /* Desktop to Tablet */
@@ -581,11 +574,11 @@ export default function WhyAiauraSection() {
         /* Tablet */
         @media (max-width: 1024px) {
           section {
-            padding: 70px 0 80px !important;
+            /* Standardized */
           }
           
           section > div {
-            padding: 0 32px !important;
+            /* Standardized */
           }
           
           section > div > div:first-child {
@@ -605,11 +598,11 @@ export default function WhyAiauraSection() {
         /* Mobile Large */
         @media (max-width: 768px) {
           section {
-            padding: 60px 0 70px !important;
+            /* Standardized */
           }
           
           section > div {
-            padding: 0 20px !important;
+            /* Standardized */
           }
           
           section > div > div:first-child {

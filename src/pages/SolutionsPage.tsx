@@ -22,8 +22,8 @@ export default function SolutionsPage() {
         />
       </Helmet>
       <Navbar />
-      <section className="bg-ink text-cream">
-        <div className="mx-auto max-w-7xl px-6 py-24 text-center">
+      <section className="global-section bg-ink text-cream">
+        <div className="section-container text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-mint">
             The full roster
           </span>
@@ -37,8 +37,8 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-6 py-20">
+      <section className="global-section bg-background">
+        <div className="section-container">
           <div className="grid gap-6 md:grid-cols-2">
             {EMPLOYEES.map((e) => {
               const Icon = e.icon;

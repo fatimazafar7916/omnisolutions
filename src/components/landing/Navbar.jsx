@@ -45,10 +45,8 @@ export default function Navbar() {
         }}
       >
         <div
+          className="section-container"
           style={{
-            width: "100%",
-            maxWidth: "1200px",
-            padding: "0 40px",
             height: 68,
             display: "flex",
             alignItems: "center",

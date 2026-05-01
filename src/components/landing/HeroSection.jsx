@@ -1094,12 +1094,12 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
+      id="hero"
+      className="global-section"
       style={{
-        background: "#FCFCFE",
-        minHeight: "100svh",
         display: "flex",
         alignItems: "center",
-        paddingTop: 68,
+        paddingTop: 100,
         overflow: "hidden",
         position: "relative",
       }}
@@ -1151,21 +1151,13 @@ export default function HeroSection() {
         }}
       />
 
-      <div
-        style={{
-          width: "100%",
-          padding: "clamp(20px, 4vw, 40px) clamp(12px, 3vw, 20px)",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
+      <div className="section-container">
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "clamp(20px, 4vw, 32px)",
-            maxWidth: "1400px",
-            margin: "0 auto"
+            gridTemplateColumns: "1.1fr 1fr",
+            gap: 60,
+            alignItems: "center",
           }}
           className="hero-grid"
         >
