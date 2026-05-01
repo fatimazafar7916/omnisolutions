@@ -11,13 +11,18 @@ export default function Footer() {
     <footer style={{ 
       background: "#141419", 
       borderTop: "1px solid rgba(255,255,255,0.04)",
+      margin: 0,
       marginBottom: 0,
+      padding: 0,
       paddingBottom: 0,
+      position: "relative",
+      bottom: 0,
     }}>
       <div style={{ 
         width: "100%", 
-        padding: "64px 24px 32px",
+        padding: "64px 24px 0px", // Remove bottom padding completely
         margin: 0,
+        marginBottom: 0,
       }}>
         <div
           style={{
@@ -109,11 +114,14 @@ export default function Footer() {
           style={{
             borderTop: "1px solid rgba(255,255,255,0.06)",
             paddingTop: 24,
+            paddingBottom: 24, // Add some bottom padding here instead
             display: "flex",
             flexWrap: "wrap",
             gap: 12,
             alignItems: "center",
             justifyContent: "space-between",
+            margin: 0,
+            marginBottom: 0,
           }}
         >
           <p
@@ -142,6 +150,7 @@ export default function Footer() {
       <style>{`
         /* Ensure no extra spacing on mobile */
         footer {
+          margin: 0 !important;
           margin-bottom: 0 !important;
           padding-bottom: 0 !important;
         }
@@ -157,7 +166,7 @@ export default function Footer() {
         
         @media (max-width: 639px) {
           footer > div {
-            padding: 48px 20px 24px !important;
+            padding: 48px 20px 0px !important; /* No bottom padding */
           }
           
           .footer-grid {
@@ -171,20 +180,26 @@ export default function Footer() {
           
           footer > div > div:last-child {
             padding-top: 20px !important;
+            padding-bottom: 20px !important; /* Bottom padding only on copyright section */
             flex-direction: column !important;
             gap: 8px !important;
             text-align: center !important;
+            margin-bottom: 0 !important;
           }
         }
         
         @media (max-width: 480px) {
           footer > div {
-            padding: 40px 16px 20px !important;
+            padding: 40px 16px 0px !important; /* No bottom padding */
           }
           
           .footer-grid {
             gap: 24px !important;
             margin-bottom: 24px !important;
+          }
+          
+          footer > div > div:last-child {
+            padding-bottom: 16px !important; /* Minimal bottom padding */
           }
         }
       `}</style>

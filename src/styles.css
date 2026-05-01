@@ -49,19 +49,47 @@
 
   /* Ensure no extra spacing at bottom */
   html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     height: 100%;
+    overflow-x: hidden;
   }
   
   #root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   main {
     flex: 1;
+  }
+  
+  /* Force footer to bottom with no space */
+  footer {
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Remove any potential bottom spacing on mobile */
+  @media (max-width: 768px) {
+    html, body {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    #root {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    footer {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
   }
 
   ::selection {
