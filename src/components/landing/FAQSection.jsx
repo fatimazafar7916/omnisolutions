@@ -38,7 +38,7 @@ export default function FAQSection() {
         style={{
           width: "100%",
           maxWidth: "1280px",
-          padding: "0 24px",
+          padding: "0 40px",
           display: "grid",
           gridTemplateColumns: "1fr",
           gap: 64,

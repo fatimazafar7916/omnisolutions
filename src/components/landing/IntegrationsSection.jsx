@@ -130,7 +130,7 @@ export default function IntegrationsSection() {
         <rect width="100%" height="100%" filter="url(#noise)" />
       </svg>
 
-      <div style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", padding: "0 32px", position: "relative" }}>
+      <div style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", padding: "0 40px", position: "relative" }}>
         {/* ── Header ── */}
         <div
           ref={headerRef}

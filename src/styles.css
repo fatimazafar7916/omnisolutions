@@ -207,3 +207,30 @@
     border-color: hsl(var(--border));
   }
 }
+
+
+/* ============================================
+   CONSISTENT SECTION PADDING ALIGNMENT
+   ============================================ */
+
+/* Ensure consistent horizontal padding across all sections */
+@media (max-width: 1024px) {
+  section > div:first-child {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  section > div:first-child {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  section > div:first-child {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
