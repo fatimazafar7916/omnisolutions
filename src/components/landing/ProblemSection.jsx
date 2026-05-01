@@ -380,7 +380,7 @@ function MetricImpact({ isVisible }) {
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 16,
+        gap: 12,
         width: "100%",
       }}>
       {metrics.map((metric, mi) => (
@@ -392,8 +392,8 @@ function MetricImpact({ isVisible }) {
           style={{
             background: "#fff",
             border: "1px solid #E3E2EB",
-            borderRadius: 16,
-            padding: "20px 18px",
+            borderRadius: 12,
+            padding: "14px 14px",
             position: "relative",
             overflow: "hidden",
           }}
@@ -407,20 +407,20 @@ function MetricImpact({ isVisible }) {
             opacity: 0.6,
           }} />
 
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: GR }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: GR }}>
               {metric.label}
             </span>
           </div>
 
           {/* Main metric value */}
-          <div style={{ marginBottom: 8 }}>
+          <div style={{ marginBottom: 6 }}>
             <motion.span
               style={{
-                fontFamily: "'Bricolage Grotesque',sans-serif",
-                fontWeight: 900,
-                fontSize: 28,
-                letterSpacing: "-0.05em",
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontWeight: 800,
+                fontSize: 22,
+                letterSpacing: "-0.03em",
                 color: metric.color,
                 lineHeight: 1,
                 display: "block",
@@ -448,7 +448,7 @@ function MetricImpact({ isVisible }) {
           </div>
 
           {/* Step bars */}
-          <div style={{ display: "flex", gap: 3, alignItems: "flex-end", height: 52, marginBottom: 10 }}>
+          <div style={{ display: "flex", gap: 2, alignItems: "flex-end", height: 36, marginBottom: 8 }}>
             {metric.steps.map((val, si) => {
               const pct = val / 100;
               const colorPct = si / (metric.steps.length - 1);
@@ -467,7 +467,7 @@ function MetricImpact({ isVisible }) {
                     opacity: 0.85,
                   }}
                   initial={{ height: 0 }}
-                  animate={isVisible ? { height: `${pct * 52}px` } : { height: 0 }}
+                  animate={isVisible ? { height: `${pct * 36}px` } : { height: 0 }}
                   transition={{ duration: 0.5, delay: 2.2 + mi * 0.15 + si * 0.08, ease: "easeOut" }}
                 />
               );
@@ -505,13 +505,13 @@ function ProblemCard({ problem, index, isVisible }) {
       style={{
         background: "#fff",
         border: `1px solid ${problem.colorBorder}`,
-        borderRadius: 16,
-        padding: "20px 18px",
+        borderRadius: 12,
+        padding: "14px 12px",
         position: "relative",
         overflow: "hidden",
         cursor: "default",
         flex: 1,
-        minHeight: 280,
+        minHeight: 220,
       }}
     >
       {/* Urgency indicator - moved to left */}
@@ -578,23 +578,23 @@ function ProblemCard({ problem, index, isVisible }) {
       </div>
 
       <h4 style={{
-        fontFamily: "'Bricolage Grotesque',sans-serif",
-        fontWeight: 800,
-        fontSize: "clamp(13px,1.4vw,15px)",
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        fontWeight: 700,
+        fontSize: "clamp(12px,1.2vw,14px)",
         color: "#141419",
-        letterSpacing: "-0.03em",
-        margin: "0 0 6px",
-        lineHeight: 1.15,
+        letterSpacing: "-0.01em",
+        margin: "0 0 5px",
+        lineHeight: 1.2,
       }}>
         {problem.title}
       </h4>
 
       <p style={{
         fontFamily: "'DM Sans',sans-serif",
-        fontSize: "clamp(10px,1.1vw,11px)",
+        fontSize: "clamp(10px,1vw,11px)",
         color: GR,
-        lineHeight: 1.6,
-        margin: "0 0 12px",
+        lineHeight: 1.5,
+        margin: "0 0 10px",
       }}>
         {problem.desc}
       </p>
@@ -687,32 +687,32 @@ function ProblemConvergenceSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 56, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}
+          style={{ textAlign: "center", marginBottom: 40, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
           <div style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 8,
+            gap: 6,
             background: "rgba(239,68,68,0.07)",
             border: "1px solid rgba(239,68,68,0.2)",
-            borderRadius: 24,
-            padding: "5px 16px",
-            marginBottom: 16,
+            borderRadius: 20,
+            padding: "4px 14px",
+            marginBottom: 14,
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: RED, display: "inline-block" }} />
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RED }}>
+            <span style={{ width: 5, height: 5, borderRadius: "50%", background: RED, display: "inline-block" }} />
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: RED }}>
               The Real Problem
             </span>
           </div>
 
           <h2 style={{
-            fontFamily: "'Bricolage Grotesque',sans-serif",
-            fontWeight: 900,
-            fontSize: "clamp(28px,4vw,48px)",
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(22px,3.5vw,40px)",
             color: "#141419",
-            letterSpacing: "-0.04em",
-            margin: "0 0 14px",
-            lineHeight: 1.05,
+            letterSpacing: "-0.02em",
+            margin: "0 0 12px",
+            lineHeight: 1.15,
           }}>
             Your rental business is hemorrhaging money<br />
             <span style={{ color: RED }}>$23,400 every single month.</span>
@@ -720,11 +720,11 @@ function ProblemConvergenceSection() {
 
           <p style={{
             fontFamily: "'DM Sans',sans-serif",
-            fontSize: "clamp(13px,1.5vw,16px)",
+            fontSize: "clamp(13px,1.3vw,15px)",
             color: GR,
-            maxWidth: 520,
+            maxWidth: 480,
             margin: "0 auto",
-            lineHeight: 1.7,
+            lineHeight: 1.6,
           }}>
             These six operational gaps are costing you real money right now. Each problem compounds the others, creating a revenue death spiral that gets worse every month.
           </p>
@@ -736,7 +736,7 @@ function ProblemConvergenceSection() {
             className="problem-cards-grid"
             style={{
               display: "flex",
-              gap: 12,
+              gap: 8,
               marginBottom: 0,
               flexWrap: "nowrap",
               overflowX: "auto",
@@ -777,15 +777,15 @@ function ProblemConvergenceSection() {
               <div style={{
                 background: REDL,
                 border: "1px solid #FECACA",
-                borderRadius: 12,
-                padding: "8px 20px",
+                borderRadius: 10,
+                padding: "6px 16px",
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
+                gap: 6,
               }}>
                 <span style={{
                   fontFamily: "'DM Sans',sans-serif",
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: 700,
                   color: RED,
                   letterSpacing: "0.02em",
@@ -814,26 +814,26 @@ function ProblemConvergenceSection() {
             transition={{ delay: 3.2 }}
             style={{
               textAlign: "center",
-              marginTop: 36,
-              padding: "20px 28px",
+              marginTop: 28,
+              padding: "16px 24px",
               background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))",
               border: "1px solid rgba(123,116,220,0.15)",
-              borderRadius: 16,
+              borderRadius: 12,
             }}
           >
             <p style={{
-              fontFamily: "'Bricolage Grotesque',sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(15px,2vw,20px)",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(13px,1.6vw,16px)",
               color: "#141419",
-              letterSpacing: "-0.03em",
-              margin: "0 0 6px",
+              letterSpacing: "-0.01em",
+              margin: "0 0 4px",
             }}>
               The bleeding stops the moment you implement our system.
             </p>
             <p style={{
               fontFamily: "'DM Sans',sans-serif",
-              fontSize: 13,
+              fontSize: 12,
               color: GR,
               margin: 0,
             }}>
