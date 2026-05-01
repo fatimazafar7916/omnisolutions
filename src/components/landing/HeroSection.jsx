@@ -1155,16 +1155,15 @@ export default function HeroSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.1fr 1fr",
-            gap: 60,
+            gridTemplateColumns: "1.2fr 1fr",
+            gap: 80,
             alignItems: "center",
           }}
           className="hero-grid"
         >
-          {/* Left Content - Enhanced Responsive */}
+          {/* Left Content - Text Column */}
           <div style={{ 
-            maxWidth: "680px",
-            margin: "0 auto",
+            maxWidth: "100%",
           }}>
             {/* Live badge - Updated */}
             <motion.div
@@ -1574,7 +1573,13 @@ export default function HeroSection() {
         /* Enhanced mobile typography scaling */
         @media (max-width: 767px) {
           .hero-grid {
-            text-align: center !important;
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          
+          .hero-grid > div:first-child {
+            max-width: 100% !important;
+            text-align: left !important;
           }
           
           .hero-grid h1 span {
