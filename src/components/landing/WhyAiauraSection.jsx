@@ -202,23 +202,23 @@ function ReasonCard({ reason, index, isVisible }) {
 
       <div style={{ paddingRight: 60 }}>
         <h3 style={{
-          fontFamily: "'Bricolage Grotesque',sans-serif",
-          fontWeight: 800,
-          fontSize: "clamp(20px,2.2vw,26px)",
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+          fontWeight: 700,
+          fontSize: "clamp(16px,1.8vw,20px)",
           color: "#111827",
-          letterSpacing: "-0.025em",
-          margin: "0 0 16px",
-          lineHeight: 1.2,
+          letterSpacing: "-0.01em",
+          margin: "0 0 12px",
+          lineHeight: 1.3,
         }}>
           {reason.title}
         </h3>
 
         <p style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: "clamp(15px,1.5vw,17px)",
+          fontSize: "clamp(13px,1.2vw,14px)",
           color: "#6B7280",
           lineHeight: 1.6,
-          margin: "0 0 20px",
+          margin: "0 0 16px",
         }}>
           {reason.description}
         </p>
@@ -227,21 +227,21 @@ function ReasonCard({ reason, index, isVisible }) {
         <div style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: 8,
+          gap: 6,
           background: `linear-gradient(135deg, ${C}08, ${C}03)`,
           border: `1px solid ${C}20`,
-          borderRadius: 12,
-          padding: "10px 16px",
+          borderRadius: 10,
+          padding: "6px 12px",
         }}>
           <div style={{
-            width: 6,
-            height: 6,
+            width: 4,
+            height: 4,
             borderRadius: "50%",
             background: C,
           }} />
           <span style={{
             fontFamily: "'DM Sans',sans-serif",
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: 600,
             color: C,
           }}>
@@ -268,15 +268,15 @@ function TrustPoint({ text, index, isVisible }) {
       }}
     >
       <div style={{
-        width: 8,
-        height: 8,
+        width: 6,
+        height: 6,
         borderRadius: "50%",
         background: `linear-gradient(135deg, ${C}, #6366F1)`,
         flexShrink: 0,
       }} />
       <span style={{
         fontFamily: "'DM Sans',sans-serif",
-        fontSize: 15,
+        fontSize: 14,
         color: "#374151",
         lineHeight: 1.5,
       }}>
@@ -358,13 +358,13 @@ export default function WhyAiauraSection() {
               display: "inline-block",
               background: `linear-gradient(135deg, ${C}15, ${C}08)`,
               border: `1px solid ${C}30`,
-              borderRadius: 25,
-              padding: "8px 20px",
-              marginBottom: 32,
+              borderRadius: 20,
+              padding: "6px 16px",
+              marginBottom: 24,
             }}>
               <span style={{
                 fontFamily: "'DM Sans',sans-serif",
-                fontSize: 13,
+                fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: "0.05em",
                 textTransform: "uppercase",
@@ -375,13 +375,13 @@ export default function WhyAiauraSection() {
             </div>
 
             <h1 style={{
-              fontFamily: "'Bricolage Grotesque',sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(36px,5.5vw,64px)",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(28px,4vw,48px)",
               color: "#111827",
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.02em",
               margin: "0 0 16px",
-              lineHeight: 1.05,
+              lineHeight: 1.15,
             }}>
               {HERO_CONTENT.left.title}<br />
               <span style={{
@@ -396,10 +396,10 @@ export default function WhyAiauraSection() {
 
             <p style={{
               fontFamily: "'DM Sans',sans-serif",
-              fontSize: "clamp(18px,2vw,22px)",
+              fontSize: "clamp(14px,1.3vw,16px)",
               color: "#6B7280",
               lineHeight: 1.6,
-              margin: "0 0 40px",
+              margin: "0 0 32px",
             }}>
               {HERO_CONTENT.left.subtitle}
             </p>
@@ -452,11 +452,12 @@ export default function WhyAiauraSection() {
             transition={{ duration: 0.6, delay: 1.8 }}
           >
             <h3 style={{
-              fontFamily: "'Bricolage Grotesque',sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(24px,3vw,32px)",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(20px,2.5vw,28px)",
               color: "#111827",
-              margin: "0 0 24px",
+              margin: "0 0 20px",
+              letterSpacing: "-0.01em",
             }}>
               Trusted by 15+ rental operators nationwide
             </h3>
@@ -497,20 +498,21 @@ export default function WhyAiauraSection() {
             
             <div style={{ position: "relative", zIndex: 1 }}>
               <h3 style={{
-                fontFamily: "'Bricolage Grotesque',sans-serif",
-                fontWeight: 800,
-                fontSize: 24,
-                margin: "0 0 12px",
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontWeight: 700,
+                fontSize: 20,
+                margin: "0 0 10px",
                 color: "#fff",
+                letterSpacing: "-0.01em",
               }}>
                 Ready to see the proof?
               </h3>
               
               <p style={{
                 fontFamily: "'DM Sans',sans-serif",
-                fontSize: 16,
+                fontSize: 14,
                 color: "rgba(255,255,255,0.8)",
-                margin: "0 0 28px",
+                margin: "0 0 24px",
                 lineHeight: 1.5,
               }}>
                 Book a 15-minute demo and see your exact revenue opportunity calculated live.
@@ -518,13 +520,13 @@ export default function WhyAiauraSection() {
               
               <button style={{
                 fontFamily: "'DM Sans',sans-serif",
-                fontSize: 16,
-                fontWeight: 700,
+                fontSize: 14,
+                fontWeight: 600,
                 color: "#111827",
                 background: "linear-gradient(135deg, #fff, #F9FAFB)",
                 border: "none",
-                borderRadius: 12,
-                padding: "16px 32px",
+                borderRadius: 10,
+                padding: "14px 28px",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
                 width: "100%",
