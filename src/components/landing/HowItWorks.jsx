@@ -81,27 +81,27 @@ const styles = `
 .hiw-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: rgba(42,157,143,0.08);
   border: 1px solid rgba(42,157,143,0.22);
   border-radius: 100px;
-  padding: 5px 16px 5px 10px;
+  padding: 4px 14px 4px 8px;
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 9px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #2A9D8F;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .hiw-h2 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(40px, 5.5vw, 72px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: #141419;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .hiw-h2 em {
@@ -112,10 +112,10 @@ const styles = `
 }
 
 .hiw-sub {
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.6;
   color: #6E6D7A;
-  max-width: 560px;
+  max-width: 520px;
   margin: 0 auto;
 }
 
@@ -163,29 +163,29 @@ const styles = `
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--accent);
 }
 
 .hiw-card-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
@@ -195,20 +195,20 @@ const styles = `
 }
 
 .hiw-card-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   color: #141419;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hiw-card-desc {
   font-size: 13px;
   line-height: 1.6;
   color: #6E6D7A;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex: 1;
 }
 
@@ -252,13 +252,13 @@ const styles = `
 }
 
 .hiw-cta {
-  padding: 44px 52px;
+  padding: 36px 44px;
   background: linear-gradient(135deg, #7B74DC 0%, #6B63CC 100%);
-  border-radius: 20px;
+  border-radius: 16px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 36px;
+  gap: 32px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(123,116,220,0.3);
@@ -277,19 +277,19 @@ const styles = `
 
 .hiw-cta-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 9px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hiw-cta-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   color: #fff;
   margin-bottom: 6px;
 }
@@ -297,17 +297,17 @@ const styles = `
 .hiw-cta-sub {
   font-size: 13px;
   color: rgba(255,255,255,0.5);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .hiw-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 15px 30px;
+  gap: 6px;
+  padding: 13px 26px;
   background: #2A9D8F;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 15px;
   font-weight: 700;
