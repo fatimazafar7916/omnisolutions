@@ -1266,7 +1266,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  specifically built for
+                  specifically built
                 </span>
                 <span
                   style={{
@@ -1278,7 +1278,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  car rental USA operators.
+                  for car rental USA operators.
                 </span>
               </h1>
             </motion.div>
@@ -1444,7 +1444,7 @@ export default function HeroSection() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: 13,
                       fontWeight: 600,
-                      color: "#6E6D7A",
+                      color: "#000000",
                       whiteSpace: "nowrap",
                       flexShrink: 0,
                     }}
@@ -1476,7 +1476,7 @@ export default function HeroSection() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: 13,
                       fontWeight: 600,
-                      color: "#6E6D7A",
+                      color: "#000000",
                       whiteSpace: "nowrap",
                       flexShrink: 0,
                     }}

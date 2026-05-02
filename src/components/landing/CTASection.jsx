@@ -11,7 +11,7 @@ const TRUST = [
 
 export default function CTASection() {
   return (
-    <section id="cta" className="global-section" style={{ background: "#FCFCFE" }}>
+    <section id="cta" className="global-section" style={{ background: "#FCFCFE", padding: "clamp(20px, 3vw, 32px) 0" }}>
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
@@ -19,9 +19,9 @@ export default function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           style={{
-            borderRadius: 24,
+            borderRadius: 20,
             background: "var(--brand-gradient)",
-            padding: "clamp(24px, 4vw, 42px) clamp(20px, 3vw, 32px)",
+            padding: "clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px)",
             position: "relative",
             overflow: "hidden",
             textAlign: "center",
@@ -59,14 +59,14 @@ export default function CTASection() {
             <span
               style={{
                 display: "inline-block",
-                padding: "5px 14px",
+                padding: "4px 12px",
                 borderRadius: 100,
                 border: "1px solid rgba(255,255,255,0.3)",
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
                 color: "#FFFFFF",
-                marginBottom: 16,
+                marginBottom: 12,
                 letterSpacing: "0.05em",
               }}
             >
@@ -77,7 +77,7 @@ export default function CTASection() {
               style={{
                 fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(20px, 2.8vw, 34px)",
+                fontSize: "clamp(18px, 2.5vw, 30px)",
                 letterSpacing: "-0.03em",
                 color: "#fff",
                 lineHeight: 1.1,
@@ -92,10 +92,10 @@ export default function CTASection() {
                 fontFamily: "'Instrument Serif', serif",
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(20px, 2.8vw, 34px)",
+                fontSize: "clamp(18px, 2.5vw, 30px)",
                 color: "#FFFFFF",
                 lineHeight: 1.1,
-                margin: "0 0 16px",
+                margin: "0 0 12px",
               }}
             >
               to whoever picks up first.
@@ -104,11 +104,11 @@ export default function CTASection() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(14px, 1.4vw, 16px)",
+                fontSize: "clamp(13px, 1.3vw, 15px)",
                 color: "rgba(255,255,255,0.62)",
-                lineHeight: 1.6,
+                lineHeight: 1.5,
                 maxWidth: 500,
-                margin: "0 auto 32px",
+                margin: "0 auto 20px",
               }}
             >
               Join US car rental owners who never miss a call or message again.
@@ -121,7 +121,7 @@ export default function CTASection() {
                 flexWrap: "wrap",
                 gap: 10,
                 justifyContent: "center",
-                marginBottom: 28,
+                marginBottom: 20,
               }}
             >
               <a
@@ -132,7 +132,7 @@ export default function CTASection() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  padding: "12px 28px",
+                  padding: "10px 24px",
                   borderRadius: 100,
                   background: "#fff",
                   color: "#22C55E",
@@ -160,7 +160,7 @@ export default function CTASection() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  padding: "12px 28px",
+                  padding: "10px 24px",
                   borderRadius: 100,
                   background: "transparent",
                   color: "#fff",
