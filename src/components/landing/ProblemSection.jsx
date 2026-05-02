@@ -450,15 +450,12 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
 function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
   return (
     <div style={{
-      marginTop: isMobile ? 16 : 20,
+      marginTop: isMobile ? 12 : 16,
       display: 'flex',
-      flexDirection: 'column',
-      gap: isMobile ? 8 : 10,
+      justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      maxWidth: isMobile ? 320 : 480,
-      margin: '0 auto',
-      paddingTop: isMobile ? 12 : 16,
+      minHeight: isMobile ? 24 : 28,
     }}>
       <AnimatePresence mode="wait">
         {visibleItems.map(({ index, slot }) => {
@@ -468,102 +465,20 @@ function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               style={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(10px)',
-                border: `1.5px solid ${problem.colorBorder}`,
-                borderRadius: 12,
-                padding: isMobile ? '10px 14px' : '12px 18px',
-                width: '100%',
-                boxShadow: `0 4px 16px ${problem.color}15`,
-                position: 'relative',
-                overflow: 'hidden',
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: isMobile ? 11 : 13,
+                color: problem.color,
+                textAlign: 'center',
+                letterSpacing: '-0.01em',
               }}
             >
-              {/* Top accent bar */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 3,
-                background: problem.color,
-                opacity: 0.8,
-              }} />
-              
-              {/* Problem indicator dot */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                marginBottom: 6,
-              }}>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1], opacity: [1, 0.6, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: '50%',
-                    background: problem.color,
-                    flexShrink: 0,
-                    boxShadow: `0 0 8px ${problem.color}60`,
-                  }}
-                />
-                <span style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: isMobile ? 8 : 9,
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: problem.color,
-                }}>
-                  REAL FINANCIAL BLEEDING — PER MONTH
-                </span>
-              </div>
-
-              {/* Problem title */}
-              <h4 style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: isMobile ? 13 : 15,
-                color: '#141419',
-                margin: '0 0 4px',
-                lineHeight: 1.3,
-                letterSpacing: '-0.01em',
-              }}>
-                {problem.title}
-              </h4>
-
-              {/* Problem stat */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: 6,
-                flexWrap: 'wrap',
-              }}>
-                <span style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 900,
-                  fontSize: isMobile ? 20 : 24,
-                  color: problem.color,
-                  letterSpacing: '-0.03em',
-                }}>
-                  {problem.stat}
-                </span>
-                <span style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: isMobile ? 10 : 11,
-                  color: GR,
-                  fontWeight: 500,
-                }}>
-                  {problem.subtitle}
-                </span>
-              </div>
+              {problem.title}
             </motion.div>
           );
         })}
