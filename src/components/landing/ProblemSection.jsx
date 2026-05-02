@@ -268,13 +268,16 @@ function ProblemCard({ problem, isFocused, small }) {
     }}>
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
       <div style={{ padding: pad, display: "flex", flexDirection: "column", height: "100%" }}>
+        {/* Top spacer for breathing room */}
+        <div style={{ height: small ? 4 : 6 }} />
+        
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap", marginBottom: small ? 4 : 5 }}>
           <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 28, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
         </div>
         <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13, color: "#141419", margin: 0, lineHeight: 1.25, marginBottom: small ? 2 : 3 }}>{problem.title}</h4>
         
-        {/* Spacer to push description down */}
+        {/* Middle spacer to push description down */}
         <div style={{ flex: 1 }} />
         
         <p style={{
