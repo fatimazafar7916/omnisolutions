@@ -76,7 +76,7 @@ function MarqueeStrip({ reverse }) {
 }
 
 // ─── Desktop Accordion Rail ───────────────────────────────────────────────────
-function DesktopRail({ products, selected, onSelect }) {
+function DesktopRail({ products, selected, onSelect, visibleFeatures }) {
   return (
     <div style={{
       display:"flex", width:"100%", height:340,
@@ -125,13 +125,6 @@ function DesktopRail({ products, selected, onSelect }) {
                 alignItems:"center", gap:12,
                 height:"100%", justifyContent:"center",
               }}>
-                {/* num */}
-                <span style={{
-                  fontFamily:"'DM Mono',monospace",
-                  fontSize:9, color:"#000000",
-                  letterSpacing:"0.1em", fontWeight:500,
-                }}>{p.num}</span>
-
                 {/* icon */}
                 <Icon size={16} strokeWidth={2} color="#000000" />
 
@@ -171,11 +164,6 @@ function DesktopRail({ products, selected, onSelect }) {
                     }}>
                       <Icon size={13} strokeWidth={2.2} color={p.accent} />
                     </div>
-                    <span style={{
-                      fontFamily:"'DM Mono',monospace",
-                      fontSize:9, color:"#000000",
-                      letterSpacing:"0.12em", fontWeight:600,
-                    }}>{p.num}</span>
                   </div>
 
                   <h3 style={{
@@ -192,12 +180,26 @@ function DesktopRail({ products, selected, onSelect }) {
                   }}>{p.tagline}</p>
 
                   <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-                    {p.features.map((f,fi) => (
-                      <div key={fi} style={{ display:"flex", alignItems:"flex-start", gap:7 }}>
-                        <div style={{ width:3, height:3, borderRadius:"50%", background:p.accent, flexShrink:0, marginTop:5 }} />
-                        <span style={{ fontSize:11, color:"#000000", fontFamily:"'DM Sans',sans-serif", fontWeight:500, lineHeight:1.4 }}>{f}</span>
-                      </div>
-                    ))}
+                    {p.features.map((f,fi) => {
+                      const isVisible = visibleFeatures.includes(fi);
+                      return (
+                        <motion.div
+                          key={fi}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -10 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          style={{ display:"flex", alignItems:"flex-start", gap:7 }}
+                        >
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: isVisible ? 1 : 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                            style={{ width:3, height:3, borderRadius:"50%", background:p.accent, flexShrink:0, marginTop:5 }}
+                          />
+                          <span style={{ fontSize:11, color:"#000000", fontFamily:"'DM Sans',sans-serif", fontWeight:500, lineHeight:1.4 }}>{f}</span>
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -393,7 +395,46 @@ function StatsStrip({ isMobile }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function SolutionsSection() {
   const [selected, setSelected] = useState(null);
+  const [visibleFeatures, setVisibleFeatures] = useState([]);
   const isMobile = useIsMobile();
+
+  // Auto-cycle through cards
+  useEffect(() => {
+    if (isMobile) return; // Only on desktop
+
+    let currentIndex = 0;
+    
+    const cycleCards = () => {
+      setSelected(PRODUCTS[currentIndex]);
+      setVisibleFeatures([]);
+      currentIndex = (currentIndex + 1) % PRODUCTS.length;
+    };
+
+    // Start with first card
+    cycleCards();
+
+    // Change card every 5 seconds
+    const interval = setInterval(cycleCards, 5000);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  // Animate bullet points when card opens
+  useEffect(() => {
+    if (!selected) {
+      setVisibleFeatures([]);
+      return;
+    }
+
+    setVisibleFeatures([]);
+    const features = selected.features || [];
+    
+    features.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleFeatures(prev => [...prev, index]);
+      }, index * 400); // 400ms delay between each bullet
+    });
+  }, [selected]);
 
   return (
     <section style={{
@@ -524,7 +565,7 @@ export default function SolutionsSection() {
       >
         {isMobile
           ? <MobileList products={PRODUCTS} selected={selected} onSelect={setSelected} />
-          : <DesktopRail products={PRODUCTS} selected={selected} onSelect={setSelected} />
+          : <DesktopRail products={PRODUCTS} selected={selected} onSelect={setSelected} visibleFeatures={visibleFeatures} />
         }
       </motion.div>
 
