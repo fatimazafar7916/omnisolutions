@@ -43,7 +43,9 @@ export default function Navbar() {
           pointerEvents: "none",
         }}
       >
+        {/* Desktop navbar - pill with border */}
         <div
+          className="nav-desktop-pill"
           style={{
             display: "flex",
             alignItems: "center",
@@ -165,7 +167,7 @@ export default function Navbar() {
               Book a Call <ArrowUpRight size={13} />
             </a>
 
-            {/* Hamburger */}
+            {/* Hamburger - desktop only inside pill */}
             <button
               onClick={() => setOpen(true)}
               className="hamburger-btn"
@@ -186,6 +188,68 @@ export default function Navbar() {
               <Menu size={16} />
             </button>
           </div>
+        </div>
+
+        {/* Mobile navbar - no border, just logo + hamburger */}
+        <div
+          className="nav-mobile-bar"
+          style={{
+            display: "none",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            pointerEvents: "all",
+            padding: "0 4px",
+          }}
+        >
+          {/* Logo */}
+          <a
+            href="/"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textDecoration: "none",
+            }}
+          >
+            <span style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 800,
+              fontSize: 20,
+              color: "#22C55E",
+              letterSpacing: "0.02em",
+            }}>
+              AIAUR
+            </span>
+            <span style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 800,
+              fontSize: 20,
+              color: "#A3E635",
+              letterSpacing: "0.02em",
+            }}>
+              A
+            </span>
+          </a>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setOpen(true)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "#141419",
+              border: "none",
+              cursor: "pointer",
+              color: "#fff",
+            }}
+            aria-label="Open menu"
+          >
+            <Menu size={18} />
+          </button>
         </div>
       </motion.div>
 
@@ -308,7 +372,14 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
+        /* Desktop: show pill navbar, hide mobile bar */
         @media (min-width: 768px) {
+          .nav-desktop-pill {
+            display: flex !important;
+          }
+          .nav-mobile-bar {
+            display: none !important;
+          }
           .nav-links-desktop {
             display: flex !important;
             align-items: center;
@@ -323,7 +394,15 @@ export default function Navbar() {
             display: inline-flex !important;
           }
         }
+
+        /* Mobile: hide pill navbar, show clean bar */
         @media (max-width: 767px) {
+          .nav-desktop-pill {
+            display: none !important;
+          }
+          .nav-mobile-bar {
+            display: flex !important;
+          }
           .nav-cta-desktop {
             display: none !important;
           }
