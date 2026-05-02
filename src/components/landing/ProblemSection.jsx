@@ -472,7 +472,7 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
 function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
   return (
     <div style={{
-      marginTop: isMobile ? 8 : 10,
+      marginTop: isMobile ? 4 : 6,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
