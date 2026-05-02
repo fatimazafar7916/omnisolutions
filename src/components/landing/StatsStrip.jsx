@@ -330,25 +330,25 @@ export default function StatsStrip() {
         @media (max-width: 768px) {
           .stats-grid {
             display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(6, 1fr) !important;
             gap: 20px 12px !important;
             max-width: 100% !important;
           }
           
-          /* First 3 cards: normal width */
+          /* First 3 cards: each spans 2 columns (2+2+2 = 6) */
           .stats-grid > div:nth-child(1),
           .stats-grid > div:nth-child(2),
           .stats-grid > div:nth-child(3) {
-            grid-column: span 1 !important;
+            grid-column: span 2 !important;
           }
           
-          /* Last 2 cards: span across to center them */
+          /* Last 2 cards: each spans 3 columns (3+3 = 6) - centered and equal width */
           .stats-grid > div:nth-child(4) {
-            grid-column: 1 / 3 !important;
+            grid-column: 1 / 4 !important;
           }
           
           .stats-grid > div:nth-child(5) {
-            grid-column: 2 / 4 !important;
+            grid-column: 4 / 7 !important;
           }
           
           /* Remove card styling on mobile - no background, no border */
