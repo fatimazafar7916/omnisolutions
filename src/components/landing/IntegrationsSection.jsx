@@ -34,14 +34,14 @@ function LogoItem({ tool }) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "12px 20px",
+        padding: "10px 16px",
         background: "#FFFFFF",
-        borderRadius: 10,
+        borderRadius: 8,
         border: "1px solid rgba(0,0,0,0.06)",
         boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
         cursor: "default",
         flexShrink: 0,
-        minWidth: 100,
+        minWidth: 90,
       }}
       title={tool.name}
     >
@@ -51,8 +51,8 @@ function LogoItem({ tool }) {
           alt={tool.name}
           onError={() => setImgOk(false)}
           style={{
-            maxWidth: 64,
-            maxHeight: 36,
+            maxWidth: 56,
+            maxHeight: 32,
             width: "auto",
             height: "auto",
             objectFit: "contain",
@@ -69,12 +69,12 @@ function LogoItem({ tool }) {
       ) : (
         <span
           style={{
-            width: 64,
-            height: 36,
+            width: 56,
+            height: 32,
             borderRadius: 6,
             background: "linear-gradient(135deg, #E4E0D8, #D1CCC4)",
             color: "#888",
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: 700,
             display: "flex",
             alignItems: "center",
@@ -101,7 +101,7 @@ export default function IntegrationsSection() {
       id="integrations"
       style={{
         background: "#F1F0F5",
-        padding: "clamp(40px, 6vw, 64px) 0 clamp(32px, 5vw, 56px)",
+        padding: "clamp(24px, 4vw, 40px) 0 clamp(20px, 3vw, 36px)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -136,7 +136,7 @@ export default function IntegrationsSection() {
           ref={headerRef}
           style={{
             textAlign: "center",
-            marginBottom: "clamp(32px, 5vw, 48px)",
+            marginBottom: "clamp(20px, 3vw, 32px)",
           }}
         >
           <motion.div
@@ -181,11 +181,11 @@ export default function IntegrationsSection() {
               style={{
                 fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(28px, 4vw, 48px)",
+                fontSize: "clamp(24px, 3.5vw, 40px)",
                 letterSpacing: "-0.02em",
                 color: "#141419",
                 lineHeight: 1.15,
-                margin: "0 0 16px",
+                margin: "0 0 12px",
               }}
             >
               Plugs into your{" "}
@@ -204,9 +204,9 @@ export default function IntegrationsSection() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: 14,
+                fontSize: 13,
                 color: "#5A6E61",
-                lineHeight: 1.6,
+                lineHeight: 1.5,
                 margin: "0 auto",
                 maxWidth: 500,
               }}
@@ -222,7 +222,7 @@ export default function IntegrationsSection() {
         style={{
           overflow: "hidden",
           position: "relative",
-          padding: "12px 0",
+          padding: "8px 0",
         }}
       >
         {/* Fade masks */}
@@ -254,7 +254,7 @@ export default function IntegrationsSection() {
         <div
           style={{
             display: "flex",
-            gap: 14,
+            gap: 12,
             width: "max-content",
             animation: "int-scroll 40s linear infinite",
           }}

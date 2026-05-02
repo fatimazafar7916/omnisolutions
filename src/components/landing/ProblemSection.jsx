@@ -308,16 +308,17 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
   const total = items.length;
   const visibleCount = isMobile ? 2 : 3;
   const cardWidth = isMobile ? "calc(50% - 8px)" : "calc(33.33% - 11px)";
-  const opacityValues = [1, 0.75, 0.75];
-  const filterValues  = ["none", "blur(2px)", "blur(2px)"];
   const dragStartX = useRef(null);
 
+  // Which group is currently shown (each group = visibleCount cards)
+  const groupIndex = Math.floor(startIndex / visibleCount);
+  const groupStart = groupIndex * visibleCount;
+
   const visibleItems = Array.from({ length: visibleCount }, (_, i) => ({
-    index: (startIndex + i) % total,
+    index: (groupStart + i) % total,
     slot: i,
   }));
 
-  // Touch/mouse drag handlers
   const handleDragStart = (e) => {
     dragStartX.current = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
   };
@@ -326,15 +327,8 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
     if (dragStartX.current === null) return;
     const endX = e.type === "touchend" ? e.changedTouches[0].clientX : e.clientX;
     const diff = dragStartX.current - endX;
-    if (Math.abs(diff) > 30) {
-      diff > 0 ? onNext() : onPrev();
-    }
+    if (Math.abs(diff) > 30) { diff > 0 ? onNext() : onPrev(); }
     dragStartX.current = null;
-  };
-
-  // Click on blurred card (slot 1 or 2) advances forward
-  const handleCardClick = (slot) => {
-    if (slot > 0) onNext();
   };
 
   return (
@@ -346,56 +340,47 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
         onTouchStart={handleDragStart}
         onTouchEnd={handleDragEnd}
       >
-        <div style={{ display: "flex", gap: 16, width: "100%", height: "100%" }}>
-          {visibleItems.map(({ index, slot }) => (
-            <motion.div
-              key={`slot${slot}-item${index}`}
-              initial={slot === visibleCount - 1 ? { opacity: 0, x: 30, filter: "blur(2px)" } : false}
-              animate={{ opacity: opacityValues[slot] ?? 0.72, x: 0, filter: filterValues[slot] ?? "blur(2px)" }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              onClick={() => handleCardClick(slot)}
-              style={{
-                flex: `0 0 ${cardWidth}`,
-                height: "100%",
-                cursor: slot > 0 ? "pointer" : "grab",
-              }}
-            >
-              {renderCard(items[index], slot === 0)}
-            </motion.div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={groupStart}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            style={{ display: "flex", gap: 16, width: "100%", height: "100%" }}
+          >
+            {visibleItems.map(({ index, slot }) => (
+              <motion.div
+                key={slot}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: slot * 0.08, ease: "easeOut" }}
+                style={{ flex: `0 0 ${cardWidth}`, height: "100%" }}
+              >
+                {renderCard(items[index], slot === 0)}
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Dots + arrows */}
       {showDots && !isMobile && (
         <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "center" }}>
-          {/* Prev arrow */}
-          <button
-            onClick={onPrev}
-            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}
-          >‹</button>
-
-          {/* Dots */}
+          <button onClick={onPrev} style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}>‹</button>
           <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            {items.map((item, i) => (
+            {Array.from({ length: Math.ceil(total / visibleCount) }, (_, gi) => (
               <button
-                key={i}
-                onClick={() => setStartIndex(i)}
+                key={gi}
+                onClick={() => setStartIndex(gi * visibleCount)}
                 style={{
-                  width: i === startIndex ? 22 : 7, height: 7, borderRadius: 4,
-                  background: i === startIndex ? (item.color || "#7B74DC") : "#E3E2EB",
-                  border: "none", cursor: "pointer",
-                  transition: "all 0.4s ease-out", padding: 0
+                  width: gi === groupIndex ? 22 : 7, height: 7, borderRadius: 4,
+                  background: gi === groupIndex ? (items[gi * visibleCount]?.color || "#7B74DC") : "#E3E2EB",
+                  border: "none", cursor: "pointer", transition: "all 0.4s ease-out", padding: 0
                 }}
               />
             ))}
           </div>
-
-          {/* Next arrow */}
-          <button
-            onClick={onNext}
-            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}
-          >›</button>
+          <button onClick={onNext} style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}>›</button>
         </div>
       )}
     </div>
@@ -403,37 +388,28 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
 }
 
 function SyncedCarousels({ isVisible, isMobile }) {
-  const [startIndex, setStartIndex] = useState(0);
-  const total = CORE_PROBLEMS.length;
-  const interval = 6000;
+  const visibleCount = isMobile ? 2 : 3;
+  const totalGroups = Math.ceil(CORE_PROBLEMS.length / visibleCount);
+  const [groupIndex, setGroupIndex] = useState(0);
   const timerRef = useRef(null);
 
   const resetTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
-      setStartIndex(s => (s + 1) % total);
-    }, interval);
+      setGroupIndex(g => (g + 1) % totalGroups);
+    }, 6000);
   };
 
   useEffect(() => {
     resetTimer();
     return () => clearInterval(timerRef.current);
-  }, [total]);
+  }, [totalGroups]);
 
-  const goNext = () => {
-    setStartIndex(s => (s + 1) % total);
-    resetTimer();
-  };
+  const startIndex = groupIndex * visibleCount;
 
-  const goPrev = () => {
-    setStartIndex(s => (s - 1 + total) % total);
-    resetTimer();
-  };
-
-  const handleSetIndex = (i) => {
-    setStartIndex(i);
-    resetTimer();
-  };
+  const goNext = () => { setGroupIndex(g => (g + 1) % totalGroups); resetTimer(); };
+  const goPrev = () => { setGroupIndex(g => (g - 1 + totalGroups) % totalGroups); resetTimer(); };
+  const handleSetIndex = (i) => { setGroupIndex(Math.floor(i / visibleCount)); resetTimer(); };
 
   return (
     <>
