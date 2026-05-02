@@ -415,7 +415,7 @@ function StatCardContent({ stat }) {
           suffix={stat.suffix}
           isPercentage={stat.isPercentage}
         />
-        <span style={{ color: "inherit" }}>{stat.suffix}</span>
+        <span style={{ color: "#22C55E" }}>{stat.suffix}</span>
         
 
       </div>

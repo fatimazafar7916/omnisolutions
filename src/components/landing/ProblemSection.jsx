@@ -353,31 +353,37 @@ function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
       <div style={{ position: "relative", width: "100%", height: cardH, overflow: "hidden" }}>
-        <AnimatePresence mode="popLayout" initial={false}>
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={active}
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
-            exit={{ x: "-100%", opacity: 0 }}
-            transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             style={{ display: "flex", gap: 16, position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
           >
             {cards.map(({ index, offset }) => (
               <motion.div
                 key={`${active}-${offset}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: opacityValues[offset] ?? 0.65, scale: scaleValues[offset] ?? 0.97 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                animate={{ 
+                  opacity: opacityValues[offset] ?? 0.65, 
+                  scale: scaleValues[offset] ?? 0.97,
+                  filter: blurValues[offset] || "none"
+                }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: offset * 0.08 }}
                 style={{
                   flex: `0 0 ${cardWidth}`,
                   height: "100%",
-                  filter: blurValues[offset] || "none",
-                  transformOrigin: "top center",
+                  transformOrigin: "center center",
                 }}
               >
                 {renderCard(items[index], offset === 0)}
               </motion.div>
             ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
           </motion.div>
         </AnimatePresence>
       </div>
