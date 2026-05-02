@@ -352,17 +352,19 @@ export default function StatsStrip() {
           }
 
           .stat-number {
-            font-size: 26px !important;
-            margin-bottom: 4px !important;
-          }
-
-          .stat-label {
-            font-size: 10px !important;
+            font-size: 30px !important;
             margin-bottom: 2px !important;
           }
 
-          .stat-desc {
+          .stat-label {
             font-size: 8px !important;
+            margin-bottom: 1px !important;
+            font-weight: 500 !important;
+          }
+
+          .stat-desc {
+            font-size: 6.5px !important;
+            line-height: 1.2 !important;
           }
         }
 
