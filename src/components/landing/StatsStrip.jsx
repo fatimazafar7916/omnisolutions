@@ -225,7 +225,7 @@ export default function StatsStrip() {
 
         .stat-number {
           font-family: 'Georgia', serif;
-          font-size: 40px;
+          font-size: clamp(16px, 2.5vw, 22px);
           font-weight: 700;
           color: #0f172a;
           line-height: 1;
@@ -267,7 +267,7 @@ export default function StatsStrip() {
 
         .stat-label {
           font-family: 'Inter', sans-serif;
-          font-size: 13px;
+          font-size: clamp(10px, 1.5vw, 11px);
           font-weight: 600;
           color: #334155;
           margin: 0 0 4px;
@@ -276,7 +276,7 @@ export default function StatsStrip() {
 
         .stat-desc {
           font-family: 'DM Sans', sans-serif;
-          font-size: 11px;
+          font-size: clamp(9px, 1.2vw, 10px);
           color: #94a3b8;
           margin: 0;
           line-height: 1.3;
@@ -289,15 +289,6 @@ export default function StatsStrip() {
           }
           .stats-subheading {
             font-size: 13px;
-          }
-          .stat-number {
-            font-size: 36px;
-          }
-          .stat-label {
-            font-size: 12px;
-          }
-          .stat-desc {
-            font-size: 10px;
           }
           .stat-item {
             padding: 14px 10px;
@@ -320,21 +311,10 @@ export default function StatsStrip() {
           .stats-subheading {
             font-size: 12px;
           }
-          .stat-number {
-            font-size: 32px;
-            margin-bottom: 6px;
-          }
           .stat-underline {
             width: 28px;
             height: 2px;
             margin-bottom: 6px;
-          }
-          .stat-label {
-            font-size: 11px;
-            margin: 0 0 3px;
-          }
-          .stat-desc {
-            font-size: 9px;
           }
           .stat-item {
             padding: 12px 8px;
@@ -364,20 +344,9 @@ export default function StatsStrip() {
             padding: 20px 16px;
             min-height: 160px;
           }
-          .stat-number {
-            font-size: 48px;
-            margin-bottom: 10px;
-          }
           .stat-underline {
             width: 36px;
             margin-bottom: 10px;
-          }
-          .stat-label {
-            font-size: 14px;
-            margin: 0 0 5px;
-          }
-          .stat-desc {
-            font-size: 12px;
           }
         }
       `}</style>

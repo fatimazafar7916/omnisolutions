@@ -10,8 +10,8 @@ const CORE_PROBLEMS = [
     id: "missed-dms",
     stat: "$31K",
     subtitle: "lost to unanswered DMs/mo",
-    title: "DMs pile up while you sleep",
-    desc: "Exotic renters DM at 11PM on Friday. If you don't reply in 10 minutes they book someone else. You wake up to 40 messages and zero bookings.",
+    title: "Messages pile up while you sleep",
+    desc: "Customers message you at 11PM Friday. If you don't reply in 10 minutes, they book with someone else. You wake up to 40 messages and zero bookings.",
     liveMessages: [
       "Right now: 4 DMs unanswered on your Instagram",
       "Last night: 11PM inquiry for Lamborghini — no reply",
@@ -23,12 +23,12 @@ const CORE_PROBLEMS = [
     id: "slow-replies",
     stat: "42 min",
     subtitle: "your avg reply time",
-    title: "First reply wins the booking",
-    desc: "78% of luxury renters book with whoever responds first. Your competitor uses AI — they reply in 4 seconds. You reply in 42 minutes. You lose.",
+    title: "First to reply wins the booking",
+    desc: "Most customers book with whoever replies first. Your competitor uses AI and replies in 4 seconds. You reply in 42 minutes. You lose the booking.",
     liveMessages: [
       "Right now: A competitor replied to your lead in 6 sec",
       "Today: You lost 3 leads to faster operators",
-      "This hour: 2 people DM'd you and already booked elsewhere",
+      "This hour: 2 people messaged you and booked elsewhere",
     ],
     color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A",
   },
@@ -36,8 +36,8 @@ const CORE_PROBLEMS = [
     id: "no-followup",
     stat: "91%",
     subtitle: "quotes never followed up",
-    title: "You send quotes, never follow up",
-    desc: "Exotic car clients need 2–3 touchpoints to close. You send a quote and hope. 91% of your quotes die in silence — that's $180K/yr in lost deals.",
+    title: "You send quotes and hope",
+    desc: "Car rental customers need 2-3 reminders to book. You send a quote and wait. 91% of your quotes die in silence — that's $180K per year in lost deals.",
     liveMessages: [
       "This month: 27 quotes sent, 2 followed up, 0 closed",
       "Right now: Quote from 3 days ago still sitting unread",
@@ -49,12 +49,12 @@ const CORE_PROBLEMS = [
     id: "instagram-comments",
     stat: "1,200+",
     subtitle: "comments ignored monthly",
-    title: "Comments = leads you're ignoring",
-    desc: "Every 'How much?' on your Instagram reel is a warm lead. Most operators ignore them or reply 6 hours later. That comment turns cold in 12 minutes.",
+    title: "Comments are leads you ignore",
+    desc: "Every 'How much?' on your Instagram post is a hot lead. Most operators ignore them or reply 6 hours later. That lead goes cold in 12 minutes.",
     liveMessages: [
       "Right now: 'How much is this??' — posted 8 min ago, no reply",
       "Today: 14 comment leads went unanswered on your posts",
-      "This week: Reel got 43K views, you booked 1 car from it",
+      "This week: Post got 43K views, you booked 1 car from it",
     ],
     color: "#E1306C", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
   },
@@ -62,8 +62,8 @@ const CORE_PROBLEMS = [
     id: "no-shows",
     stat: "1 in 3",
     subtitle: "bookings are no-shows",
-    title: "No reminders = empty bays",
-    desc: "Without automated confirmations and reminder sequences, 34% of your bookings ghost you on pickup day. Empty bay. Full-day lost revenue. No excuse.",
+    title: "No reminders means empty spots",
+    desc: "Without auto reminders, 34% of your bookings don't show up on pickup day. Empty parking spot. Full day of lost money. No excuse.",
     liveMessages: [
       "Yesterday: Ferrari booked, client never showed, $1,800 gone",
       "This month: 8 no-shows, $14,400 in empty calendar slots",
@@ -75,11 +75,11 @@ const CORE_PROBLEMS = [
     id: "bad-reviews",
     stat: "3.8★",
     subtitle: "kills 50% of new bookings",
-    title: "Bad reviews driving clients away",
-    desc: "Luxury renters check reviews before everything. Below 4.5 stars, half your potential customers choose a competitor. Two bad reviews can cost you $40K/yr.",
+    title: "Bad reviews scare customers away",
+    desc: "Customers check reviews before booking. Below 4.5 stars, half your potential customers pick a competitor. Two bad reviews can cost you $40K per year.",
     liveMessages: [
       "Right now: New 2-star review — no response from you yet",
-      "This week: 3 people read your bad reviews and bounced",
+      "This week: 3 people read your bad reviews and left",
       "Today: Competitor at 4.9★ just took a $3,200 booking you lost",
     ],
     color: "#EC4899", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
@@ -88,8 +88,8 @@ const CORE_PROBLEMS = [
     id: "manual-work",
     stat: "22hrs",
     subtitle: "wasted on admin weekly",
-    title: "You're the AI, the agent, the admin",
-    desc: "Copying DMs into spreadsheets, sending invoices manually, typing the same pricing answer 40 times a day. 22 hours of your week are pure waste.",
+    title: "You do everything manually",
+    desc: "Copying messages into spreadsheets, sending invoices by hand, typing the same price answer 40 times a day. 22 hours of your week is wasted work.",
     liveMessages: [
       "This week: You typed 'deposit is $5,000' 38 times manually",
       "Today: 3 hours spent copy-pasting booking details",
@@ -101,12 +101,12 @@ const CORE_PROBLEMS = [
     id: "seasonal-gaps",
     stat: "$28K",
     subtitle: "lost in off-peak months",
-    title: "Fleet sits idle in slow season",
-    desc: "In off-peak months your fleet sits in the lot. No proactive outreach, no re-engagement campaigns, no discount nudges. Dead revenue every January.",
+    title: "Cars sit empty in slow months",
+    desc: "In slow months your cars sit in the lot. No outreach to past customers, no special deals, no reminders. Dead money every January.",
     liveMessages: [
       "Right now: 4 cars unbooked this entire week",
       "This month: 18 past clients didn't hear from you once",
-      "Last Jan: Fleet was 23% utilized. Could've been 60%+",
+      "Last Jan: Fleet was 23% booked. Could've been 60%+",
     ],
     color: "#06B6D4", colorLight: "#ECFEFF", colorBorder: "#A5F3FC",
   },
@@ -114,10 +114,10 @@ const CORE_PROBLEMS = [
     id: "upsell",
     stat: "$9,800",
     subtitle: "upsell revenue lost monthly",
-    title: "Clients want upgrades — you don't ask",
-    desc: "Airport delivery, chauffeur add-ons, extended insurance, multi-day discounts — every booking has $200–$800 in upsell potential you're leaving on the table.",
+    title: "Customers want extras — you don't ask",
+    desc: "Airport delivery, driver service, extra insurance, multi-day deals — every booking has $200-$800 in extra money you're leaving on the table.",
     liveMessages: [
-      "Today: 9 bookings completed, 0 upsells offered",
+      "Today: 9 bookings completed, 0 extras offered",
       "Last week: $4,200 in delivery fees left on the table",
       "Right now: Urus booking confirmed — no upgrade offered",
     ],
@@ -127,11 +127,11 @@ const CORE_PROBLEMS = [
     id: "whatsapp-sms",
     stat: "64%",
     subtitle: "prefer SMS/WhatsApp",
-    title: "Clients text. You check email.",
-    desc: "64% of exotic renters prefer WhatsApp or SMS. If you only monitor Instagram DMs and email, you're invisible to the majority of your most valuable inbound leads.",
+    title: "Customers text. You check email.",
+    desc: "64% of customers prefer WhatsApp or text. If you only check Instagram and email, you're missing most of your best leads.",
     liveMessages: [
       "Right now: WhatsApp message from Miami — 47 min no reply",
-      "Today: 6 SMS inquiries, 2 seen, 0 replied to",
+      "Today: 6 text messages, 2 seen, 0 replied to",
       "This week: $12K booking came via WhatsApp you almost missed",
     ],
     color: "#10B981", colorLight: "#ECFDF5", colorBorder: "#6EE7B7",
@@ -140,12 +140,12 @@ const CORE_PROBLEMS = [
     id: "repeat-clients",
     stat: "71%",
     subtitle: "one-time customers",
-    title: "Happy clients book competitors next",
-    desc: "71% of renters who loved their experience book a competitor next time — because you never reached out. A simple follow-up sequence turns them into loyal repeats.",
+    title: "Happy customers book others next time",
+    desc: "71% of customers who loved you book a competitor next time — because you never reached out. A simple follow-up turns them into repeat customers.",
     liveMessages: [
       "This month: 19 past VIP clients booked elsewhere",
       "Right now: Client from 60 days ago — zero contact since",
-      "This quarter: $47K in repeat revenue walked out the door",
+      "This quarter: $47K in repeat money walked out the door",
     ],
     color: "#6366F1", colorLight: "#EEF2FF", colorBorder: "#C7D2FE",
   },
@@ -153,12 +153,12 @@ const CORE_PROBLEMS = [
     id: "competitors",
     stat: "5x",
     subtitle: "faster competitor growth",
-    title: "AI operators are eating your market",
-    desc: "Operators using AI automation close 5x more leads, respond instantly 24/7, and run leaner. Every week you wait, they lock in more of your market.",
+    title: "AI operators are taking your customers",
+    desc: "Operators using AI close 5x more leads, reply instantly 24/7, and work smarter. Every week you wait, they take more of your customers.",
     liveMessages: [
       "This year: 3 Miami operators launched AI — all growing 40%+",
-      "Right now: Your top competitor just closed a DM in 3 seconds",
-      "This month: AI operators captured 12% more market share",
+      "Right now: Your top competitor just closed a message in 3 seconds",
+      "This month: AI operators took 12% more market share",
     ],
     color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA",
   },
@@ -293,14 +293,14 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
   const originXs = Array.from({ length: visibleCount }, (_, i) => i * (cardW + gap) + cardW / 2);
 
   const nodeX = W / 2;
-  const wireLen = isMobile ? 140 : 160;
+  const wireLen = isMobile ? 180 : 200;
   const nodeY = wireLen + 6;
   const nodeR = isMobile ? 80 : 96;
   const svgH = nodeY + nodeR + (isMobile ? 66 : 80);
 
-  // Optimized bezier curve for smoother wire paths
+  // Optimized bezier curve - wires end exactly at the entry dot with better visibility
   const wirePath = (ox) =>
-    `M${ox} 2 C${ox} ${wireLen * 0.35}, ${nodeX} ${wireLen * 0.65}, ${nodeX} ${nodeY - nodeR - 1}`;
+    `M${ox} 0 C${ox} ${wireLen * 0.4}, ${nodeX} ${wireLen * 0.6}, ${nodeX} ${nodeY - nodeR}`;
 
   // Optimized text content - shorter and punchier
   const optimizePhrase = (text) => {
@@ -358,7 +358,7 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
           d={wirePath(ox)}
           fill="none"
           stroke={colors[i] || GREEN}
-          strokeWidth={2}
+          strokeWidth={2.5}
           strokeDasharray="400"
           strokeLinecap="round"
           style={{ animationDelay: `${i * 0.08}s` }}
@@ -370,9 +370,9 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
         <circle
           key={`d${i}`}
           className="wire-dot"
-          cx={ox} cy={4} r={5}
+          cx={ox} cy={0} r={5}
           fill={colors[i] || GREEN}
-          style={{ animationDelay: `${i * 0.08}s`, transformOrigin: `${ox}px 4px` }}
+          style={{ animationDelay: `${i * 0.08}s`, transformOrigin: `${ox}px 0px` }}
         />
       ))}
 
@@ -392,10 +392,10 @@ function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
         opacity="0"
       />
 
-      {/* Entry dot */}
+      {/* Entry dot - larger and more visible */}
       <circle
         className="wire-dot"
-        cx={nodeX} cy={nodeY - nodeR} r={5}
+        cx={nodeX} cy={nodeY - nodeR} r={6}
         fill={GREEN}
         style={{ animationDelay: "0.45s", transformOrigin: `${nodeX}px ${(nodeY - nodeR)}px` }}
       />
