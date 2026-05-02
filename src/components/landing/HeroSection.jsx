@@ -1241,7 +1241,7 @@ export default function HeroSection() {
                 style={{
                   fontFamily: "'Merriweather', Georgia, serif",
                   fontWeight: 700,
-                  lineHeight: 1.2,
+                  lineHeight: 1.1,
                   letterSpacing: "-0.01em",
                   margin: "0 0 24px",
                   color: "#141419",
@@ -1262,7 +1262,7 @@ export default function HeroSection() {
                       backgroundClip: "text",
                     }}
                   >
-                    specifically built
+                    specifically
                   </span>
                 </span>
                 <span
@@ -1276,7 +1276,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  for car rental USA
+                  built for car rental
                 </span>
                 <span
                   style={{
@@ -1288,7 +1288,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  operators.
+                  USA operators.
                 </span>
               </h1>
             </motion.div>
