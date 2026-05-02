@@ -271,7 +271,6 @@ export default function StatsStrip() {
         }
 
         .stats-row-2 .stat-card {
-          /* Each card in row 2 = exactly 1/3 of the row width to align with row above */
           flex: 0 0 calc(33.333% - 5px);
           max-width: calc(33.333% - 5px);
         }
@@ -321,34 +320,49 @@ export default function StatsStrip() {
         @media (max-width: 768px) {
           .stats-grid-wrapper {
             gap: 8px;
+            padding: 0 2px;
           }
 
           .stats-row {
-            gap: 6px;
+            gap: 8px;
+            width: 100%;
+          }
+
+          /* Row 1: 3 equal cards */
+          .stats-row-3 .stat-card {
+            flex: 1 1 0;
+            min-width: 0;
+            max-width: none;
+          }
+
+          /* Row 2: 2 cards split 50/50, full width */
+          .stats-row-2 {
+            justify-content: stretch;
           }
 
           .stats-row-2 .stat-card {
-            flex: 0 0 calc(33.333% - 4px);
-            max-width: calc(33.333% - 4px);
+            flex: 1 1 0;
+            min-width: 0;
+            max-width: none;
           }
 
           .stat-card {
-            padding: 10px 6px !important;
-            border-radius: 12px !important;
+            padding: 14px 8px !important;
+            border-radius: 14px !important;
           }
 
           .stat-number {
-            font-size: 18px !important;
-            margin-bottom: 3px !important;
+            font-size: 26px !important;
+            margin-bottom: 4px !important;
           }
 
           .stat-label {
-            font-size: 9px !important;
-            margin-bottom: 1px !important;
+            font-size: 10px !important;
+            margin-bottom: 2px !important;
           }
 
           .stat-desc {
-            font-size: 7px !important;
+            font-size: 8px !important;
           }
         }
 
