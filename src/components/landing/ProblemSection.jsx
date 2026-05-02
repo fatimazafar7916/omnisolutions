@@ -249,7 +249,7 @@ function LossCard({ metric, isFocus, isVisible }) {
 
   return (
     <div style={{
-      width: "100%", height: "100%",
+      width: "100%",
       background: "linear-gradient(145deg, #FAFAFA, #F5F5F5)",
       borderRadius: 16,
       border: `1.5px solid ${isFocus ? metric.color + "60" : "#E5E5E5"}`,
@@ -258,7 +258,7 @@ function LossCard({ metric, isFocus, isVisible }) {
     }}>
       <div style={{ position: "absolute", top: -30, right: -30, width: 110, height: 110, borderRadius: "50%", background: metric.color, opacity: 0.07, filter: "blur(36px)", pointerEvents: "none" }} />
       <div style={{ height: 2, background: `linear-gradient(90deg, transparent 0%, ${metric.color} 50%, transparent 100%)`, flexShrink: 0 }} />
-      <div style={{ padding: "10px 10px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
+      <div style={{ padding: "10px 10px", display: "flex", flexDirection: "column", gap: 7 }}>
         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#6B7280", lineHeight: 1.2 }}>{metric.label}</span>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ flex: 1 }}>
@@ -435,7 +435,7 @@ function SyncedCarousels({ isVisible, isMobile }) {
       <SharedCarousel
         items={METRICS}
         renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
-        cardH={isMobile ? "auto" : 250}
+        cardH={isMobile ? "auto" : "auto"}
         startIndex={startIndex}
         setStartIndex={handleSetIndex}
         isMobile={isMobile}
