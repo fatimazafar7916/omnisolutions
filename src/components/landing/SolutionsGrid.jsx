@@ -494,9 +494,10 @@ export default function SolutionsSection() {
               initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
               transition={{ duration:0.8, delay:0.1, ease:[0.16,1,0.3,1] }}
               style={{
-                fontFamily:"'Bebas Neue',Impact,sans-serif",
-                fontSize: isMobile ? "clamp(52px,14vw,72px)" : "clamp(56px,8vw,116px)",
-                lineHeight:0.9, letterSpacing:"-0.01em",
+                fontFamily:"'Merriweather', Georgia, serif",
+                fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(42px,6vw,72px)",
+                lineHeight:1.2, letterSpacing:"-0.02em",
+                fontWeight:700,
                 color:"#000000",
               }}
             >
