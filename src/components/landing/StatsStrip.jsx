@@ -64,14 +64,13 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
         setIsComplete(true);
         clearInterval(timer);
         
-        // After 5 seconds pause, restart the animation
         setTimeout(() => {
-          if (ref.current) { // Check if component is still mounted
+          if (ref.current) {
             startAnimation();
           }
         }, 5000);
       } else {
-        setCount(Math.max(current, startValue)); // Ensure we don't go below start value
+        setCount(Math.max(current, startValue));
       }
     }, 16);
     
@@ -83,13 +82,12 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
           setHasStarted(true);
-          // Add a small delay to ensure component is ready
           setTimeout(() => {
             startAnimation();
           }, 100);
         }
       },
-      { threshold: 0.1 } // Lower threshold to trigger earlier
+      { threshold: 0.1 }
     );
     
     if (ref.current) {
@@ -102,15 +100,12 @@ function AnimatedCounter({ target, suffix, duration = 1200, isPercentage }) {
         clearInterval(animationRef.current);
       }
     };
-  }, [target, isPercentage]); // Add dependencies
+  }, [target, isPercentage]);
 
   const displayValue = target < 10 && !isPercentage ? count.toFixed(1) : Math.floor(count);
   
-  // Green highlight when animation is complete and target is reached
   const getColor = () => {
     if (!isComplete) return "#141419";
-    
-    // Show brand green for completed animations at target
     return "#22C55E";
   };
 
@@ -171,7 +166,7 @@ export default function StatsStrip() {
         pointerEvents: "none"
       }} />
 
-      <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
+      <div className="section-container" style={{ position: "relative", zIndex: 1, width: "100%" }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -214,182 +209,203 @@ export default function StatsStrip() {
         </motion.div>
 
         {/* Stats Grid */}
-        <div
-          className="stats-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-            gap: "clamp(8px, 2vw, 16px)",
-            justifyItems: "center",
-          }}
-        >
-          {STATS.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.2 }
-              }}
-              className="stat-card"
-              style={{ 
-                textAlign: "center", 
-                width: "100%",
-                background: "#F8F7FB",
-                borderRadius: "16px",
-                padding: "clamp(10px, 2vw, 24px)",
-                border: "1px solid #F0EFF5",
-                minHeight: "auto",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {/* Big animated number */}
-              <div
-                className="stat-number"
-                style={{
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                  fontWeight: 800,
-                  fontSize: "clamp(20px, 4vw, 40px)",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1,
-                  marginBottom: "4px",
-                  position: "relative",
-                  display: "inline-block",
-                }}
+        <div className="stats-grid-wrapper">
+          {/* Row 1: 3 items */}
+          <div className="stats-row stats-row-3">
+            {STATS.slice(0, 3).map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                className="stat-card"
               >
-                <AnimatedCounter 
-                  target={stat.value} 
-                  suffix={stat.suffix}
-                  isPercentage={stat.isPercentage}
-                />
-                <span style={{ color: "inherit" }}>{stat.suffix}</span>
-                
-                {stat.isPercentage && (
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5, duration: 0.3 }}
-                    style={{
-                      position: "absolute",
-                      top: "-4px",
-                      right: "-12px",
-                      width: "10px",
-                      height: "10px",
-                      borderRadius: "50%",
-                      background: "#22C55E",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    }}
-                  >
-                    <div style={{
-                      width: "5px",
-                      height: "5px",
-                      borderRadius: "50%",
-                      background: "#FFFFFF"
-                    }} />
-                  </motion.div>
-                )}
-              </div>
+                <StatCardContent stat={stat} />
+              </motion.div>
+            ))}
+          </div>
 
-              {/* Label */}
-              <h3
-                className="stat-label"
-                style={{
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(9px, 1.8vw, 14px)",
-                  color: "#141419",
-                  margin: "0 0 2px",
-                  letterSpacing: "-0.01em",
-                  lineHeight: 1.2,
-                }}
+          {/* Row 2: 2 items */}
+          <div className="stats-row stats-row-2">
+            {STATS.slice(3, 5).map((stat, i) => (
+              <motion.div
+                key={i + 3}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (i + 3) * 0.08 }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                className="stat-card"
               >
-                {stat.label}
-              </h3>
-
-              {/* Description */}
-              <p
-                className="stat-desc"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(7px, 1.3vw, 11px)",
-                  color: "#6E6D7A",
-                  margin: 0,
-                  lineHeight: 1.3,
-                }}
-              >
-                {stat.desc}
-              </p>
-            </motion.div>
-          ))}
+                <StatCardContent stat={stat} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Mobile-specific CSS */}
       <style>{`
-        /* Mobile: 3 cards top row, 2 cards bottom row */
+        .stats-grid-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+        }
+
+        .stats-row {
+          display: flex;
+          gap: 10px;
+          width: 100%;
+        }
+
+        .stats-row .stat-card {
+          flex: 1;
+          min-width: 0;
+        }
+
+        /* Center the 2-item row to match the 3-item row above */
+        .stats-row-2 {
+          justify-content: center;
+        }
+
+        .stats-row-2 .stat-card {
+          /* Each card in row 2 = exactly 1/3 of the row width to align with row above */
+          flex: 0 0 calc(33.333% - 5px);
+          max-width: calc(33.333% - 5px);
+        }
+
+        .stat-card {
+          text-align: center;
+          background: transparent;
+          border-radius: 16px;
+          padding: clamp(10px, 2vw, 24px);
+          border: 1px solid #22C55E;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .stat-number {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-weight: 800;
+          font-size: clamp(20px, 4vw, 40px);
+          letter-spacing: -0.03em;
+          line-height: 1;
+          margin-bottom: 4px;
+          position: relative;
+          display: inline-block;
+        }
+
+        .stat-label {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-weight: 600;
+          font-size: clamp(9px, 1.8vw, 14px);
+          color: #141419;
+          margin: 0 0 2px;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+        }
+
+        .stat-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: clamp(7px, 1.3vw, 11px);
+          color: #6E6D7A;
+          margin: 0;
+          line-height: 1.3;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-          .stats-grid {
-            display: grid !important;
-            grid-template-columns: repeat(6, 1fr) !important;
-            gap: 12px 6px !important;
-            max-width: 100% !important;
+          .stats-grid-wrapper {
+            gap: 8px;
           }
-          
-          .stats-grid > div:nth-child(1) { grid-column: 1 / 3 !important; }
-          .stats-grid > div:nth-child(2) { grid-column: 3 / 5 !important; }
-          .stats-grid > div:nth-child(3) { grid-column: 5 / 7 !important; }
-          .stats-grid > div:nth-child(4) { grid-column: 1 / 4 !important; }
-          .stats-grid > div:nth-child(5) { grid-column: 4 / 7 !important; }
-          
+
+          .stats-row {
+            gap: 6px;
+          }
+
+          .stats-row-2 .stat-card {
+            flex: 0 0 calc(33.333% - 4px);
+            max-width: calc(33.333% - 4px);
+          }
+
           .stat-card {
             padding: 10px 6px !important;
             border-radius: 12px !important;
-            min-height: auto !important;
           }
-          
+
           .stat-number {
-            font-size: 22px !important;
-            margin-bottom: 4px !important;
+            font-size: 18px !important;
+            margin-bottom: 3px !important;
           }
-          
+
           .stat-label {
-            font-size: 10px !important;
-            margin-bottom: 2px !important;
-            line-height: 1.2 !important;
+            font-size: 9px !important;
+            margin-bottom: 1px !important;
           }
-          
+
           .stat-desc {
-            font-size: 8px !important;
-            line-height: 1.2 !important;
+            font-size: 7px !important;
           }
         }
-        
+
         /* Tablet */
         @media (min-width: 769px) and (max-width: 1024px) {
-          .stats-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 16px !important;
+          .stat-number {
+            font-size: 28px !important;
           }
-          .stats-grid > div { grid-column: span 1 !important; }
+
+          .stat-label {
+            font-size: 12px !important;
+          }
+
+          .stat-desc {
+            font-size: 10px !important;
+          }
         }
-        
-        /* Desktop */
+
+        /* Desktop — keep 5 in one row */
         @media (min-width: 1025px) {
-          .stats-grid {
-            grid-template-columns: repeat(5, 1fr) !important;
-            gap: 20px !important;
+          .stats-grid-wrapper {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
           }
-          .stats-grid > div { grid-column: span 1 !important; }
+
+          .stats-row {
+            display: contents;
+          }
+
+          .stats-row .stat-card,
+          .stats-row-2 .stat-card {
+            flex: 1 1 0;
+            max-width: none;
+          }
         }
       `}</style>
     </section>
+  );
+}
+
+function StatCardContent({ stat }) {
+  return (
+    <>
+      <div className="stat-number">
+        <AnimatedCounter 
+          target={stat.value} 
+          suffix={stat.suffix}
+          isPercentage={stat.isPercentage}
+        />
+        <span style={{ color: "inherit" }}>{stat.suffix}</span>
+        
+
+      </div>
+
+      <h3 className="stat-label">{stat.label}</h3>
+      <p className="stat-desc">{stat.desc}</p>
+    </>
   );
 }
