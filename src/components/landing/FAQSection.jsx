@@ -23,10 +23,6 @@ const FAQS = [
     q: "Which communication channels does it cover?",
     a: "Phone calls, SMS, email, Instagram DMs, WhatsApp, Facebook Messenger, Google Business Chat, and your website chat widget — all in one platform.",
   },
-  {
-    q: "Is there a long-term contract?",
-    a: "No. Month-to-month subscription, cancel anytime. We also offer a 14-day money-back guarantee so you can try Aiaura risk-free.",
-  },
 ];
 
 export default function FAQSection() {
