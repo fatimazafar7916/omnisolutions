@@ -1411,39 +1411,114 @@ export default function HeroSection() {
               </a>
             </motion.div>
 
-            {/* Trust pills - 2 rows on mobile: 3 + 3 */}
+            {/* Animated Trust Carousel - 2 rows scrolling */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.44 }}
-              className="hero-trust-row"
+              className="hero-trust-carousel"
               style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 10,
+                position: "relative",
+                width: "100%",
+                maxWidth: "600px",
+                height: "80px",
+                overflow: "hidden",
+                margin: "0 auto",
               }}
             >
-              {TRUST.map((t) => (
-                <span
-                  key={t}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 5,
-                    padding: "6px 12px",
-                    borderRadius: 100,
-                    background: "#F5F3FF",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#6E6D7A",
-                  }}
-                >
-                  <CheckCircle size={13} color="#22C55E" strokeWidth={2.5} />
-                  {t}
-                </span>
-              ))}
+              {/* Row 1 - Moving Left to Right */}
+              <div style={{
+                position: "absolute",
+                top: 0,
+                display: "flex",
+                gap: 10,
+                animation: "scrollRight 15s linear infinite",
+              }}>
+                {[...TRUST.slice(0, 3), ...TRUST.slice(0, 3)].map((t, i) => (
+                  <span
+                    key={`row1-${i}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 5,
+                      padding: "6px 12px",
+                      borderRadius: 100,
+                      background: "#F5F3FF",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: "#6E6D7A",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <CheckCircle size={13} color="#22C55E" strokeWidth={2.5} />
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {/* Row 2 - Moving Right to Left */}
+              <div style={{
+                position: "absolute",
+                top: 40,
+                display: "flex",
+                gap: 10,
+                animation: "scrollLeft 15s linear infinite",
+              }}>
+                {[...TRUST.slice(3), ...TRUST.slice(3)].map((t, i) => (
+                  <span
+                    key={`row2-${i}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 5,
+                      padding: "6px 12px",
+                      borderRadius: 100,
+                      background: "#F5F3FF",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: "#6E6D7A",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <CheckCircle size={13} color="#22C55E" strokeWidth={2.5} />
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {/* Center Highlight Overlay */}
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "200px",
+                height: "100%",
+                background: "linear-gradient(90deg, transparent 0%, rgba(34,197,94,0.05) 50%, transparent 100%)",
+                pointerEvents: "none",
+                zIndex: 1,
+              }} />
             </motion.div>
+
+            <style>{`
+              @keyframes scrollRight {
+                0% { transform: translateX(-50%); }
+                100% { transform: translateX(0%); }
+              }
+
+              @keyframes scrollLeft {
+                0% { transform: translateX(0%); }
+                100% { transform: translateX(-50%); }
+              }
+
+              .hero-trust-carousel:hover > div {
+                animation-play-state: paused;
+              }
+            `}</style>
           </div>
 
           {/* Right — AI Activity Display Only */}
@@ -1619,22 +1694,9 @@ export default function HeroSection() {
             font-size: 13px !important;
           }
 
-          .hero-trust-row {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 10px !important;
-            justify-items: center !important;
-            margin-top: 24px !important;
-            width: 100% !important;
-          }
-
-          .hero-trust-row > span {
-            justify-content: center !important;
-            font-size: 12px !important;
-            padding: 7px 10px !important;
-            white-space: nowrap !important;
-            width: 100% !important;
-            max-width: 140px !important;
+          .hero-trust-carousel {
+            max-width: 100% !important;
+            height: 70px !important;
           }
         }
         
