@@ -258,7 +258,7 @@ function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }
 
 /* ─── Problem card (original, untouched) ─── */
 function ProblemCard({ problem, isFocused, small }) {
-  const pad = small ? "10px 12px" : "16px 18px";
+  const pad = small ? "10px 12px" : "14px 16px";
   return (
     <div style={{
       width: "100%", height: "100%", background: "#fff", borderRadius: 16,
@@ -267,7 +267,7 @@ function ProblemCard({ problem, isFocused, small }) {
       overflow: "hidden", display: "flex", flexDirection: "column",
     }}>
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
-      <div style={{ padding: pad, display: "flex", flexDirection: "column", flex: 1, gap: small ? 6 : 8 }}>
+      <div style={{ padding: pad, display: "flex", flexDirection: "column", flex: 1, gap: small ? 5 : 6 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 30, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10.5, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
@@ -639,7 +639,7 @@ function SyncedCarousels({ isMobile }) {
     <SharedCarousel
       items={CORE_PROBLEMS}
       renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
-      cardH={isMobile ? 210 : 270}
+      cardH={isMobile ? 210 : 240}
       groupIndex={groupIndex}
       setGroupIndex={(gi) => { setGroupIndex(gi); resetTimer(); }}
       isMobile={isMobile}
