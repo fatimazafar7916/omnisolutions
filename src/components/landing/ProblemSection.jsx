@@ -12,6 +12,7 @@ const CORE_PROBLEMS = [
     subtitle: "lost to unanswered DMs/mo",
     title: "Messages pile up while you sleep",
     desc: "Customers message you at 11PM Friday. If you don't reply in 10 minutes, they book with someone else. You wake up to 40 messages and zero bookings.",
+    impactLine: "Someone else picked up the call — and you lost the booking.",
     liveMessages: [
       "Right now: 4 DMs unanswered on your Instagram",
       "Last night: 11PM inquiry for Lamborghini — no reply",
@@ -25,6 +26,7 @@ const CORE_PROBLEMS = [
     subtitle: "your avg reply time",
     title: "First to reply wins the booking",
     desc: "Most customers book with whoever replies first. Your competitor uses AI and replies in 4 seconds. You reply in 42 minutes. You lose the booking.",
+    impactLine: "While you're typing, your competitor already closed the deal.",
     liveMessages: [
       "Right now: A competitor replied to your lead in 6 sec",
       "Today: You lost 3 leads to faster operators",
@@ -38,6 +40,7 @@ const CORE_PROBLEMS = [
     subtitle: "quotes never followed up",
     title: "You send quotes and hope",
     desc: "Car rental customers need 2-3 reminders to book. You send a quote and wait. 91% of your quotes die in silence — that's $180K per year in lost deals.",
+    impactLine: "Your quote is sitting in their inbox — forgotten and ignored.",
     liveMessages: [
       "This month: 27 quotes sent, 2 followed up, 0 closed",
       "Right now: Quote from 3 days ago still sitting unread",
@@ -51,6 +54,7 @@ const CORE_PROBLEMS = [
     subtitle: "comments ignored monthly",
     title: "Comments are leads you ignore",
     desc: "Every 'How much?' on your Instagram post is a hot lead. Most operators ignore them or reply 6 hours later. That lead goes cold in 12 minutes.",
+    impactLine: "They asked 'How much?' — you never answered, they booked elsewhere.",
     liveMessages: [
       "Right now: 'How much is this??' — posted 8 min ago, no reply",
       "Today: 14 comment leads went unanswered on your posts",
@@ -64,6 +68,7 @@ const CORE_PROBLEMS = [
     subtitle: "bookings are no-shows",
     title: "No reminders means empty spots",
     desc: "Without auto reminders, 34% of your bookings don't show up on pickup day. Empty parking spot. Full day of lost money. No excuse.",
+    impactLine: "They forgot. Your Ferrari sat empty. $1,800 gone.",
     liveMessages: [
       "Yesterday: Ferrari booked, client never showed, $1,800 gone",
       "This month: 8 no-shows, $14,400 in empty calendar slots",
@@ -77,6 +82,7 @@ const CORE_PROBLEMS = [
     subtitle: "kills 50% of new bookings",
     title: "Bad reviews scare customers away",
     desc: "Customers check reviews before booking. Below 4.5 stars, half your potential customers pick a competitor. Two bad reviews can cost you $40K per year.",
+    impactLine: "One angry review — and half your customers walk away.",
     liveMessages: [
       "Right now: New 2-star review — no response from you yet",
       "This week: 3 people read your bad reviews and left",
@@ -90,6 +96,7 @@ const CORE_PROBLEMS = [
     subtitle: "wasted on admin weekly",
     title: "You do everything manually",
     desc: "Copying messages into spreadsheets, sending invoices by hand, typing the same price answer 40 times a day. 22 hours of your week is wasted work.",
+    impactLine: "You typed the same answer 40 times today — your life is copy-paste.",
     liveMessages: [
       "This week: You typed 'deposit is $5,000' 38 times manually",
       "Today: 3 hours spent copy-pasting booking details",
@@ -103,6 +110,7 @@ const CORE_PROBLEMS = [
     subtitle: "lost in off-peak months",
     title: "Cars sit empty in slow months",
     desc: "In slow months your cars sit in the lot. No outreach to past customers, no special deals, no reminders. Dead money every January.",
+    impactLine: "Your fleet is parked. Your money is bleeding. Nobody knows you exist.",
     liveMessages: [
       "Right now: 4 cars unbooked this entire week",
       "This month: 18 past clients didn't hear from you once",
@@ -116,6 +124,7 @@ const CORE_PROBLEMS = [
     subtitle: "upsell revenue lost monthly",
     title: "Customers want extras — you don't ask",
     desc: "Airport delivery, driver service, extra insurance, multi-day deals — every booking has $200-$800 in extra money you're leaving on the table.",
+    impactLine: "They wanted delivery. You never asked. $400 left on the table.",
     liveMessages: [
       "Today: 9 bookings completed, 0 extras offered",
       "Last week: $4,200 in delivery fees left on the table",
@@ -129,6 +138,7 @@ const CORE_PROBLEMS = [
     subtitle: "prefer SMS/WhatsApp",
     title: "Customers text. You check email.",
     desc: "64% of customers prefer WhatsApp or text. If you only check Instagram and email, you're missing most of your best leads.",
+    impactLine: "They texted you. You checked email. They booked someone else.",
     liveMessages: [
       "Right now: WhatsApp message from Miami — 47 min no reply",
       "Today: 6 text messages, 2 seen, 0 replied to",
@@ -142,6 +152,7 @@ const CORE_PROBLEMS = [
     subtitle: "one-time customers",
     title: "Happy customers book others next time",
     desc: "71% of customers who loved you book a competitor next time — because you never reached out. A simple follow-up turns them into repeat customers.",
+    impactLine: "They loved you. You ghosted them. They moved on.",
     liveMessages: [
       "This month: 19 past VIP clients booked elsewhere",
       "Right now: Client from 60 days ago — zero contact since",
@@ -155,6 +166,7 @@ const CORE_PROBLEMS = [
     subtitle: "faster competitor growth",
     title: "AI operators are taking your customers",
     desc: "Operators using AI close 5x more leads, reply instantly 24/7, and work smarter. Every week you wait, they take more of your customers.",
+    impactLine: "Your competitor replied in 3 seconds. You're still sleeping.",
     liveMessages: [
       "This year: 3 Miami operators launched AI — all growing 40%+",
       "Right now: Your top competitor just closed a message in 3 seconds",
@@ -456,6 +468,7 @@ function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
       alignItems: 'center',
       width: '100%',
       minHeight: isMobile ? 24 : 28,
+      padding: '0 20px',
     }}>
       <AnimatePresence mode="wait">
         {visibleItems.map(({ index, slot }) => {
@@ -470,15 +483,17 @@ function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 600,
                 fontSize: isMobile ? 11 : 13,
-                color: problem.color,
+                color: '#141419',
                 textAlign: 'center',
                 letterSpacing: '-0.01em',
+                fontStyle: 'italic',
+                maxWidth: isMobile ? 320 : 500,
               }}
             >
-              {problem.title}
+              {problem.impactLine}
             </motion.div>
           );
         })}
