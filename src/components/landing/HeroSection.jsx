@@ -1380,6 +1380,7 @@ export default function HeroSection() {
 
               <a
                 href="#solutions"
+                className="hero-see-how"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -1409,8 +1410,6 @@ export default function HeroSection() {
                 See how it works
               </a>
             </motion.div>
-
-            {/* Animated Trust Carousel - 2 rows scrolling */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1614,6 +1613,12 @@ export default function HeroSection() {
           }
         }
         
+        @media (max-width: 767px) {
+          .hero-see-how {
+            display: none !important;
+          }
+        }
+
         /* Small Mobile: Mobile-optimized experience */
         @media (max-width: 479px) {
           .hero-grid {
