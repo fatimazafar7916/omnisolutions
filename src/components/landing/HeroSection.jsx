@@ -1253,7 +1253,7 @@ export default function HeroSection() {
                     fontSize: "clamp(32px, 4.5vw, 56px)",
                   }}
                 >
-                  AI Assistants
+                  AI employees
                 </span>
                 <span
                   style={{
@@ -1262,9 +1262,13 @@ export default function HeroSection() {
                     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontStyle: "normal",
                     fontWeight: 400,
+                    background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
                   }}
                 >
-                  specifically built
+                  specifically built for
                 </span>
                 <span
                   style={{
@@ -1276,7 +1280,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  for car rental USA operators.
+                  car rental USA operators.
                 </span>
               </h1>
             </motion.div>
