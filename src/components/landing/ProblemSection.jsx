@@ -384,9 +384,6 @@ function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
           </motion.div>
         </AnimatePresence>
       </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
 
       {/* Dots - hidden on mobile */}
       {!isMobile && (
