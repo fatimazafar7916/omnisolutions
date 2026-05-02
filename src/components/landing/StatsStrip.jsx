@@ -120,7 +120,7 @@ export default function StatsStrip() {
             ))}
           </div>
 
-          {/* Row 2: 2 cards */}
+          {/* Row 2: 2 cards - hidden on mobile */}
           <div className="stats-row stats-row-2">
             {STATS.slice(3, 5).map((stat, i) => (
               <div key={i + 3} className="stat-cell">
@@ -303,6 +303,10 @@ export default function StatsStrip() {
             padding: 14px 10px;
             min-height: 130px;
           }
+          /* Hide row 2 on mobile */
+          .stats-row-2 {
+            display: none !important;
+          }
         }
 
         @media (max-width: 480px) {
@@ -335,6 +339,10 @@ export default function StatsStrip() {
           .stat-item {
             padding: 12px 8px;
             min-height: 120px;
+          }
+          /* Hide row 2 on mobile */
+          .stats-row-2 {
+            display: none !important;
           }
         }
 
