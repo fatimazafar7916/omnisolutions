@@ -283,7 +283,7 @@ function ProblemCard({ problem, isFocused, small }) {
         <p style={{
           fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11, color: GR,
           lineHeight: 1.4, margin: 0, marginBottom: small ? 6 : 8,
-          display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
+          display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{problem.desc}</p>
         
         <div>
