@@ -331,7 +331,7 @@ export default function StatsStrip() {
           .stats-grid {
             display: grid !important;
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 8px !important;
+            gap: 16px 12px !important;
           }
           
           /* First 3 cards: each spans 2 columns (2+2+2 = 6, fills row) */
@@ -347,22 +347,25 @@ export default function StatsStrip() {
             grid-column: span 3;
           }
           
-          /* Compact sizing for mobile */
+          /* Remove card styling on mobile - no background, no border */
           .stats-grid > div {
-            padding: 14px 10px !important;
-            min-height: 100px !important;
-            border-radius: 12px !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 12px 8px !important;
+            min-height: auto !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
           }
           
           /* Smaller number size */
           .stats-grid > div > div:first-child {
-            font-size: 32px !important;
-            margin-bottom: 6px !important;
+            font-size: 36px !important;
+            margin-bottom: 8px !important;
           }
           
           /* Smaller label */
           .stats-grid > div h3 {
-            font-size: 11px !important;
+            font-size: 12px !important;
             margin-bottom: 4px !important;
             line-height: 1.2 !important;
             font-weight: 700 !important;
@@ -370,7 +373,7 @@ export default function StatsStrip() {
           
           /* Smaller description */
           .stats-grid > div p {
-            font-size: 9px !important;
+            font-size: 10px !important;
             line-height: 1.3 !important;
           }
           
