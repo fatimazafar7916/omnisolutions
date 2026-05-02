@@ -42,7 +42,6 @@ export default function FAQSection() {
           gap: "clamp(20px, 4vw, 48px)",
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "0 clamp(16px, 4vw, 40px)",
         }}
       >
         {/* Left */}
@@ -97,7 +96,7 @@ export default function FAQSection() {
         </motion.div>
 
         {/* Right — accordion, no borders, divider lines only */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
           {FAQS.map((f, i) => (
             <motion.div
               key={i}
@@ -107,6 +106,7 @@ export default function FAQSection() {
               transition={{ duration: 0.35, delay: i * 0.05 }}
               style={{
                 borderBottom: i < FAQS.length - 1 ? "1px solid #F0EFF5" : "none",
+                width: "100%",
               }}
             >
               <button
@@ -117,7 +117,7 @@ export default function FAQSection() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   gap: 12,
-                  padding: "clamp(11px, 2vw, 14px) 0",
+                  padding: "12px 0",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -127,10 +127,11 @@ export default function FAQSection() {
                 <span style={{
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 600,
-                  fontSize: "clamp(12px, 2vw, 14px)",
+                  fontSize: "clamp(13px, 2vw, 15px)",
                   color: open === i ? "#22C55E" : "#141419",
                   lineHeight: 1.4,
                   transition: "color 0.2s",
+                  flex: 1,
                 }}>
                   {f.q}
                 </span>
@@ -158,9 +159,10 @@ export default function FAQSection() {
                     style={{ overflow: "hidden" }}
                   >
                     <p style={{
-                      paddingBottom: "clamp(10px, 2vw, 14px)",
+                      paddingBottom: 12,
+                      paddingRight: 34,
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "clamp(11px, 1.8vw, 13px)",
+                      fontSize: "clamp(12px, 1.8vw, 14px)",
                       color: "#6E6D7A", lineHeight: 1.6,
                       margin: 0,
                     }}>
