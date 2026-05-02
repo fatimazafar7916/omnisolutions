@@ -1266,7 +1266,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  specifically built
+                  specifically built for
                 </span>
                 <span
                   style={{
@@ -1278,7 +1278,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  for car rental USA operators.
+                  car rental USA operators.
                 </span>
               </h1>
             </motion.div>
