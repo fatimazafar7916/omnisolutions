@@ -486,7 +486,7 @@ function RotatingProblemDisplay({ visibleItems, items, isMobile }) {
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 600,
                 fontSize: isMobile ? 11 : 13,
-                color: '#141419',
+                color: RED,
                 textAlign: 'center',
                 letterSpacing: '-0.01em',
                 fontStyle: 'italic',
