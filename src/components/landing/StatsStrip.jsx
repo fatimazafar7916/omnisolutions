@@ -326,23 +326,29 @@ export default function StatsStrip() {
 
       {/* Mobile-specific CSS */}
       <style>{`
-        /* Mobile: 3 cards in first row, 2 wider cards in second row */
+        /* Mobile: 3 cards in first row, 2 cards in second row */
         @media (max-width: 768px) {
           .stats-grid {
             display: grid !important;
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 20px 12px !important;
+            gap: 24px 10px !important;
             max-width: 100% !important;
           }
           
-          /* First 3 cards: each spans 2 columns (2+2+2 = 6) */
-          .stats-grid > div:nth-child(1),
-          .stats-grid > div:nth-child(2),
-          .stats-grid > div:nth-child(3) {
-            grid-column: span 2 !important;
+          /* First 3 cards: each spans 2 columns (2+2+2 = 6) - FIRST ROW */
+          .stats-grid > div:nth-child(1) {
+            grid-column: 1 / 3 !important;
           }
           
-          /* Last 2 cards: each spans 3 columns (3+3 = 6) - centered and equal width */
+          .stats-grid > div:nth-child(2) {
+            grid-column: 3 / 5 !important;
+          }
+          
+          .stats-grid > div:nth-child(3) {
+            grid-column: 5 / 7 !important;
+          }
+          
+          /* Last 2 cards: each spans 3 columns (3+3 = 6) - SECOND ROW */
           .stats-grid > div:nth-child(4) {
             grid-column: 1 / 4 !important;
           }
@@ -355,44 +361,46 @@ export default function StatsStrip() {
           .stats-grid > div {
             background: transparent !important;
             border: none !important;
-            padding: 16px 8px !important;
+            padding: 12px 6px !important;
             min-height: auto !important;
             border-radius: 0 !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
           }
           
-          /* Number size */
+          /* Smaller number size for better fit */
           .stats-grid > div > div:first-child {
-            font-size: 40px !important;
-            margin-bottom: 8px !important;
+            font-size: 32px !important;
+            margin-bottom: 6px !important;
+            font-weight: 800 !important;
           }
           
-          /* Label */
+          /* Smaller label */
           .stats-grid > div h3 {
-            font-size: 13px !important;
-            margin-bottom: 4px !important;
+            font-size: 11px !important;
+            margin-bottom: 3px !important;
             line-height: 1.2 !important;
             font-weight: 700 !important;
           }
           
-          /* Description */
+          /* Smaller description */
           .stats-grid > div p {
-            font-size: 11px !important;
+            font-size: 9px !important;
             line-height: 1.3 !important;
+            opacity: 0.8 !important;
           }
           
-          /* Success indicator dot */
+          /* Smaller success indicator dot */
           .stats-grid > div > div:first-child > div {
-            width: 12px !important;
-            height: 12px !important;
-            top: -4px !important;
-            right: -4px !important;
+            width: 10px !important;
+            height: 10px !important;
+            top: -3px !important;
+            right: -3px !important;
           }
           
           .stats-grid > div > div:first-child > div > div {
-            width: 6px !important;
-            height: 6px !important;
+            width: 5px !important;
+            height: 5px !important;
           }
         }
         
@@ -403,9 +411,12 @@ export default function StatsStrip() {
             gap: 16px !important;
           }
           
+          .stats-grid > div:nth-child(1),
+          .stats-grid > div:nth-child(2),
+          .stats-grid > div:nth-child(3),
           .stats-grid > div:nth-child(4),
           .stats-grid > div:nth-child(5) {
-            grid-column: span 1;
+            grid-column: span 1 !important;
           }
         }
         
@@ -414,6 +425,14 @@ export default function StatsStrip() {
           .stats-grid {
             grid-template-columns: repeat(5, 1fr) !important;
             gap: 20px !important;
+          }
+          
+          .stats-grid > div:nth-child(1),
+          .stats-grid > div:nth-child(2),
+          .stats-grid > div:nth-child(3),
+          .stats-grid > div:nth-child(4),
+          .stats-grid > div:nth-child(5) {
+            grid-column: span 1 !important;
           }
         }
       `}</style>
