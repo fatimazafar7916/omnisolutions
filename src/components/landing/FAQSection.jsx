@@ -39,9 +39,10 @@ export default function FAQSection() {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr",
-          gap: "clamp(24px, 5vw, 48px)",
+          gap: "clamp(20px, 4vw, 48px)",
           maxWidth: "1200px",
           margin: "0 auto",
+          padding: "0 clamp(16px, 4vw, 40px)",
         }}
       >
         {/* Left */}
@@ -51,91 +52,61 @@ export default function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "#22C55E",
-              display: "block",
-              marginBottom: 12,
-            }}
-          >
+          <span style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 600, fontSize: 10,
+            letterSpacing: "0.14em", textTransform: "uppercase",
+            color: "#22C55E", display: "block", marginBottom: 10,
+          }}>
             FAQ
           </span>
 
-          <h2
-            style={{
-              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(20px, 4vw, 40px)",
-              letterSpacing: "-0.02em",
-              color: "#141419",
-              lineHeight: 1.15,
-              margin: "0 0 12px",
-            }}
-          >
+          <h2 style={{
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+            fontWeight: 700, fontSize: "clamp(18px, 4vw, 40px)",
+            letterSpacing: "-0.02em", color: "#141419",
+            lineHeight: 1.15, margin: "0 0 10px",
+          }}>
             Common questions,{" "}
-            <span
-              style={{
-                fontFamily: "'Instrument Serif', serif",
-                fontWeight: 400,
-                fontStyle: "italic",
-                color: "#22C55E",
-              }}
-            >
+            <span style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontWeight: 400, fontStyle: "italic", color: "#22C55E",
+            }}>
               straight answers.
             </span>
           </h2>
 
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(13px, 2vw, 14px)",
-              color: "#6E6D7A",
-              lineHeight: 1.6,
-              maxWidth: "100%",
-            }}
-          >
-            Still have questions? Book a 20-minute call with our team — no sales pressure, just
-            answers.
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "clamp(12px, 2vw, 14px)",
+            color: "#6E6D7A", lineHeight: 1.6, maxWidth: "100%", margin: 0,
+          }}>
+            Still have questions? Book a 20-minute call — no sales pressure, just answers.
           </p>
 
-          <a
-            href="#cta"
-            style={{
-              display: "inline-flex",
-              marginTop: "clamp(12px, 2vw, 16px)",
-              padding: "clamp(8px, 1.5vw, 10px) clamp(16px, 3vw, 20px)",
-              borderRadius: 100,
-              background: "#F0FDF4",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(12px, 2vw, 13px)",
-              color: "#22C55E",
-              textDecoration: "none",
-            }}
-          >
+          <a href="#cta" style={{
+            display: "inline-flex", marginTop: "clamp(10px, 2vw, 16px)",
+            padding: "8px 18px", borderRadius: 100,
+            background: "#F0FDF4",
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 600, fontSize: "clamp(11px, 2vw, 13px)",
+            color: "#22C55E", textDecoration: "none",
+          }}>
             Talk to Us →
           </a>
         </motion.div>
 
-        {/* Right — accordion */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4px, 1vw, 6px)" }}>
+        {/* Right — accordion, no borders, divider lines only */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
           {FAQS.map((f, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
               style={{
-                borderRadius: "clamp(8px, 1.5vw, 12px)",
-                overflow: "hidden",
-                border: "1px solid #EDE8DE",
-                background: open === i ? "#FAFAF8" : "#fff",
+                borderBottom: i < FAQS.length - 1 ? "1px solid #F0EFF5" : "none",
               }}
             >
               <button
@@ -145,45 +116,35 @@ export default function FAQSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: "clamp(8px, 2vw, 16px)",
-                  padding: "clamp(12px, 2vw, 14px) clamp(14px, 2.5vw, 18px)",
+                  gap: 12,
+                  padding: "clamp(11px, 2vw, 14px) 0",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
                   textAlign: "left",
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "clamp(13px, 2vw, 15px)",
-                    color: "#141419",
-                    lineHeight: 1.4,
-                    wordBreak: "break-word",
-                  }}
-                >
+                <span style={{
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(12px, 2vw, 14px)",
+                  color: open === i ? "#22C55E" : "#141419",
+                  lineHeight: 1.4,
+                  transition: "color 0.2s",
+                }}>
                   {f.q}
                 </span>
 
-                <span
-                  style={{
-                    width: "clamp(20px, 3vw, 24px)",
-                    height: "clamp(20px, 3vw, 24px)",
-                    borderRadius: "50%",
-                    background: open === i ? "#22C55E" : "#F0FDF4",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    transition: "background 0.2s",
-                  }}
-                >
-                  {open === i ? (
-                    <Minus size={11} color="#fff" />
-                  ) : (
-                    <Plus size={11} color="#22C55E" />
-                  )}
+                <span style={{
+                  width: 22, height: 22, borderRadius: "50%",
+                  background: open === i ? "#22C55E" : "#F0FDF4",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, transition: "background 0.2s",
+                }}>
+                  {open === i
+                    ? <Minus size={10} color="#fff" />
+                    : <Plus size={10} color="#22C55E" />
+                  }
                 </span>
               </button>
 
@@ -193,20 +154,16 @@ export default function FAQSection() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.26 }}
+                    transition={{ duration: 0.24 }}
                     style={{ overflow: "hidden" }}
                   >
-                    <p
-                      style={{
-                        padding: "0 clamp(14px, 2.5vw, 18px) clamp(12px, 2vw, 14px)",
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "clamp(12px, 1.8vw, 14px)",
-                        color: "#6E6D7A",
-                        lineHeight: 1.6,
-                        margin: 0,
-                        wordBreak: "break-word",
-                      }}
-                    >
+                    <p style={{
+                      paddingBottom: "clamp(10px, 2vw, 14px)",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "clamp(11px, 1.8vw, 13px)",
+                      color: "#6E6D7A", lineHeight: 1.6,
+                      margin: 0,
+                    }}>
                       {f.a}
                     </p>
                   </motion.div>
