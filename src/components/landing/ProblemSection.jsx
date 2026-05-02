@@ -1,1039 +1,475 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-/* ── Colours (original light palette) ── */
-const C    = "#22C55E";
-const CL   = "#F0FDF4";
-const CLL  = "rgba(34,197,94,0.07)";
-const RED  = "#EF4444";
+const RED = "#EF4444";
 const REDL = "#FEF2F2";
-const GR   = "#6E6D7A";
+const GR = "#6E6D7A";
 
-/* ── Section 4 Problem Cards Data ── */
+// Each problem has 3 rotating live messages shown while the card is focused
 const CORE_PROBLEMS = [
   {
-    id: "missed-calls",
-    icon: "",
-    stat: "$47K",
-    subtitle: "lost every year",
-    title: "Missing calls after you close",
-    desc: "Every missed call after 6PM costs you $312. With 150+ missed calls every year, that's $47,000 going to other companies who answer their phones 24/7.",
-    realTimeMsg: "Right now: 3 people called you in the last hour",
-    color: "#EF4444",
-    colorLight: "#FEF2F2",
-    colorBorder: "#FECACA",
-    metricImpact: { revenue: -31, bookings: -28, leads: -35 },
-    urgencyLevel: "CRITICAL",
+    id: "missed-dms",
+    stat: "$31K",
+    subtitle: "lost to unanswered DMs/mo",
+    title: "DMs pile up while you sleep",
+    desc: "Exotic renters DM at 11PM on Friday. If you don't reply in 10 minutes they book someone else. You wake up to 40 messages and zero bookings.",
+    liveMessages: [
+      "Right now: 4 DMs unanswered on your Instagram",
+      "Last night: 11PM inquiry for Lamborghini — no reply",
+      "This week: 23 DMs went cold before you responded",
+    ],
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
   },
   {
     id: "slow-replies",
-    icon: "",
-    stat: "2.3min",
-    subtitle: "to get the deal",
-    title: "Taking too long to reply",
-    desc: "Most people book with whoever replies first. If you take 45 minutes to answer, you are losing 8 out of 10 customers to faster businesses.",
-    realTimeMsg: "Others are faster: They reply in under 90 seconds",
-    color: "#F59E0B",
-    colorLight: "#FFFBEB",
-    colorBorder: "#FDE68A",
-    metricImpact: { revenue: -25, bookings: -32, leads: -28 },
-    urgencyLevel: "HIGH",
+    stat: "42 min",
+    subtitle: "your avg reply time",
+    title: "First reply wins the booking",
+    desc: "78% of luxury renters book with whoever responds first. Your competitor across town uses AI — they reply in 4 seconds. You reply in 42 minutes. You lose.",
+    liveMessages: [
+      "Right now: A competitor replied to your lead in 6 sec",
+      "Today: You lost 3 leads to faster operators",
+      "This hour: 2 people DM'd you and already booked elsewhere",
+    ],
+    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A", urgencyLevel: "CRITICAL",
   },
   {
     id: "no-followup",
-    icon: "",
-    stat: "94%",
-    subtitle: "prices ignored",
-    title: "No one follows up",
-    desc: "Most big bookings need a few reminders to close. Without someone to follow up, 94% of your quotes are forgotten — that's $180,000 in lost money.",
-    realTimeMsg: "This month: 23 quotes sent, only 2 people booked",
-    color: "#22C55E",
-    colorLight: "#F0FDF4",
-    colorBorder: "#BBF7D0",
-    metricImpact: { revenue: -40, bookings: -38, leads: -22 },
-    urgencyLevel: "CRITICAL",
+    stat: "91%",
+    subtitle: "quotes never followed up",
+    title: "You send quotes, never follow up",
+    desc: "Exotic car clients need 2–3 touchpoints to close. You send a quote and hope. 91% of your quotes die in silence — that's $180K/yr in lost deals.",
+    liveMessages: [
+      "This month: 27 quotes sent, 2 followed up, 0 closed",
+      "Right now: Quote from 3 days ago still sitting unread",
+      "Last week: $8,400 deal fell through — no follow-up sent",
+    ],
+    color: "#22C55E", colorLight: "#F0FDF4", colorBorder: "#BBF7D0", urgencyLevel: "CRITICAL",
+  },
+  {
+    id: "instagram-comments",
+    stat: "1,200+",
+    subtitle: "comments ignored monthly",
+    title: "Comments = leads you're ignoring",
+    desc: "Every 'How much?' on your Instagram reel is a warm lead. Most operators ignore them or reply 6 hours later. That comment turns cold in 12 minutes.",
+    liveMessages: [
+      "Right now: 'How much is this??' — posted 8 min ago, no reply",
+      "Today: 14 comment leads went unanswered on your posts",
+      "This week: Reel got 43K views, you booked 1 car from it",
+    ],
+    color: "#E1306C", colorLight: "#FDF2F8", colorBorder: "#F9A8D4", urgencyLevel: "HIGH",
+  },
+  {
+    id: "no-shows",
+    stat: "1 in 3",
+    subtitle: "bookings are no-shows",
+    title: "No reminders = empty bays",
+    desc: "Without automated confirmations and reminder sequences, 34% of your bookings ghost you on pickup day. Empty bay. Full-day lost revenue. No excuse.",
+    liveMessages: [
+      "Yesterday: Ferrari booked, client never showed, $1,800 gone",
+      "This month: 8 no-shows, $14,400 in empty calendar slots",
+      "Today: 3 pickups scheduled, 0 reminders sent",
+    ],
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
   },
   {
     id: "bad-reviews",
-    icon: "",
     stat: "3.8★",
-    subtitle: "Google rating",
-    title: "Not enough good reviews",
-    desc: "If your rating is low, half of your potential customers will go elsewhere. People want to see 4.6 stars or more. Every bad review costs you thousands of dollars.",
-    realTimeMsg: "Wait: You have 2 new bad reviews that need a reply",
-    color: "#EC4899",
-    colorLight: "#FDF2F8",
-    colorBorder: "#F9A8D4",
-    metricImpact: { revenue: -18, bookings: -20, leads: -30 },
-    urgencyLevel: "HIGH",
+    subtitle: "kills 50% of new bookings",
+    title: "Bad reviews driving clients away",
+    desc: "Luxury renters check reviews before everything. Below 4.5 stars, half your potential customers choose a competitor. Two bad reviews can cost you $40K/yr.",
+    liveMessages: [
+      "Right now: New 2-star review — no response from you yet",
+      "This week: 3 people read your bad reviews and bounced",
+      "Today: Competitor at 4.9★ just took a $3,200 booking you lost",
+    ],
+    color: "#EC4899", colorLight: "#FDF2F8", colorBorder: "#F9A8D4", urgencyLevel: "HIGH",
   },
   {
-    id: "low-engagement",
-    icon: "",
+    id: "manual-work",
+    stat: "22hrs",
+    subtitle: "wasted on admin weekly",
+    title: "You're the AI, the agent, the admin",
+    desc: "Copying DMs into spreadsheets, sending invoices manually, typing the same pricing answer 40 times a day. 22 hours of your week are pure waste.",
+    liveMessages: [
+      "This week: You typed 'deposit is $5,000' 38 times manually",
+      "Today: 3 hours spent copy-pasting booking details",
+      "Right now: Admin backlog = 2 hours to clear before bed",
+    ],
+    color: "#8B5CF6", colorLight: "#F5F3FF", colorBorder: "#DDD6FE", urgencyLevel: "HIGH",
+  },
+  {
+    id: "seasonal-gaps",
+    stat: "$28K",
+    subtitle: "lost in off-peak months",
+    title: "Fleet sits idle in slow season",
+    desc: "In off-peak months your fleet sits in the lot. No proactive outreach, no re-engagement campaigns, no discount nudges. Dead revenue every January and September.",
+    liveMessages: [
+      "Right now: 4 cars unbooked this entire week",
+      "This month: 18 past clients didn't hear from you once",
+      "Last Jan: Fleet was 23% utilized. Could've been 60%+",
+    ],
+    color: "#06B6D4", colorLight: "#ECFEFF", colorBorder: "#A5F3FC", urgencyLevel: "MEDIUM",
+  },
+  {
+    id: "upsell",
+    stat: "$9,800",
+    subtitle: "upsell revenue lost monthly",
+    title: "Clients want upgrades — you don't ask",
+    desc: "Airport delivery, chauffeur add-ons, extended insurance, multi-day discounts — every booking has $200–$800 in upsell potential you're leaving on the table.",
+    liveMessages: [
+      "Today: 9 bookings completed, 0 upsells offered",
+      "Last week: $4,200 in delivery fees left on the table",
+      "Right now: Urus booking confirmed — no upgrade offered",
+    ],
+    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A", urgencyLevel: "MEDIUM",
+  },
+  {
+    id: "whatsapp-sms",
+    stat: "64%",
+    subtitle: "prefer SMS/WhatsApp",
+    title: "Clients text. You check email.",
+    desc: "64% of exotic renters prefer WhatsApp or SMS. If you only monitor Instagram DMs and email, you're invisible to the majority of your most valuable inbound leads.",
+    liveMessages: [
+      "Right now: WhatsApp message from Miami — 47 min no reply",
+      "Today: 6 SMS inquiries, 2 seen, 0 replied to",
+      "This week: $12K booking came via WhatsApp you almost missed",
+    ],
+    color: "#10B981", colorLight: "#ECFDF5", colorBorder: "#6EE7B7", urgencyLevel: "HIGH",
+  },
+  {
+    id: "repeat-clients",
     stat: "71%",
-    subtitle: "never come back",
-    title: "Customers only book once",
-    desc: "Most of your happy customers book somewhere else next time because you don't reach out to them. Each customer who doesn't return costs you $4,800 over time.",
-    realTimeMsg: "This quarter: 34 old customers booked with someone else",
-    color: "#06B6D4",
-    colorLight: "#ECFEFF",
-    colorBorder: "#A5F3FC",
-    metricImpact: { revenue: -22, bookings: -26, leads: -15 },
-    urgencyLevel: "MEDIUM",
+    subtitle: "one-time customers",
+    title: "Happy clients book competitors next",
+    desc: "71% of renters who loved their experience book a competitor next time — because you never reached out. A simple follow-up sequence would turn them into loyal repeats.",
+    liveMessages: [
+      "This month: 19 past VIP clients booked elsewhere",
+      "Right now: Client from 60 days ago — zero contact since",
+      "This quarter: $47K in repeat revenue walked out the door",
+    ],
+    color: "#6366F1", colorLight: "#EEF2FF", colorBorder: "#C7D2FE", urgencyLevel: "HIGH",
   },
   {
-    id: "silent-visitors",
-    icon: "",
-    stat: "89%",
-    subtitle: "leave without booking",
-    title: "People visit but don't buy",
-    desc: "Most people who visit your website leave without saying a word. No chat, no info, no booking. That's over 2,000 people vanishing every single month.",
-    realTimeMsg: "Today: 47 people looked at your site, 0 contacted you",
-    color: "#10B981",
-    colorLight: "#ECFDF5",
-    colorBorder: "#6EE7B7",
-    metricImpact: { revenue: -15, bookings: -18, leads: -42 },
-    urgencyLevel: "HIGH",
+    id: "competitors",
+    stat: "5x",
+    subtitle: "faster competitor growth",
+    title: "AI operators are eating your market",
+    desc: "Operators using AI automation close 5x more leads, respond instantly 24/7, and run leaner. Every week you wait, they lock in more of your market. The gap grows daily.",
+    liveMessages: [
+      "This year: 3 Miami operators launched AI — all growing 40%+",
+      "Right now: Your top competitor just closed a DM in 3 seconds",
+      "This month: AI operators captured 12% more market share",
+    ],
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
   },
 ];
 
-/* ── Real-time Alert Component ── */
-function RealTimeAlert({ message, urgencyLevel }) {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), Math.random() * 2000 + 1000);
-    return () => clearTimeout(timer);
-  }, []);
+const METRICS = [
+  { label: "Unanswered DM Revenue Loss", value: "$31K", period: "per month", trend: "23 cold leads this week alone", color: "#EF4444", lossPct: 0.78, monthlyLoss: "$31,000" },
+  { label: "Leads Lost to Slow Response", value: "78%", period: "book with 1st responder", trend: "Your avg reply time: 42 min", color: "#F59E0B", lossPct: 0.78, monthlyLoss: "$18,200" },
+  { label: "Quotes That Never Close", value: "91%", period: "never followed up", trend: "Only 2 of 27 quotes followed up", color: "#22C55E", lossPct: 0.91, monthlyLoss: "$15,000" },
+  { label: "Instagram Comment Leads Lost", value: "1,200+", period: "ignored monthly", trend: "14 comment leads ignored today", color: "#E1306C", lossPct: 0.82, monthlyLoss: "$9,600" },
+  { label: "No-Show Revenue Drain", value: "$14.4K", period: "per month", trend: "8 no-shows, 0 reminders sent", color: "#EF4444", lossPct: 0.34, monthlyLoss: "$14,400" },
+  { label: "Review Rating Penalty", value: "−50%", period: "bookings below 4.5★", trend: "New 2★ review unanswered", color: "#EC4899", lossPct: 0.50, monthlyLoss: "$22,000" },
+  { label: "Admin Time Wasted", value: "22hrs", period: "every week", trend: "1,144 hrs/year automatable", color: "#8B5CF6", lossPct: 0.55, monthlyLoss: "$4,400" },
+  { label: "Off-Peak Fleet Idle Loss", value: "$28K", period: "per slow month", trend: "Fleet at 23% utilization last Jan", color: "#06B6D4", lossPct: 0.77, monthlyLoss: "$28,000" },
+  { label: "Missed Upsell Revenue", value: "$9,800", period: "per month", trend: "0 upsells offered today", color: "#F59E0B", lossPct: 0.68, monthlyLoss: "$9,800" },
+  { label: "SMS/WhatsApp Leads Missed", value: "64%", period: "prefer these channels", trend: "6 SMS inquiries unseen today", color: "#10B981", lossPct: 0.64, monthlyLoss: "$12,000" },
+  { label: "Repeat Clients Walking Away", value: "$47K", period: "per quarter", trend: "19 VIP clients booked rivals", color: "#6366F1", lossPct: 0.71, monthlyLoss: "$15,700" },
+  { label: "AI Competitor Growth Gap", value: "5x", period: "faster competitor growth", trend: "3 rivals grew 40%+ with AI", color: "#EF4444", lossPct: 0.85, monthlyLoss: "∞" },
+];
 
-  const urgencyColors = {
-    CRITICAL: { bg: "#FEF2F2", border: "#FECACA", text: "#DC2626", pulse: "#EF4444" },
-    HIGH: { bg: "#FFFBEB", border: "#FDE68A", text: "#D97706", pulse: "#F59E0B" },
-    MEDIUM: { bg: "#F0F9FF", border: "#BAE6FD", text: "#0369A1", pulse: "#0EA5E9" },
-  };
-
-  const colors = urgencyColors[urgencyLevel] || urgencyColors.MEDIUM;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      style={{
-        background: colors.bg,
-        border: `1px solid ${colors.border}`,
-        borderRadius: 8,
-        padding: "8px 12px",
-        marginTop: 12,
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Pulsing indicator */}
-      <motion.div
-        style={{
-          position: "absolute",
-          left: 8,
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: 6,
-          height: 6,
-          borderRadius: "50%",
-          background: colors.pulse,
-        }}
-        animate={{ opacity: [1, 0.3, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-      
-      <p style={{
-        fontFamily: "'DM Sans',sans-serif",
-        fontSize: 10,
-        color: colors.text,
-        margin: 0,
-        paddingLeft: 16,
-        fontWeight: 600,
-        lineHeight: 1.4,
-      }}>
-        {message}
-      </p>
-    </motion.div>
-  );
-}
-/* ── Animated Counter ── */
-function AnimatedCounter({ value, duration = 2000, prefix = "", suffix = "" }) {
-  const [display, setDisplay] = useState(0);
-  const raf = useRef(null);
-  const start = useRef(null);
+// Rotating live message component — always cycles every 2s
+function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }) {
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const target = Math.abs(value);
-    start.current = null;
-    cancelAnimationFrame(raf.current);
-    const tick = (ts) => {
-      if (!start.current) start.current = ts;
-      const elapsed = ts - start.current;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(eased * target));
-      if (progress < 1) raf.current = requestAnimationFrame(tick);
-    };
-    raf.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf.current);
-  }, [value, duration]);
-
-  return <span>{prefix}{display}{suffix}</span>;
-}
-
-/* ── Flowing Wire SVG between cards and convergence point ── */
-function WireSystem({ cardCount, containerWidth, isVisible }) {
-  const svgHeight = 220;
-  
-  // Check if mobile view (only show 3 wires on mobile)
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-  const visibleCards = isMobile ? 3 : cardCount;
-  
-  // On mobile, we need to calculate positions based on 3-column grid
-  // On desktop, based on 6-column grid (but showing all cards)
+    const t = setInterval(() => {
+      setIdx(i => (i + 1) % messages.length);
+    }, 2000);
+    return () => clearInterval(t);
+  }, [messages.length]);
 
   return (
-    <svg
-      width={containerWidth}
-      height={svgHeight}
-      viewBox={`0 0 ${containerWidth} ${svgHeight}`}
-      style={{ overflow: "visible", display: "block" }}
-    >
-      <defs>
-        {/* Create gradients for each visible card */}
-        {Array.from({ length: visibleCards }, (_, i) => (
-          <linearGradient key={`grad-${i}`} id={`wire-grad-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#22C55E" stopOpacity="0.9" />
-            <stop offset="40%" stopColor="#F59E0B" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#EF4444" stopOpacity="1" />
-          </linearGradient>
-        ))}
-        <linearGradient id="converge-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#EF4444" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#7B0000" stopOpacity="1" />
-        </linearGradient>
-        <filter id="wire-glow">
-          <feGaussianBlur stdDeviation="2" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-
-      {/* Create wires for visible cards */}
-      {Array.from({ length: visibleCards }, (_, i) => {
-        // Calculate card center position for 3-column grid on mobile
-        const cardCenterX = (containerWidth / visibleCards) * (i + 0.5);
-        const convergeX = containerWidth / 2;
-        const controlY = svgHeight * 0.6;
-
-        // SAME curved wires on mobile and desktop - converging to center
-        const pathD = `M ${cardCenterX} 0 C ${cardCenterX} ${controlY * 0.5}, ${convergeX} ${controlY * 0.5}, ${convergeX} ${svgHeight - 20}`;
-
-        console.log(`Wire ${i + 1}: cardCenterX=${cardCenterX}, containerWidth=${containerWidth}, visibleCards=${visibleCards}, pathD=${pathD}`);
-
-        return (
-          <g key={`wire-${i}`}>
-            {/* Debug: Show wire start position */}
-            <circle
-              cx={cardCenterX}
-              cy={5}
-              r="5"
-              fill="lime"
-              opacity="1"
-            />
-            
-            {/* Background glow wire */}
-            {isVisible && (
-              <motion.path
-                d={pathD}
-                fill="none"
-                stroke={`url(#wire-grad-${i})`}
-                strokeWidth="4"
-                strokeOpacity="0.5"
-                filter="url(#wire-glow)"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1.4, delay: i * 0.12, ease: "easeInOut" }}
-              />
-            )}
-            {/* Main wire */}
-            {isVisible && (
-              <motion.path
-                d={pathD}
-                fill="none"
-                stroke={`url(#wire-grad-${i})`}
-                strokeWidth="3"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1.2, delay: i * 0.12, ease: "easeInOut" }}
-              />
-            )}
-            {/* Animated pulse dot */}
-            {isVisible && (
-              <motion.circle
-                r="4"
-                fill="#EF4444"
-                filter="url(#wire-glow)"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 1, 0],
-                  offsetDistance: ["0%", "100%"],
-                }}
-                style={{ offsetPath: `path('${pathD}')` }}
-                transition={{
-                  duration: 2.2,
-                  delay: 0.8 + i * 0.15,
-                  repeat: Infinity,
-                  repeatDelay: 1.5,
-                  ease: "easeInOut",
-                }}
-              />
-            )}
-          </g>
-        );
-      })}
-
-      {/* Convergence point glow - on both mobile and desktop */}
-      {isVisible && (
-        <>
-          <motion.circle
-            cx={containerWidth / 2}
-            cy={svgHeight - 20}
-            r="18"
-            fill="none"
-            stroke="#EF4444"
-            strokeWidth="1.5"
-            strokeOpacity="0.3"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: [1, 1.3, 1], opacity: [0, 0.5, 0.3] }}
-            transition={{ duration: 2, delay: 1.8, repeat: Infinity }}
-            style={{ transformOrigin: `${containerWidth / 2}px ${svgHeight - 20}px` }}
-          />
-          <motion.circle
-            cx={containerWidth / 2}
-            cy={svgHeight - 20}
-            r="10"
-            fill="#EF4444"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          />
-          <motion.circle
-            cx={containerWidth / 2}
-            cy={svgHeight - 20}
-            r="5"
-            fill="#fff"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 1.7 }}
-          />
-        </>
-      )}
-    </svg>
-  );
-}
-
-/* ── Metric Impact Block ── */
-function MetricImpact({ isVisible }) {
-  const metrics = [
-    {
-      label: "Monthly Revenue Loss",
-      icon: "",
-      value: "$23,400",
-      trend: "↗ +$2,100 vs last month",
-      description: "Direct revenue bleeding from these 6 problems",
-      steps: [100, 82, 61, 44, 29, 18, 11],
-      color: "#EF4444",
-      suffix: "",
-      prefix: "",
-    },
-    {
-      label: "Missed Bookings",
-      icon: "",
-      value: "47",
-      trend: "↗ +8 vs last month", 
-      description: "Confirmed bookings lost to competitors",
-      steps: [100, 79, 58, 40, 27, 16, 9],
-      color: "#22C55E",
-      suffix: "/month",
-      prefix: "",
-    },
-    {
-      label: "Lost Lead Opportunities",
-      icon: "",
-      value: "312",
-      trend: "↗ +43 vs last month",
-      description: "Potential customers who never converted",
-      steps: [100, 84, 65, 48, 32, 20, 12],
-      color: "#06B6D4",
-      suffix: "/month",
-      prefix: "",
-    },
-  ];
-
-  return (
-    <div 
-      className="metrics-grid"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 12,
-        width: "100%",
-      }}>
-      {metrics.map((metric, mi) => (
-        <motion.div
-          key={metric.label}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 2.0 + mi * 0.15 }}
-          style={{
-            background: "#fff",
-            border: "1px solid #E3E2EB",
-            borderRadius: 12,
-            padding: "14px 14px",
-            position: "relative",
-            overflow: "hidden",
-          }}
+    <div style={{ background: colorLight, border: `1px solid ${colorBorder}`, borderRadius: 8, padding: small ? "5px 8px" : "7px 10px", display: "flex", alignItems: "center", gap: 6, overflow: "hidden", flexShrink: 0 }}>
+      <motion.div style={{ width: 5, height: 5, borderRadius: "50%", background: color, flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={idx}
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.4 }}
+          style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9.5 : 11, fontWeight: 700, color, lineHeight: 1.3 }}
         >
-          {/* Top glow accent */}
-          <div style={{
-            position: "absolute",
-            top: 0, left: 0, right: 0,
-            height: 3,
-            background: `linear-gradient(90deg, transparent, ${metric.color}, transparent)`,
-            opacity: 0.6,
-          }} />
-
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: GR }}>
-              {metric.label}
-            </span>
-          </div>
-
-          {/* Main metric value */}
-          <div style={{ marginBottom: 6 }}>
-            <motion.span
-              style={{
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                fontWeight: 800,
-                fontSize: 22,
-                letterSpacing: "-0.03em",
-                color: metric.color,
-                lineHeight: 1,
-                display: "block",
-              }}
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 2.0 + mi * 0.15 }}
-            >
-              {metric.value}
-            </motion.span>
-            <motion.div
-              style={{
-                fontFamily: "'DM Sans',sans-serif",
-                fontSize: 9,
-                color: "#EF4444",
-                fontWeight: 600,
-                marginTop: 2,
-              }}
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 2.2 + mi * 0.1 }}
-            >
-              {metric.trend}
-            </motion.div>
-          </div>
-
-          {/* Step bars */}
-          <div style={{ display: "flex", gap: 2, alignItems: "flex-end", height: 36, marginBottom: 8 }}>
-            {metric.steps.map((val, si) => {
-              const pct = val / 100;
-              const colorPct = si / (metric.steps.length - 1);
-              const r = Math.round(123 + (239 - 123) * colorPct);
-              const g = Math.round(116 + (68 - 116) * colorPct);
-              const b = Math.round(220 + (68 - 220) * colorPct);
-              const barColor = `rgb(${r},${g},${b})`;
-
-              return (
-                <motion.div
-                  key={si}
-                  style={{
-                    flex: 1,
-                    background: barColor,
-                    borderRadius: "3px 3px 2px 2px",
-                    opacity: 0.85,
-                  }}
-                  initial={{ height: 0 }}
-                  animate={isVisible ? { height: `${pct * 36}px` } : { height: 0 }}
-                  transition={{ duration: 0.5, delay: 2.2 + mi * 0.15 + si * 0.08, ease: "easeOut" }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Description */}
-          <motion.p
-            style={{
-              fontFamily: "'DM Sans',sans-serif",
-              fontSize: 10,
-              color: GR,
-              margin: 0,
-              lineHeight: 1.4,
-            }}
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 2.4 + mi * 0.1 }}
-          >
-            {metric.description}
-          </motion.p>
-        </motion.div>
-      ))}
+          {messages[idx]}
+        </motion.span>
+      </AnimatePresence>
     </div>
   );
 }
 
-/* ── Problem Card ── */
-function ProblemCard({ problem, index, isVisible }) {
+function ProblemCard({ problem, isFocused, small }) {
+  const pad = small ? "10px 12px" : "16px 18px";
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      style={{
-        background: "#fff",
-        border: `1px solid ${problem.colorBorder}`,
-        borderRadius: 12,
-        padding: "14px 12px",
-        position: "relative",
-        overflow: "hidden",
-        cursor: "default",
-        flex: 1,
-        minHeight: 220,
-      }}
-    >
-      {/* Urgency indicator - moved to left */}
-      <div style={{
-        position: "absolute",
-        top: 12,
-        left: 12,
-        background: problem.urgencyLevel === 'CRITICAL' ? '#FEF2F2' : problem.urgencyLevel === 'HIGH' ? '#FFFBEB' : '#F0F9FF',
-        border: `1px solid ${problem.urgencyLevel === 'CRITICAL' ? '#FECACA' : problem.urgencyLevel === 'HIGH' ? '#FDE68A' : '#BAE6FD'}`,
-        borderRadius: 6,
-        padding: "2px 6px",
-      }}>
-        <span style={{
-          fontFamily: "'DM Sans',sans-serif",
-          fontSize: 8,
-          fontWeight: 700,
-          color: problem.urgencyLevel === 'CRITICAL' ? '#DC2626' : problem.urgencyLevel === 'HIGH' ? '#D97706' : '#0369A1',
-          letterSpacing: "0.05em",
-        }}>
-          {problem.urgencyLevel}
-        </span>
-      </div>
+    <div style={{
+      width: "100%", height: "100%", background: "#fff", borderRadius: 16,
+      border: `1.5px solid ${isFocused ? problem.color : problem.colorBorder}`,
+      boxShadow: isFocused ? `0 8px 28px ${problem.color}22` : "0 1px 6px rgba(0,0,0,0.05)",
+      overflow: "hidden", display: "flex", flexDirection: "column", position: "relative",
+    }}>
+      {/* Top accent bar */}
+      <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
 
-      {/* Left accent bar */}
-      <div style={{
-        position: "absolute",
-        left: 0, top: 0, bottom: 0,
-        width: 3,
-        background: `linear-gradient(180deg, ${problem.color}33, ${problem.color}, ${problem.color}33)`,
-        borderRadius: "3px 0 0 3px",
-      }} />
-
-      {/* Top glow */}
-      <div style={{
-        position: "absolute",
-        top: 0, left: 0, right: 0,
-        height: 40,
-        background: `linear-gradient(180deg, ${problem.colorLight} 0%, transparent 100%)`,
-        pointerEvents: "none",
-      }} />
-
-      <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", marginBottom: 10 }}>
-        <div style={{ textAlign: "right" }}>
-          <span style={{
-            fontFamily: "'Bricolage Grotesque',sans-serif",
-            fontWeight: 900,
-            fontSize: "clamp(18px,2vw,22px)",
-            color: problem.color,
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-            display: "block",
-          }}>
-            {problem.stat}
-          </span>
-          <span style={{
-            fontFamily: "'DM Sans',sans-serif",
-            fontSize: 9,
-            color: GR,
-            fontWeight: 500,
-          }}>
-            {problem.subtitle}
-          </span>
+      <div style={{ padding: pad, display: "flex", flexDirection: "column", flex: 1, gap: small ? 6 : 8 }}>
+        {/* Stat + subtitle row */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 30, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10.5, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
         </div>
+
+        {/* Title */}
+        <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13.5, color: "#141419", margin: 0, lineHeight: 1.3 }}>{problem.title}</h4>
+
+        {/* Desc — limited to 3 lines */}
+        <p style={{
+          fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11.5, color: GR,
+          lineHeight: 1.5, margin: 0,
+          display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
+        }}>{problem.desc}</p>
+
+        {/* Live message */}
+        <RotatingLiveMessage
+          messages={problem.liveMessages}
+          color={problem.color}
+          colorLight={problem.colorLight}
+          colorBorder={problem.colorBorder}
+          small={small}
+        />
       </div>
-
-      <h4 style={{
-        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-        fontWeight: 700,
-        fontSize: "clamp(12px,1.2vw,14px)",
-        color: "#141419",
-        letterSpacing: "-0.01em",
-        margin: "0 0 5px",
-        lineHeight: 1.2,
-      }}>
-        {problem.title}
-      </h4>
-
-      <p style={{
-        fontFamily: "'DM Sans',sans-serif",
-        fontSize: "clamp(10px,1vw,11px)",
-        color: GR,
-        lineHeight: 1.5,
-        margin: "0 0 10px",
-      }}>
-        {problem.desc}
-      </p>
-
-      {/* Real-time alert */}
-      <RealTimeAlert message={problem.realTimeMsg} urgencyLevel={problem.urgencyLevel} />
-
-      {/* Bottom dot connector indicator */}
-      <div style={{
-        position: "absolute",
-        bottom: -1,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        background: problem.color,
-        boxShadow: `0 0 6px ${problem.color}`,
-      }} />
-    </motion.div>
+    </div>
   );
 }
 
-/* ── Section 4: Problems with Wire Convergence ── */
-function ProblemConvergenceSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showFirstRow, setShowFirstRow] = useState(false);
-  const [showSecondRow, setShowSecondRow] = useState(false);
-  const [showMetrics, setShowMetrics] = useState(false);
-  const [containerWidth, setContainerWidth] = useState(900);
-  const sectionRef = useRef(null);
-  const wrapRef = useRef(null);
+function LossCard({ metric, isFocus, isVisible }) {
+  const radius = 26;
+  const circ = 2 * Math.PI * radius;
+  const pct = metric.lossPct ?? 0.7;
+  const dashOffset = circ - circ * pct;
+
+  return (
+    <div style={{
+      width: "100%", height: "100%",
+      background: "linear-gradient(145deg, #FAFAFA, #F5F5F5)",
+      borderRadius: 16,
+      border: `1.5px solid ${isFocus ? metric.color + "60" : "#E5E5E5"}`,
+      boxShadow: isFocus ? `0 0 40px ${metric.color}28, 0 4px 20px rgba(0,0,0,0.08)` : "0 2px 12px rgba(0,0,0,0.06)",
+      overflow: "hidden", display: "flex", flexDirection: "column", position: "relative",
+    }}>
+      <div style={{ position: "absolute", top: -30, right: -30, width: 110, height: 110, borderRadius: "50%", background: metric.color, opacity: 0.07, filter: "blur(36px)", pointerEvents: "none" }} />
+      <div style={{ height: 2, background: `linear-gradient(90deg, transparent 0%, ${metric.color} 50%, transparent 100%)`, flexShrink: 0 }} />
+
+      <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280" }}>{metric.label}</span>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: 30, color: metric.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{metric.value}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#6B7280", marginTop: 3, lineHeight: 1.3 }}>{metric.period}</div>
+          </div>
+
+          <svg width={64} height={64} style={{ flexShrink: 0 }}>
+            <circle cx={32} cy={32} r={radius} fill="none" stroke="#E5E5E5" strokeWidth={4.5} />
+            <motion.circle
+              cx={32} cy={32} r={radius}
+              fill="none" stroke={metric.color} strokeWidth={4.5} strokeLinecap="round"
+              strokeDasharray={circ}
+              initial={{ strokeDashoffset: circ }}
+              animate={isVisible ? { strokeDashoffset: dashOffset } : { strokeDashoffset: circ }}
+              transition={{ duration: 1.6, delay: 0.3, ease: "easeOut" }}
+              transform="rotate(-90 32 32)"
+            />
+            <text x={32} y={36} textAnchor="middle" style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 800, fill: metric.color }}>
+              {Math.round(pct * 100)}%
+            </text>
+          </svg>
+        </div>
+
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8.5, color: "#6B7280", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Monthly loss</span>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10.5, color: "#EF4444", fontWeight: 800 }}>{metric.monthlyLoss}</span>
+          </div>
+          <div style={{ height: 5, background: "#E5E5E5", borderRadius: 6, overflow: "hidden" }}>
+            <motion.div
+              style={{ height: "100%", borderRadius: 6, background: `linear-gradient(90deg, ${metric.color}55, ${metric.color})` }}
+              initial={{ width: "0%" }}
+              animate={isVisible ? { width: `${pct * 100}%` } : { width: "0%" }}
+              transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 6, padding: "4px 8px" }}>
+          <motion.div style={{ width: 5, height: 5, borderRadius: "50%", background: "#EF4444", flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, fontWeight: 600, color: "#DC2626", lineHeight: 1.3 }}>{metric.trend}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
+  const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 640 : false);
+  const total = items.length;
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { 
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Staggered animation sequence
-          setTimeout(() => setShowFirstRow(true), 300);
-          setTimeout(() => setShowSecondRow(true), 1500);
-          setTimeout(() => setShowMetrics(true), 2800);
-        }
-      },
-      { threshold: 0.15 }
-    );
+    const update = () => setIsMobile(window.innerWidth < 640);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setActive(a => (a + 1) % total);
+    }, interval);
+    return () => clearInterval(t);
+  }, [total, interval]);
+
+  const visibleCount = isMobile ? 2 : 3;
+  const blurValues  = { 0: "none", 1: "blur(0.6px)", 2: "blur(0.6px)" };
+  const opacityValues = { 0: 1, 1: 0.75, 2: 0.65 };
+  const scaleValues  = { 0: 1, 1: 0.97, 2: 0.97 };
+  const cardWidth = isMobile ? "calc(50% - 8px)" : "calc(33.33% - 11px)";
+
+  const cards = Array.from({ length: visibleCount }, (_, offset) => ({
+    index: (active + offset) % total,
+    offset,
+  }));
+
+  return (
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+      <div style={{ position: "relative", width: "100%", height: cardH, overflow: "hidden" }}>
+        <motion.div
+          key={active}
+          initial={{ x: `calc(${cardWidth} + 16px)` }}
+          animate={{ x: "0px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ display: "flex", gap: 16, position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+        >
+          {cards.map(({ index, offset }) => (
+            <div
+              key={`${active}-${offset}`}
+              style={{
+                flex: `0 0 ${cardWidth}`,
+                height: "100%",
+                filter: blurValues[offset] || "none",
+                opacity: opacityValues[offset] ?? 0.65,
+                transform: `scale(${scaleValues[offset] ?? 0.97})`,
+                transition: "opacity 0.6s ease-out, filter 0.6s ease-out, transform 0.6s ease-out",
+                transformOrigin: "top center",
+              }}
+            >
+              {renderCard(items[index], offset === 0)}
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Dots */}
+      <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+        {items.map((item, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            style={{ width: i === active ? 22 : 7, height: 7, borderRadius: 4, background: i === active ? (item.color || "#7B74DC") : "#E3E2EB", border: "none", cursor: "pointer", transition: "all 0.5s ease-out", padding: 0 }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProblemCarousel({ isVisible, isMobile }) {
+  return (
+    <ThreeCarousel
+      items={CORE_PROBLEMS}
+      renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
+      cardH={isMobile ? 210 : 270}
+      interval={6000}
+    />
+  );
+}
+
+function MetricsCarousel({ isVisible, isMobile }) {
+  return (
+    <ThreeCarousel
+      items={METRICS}
+      renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
+      cardH={isMobile ? 230 : 250}
+      interval={5000}
+    />
+  );
+}
+
+export default function ProblemSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.05 });
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const measure = () => {
-      if (wrapRef.current) {
-        setContainerWidth(wrapRef.current.offsetWidth);
-      }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
   return (
-    <section
-      id="problem"
-      ref={sectionRef}
-      className="global-section"
-      style={{
-        background: "#FCFCFE",
-        borderTop: "1px solid #E3E2EB",
-      }}
-    >
-      {/* Subtle background grid */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage: `
-          linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px)
-        `,
-        backgroundSize: "48px 48px",
-        pointerEvents: "none",
-      }} />
+    <section id="problem" ref={sectionRef} style={{ background: "#FCFCFE", borderTop: "1px solid #E3E2EB", padding: "80px 0 60px", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(239,68,68,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.03) 1px, transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
 
-      <div 
-        className="problem-section-container section-container"
-        style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
-
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 40, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}
-        >
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            background: "rgba(239,68,68,0.07)",
-            border: "1px solid rgba(239,68,68,0.2)",
-            borderRadius: 20,
-            padding: "4px 14px",
-            marginBottom: 14,
-          }}>
-            <span style={{ width: 5, height: 5, borderRadius: "50%", background: RED, display: "inline-block" }} />
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: RED }}>
-              The Real Problem
-            </span>
+      <div style={{ position: "relative", maxWidth: isMobile ? 420 : 960, margin: "0 auto", padding: "0 20px" }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: "easeOut" }} style={{ textAlign: "center", marginBottom: 44 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: 20, padding: "4px 14px", marginBottom: 14 }}>
+            <motion.span style={{ width: 5, height: 5, borderRadius: "50%", background: RED, display: "inline-block" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: RED }}>The Real Problem</span>
           </div>
-
-          <h2 style={{
-            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(22px,3.5vw,40px)",
-            color: "#141419",
-            letterSpacing: "-0.02em",
-            margin: "0 0 12px",
-            lineHeight: 1.15,
-          }}>
-            You are losing real money<br />
-            <span style={{ color: RED }}>$23,400 every single month.</span>
+          <h2 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "clamp(22px,4vw,40px)", color: "#141419", letterSpacing: "-0.02em", margin: "0 0 12px", lineHeight: 1.15 }}>
+            You are losing real money<br /><span style={{ color: RED }}>$23,400 every single month.</span>
           </h2>
-
-          <p style={{
-            fontFamily: "'DM Sans',sans-serif",
-            fontSize: "clamp(13px,1.3vw,15px)",
-            color: GR,
-            maxWidth: 480,
-            margin: "0 auto",
-            lineHeight: 1.6,
-          }}>
-            These six problems are costing you money right now. Every time you miss a call or message, you are letting profit walk away to your competitors.
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(13px,1.5vw,15px)", color: GR, maxWidth: 440, margin: "0 auto", lineHeight: 1.6 }}>
+            These 12 problems are bleeding your exotic rental business dry — every missed message lets profit walk to competitors.
           </p>
         </motion.div>
 
-        {/* Problem Cards Row */}
-        <div ref={wrapRef} style={{ width: "100%" }}>
-          <div 
-            className="problem-cards-grid"
-            style={{
-              display: "flex",
-              gap: 8,
-              marginBottom: 0,
-              flexWrap: "nowrap",
-              overflowX: "auto",
-              paddingBottom: 4,
-            }}>
-            {CORE_PROBLEMS.map((problem, i) => (
-              <ProblemCard
-                key={problem.id}
-                problem={problem}
-                index={i}
-                isVisible={isVisible}
-              />
-            ))}
+        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}>
+          <ProblemCarousel isVisible={isVisible} isMobile={isMobile} />
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }} style={{ textAlign: "center", margin: "36px 0 20px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAFAFA", border: "1px solid #EF444430", borderRadius: 12, padding: "8px 20px" }}>
+            <motion.div style={{ width: 6, height: 6, borderRadius: "50%", background: "#EF4444" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#EF4444", letterSpacing: "0.06em", textTransform: "uppercase" }}>Real financial bleeding — per month</span>
           </div>
+        </motion.div>
 
-          {/* Wire System */}
-          <div className="wire-system-wrapper" style={{ marginTop: 0, position: "relative" }}>
-            <WireSystem
-              cardCount={CORE_PROBLEMS.length}
-              containerWidth={containerWidth}
-              isVisible={isVisible}
-            />
-          </div>
+        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}>
+          <MetricsCarousel isVisible={isVisible} isMobile={isMobile} />
+        </motion.div>
 
-          {/* Convergence Label */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 1.8 }}
-            style={{ textAlign: "center", marginBottom: 28, marginTop: -8 }}
-          >
-            <div style={{
-              display: "inline-flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 6,
-            }}>
-              <div style={{
-                background: REDL,
-                border: "1px solid #FECACA",
-                borderRadius: 10,
-                padding: "6px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              }}>
-                <span style={{
-                  fontFamily: "'DM Sans',sans-serif",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: RED,
-                  letterSpacing: "0.02em",
-                }}>
-                  Real financial impact on your business
-                </span>
-              </div>
-              <div style={{
-                width: 2,
-                height: 16,
-                background: `linear-gradient(180deg, #EF4444, transparent)`,
-                borderRadius: 2,
-              }} />
-            </div>
-          </motion.div>
-
-          {/* Metric Impact Cards */}
-          <div className="metrics-wrapper">
-            <MetricImpact isVisible={isVisible} />
-          </div>
-
-          {/* Bottom CTA hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : {}}
-            transition={{ delay: 3.2 }}
-            style={{
-              textAlign: "center",
-              marginTop: 28,
-              padding: "16px 24px",
-              background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))",
-              border: "1px solid rgba(123,116,220,0.15)",
-              borderRadius: 12,
-            }}
-          >
-            <p style={{
-              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(13px,1.6vw,16px)",
-              color: "#141419",
-              letterSpacing: "-0.01em",
-              margin: "0 0 4px",
-            }}>
-              Stop losing money the moment you start using our system.
-            </p>
-            <p style={{
-              fontFamily: "'DM Sans',sans-serif",
-              fontSize: 12,
-              color: GR,
-              margin: 0,
-            }}>
-              See how we fix every problem for you — automatically.
-            </p>
-          </motion.div>
-        </div>
+        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }} style={{ textAlign: "center", marginTop: 32, padding: "16px 24px", background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))", border: "1px solid rgba(123,116,220,0.15)", borderRadius: 14 }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "clamp(13px,1.6vw,16px)", color: "#141419", letterSpacing: "-0.01em", margin: "0 0 4px" }}>Stop losing money the moment you start using our system.</p>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: GR, margin: 0 }}>See how we fix every single one of these — automatically.</p>
+        </motion.div>
       </div>
     </section>
-  );
-}
-
-/* ── Main Component ── */
-export default function ProblemSection() {
-  return (
-    <>
-      <ProblemConvergenceSection />
-      <style>{`
-        /* Mobile Responsive Styles - Clean and optimized */
-        
-        /* Mobile: Show only first 3 problem cards, hide badges/icons */
-        @media (max-width: 768px) {
-          .problem-section-container {
-            padding: 0 12px !important;
-          }
-          
-          /* 3 columns for problem cards */
-          .problem-cards-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 8px !important;
-            overflow-x: visible !important;
-            padding-bottom: 0 !important;
-          }
-          
-          /* HIDE cards 4, 5, 6 on mobile */
-          .problem-cards-grid > div:nth-child(4),
-          .problem-cards-grid > div:nth-child(5),
-          .problem-cards-grid > div:nth-child(6) {
-            display: none !important;
-          }
-          
-          .problem-cards-grid > div {
-            min-height: 180px !important;
-            padding: 10px 8px !important;
-          }
-          
-          /* HIDE urgency badge (CRITICAL/HIGH/MEDIUM) - first absolute positioned div */
-          .problem-cards-grid > div > div:nth-child(1) {
-            display: none !important;
-          }
-          
-          /* HIDE the flex container with icon and stat ($47K, 2.3min, 94%) - 4th div */
-          .problem-cards-grid > div > div:nth-child(4) {
-            display: none !important;
-          }
-          
-          /* Title - smaller and readable */
-          .problem-cards-grid h4 {
-            font-size: 11px !important;
-            margin-bottom: 4px !important;
-            line-height: 1.2 !important;
-            margin-top: 0 !important;
-          }
-          
-          /* Description - shorter, smaller */
-          .problem-cards-grid p {
-            font-size: 8px !important;
-            line-height: 1.3 !important;
-            margin-bottom: 6px !important;
-            display: -webkit-box !important;
-            -webkit-line-clamp: 4 !important;
-            -webkit-box-orient: vertical !important;
-            overflow: hidden !important;
-          }
-          
-          /* Real-time alert - smaller */
-          .problem-cards-grid > div > div:last-child {
-            margin-top: 6px !important;
-            padding: 6px 8px !important;
-            border-radius: 6px !important;
-          }
-          
-          .problem-cards-grid > div > div:last-child p {
-            font-size: 7px !important;
-            padding-left: 12px !important;
-          }
-          
-          .problem-cards-grid > div > div:last-child > div {
-            width: 4px !important;
-            height: 4px !important;
-            left: 6px !important;
-          }
-          
-          /* Keep wire system visible */
-          .wire-system-wrapper {
-            display: block !important;
-            margin-top: -10px !important;
-          }
-          
-          .wire-system-wrapper svg {
-            height: 120px !important;
-          }
-          
-          /* 3 metrics in a row - SMALLER FONTS */
-          .metrics-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 8px !important;
-          }
-          
-          .metrics-grid > div {
-            padding: 10px 8px !important;
-            min-height: auto !important;
-          }
-          
-          /* Label - smaller (MONTHLY REVENUE LOSS text) */
-          .metrics-grid > div > div:first-child span {
-            font-size: 7px !important;
-            letter-spacing: 0.05em !important;
-          }
-          
-          /* Main number - smaller (17-19px range) */
-          .metrics-grid > div > div:nth-child(2) span {
-            font-size: 17px !important;
-          }
-          
-          /* Trend text - smaller */
-          .metrics-grid > div > div:nth-child(2) div {
-            font-size: 7px !important;
-            margin-top: 2px !important;
-          }
-          
-          /* Hide step bars on mobile */
-          .metrics-grid > div > div:nth-child(3) {
-            display: none !important;
-          }
-          
-          /* Description - smaller */
-          .metrics-grid p {
-            font-size: 8px !important;
-            line-height: 1.4 !important;
-          }
-        }
-        
-        /* Tablet: Show all 6 cards */
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .problem-section-container {
-            padding: 0 20px !important;
-          }
-          
-          .problem-cards-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 12px !important;
-            overflow-x: visible !important;
-          }
-          
-          .problem-cards-grid > div {
-            padding: 16px 14px !important;
-          }
-          
-          .metrics-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 12px !important;
-          }
-        }
-        
-        /* Very small mobile: Even more compact */
-        @media (max-width: 480px) {
-          .problem-cards-grid {
-            gap: 6px !important;
-          }
-          
-          .problem-cards-grid > div {
-            padding: 8px 6px !important;
-            min-height: 160px !important;
-          }
-          
-          .problem-cards-grid h4 {
-            font-size: 10px !important;
-          }
-          
-          .problem-cards-grid p {
-            font-size: 7px !important;
-            -webkit-line-clamp: 3 !important;
-          }
-          
-          .metrics-grid {
-            gap: 6px !important;
-          }
-          
-          .metrics-grid > div {
-            padding: 8px 6px !important;
-          }
-          
-          .metrics-grid > div > div:nth-child(2) span {
-            font-size: 15px !important;
-          }
-        }
-      `}</style>
-    </>
   );
 }
