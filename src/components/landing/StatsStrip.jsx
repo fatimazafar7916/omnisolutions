@@ -290,7 +290,7 @@ export default function StatsStrip() {
         .stat-number {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           font-weight: 800;
-          font-size: clamp(20px, 4vw, 40px);
+          font-size: clamp(28px, 5vw, 40px);
           letter-spacing: -0.03em;
           line-height: 1;
           margin-bottom: 4px;
@@ -301,7 +301,7 @@ export default function StatsStrip() {
         .stat-label {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           font-weight: 600;
-          font-size: clamp(9px, 1.8vw, 14px);
+          font-size: clamp(11px, 1.8vw, 14px);
           color: #141419;
           margin: 0 0 2px;
           letter-spacing: -0.01em;
@@ -310,7 +310,7 @@ export default function StatsStrip() {
 
         .stat-desc {
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(7px, 1.3vw, 11px);
+          font-size: clamp(9px, 1.3vw, 11px);
           color: #6E6D7A;
           margin: 0;
           line-height: 1.3;
@@ -324,7 +324,7 @@ export default function StatsStrip() {
           }
 
           .stats-row {
-            gap: 8px;
+            gap: 6px;
             width: 100%;
           }
 
@@ -347,23 +347,23 @@ export default function StatsStrip() {
           }
 
           .stat-card {
-            padding: 14px 8px !important;
+            padding: 12px 6px !important;
             border-radius: 14px !important;
           }
 
           .stat-number {
-            font-size: 30px !important;
+            font-size: 24px !important;
             margin-bottom: 2px !important;
           }
 
           .stat-label {
-            font-size: 8px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
             margin-bottom: 1px !important;
-            font-weight: 500 !important;
           }
 
           .stat-desc {
-            font-size: 6.5px !important;
+            font-size: 9px !important;
             line-height: 1.2 !important;
           }
         }
