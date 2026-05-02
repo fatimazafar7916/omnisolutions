@@ -258,35 +258,35 @@ function LossCard({ metric, isFocus, isVisible }) {
     }}>
       <div style={{ position: "absolute", top: -30, right: -30, width: 110, height: 110, borderRadius: "50%", background: metric.color, opacity: 0.07, filter: "blur(36px)", pointerEvents: "none" }} />
       <div style={{ height: 2, background: `linear-gradient(90deg, transparent 0%, ${metric.color} 50%, transparent 100%)`, flexShrink: 0 }} />
-      <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
-        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280" }}>{metric.label}</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ padding: "10px 10px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#6B7280", lineHeight: 1.2 }}>{metric.label}</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: 30, color: metric.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{metric.value}</div>
-            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#6B7280", marginTop: 3, lineHeight: 1.3 }}>{metric.period}</div>
+            <div style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: 22, color: metric.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{metric.value}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, color: "#6B7280", marginTop: 2, lineHeight: 1.3 }}>{metric.period}</div>
           </div>
-          <svg width={64} height={64} style={{ flexShrink: 0 }}>
-            <circle cx={32} cy={32} r={radius} fill="none" stroke="#E5E5E5" strokeWidth={4.5} />
+          <svg width={50} height={50} style={{ flexShrink: 0 }}>
+            <circle cx={25} cy={25} r={20} fill="none" stroke="#E5E5E5" strokeWidth={3.5} />
             <motion.circle
-              cx={32} cy={32} r={radius}
-              fill="none" stroke={metric.color} strokeWidth={4.5} strokeLinecap="round"
-              strokeDasharray={circ}
-              initial={{ strokeDashoffset: circ }}
-              animate={isVisible ? { strokeDashoffset: dashOffset } : { strokeDashoffset: circ }}
+              cx={25} cy={25} r={20}
+              fill="none" stroke={metric.color} strokeWidth={3.5} strokeLinecap="round"
+              strokeDasharray={2 * Math.PI * 20}
+              initial={{ strokeDashoffset: 2 * Math.PI * 20 }}
+              animate={isVisible ? { strokeDashoffset: 2 * Math.PI * 20 - 2 * Math.PI * 20 * pct } : { strokeDashoffset: 2 * Math.PI * 20 }}
               transition={{ duration: 1.6, delay: 0.3, ease: "easeOut" }}
-              transform="rotate(-90 32 32)"
+              transform="rotate(-90 25 25)"
             />
-            <text x={32} y={36} textAnchor="middle" style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 800, fill: metric.color }}>
+            <text x={25} y={29} textAnchor="middle" style={{ fontFamily: "'Inter',sans-serif", fontSize: 9, fontWeight: 800, fill: metric.color }}>
               {Math.round(pct * 100)}%
             </text>
           </svg>
         </div>
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8.5, color: "#6B7280", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Monthly loss</span>
-            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10.5, color: "#EF4444", fontWeight: 800 }}>{metric.monthlyLoss}</span>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 7.5, color: "#6B7280", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Monthly loss</span>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 9.5, color: "#EF4444", fontWeight: 800 }}>{metric.monthlyLoss}</span>
           </div>
-          <div style={{ height: 5, background: "#E5E5E5", borderRadius: 6, overflow: "hidden" }}>
+          <div style={{ height: 4, background: "#E5E5E5", borderRadius: 6, overflow: "hidden" }}>
             <motion.div
               style={{ height: "100%", borderRadius: 6, background: `linear-gradient(90deg, ${metric.color}55, ${metric.color})` }}
               initial={{ width: "0%" }}
@@ -295,9 +295,9 @@ function LossCard({ metric, isFocus, isVisible }) {
             />
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 6, padding: "4px 8px" }}>
-          <motion.div style={{ width: 5, height: 5, borderRadius: "50%", background: "#EF4444", flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, fontWeight: 600, color: "#DC2626", lineHeight: 1.3 }}>{metric.trend}</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 6, padding: "4px 6px" }}>
+          <motion.div style={{ width: 4, height: 4, borderRadius: "50%", background: "#EF4444", flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8.5, fontWeight: 600, color: "#DC2626", lineHeight: 1.3 }}>{metric.trend}</span>
         </div>
       </div>
     </div>
@@ -334,7 +334,7 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
       <div
-        style={{ width: "100%", height: cardH, overflow: "hidden", cursor: "grab", userSelect: "none" }}
+        style={{ width: "100%", height: cardH, minHeight: cardH === "auto" ? 0 : cardH, overflow: "hidden", cursor: "grab", userSelect: "none" }}
         onMouseDown={handleDragStart}
         onMouseUp={handleDragEnd}
         onTouchStart={handleDragStart}
@@ -435,7 +435,7 @@ function SyncedCarousels({ isVisible, isMobile }) {
       <SharedCarousel
         items={METRICS}
         renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
-        cardH={isMobile ? 230 : 250}
+        cardH={isMobile ? "auto" : 250}
         startIndex={startIndex}
         setStartIndex={handleSetIndex}
         isMobile={isMobile}

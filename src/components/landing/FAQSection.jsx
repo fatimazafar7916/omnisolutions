@@ -39,7 +39,9 @@ export default function FAQSection() {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr",
-          gap: 48,
+          gap: "clamp(24px, 5vw, 48px)",
+          maxWidth: "1200px",
+          margin: "0 auto",
         }}
       >
         {/* Left */}
@@ -68,11 +70,11 @@ export default function FAQSection() {
             style={{
               fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(24px, 3vw, 40px)",
+              fontSize: "clamp(20px, 4vw, 40px)",
               letterSpacing: "-0.02em",
               color: "#141419",
               lineHeight: 1.15,
-              margin: "0 0 16px",
+              margin: "0 0 12px",
             }}
           >
             Common questions,{" "}
@@ -91,10 +93,10 @@ export default function FAQSection() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 14,
+              fontSize: "clamp(13px, 2vw, 14px)",
               color: "#6E6D7A",
               lineHeight: 1.6,
-              maxWidth: 300,
+              maxWidth: "100%",
             }}
           >
             Still have questions? Book a 20-minute call with our team — no sales pressure, just
@@ -105,13 +107,13 @@ export default function FAQSection() {
             href="#cta"
             style={{
               display: "inline-flex",
-              marginTop: 16,
-              padding: "10px 20px",
+              marginTop: "clamp(12px, 2vw, 16px)",
+              padding: "clamp(8px, 1.5vw, 10px) clamp(16px, 3vw, 20px)",
               borderRadius: 100,
               background: "#F0FDF4",
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 600,
-              fontSize: 13,
+              fontSize: "clamp(12px, 2vw, 13px)",
               color: "#22C55E",
               textDecoration: "none",
             }}
@@ -121,7 +123,7 @@ export default function FAQSection() {
         </motion.div>
 
         {/* Right — accordion */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4px, 1vw, 6px)" }}>
           {FAQS.map((f, i) => (
             <motion.div
               key={i}
@@ -130,7 +132,7 @@ export default function FAQSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
               style={{
-                borderRadius: 12,
+                borderRadius: "clamp(8px, 1.5vw, 12px)",
                 overflow: "hidden",
                 border: "1px solid #EDE8DE",
                 background: open === i ? "#FAFAF8" : "#fff",
@@ -143,8 +145,8 @@ export default function FAQSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: 16,
-                  padding: "14px 18px",
+                  gap: "clamp(8px, 2vw, 16px)",
+                  padding: "clamp(12px, 2vw, 14px) clamp(14px, 2.5vw, 18px)",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -155,9 +157,10 @@ export default function FAQSection() {
                   style={{
                     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                     fontWeight: 600,
-                    fontSize: "clamp(13px, 1.3vw, 15px)",
+                    fontSize: "clamp(13px, 2vw, 15px)",
                     color: "#141419",
                     lineHeight: 1.4,
+                    wordBreak: "break-word",
                   }}
                 >
                   {f.q}
@@ -165,8 +168,8 @@ export default function FAQSection() {
 
                 <span
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: "clamp(20px, 3vw, 24px)",
+                    height: "clamp(20px, 3vw, 24px)",
                     borderRadius: "50%",
                     background: open === i ? "#22C55E" : "#F0FDF4",
                     display: "flex",
@@ -195,12 +198,13 @@ export default function FAQSection() {
                   >
                     <p
                       style={{
-                        padding: "0 18px 14px",
+                        padding: "0 clamp(14px, 2.5vw, 18px) clamp(12px, 2vw, 14px)",
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "clamp(12px, 1.2vw, 14px)",
+                        fontSize: "clamp(12px, 1.8vw, 14px)",
                         color: "#6E6D7A",
                         lineHeight: 1.6,
                         margin: 0,
+                        wordBreak: "break-word",
                       }}
                     >
                       {f.a}
