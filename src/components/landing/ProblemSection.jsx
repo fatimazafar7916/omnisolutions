@@ -281,8 +281,8 @@ function ProblemCard({ problem, isFocused, small }) {
         <div style={{ flex: 1 }} />
         
         <p style={{
-          fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11, color: GR,
-          lineHeight: 1.4, margin: 0, marginBottom: small ? 6 : 8,
+          fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9.5 : 10.5, color: GR,
+          lineHeight: 1.35, margin: 0, marginBottom: small ? 6 : 8,
           display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{problem.desc}</p>
         
