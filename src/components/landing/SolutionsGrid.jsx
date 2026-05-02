@@ -92,7 +92,7 @@ function DesktopRail({ products, selected, onSelect }) {
           <motion.div
             key={p.id}
             onClick={() => onSelect(isOpen ? null : p)}
-            animate={{ flex: isOpen ? "0 0 280px" : "0 0 64px" }}
+            animate={{ flex: isOpen ? "0 0 300px" : "1 1 0" }}
             transition={{ duration:0.52, ease:[0.16,1,0.3,1] }}
             style={{
               position:"relative", cursor:"pointer",
@@ -103,6 +103,7 @@ function DesktopRail({ products, selected, onSelect }) {
               display:"flex", flexDirection:"column",
               padding: isOpen ? "26px 22px 22px" : "20px 0",
               alignItems: isOpen ? "flex-start" : "center",
+              minWidth: isOpen ? "300px" : "0",
             }}
           >
             {/* Accent bar */}
