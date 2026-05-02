@@ -379,16 +379,18 @@ function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
         </motion.div>
       </div>
 
-      {/* Dots */}
-      <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-        {items.map((item, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            style={{ width: i === active ? 22 : 7, height: 7, borderRadius: 4, background: i === active ? (item.color || "#7B74DC") : "#E3E2EB", border: "none", cursor: "pointer", transition: "all 0.5s ease-out", padding: 0 }}
-          />
-        ))}
-      </div>
+      {/* Dots - hidden on mobile */}
+      {!isMobile && (
+        <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+          {items.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              style={{ width: i === active ? 22 : 7, height: 7, borderRadius: 4, background: i === active ? (item.color || "#7B74DC") : "#E3E2EB", border: "none", cursor: "pointer", transition: "all 0.5s ease-out", padding: 0 }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
