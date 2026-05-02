@@ -267,18 +267,23 @@ function ProblemCard({ problem, isFocused, small }) {
       overflow: "hidden", display: "flex", flexDirection: "column",
     }}>
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
-      <div style={{ padding: pad, display: "flex", flexDirection: "column", gap: small ? 4 : 5, height: "100%" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
+      <div style={{ padding: pad, display: "flex", flexDirection: "column", height: "100%" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap", marginBottom: small ? 4 : 5 }}>
           <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 28, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
         </div>
-        <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13, color: "#141419", margin: 0, lineHeight: 1.25 }}>{problem.title}</h4>
+        <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13, color: "#141419", margin: 0, lineHeight: 1.25, marginBottom: small ? 4 : 5 }}>{problem.title}</h4>
+        
+        {/* Spacer to push content down */}
+        <div style={{ flex: 1, minHeight: small ? 8 : 12 }} />
+        
         <p style={{
           fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11, color: GR,
-          lineHeight: 1.4, margin: 0, flex: 1,
+          lineHeight: 1.4, margin: 0, marginBottom: small ? 6 : 8,
           display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{problem.desc}</p>
-        <div style={{ marginTop: "auto" }}>
+        
+        <div>
           <RotatingLiveMessage
             messages={problem.liveMessages}
             color={problem.color}
