@@ -61,11 +61,11 @@ export default function CTASection() {
                 display: "inline-block",
                 padding: "4px 12px",
                 borderRadius: 100,
-                border: "1px solid rgba(255,255,255,0.3)",
+                border: "1px solid rgba(0,0,0,0.15)",
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
-                color: "#FFFFFF",
+                color: "#141419",
                 marginBottom: 12,
                 letterSpacing: "0.05em",
               }}
@@ -79,7 +79,7 @@ export default function CTASection() {
                 fontWeight: 700,
                 fontSize: "clamp(18px, 2.5vw, 30px)",
                 letterSpacing: "-0.03em",
-                color: "#fff",
+                color: "#141419",
                 lineHeight: 1.1,
                 margin: "0 0 2px",
               }}
@@ -93,7 +93,7 @@ export default function CTASection() {
                 fontWeight: 400,
                 fontStyle: "italic",
                 fontSize: "clamp(18px, 2.5vw, 30px)",
-                color: "#FFFFFF",
+                color: "#141419",
                 lineHeight: 1.1,
                 margin: "0 0 12px",
               }}
@@ -105,7 +105,7 @@ export default function CTASection() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "clamp(13px, 1.3vw, 15px)",
-                color: "rgba(255,255,255,0.62)",
+                color: "#6E6D7A",
                 lineHeight: 1.5,
                 maxWidth: 500,
                 margin: "0 auto 20px",
@@ -163,15 +163,15 @@ export default function CTASection() {
                   padding: "10px 24px",
                   borderRadius: 100,
                   background: "transparent",
-                  color: "#fff",
-                  border: "1.5px solid rgba(255,255,255,0.2)",
+                  color: "#141419",
+                  border: "1.5px solid rgba(0,0,0,0.15)",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 500,
                   fontSize: 14,
                   textDecoration: "none",
                   transition: "background 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.05)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
                 See how it works
@@ -195,10 +195,10 @@ export default function CTASection() {
                     gap: 6,
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: 12,
-                    color: "rgba(255,255,255,0.45)",
+                    color: "#6E6D7A",
                   }}
                 >
-                  <CheckCircle size={12} color="#fff" /> {t}
+                  <CheckCircle size={12} color="#141419" /> {t}
                 </span>
               ))}
             </div>
