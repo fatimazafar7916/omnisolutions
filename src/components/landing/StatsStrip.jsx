@@ -234,28 +234,33 @@ export default function StatsStrip() {
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}
+              className="stat-card"
               style={{ 
                 textAlign: "center", 
                 width: "100%",
                 background: "#F8F7FB",
                 borderRadius: "16px",
-                padding: "clamp(16px, 2.5vw, 24px)",
+                padding: "clamp(10px, 2vw, 24px)",
                 border: "1px solid #F0EFF5",
-                backdropFilter: "blur(10px)",
-                minHeight: "clamp(90px, 14vw, 120px)"
+                minHeight: "auto",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               {/* Big animated number */}
               <div
+                className="stat-number"
                 style={{
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 800,
-                  fontSize: "clamp(22px, 5vw, 40px)",
+                  fontSize: "clamp(20px, 4vw, 40px)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
-                  marginBottom: "clamp(3px, 1vw, 6px)",
+                  marginBottom: "4px",
                   position: "relative",
-                  display: "inline-block" // Changed to inline-block to wrap content
+                  display: "inline-block",
                 }}
               >
                 <AnimatedCounter 
@@ -273,7 +278,7 @@ export default function StatsStrip() {
                     style={{
                       position: "absolute",
                       top: "-4px",
-                      right: "-12px", // Adjusted to be outside the number+suffix
+                      right: "-12px",
                       width: "10px",
                       height: "10px",
                       borderRadius: "50%",
@@ -295,14 +300,15 @@ export default function StatsStrip() {
 
               {/* Label */}
               <h3
+                className="stat-label"
                 style={{
                   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                   fontWeight: 600,
-                  fontSize: "clamp(11px, 2vw, 14px)",
+                  fontSize: "clamp(9px, 1.8vw, 14px)",
                   color: "#141419",
-                  margin: "0 0 clamp(2px, 1vw, 4px)",
+                  margin: "0 0 2px",
                   letterSpacing: "-0.01em",
-                  lineHeight: 1.2
+                  lineHeight: 1.2,
                 }}
               >
                 {stat.label}
@@ -310,12 +316,13 @@ export default function StatsStrip() {
 
               {/* Description */}
               <p
+                className="stat-desc"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(9px, 1.5vw, 11px)",
+                  fontSize: "clamp(7px, 1.3vw, 11px)",
                   color: "#6E6D7A",
                   margin: 0,
-                  lineHeight: 1.3
+                  lineHeight: 1.3,
                 }}
               >
                 {stat.desc}
@@ -327,96 +334,60 @@ export default function StatsStrip() {
 
       {/* Mobile-specific CSS */}
       <style>{`
-        /* Mobile: 3 cards in first row, 2 cards in second row */
+        /* Mobile: 3 cards top row, 2 cards bottom row */
         @media (max-width: 768px) {
           .stats-grid {
             display: grid !important;
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 20px 8px !important;
+            gap: 12px 6px !important;
             max-width: 100% !important;
-            padding: 0 4px !important;
           }
           
-          /* First 3 cards: each spans 2 columns (2+2+2 = 6) - FIRST ROW */
-          .stats-grid > div:nth-child(1) {
-            grid-column: 1 / 3 !important;
-          }
+          .stats-grid > div:nth-child(1) { grid-column: 1 / 3 !important; }
+          .stats-grid > div:nth-child(2) { grid-column: 3 / 5 !important; }
+          .stats-grid > div:nth-child(3) { grid-column: 5 / 7 !important; }
+          .stats-grid > div:nth-child(4) { grid-column: 1 / 4 !important; }
+          .stats-grid > div:nth-child(5) { grid-column: 4 / 7 !important; }
           
-          .stats-grid > div:nth-child(2) {
-            grid-column: 3 / 5 !important;
-          }
-          
-          .stats-grid > div:nth-child(3) {
-            grid-column: 5 / 7 !important;
-          }
-          
-          /* Last 2 cards: each spans 3 columns (3+3 = 6) - SECOND ROW */
-          .stats-grid > div:nth-child(4) {
-            grid-column: 1 / 4 !important;
-          }
-          
-          .stats-grid > div:nth-child(5) {
-            grid-column: 4 / 7 !important;
-          }
-          
-          /* Consistent padding and background for mobile */
-          .stats-grid > div {
-            background: #F8F7FB !important;
-            border: 1px solid #F0EFF5 !important;
-            padding: 12px 6px !important;
-            min-height: 85px !important;
+          .stat-card {
+            padding: 10px 6px !important;
             border-radius: 12px !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
+            min-height: auto !important;
           }
           
-          /* Smaller fonts for mobile */
-          .stats-grid > div > div:first-child {
-            font-size: 26px !important; /* Smaller number */
+          .stat-number {
+            font-size: 22px !important;
             margin-bottom: 4px !important;
-            font-weight: 800 !important;
           }
           
-          /* Smaller label */
-          .stats-grid > div h3 {
+          .stat-label {
             font-size: 10px !important;
             margin-bottom: 2px !important;
-            line-height: 1.1 !important;
-            font-weight: 700 !important;
+            line-height: 1.2 !important;
           }
           
-          /* Smaller description */
-          .stats-grid > div p {
+          .stat-desc {
             font-size: 8px !important;
             line-height: 1.2 !important;
-            opacity: 0.7 !important;
           }
         }
         
-        /* Tablet: 3 columns */
+        /* Tablet */
         @media (min-width: 769px) and (max-width: 1024px) {
           .stats-grid {
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 16px !important;
           }
-          
-          .stats-grid > div {
-            grid-column: span 1 !important;
-          }
+          .stats-grid > div { grid-column: span 1 !important; }
         }
         
-        /* Desktop: 5 columns */
+        /* Desktop */
         @media (min-width: 1025px) {
           .stats-grid {
             grid-template-columns: repeat(5, 1fr) !important;
             gap: 20px !important;
           }
-          
-          .stats-grid > div {
-            grid-column: span 1 !important;
-          }
+          .stats-grid > div { grid-column: span 1 !important; }
         }
       `}</style>
     </section>
