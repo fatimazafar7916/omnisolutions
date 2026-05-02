@@ -464,19 +464,21 @@ function SharedCarousel({ items, renderCard, cardH, groupIndex, setGroupIndex, i
             style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: GR }}
           >‹</button>
         )}
-        <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-          {Array.from({ length: totalGroups }, (_, gi) => (
-            <button
-              key={gi}
-              onClick={() => setGroupIndex(gi)}
-              style={{
-                width: gi === groupIndex ? 22 : 7, height: 7, borderRadius: 4,
-                background: gi === groupIndex ? (items[gi * visibleCount]?.color || RED) : "#E3E2EB",
-                border: "none", cursor: "pointer", transition: "all 0.35s ease", padding: 0,
-              }}
-            />
-          ))}
-        </div>
+        {!isMobile && (
+          <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            {Array.from({ length: totalGroups }, (_, gi) => (
+              <button
+                key={gi}
+                onClick={() => setGroupIndex(gi)}
+                style={{
+                  width: gi === groupIndex ? 22 : 7, height: 7, borderRadius: 4,
+                  background: gi === groupIndex ? (items[gi * visibleCount]?.color || RED) : "#E3E2EB",
+                  border: "none", cursor: "pointer", transition: "all 0.35s ease", padding: 0,
+                }}
+              />
+            ))}
+          </div>
+        )}
         {!isMobile && (
           <button
             onClick={onNext}
