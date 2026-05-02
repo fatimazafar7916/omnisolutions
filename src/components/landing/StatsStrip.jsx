@@ -254,7 +254,8 @@ export default function StatsStrip() {
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                   marginBottom: "clamp(3px, 1vw, 6px)",
-                  position: "relative"
+                  position: "relative",
+                  display: "inline-block" // Changed to inline-block to wrap content
                 }}
               >
                 <AnimatedCounter 
@@ -271,10 +272,10 @@ export default function StatsStrip() {
                     transition={{ delay: 1.5, duration: 0.3 }}
                     style={{
                       position: "absolute",
-                      top: "-6px",
-                      right: "-6px",
-                      width: "12px",
-                      height: "12px",
+                      top: "-4px",
+                      right: "-12px", // Adjusted to be outside the number+suffix
+                      width: "10px",
+                      height: "10px",
                       borderRadius: "50%",
                       background: "#22C55E",
                       display: "flex",
@@ -283,8 +284,8 @@ export default function StatsStrip() {
                     }}
                   >
                     <div style={{
-                      width: "6px",
-                      height: "6px",
+                      width: "5px",
+                      height: "5px",
                       borderRadius: "50%",
                       background: "#FFFFFF"
                     }} />
@@ -331,8 +332,9 @@ export default function StatsStrip() {
           .stats-grid {
             display: grid !important;
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 24px 10px !important;
+            gap: 20px 8px !important;
             max-width: 100% !important;
+            padding: 0 4px !important;
           }
           
           /* First 3 cards: each spans 2 columns (2+2+2 = 6) - FIRST ROW */
@@ -357,50 +359,39 @@ export default function StatsStrip() {
             grid-column: 4 / 7 !important;
           }
           
-          /* Remove card styling on mobile - no background, no border */
+          /* Consistent padding and background for mobile */
           .stats-grid > div {
-            background: transparent !important;
-            border: none !important;
+            background: #F8F7FB !important;
+            border: 1px solid #F0EFF5 !important;
             padding: 12px 6px !important;
-            min-height: auto !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
+            min-height: 85px !important;
+            border-radius: 12px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
           }
           
-          /* Smaller number size for better fit */
+          /* Smaller fonts for mobile */
           .stats-grid > div > div:first-child {
-            font-size: 32px !important;
-            margin-bottom: 6px !important;
+            font-size: 26px !important; /* Smaller number */
+            margin-bottom: 4px !important;
             font-weight: 800 !important;
           }
           
           /* Smaller label */
           .stats-grid > div h3 {
-            font-size: 11px !important;
-            margin-bottom: 3px !important;
-            line-height: 1.2 !important;
+            font-size: 10px !important;
+            margin-bottom: 2px !important;
+            line-height: 1.1 !important;
             font-weight: 700 !important;
           }
           
           /* Smaller description */
           .stats-grid > div p {
-            font-size: 9px !important;
-            line-height: 1.3 !important;
-            opacity: 0.8 !important;
-          }
-          
-          /* Smaller success indicator dot */
-          .stats-grid > div > div:first-child > div {
-            width: 10px !important;
-            height: 10px !important;
-            top: -3px !important;
-            right: -3px !important;
-          }
-          
-          .stats-grid > div > div:first-child > div > div {
-            width: 5px !important;
-            height: 5px !important;
+            font-size: 8px !important;
+            line-height: 1.2 !important;
+            opacity: 0.7 !important;
           }
         }
         
@@ -411,11 +402,7 @@ export default function StatsStrip() {
             gap: 16px !important;
           }
           
-          .stats-grid > div:nth-child(1),
-          .stats-grid > div:nth-child(2),
-          .stats-grid > div:nth-child(3),
-          .stats-grid > div:nth-child(4),
-          .stats-grid > div:nth-child(5) {
+          .stats-grid > div {
             grid-column: span 1 !important;
           }
         }
@@ -427,11 +414,7 @@ export default function StatsStrip() {
             gap: 20px !important;
           }
           
-          .stats-grid > div:nth-child(1),
-          .stats-grid > div:nth-child(2),
-          .stats-grid > div:nth-child(3),
-          .stats-grid > div:nth-child(4),
-          .stats-grid > div:nth-child(5) {
+          .stats-grid > div {
             grid-column: span 1 !important;
           }
         }

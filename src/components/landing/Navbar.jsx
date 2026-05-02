@@ -402,6 +402,15 @@ export default function Navbar() {
           }
           .nav-mobile-bar {
             display: flex !important;
+            background: rgba(255,255,255,0.92) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            padding: 10px 20px !important;
+            border-radius: 100px !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+            margin: 0 auto !important;
+            max-width: 95% !important;
           }
           .nav-cta-desktop {
             display: none !important;

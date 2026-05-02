@@ -1099,7 +1099,7 @@ export default function HeroSection() {
       style={{
         display: "flex",
         alignItems: "center",
-        paddingTop: 100,
+        paddingTop: "clamp(120px, 15vw, 160px)",
         overflow: "hidden",
         position: "relative",
       }}
@@ -1643,6 +1643,10 @@ export default function HeroSection() {
         
         /* Enhanced mobile typography scaling */
         @media (max-width: 767px) {
+          #hero {
+            padding-top: 130px !important;
+          }
+          
           .hero-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
