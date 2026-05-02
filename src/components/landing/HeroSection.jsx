@@ -1253,7 +1253,7 @@ export default function HeroSection() {
                     fontSize: "clamp(25px, 4.5vw, 56px)",
                   }}
                 >
-                  AI employees
+                  AI employees specifically built
                 </span>
                 <span
                   style={{
@@ -1266,7 +1266,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  specifically built for
+                  for car rental USA
                 </span>
                 <span
                   style={{
@@ -1278,7 +1278,7 @@ export default function HeroSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  car rental USA operators.
+                  operators.
                 </span>
               </h1>
             </motion.div>
