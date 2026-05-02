@@ -1171,7 +1171,7 @@ export default function HeroSection() {
                 borderRadius: 100,
                 border: "1px solid rgba(42,157,143,0.25)",
                 background: "rgba(42,157,143,0.08)",
-                marginBottom: 20,
+                marginBottom: 32,
                 position: 'relative',
                 overflow: 'hidden'
               }}
@@ -1243,7 +1243,7 @@ export default function HeroSection() {
                   fontWeight: 700,
                   lineHeight: 1.15,
                   letterSpacing: "-0.02em",
-                  margin: "0 0 20px",
+                  margin: "0 0 24px",
                   color: "#141419",
                 }}
               >
@@ -1653,6 +1653,16 @@ export default function HeroSection() {
             text-align: left !important;
           }
           
+          /* Space between tagline badge and H1 */
+          .hero-grid > div:first-child > div:first-child {
+            margin-bottom: 28px !important;
+          }
+
+          /* Space below H1 */
+          .hero-grid h1 {
+            margin-bottom: 28px !important;
+          }
+
           .hero-grid h1 span {
             font-size: clamp(28px, 7.5vw, 38px) !important;
             line-height: 1.1 !important;
