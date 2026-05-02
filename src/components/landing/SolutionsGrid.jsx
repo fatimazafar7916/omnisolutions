@@ -295,8 +295,14 @@ const styles = `
   }
   
   .sg-footer-trust {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: nowrap;
+  }
+  
+  .sg-trust-item {
+    white-space: nowrap;
+    font-size: 12px;
   }
   
   .sg-footer-btn {

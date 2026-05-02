@@ -82,20 +82,15 @@ function StatCard({ stat, index, isVisible }) {
       animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       style={{
-        background: "#fff",
-        border: "1px solid #E5E7EB",
-        borderRadius: 12,
-        padding: "16px 14px",
         textAlign: "center",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       <div style={{ position: "relative", zIndex: 1 }}>
         <div style={{
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
           fontWeight: 800,
-          fontSize: "clamp(20px,3vw,28px)",
+          fontSize: "clamp(16px, 2.5vw, 22px)",
           background: "var(--brand-gradient)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -108,17 +103,19 @@ function StatCard({ stat, index, isVisible }) {
         </div>
         <div style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: 12,
+          fontSize: "clamp(10px, 1.5vw, 11px)",
           fontWeight: 600,
           color: "#111827",
           marginBottom: 1,
+          whiteSpace: "nowrap",
         }}>
           {stat.label}
         </div>
         <div style={{
           fontFamily: "'DM Sans',sans-serif",
-          fontSize: 10,
+          fontSize: "clamp(9px, 1.2vw, 10px)",
           color: GR,
+          whiteSpace: "nowrap",
         }}>
           {stat.sublabel}
         </div>
@@ -620,10 +617,10 @@ export default function WhyAiauraSection() {
             margin-bottom: 32px !important;
           }
           
-          /* Stats grid mobile - 3 columns but smaller */
+          /* Stats grid mobile - 3 columns in one line */
           section > div > div:first-child > div:first-child > div:last-child {
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 8px !important;
+            gap: clamp(8px, 2vw, 12px) !important;
           }
           
           /* Reason cards mobile */
@@ -693,12 +690,12 @@ export default function WhyAiauraSection() {
             padding: 0 16px !important;
           }
           
-          /* Stats mobile - stack vertically on very small screens */
+          /* Stats mobile - keep in one line, don't stack */
           section > div > div:first-child > div:first-child > div:last-child {
-            grid-template-columns: 1fr !important;
-            gap: 12px !important;
-            max-width: 280px !important;
-            margin: 0 auto !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: clamp(6px, 1.5vw, 10px) !important;
+            max-width: 100% !important;
+            margin: 0 !important;
           }
           
           /* Reason cards - more compact with subtle borders */
@@ -747,13 +744,13 @@ export default function WhyAiauraSection() {
             line-height: 1.5 !important;
           }
           
-          /* Stats - even more compact */
+          /* Stats - even more compact, stay in one line */
           section > div > div:first-child > div:first-child > div:last-child > div {
-            padding: 16px 12px !important;
+            padding: 0 !important;
           }
           
           section > div > div:first-child > div:first-child > div:last-child > div > div:last-child > div:first-child {
-            font-size: clamp(20px,6vw,24px) !important;
+            font-size: clamp(14px, 4vw, 18px) !important;
           }
           
           /* Reason cards - ultra compact */
