@@ -1104,20 +1104,13 @@ export default function HeroSection() {
         position: "relative",
       }}
     >
-      {/* Enhanced gradient overlay - No background image */}
+      {/* Pure white background */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           zIndex: 0,
-          background: `
-            linear-gradient(135deg, 
-              rgba(252,252,254,0.95) 0%, 
-              rgba(245,243,255,0.85) 30%, 
-              rgba(252,252,254,0.95) 60%,
-              rgba(245,243,255,0.95) 100%
-            )
-          `,
+          background: "#FFFFFF",
         }}
       />
 
@@ -1266,21 +1259,24 @@ export default function HeroSection() {
                   style={{
                     display: "block",
                     fontSize: "clamp(32px, 4.5vw, 56px)",
-                    fontFamily: "'Instrument Serif', serif",
-                    fontStyle: "italic",
+                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontStyle: "normal",
                     fontWeight: 400,
-                    color: "#22C55E",
                   }}
                 >
-                  specially built for
+                  specifically built
                 </span>
                 <span
                   style={{
                     display: "block",
                     fontSize: "clamp(32px, 4.5vw, 56px)",
+                    background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
                   }}
                 >
-                  car rental USA owners.
+                  for car rental USA operators.
                 </span>
               </h1>
             </motion.div>
@@ -1304,7 +1300,7 @@ export default function HeroSection() {
               <strong style={{ color: "#141419", fontWeight: 500 }}>You only focus on customers who are ready to book.</strong>
             </motion.p>
 
-            {/* All AI Agents Working Together Line - Enhanced Mobile */}
+            {/* All AI Agents Working Together Line - Simplified */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -1312,16 +1308,11 @@ export default function HeroSection() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 6,
+                gap: 8,
                 margin: "12px 0 20px",
-                padding: "8px 12px",
-                borderRadius: 12,
-                background: "rgba(123,116,220,0.05)",
-                border: "1px solid rgba(123,116,220,0.1)",
-                maxWidth: "fit-content"
               }}
             >
-              <Users size={18} color="#7B74DC" />
+              <Users size={18} color="#22C55E" strokeWidth={2.5} />
               <span
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
@@ -1416,15 +1407,16 @@ export default function HeroSection() {
               </a>
             </motion.div>
 
-            {/* Trust pills - Enhanced Mobile */}
+            {/* Trust pills - 2 rows on mobile: 3 + 3 */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.44 }}
+              className="hero-trust-row"
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 8,
+                gap: 10,
               }}
             >
               {TRUST.map((t) => (
@@ -1433,17 +1425,17 @@ export default function HeroSection() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 4,
-                    padding: "4px 10px",
+                    gap: 5,
+                    padding: "6px 12px",
                     borderRadius: 100,
                     background: "#F5F3FF",
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 12,
-                    fontWeight: 500,
+                    fontSize: 13,
+                    fontWeight: 600,
                     color: "#6E6D7A",
                   }}
                 >
-                  <CheckCircle size={11} color="#22C55E" />
+                  <CheckCircle size={13} color="#22C55E" strokeWidth={2.5} />
                   {t}
                 </span>
               ))}
@@ -1625,17 +1617,20 @@ export default function HeroSection() {
 
           .hero-trust-row {
             display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px 12px !important;
-            justify-content: center !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 10px !important;
+            justify-items: center !important;
             margin-top: 24px !important;
             width: 100% !important;
           }
 
           .hero-trust-row > span {
             justify-content: center !important;
-            font-size: 11px !important;
+            font-size: 12px !important;
+            padding: 7px 10px !important;
             white-space: nowrap !important;
+            width: 100% !important;
+            max-width: 140px !important;
           }
         }
         
