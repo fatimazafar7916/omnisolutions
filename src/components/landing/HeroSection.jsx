@@ -1259,8 +1259,7 @@ export default function HeroSection() {
                   style={{
                     display: "block",
                     fontSize: "clamp(25px, 4.5vw, 56px)",
-                    fontWeight: 400,
-                    fontStyle: "italic",
+                    fontWeight: 700,
                     background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
