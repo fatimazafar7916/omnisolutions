@@ -416,8 +416,6 @@ function StatCardContent({ stat }) {
           isPercentage={stat.isPercentage}
         />
         <span style={{ color: "#22C55E" }}>{stat.suffix}</span>
-        
-
       </div>
 
       <h3 className="stat-label">{stat.label}</h3>
