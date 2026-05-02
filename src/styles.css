@@ -45,7 +45,7 @@
   }
 
   body {
-    background: var(--cream);
+    background: #FFFFFF;
     color: var(--ink);
     font-family: "DM Sans", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
