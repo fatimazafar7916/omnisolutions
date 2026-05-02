@@ -1253,7 +1253,17 @@ export default function HeroSection() {
                     fontSize: "clamp(25px, 4.5vw, 56px)",
                   }}
                 >
-                  AI employees specifically built
+                  AI employees{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    specifically built
+                  </span>
                 </span>
                 <span
                   style={{
