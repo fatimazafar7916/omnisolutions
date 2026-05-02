@@ -258,7 +258,7 @@ function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }
 
 /* ─── Problem card (original, untouched) ─── */
 function ProblemCard({ problem, isFocused, small }) {
-  const pad = small ? "10px 12px" : "12px 14px";
+  const pad = small ? "10px 12px" : "13px 15px";
   return (
     <div style={{
       width: "100%", height: "100%", background: "#fff", borderRadius: 16,
@@ -267,7 +267,7 @@ function ProblemCard({ problem, isFocused, small }) {
       overflow: "hidden", display: "flex", flexDirection: "column",
     }}>
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
-      <div style={{ padding: pad, display: "flex", flexDirection: "column", gap: small ? 4 : 5 }}>
+      <div style={{ padding: pad, display: "flex", flexDirection: "column", gap: small ? 4 : 5, height: "100%" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 28, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
@@ -275,16 +275,18 @@ function ProblemCard({ problem, isFocused, small }) {
         <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13, color: "#141419", margin: 0, lineHeight: 1.25 }}>{problem.title}</h4>
         <p style={{
           fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11, color: GR,
-          lineHeight: 1.4, margin: 0,
+          lineHeight: 1.4, margin: 0, flex: 1,
           display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{problem.desc}</p>
-        <RotatingLiveMessage
-          messages={problem.liveMessages}
-          color={problem.color}
-          colorLight={problem.colorLight}
-          colorBorder={problem.colorBorder}
-          small={small}
-        />
+        <div style={{ marginTop: "auto" }}>
+          <RotatingLiveMessage
+            messages={problem.liveMessages}
+            color={problem.color}
+            colorLight={problem.colorLight}
+            colorBorder={problem.colorBorder}
+            small={small}
+          />
+        </div>
       </div>
     </div>
   );
@@ -639,7 +641,7 @@ function SyncedCarousels({ isMobile }) {
     <SharedCarousel
       items={CORE_PROBLEMS}
       renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
-      cardH={isMobile ? 200 : 215}
+      cardH={isMobile ? 200 : 230}
       groupIndex={groupIndex}
       setGroupIndex={(gi) => { setGroupIndex(gi); resetTimer(); }}
       isMobile={isMobile}
