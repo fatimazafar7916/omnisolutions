@@ -10,24 +10,24 @@ const STATS = [
 ];
 
 function AnimatedCounter({ target, isPercentage, onComplete }) {
-  const [count, setCount]           = useState(0);
+  const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const ref          = useRef(null);
+  const ref = useRef(null);
   const animationRef = useRef(null);
 
   const startAnimation = () => {
-    const dur      = 1600;
+    const dur = 1600;
     const startVal = 0;
-    let startTime  = null;
+    let startTime = null;
 
     const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
     const tick = (timestamp) => {
       if (!startTime) startTime = timestamp;
-      const elapsed  = timestamp - startTime;
+      const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / dur, 1);
-      const eased    = easeOut(progress);
-      const current  = startVal + (target - startVal) * eased;
+      const eased = easeOut(progress);
+      const current = startVal + (target - startVal) * eased;
       setCount(current);
 
       if (progress < 1) {
@@ -65,8 +65,7 @@ function AnimatedCounter({ target, isPercentage, onComplete }) {
     };
   }, [target, isPercentage]);
 
-  const displayValue =
-    target < 10 && !isPercentage ? count.toFixed(1) : Math.floor(count);
+  const displayValue = target < 10 && !isPercentage ? count.toFixed(1) : Math.floor(count);
 
   return <span ref={ref}>{displayValue}</span>;
 }
@@ -76,7 +75,6 @@ function StatCard({ stat, index }) {
 
   return (
     <div className="stat-item">
-      {/* CSS class toggle — no Framer Motion inline style competing with CSS */}
       <div className={`stat-number${complete ? " stat-number--done" : ""}`}>
         <AnimatedCounter
           target={stat.value}
@@ -104,212 +102,137 @@ function StatCard({ stat, index }) {
 
 export default function StatsStrip() {
   return (
-    <section className="stats-section">
-      <motion.div
-        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="stats-bg-dots"
-      />
-
+    <section className="stats-section" style={{ padding: '20px 0', margin: 0 }}>
       <div className="stats-inner">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="stats-header"
-        >
+        <div className="stats-header">
           <h2 className="stats-heading">Real results you can see</h2>
-          <p className="stats-subheading">
-            Real numbers from real car rental owners using Aiaura AI
-          </p>
-        </motion.div>
+          <p className="stats-subheading">Real numbers from real car rental owners using Aiaura AI</p>
+        </div>
 
-        {/*
-          LAYOUT — matches the image:
-            Mobile  → Row1: 3 equal cols | Row2: 2 equal cols (each 50%)
-            Desktop → all 5 in one single row via display:contents
-        */}
-        <div className="stats-grid-wrapper">
-
-          {/* ── Row 1: 3 cards ── */}
-          <div className="stats-row stats-row-3">
+        <div className="stats-grid">
+          {/* Row 1: 3 cards */}
+          <div className="stats-row">
             {STATS.slice(0, 3).map((stat, i) => (
-              <motion.div
-                key={i}
-                className="stat-cell"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.09 }}
-              >
-                {i < 2 && <div className="stat-pipe" />}
+              <div key={i} className="stat-cell">
+                {i < 2 && <div className="stat-divider" />}
                 <StatCard stat={stat} index={i} />
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          {/* ── Row 2: 2 cards ── */}
+          {/* Row 2: 2 cards */}
           <div className="stats-row stats-row-2">
             {STATS.slice(3, 5).map((stat, i) => (
-              <motion.div
-                key={i + 3}
-                className="stat-cell"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i + 3) * 0.09 }}
-              >
-                {i < 1 && <div className="stat-pipe" />}
+              <div key={i + 3} className="stat-cell">
+                {i < 1 && <div className="stat-divider" />}
                 <StatCard stat={stat} index={i + 3} />
-              </motion.div>
+              </div>
             ))}
           </div>
-
         </div>
       </div>
 
       <style>{`
-        /* ── Section ── */
         .stats-section {
-          background: #ffffff;
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: clamp(36px, 5vw, 64px) 0;
-          box-sizing: border-box;
-          width: 100%;
-        }
-
-        .stats-bg-dots {
-          position: absolute;
-          inset: 0;
-          background-image: radial-gradient(circle, #22C55E 1px, transparent 1px);
-          background-size: 28px 28px;
-          opacity: 0.04;
-          pointer-events: none;
+          background: #ffffff !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          position: relative !important;
         }
 
         .stats-inner {
-          position: relative;
-          z-index: 1;
-          width: 100%;
           max-width: 1200px;
-          box-sizing: border-box;
-        }
-
-        /* ── Header ── */
-        .stats-header {
-          text-align: center;
-          margin-bottom: clamp(24px, 3vw, 40px);
+          margin: 0 auto;
           padding: 0 16px;
         }
 
+        .stats-header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
         .stats-heading {
-          font-family: 'Georgia', 'Times New Roman', serif;
+          font-family: 'Georgia', serif;
+          font-size: 28px;
           font-weight: 700;
-          font-size: clamp(20px, 3vw, 28px);
           color: #0f172a;
-          margin: 0 0 6px;
-          letter-spacing: -0.02em;
+          margin: 0 0 8px;
+          letter-spacing: -0.01em;
         }
 
         .stats-subheading {
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(12px, 1.4vw, 14px);
+          font-size: 14px;
           color: #94a3b8;
           margin: 0;
         }
 
-        /* ── Grid wrapper: column on mobile, row on desktop ── */
-        .stats-grid-wrapper {
+        .stats-grid {
           display: flex;
           flex-direction: column;
-          width: 100%;
+          gap: 0;
+          margin-top: 0;
         }
 
-        /* ── Each row is a flex container ── */
         .stats-row {
           display: flex;
           width: 100%;
+          gap: 0;
+          margin: 0;
         }
 
-        /* Row 1: 3 equal columns — flex:1 1 0 gives equal thirds */
-        .stats-row-3 .stat-cell {
-          flex: 1 1 0;
+        .stats-row .stat-cell {
+          flex: 1 1 33.333%;
+          width: 33.333%;
+          max-width: 33.333%;
           min-width: 0;
-        }
-
-        /*
-          FIX — Row 2: exactly 2 equal columns = 50% each.
-          Original bugs fixed here:
-            ✗ flex: 0 0 33.333%  → ✓ flex: 1 1 0
-            ✗ max-width: 33.333% → ✓ max-width: 50%
-            ✗ justify-content: center (dead space) → ✓ flex-start
-            ✗ justify-content: stretch (invalid)   → removed
-        */
-        .stats-row-2 {
-          justify-content: flex-start;
-        }
-        .stats-row-2 .stat-cell {
-          flex: 1 1 0;
-          max-width: 50%;
-          min-width: 0;
-        }
-
-        /* ── Stat cell ── */
-        .stat-cell {
           position: relative;
           box-sizing: border-box;
         }
 
-        /* ── Pipe divider ── */
-        .stat-pipe {
+        .stats-row-2 .stat-cell {
+          flex: 1 1 50%;
+          width: 50%;
+          max-width: 50%;
+        }
+
+        .stat-divider {
           position: absolute;
           right: 0;
-          top: 18%;
-          height: 64%;
+          top: 15%;
+          height: 70%;
           width: 1px;
           background: linear-gradient(
             to bottom,
             transparent 0%,
-            #e2e8f0 25%,
-            #e2e8f0 75%,
+            #e2e8f0 20%,
+            #e2e8f0 80%,
             transparent 100%
           );
           z-index: 1;
         }
 
-        /* ── Stat item ── */
         .stat-item {
-          padding: clamp(14px, 2.5vw, 32px) clamp(6px, 2vw, 24px);
+          padding: 16px 12px;
           text-align: center;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
+          min-height: 140px;
           box-sizing: border-box;
-          width: 100%;
-          overflow: hidden;
         }
 
-        /*
-          FIX — stat-number: CSS-only color via class toggle.
-          No Framer Motion animate={{ color }} inline style = no specificity war.
-          font-size clamp floor lowered to 20px so it fits in ~33vw cells.
-        */
         .stat-number {
-          font-family: 'Georgia', 'Times New Roman', serif;
+          font-family: 'Georgia', serif;
+          font-size: 40px;
           font-weight: 700;
-          font-size: clamp(20px, 5vw, 54px);
-          letter-spacing: -0.04em;
+          color: #0f172a;
           line-height: 1;
-          margin-bottom: 10px;
+          margin-bottom: 8px;
           display: flex;
           align-items: baseline;
-          gap: 1px;
-          color: #0f172a;
+          gap: 2px;
           transition: color 0.35s ease;
         }
 
@@ -322,21 +245,19 @@ export default function StatsStrip() {
           font-weight: 700;
         }
 
-        /* ── Underline bar ── */
         .stat-underline {
           width: 32px;
-          height: 2px;
+          height: 3px;
           background: #f1f5f9;
           border-radius: 2px;
           overflow: hidden;
           margin-bottom: 8px;
-          flex-shrink: 0;
         }
 
         .stat-underline-fill {
           height: 100%;
-          border-radius: 2px;
           background: #cbd5e1;
+          border-radius: 2px;
           transition: background 0.4s ease;
         }
 
@@ -344,67 +265,111 @@ export default function StatsStrip() {
           background: #22C55E;
         }
 
-        /* ── Label ── */
         .stat-label {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-family: 'Inter', sans-serif;
+          font-size: 13px;
           font-weight: 600;
-          font-size: clamp(9px, 1.4vw, 13px);
           color: #334155;
           margin: 0 0 4px;
           line-height: 1.3;
-          letter-spacing: -0.01em;
-          word-break: break-word;
-          hyphens: auto;
         }
 
-        /* ── Desc ── */
         .stat-desc {
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(8px, 1.1vw, 11px);
+          font-size: 11px;
           color: #94a3b8;
           margin: 0;
           line-height: 1.3;
-          word-break: break-word;
         }
 
-        /* ── Desktop: collapse to single 5-col row ── */
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+          .stats-heading {
+            font-size: 24px;
+          }
+          .stats-subheading {
+            font-size: 13px;
+          }
+          .stat-number {
+            font-size: 36px;
+          }
+          .stat-label {
+            font-size: 12px;
+          }
+          .stat-desc {
+            font-size: 10px;
+          }
+          .stat-item {
+            padding: 14px 10px;
+            min-height: 130px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .stats-header {
+            margin-bottom: 16px;
+          }
+          .stats-heading {
+            font-size: 22px;
+            margin: 0 0 6px;
+          }
+          .stats-subheading {
+            font-size: 12px;
+          }
+          .stat-number {
+            font-size: 32px;
+            margin-bottom: 6px;
+          }
+          .stat-underline {
+            width: 28px;
+            height: 2px;
+            margin-bottom: 6px;
+          }
+          .stat-label {
+            font-size: 11px;
+            margin: 0 0 3px;
+          }
+          .stat-desc {
+            font-size: 9px;
+          }
+          .stat-item {
+            padding: 12px 8px;
+            min-height: 120px;
+          }
+        }
+
+        /* Desktop: single row */
         @media (min-width: 1025px) {
-          .stats-grid-wrapper {
+          .stats-grid {
             flex-direction: row;
           }
-
-          /* display:contents pulls cells out of their row
-             into the parent flex row — all 5 in one line */
           .stats-row {
             display: contents;
           }
-
-          .stats-row-3 .stat-cell,
+          .stats-row .stat-cell,
           .stats-row-2 .stat-cell {
-            flex: 1 1 0;
+            flex: 1 1 20%;
+            width: auto;
             max-width: none;
           }
-
           .stat-item {
-            padding: clamp(24px, 2.5vw, 32px) clamp(16px, 2vw, 24px);
+            padding: 20px 16px;
+            min-height: 160px;
           }
-
           .stat-number {
-            font-size: clamp(36px, 3.5vw, 54px);
+            font-size: 48px;
             margin-bottom: 10px;
           }
-
           .stat-underline {
-            width: 40px;
+            width: 36px;
             margin-bottom: 10px;
           }
-
           .stat-label {
-            font-size: clamp(11px, 1.4vw, 13px);
+            font-size: 14px;
+            margin: 0 0 5px;
           }
-
           .stat-desc {
-            font-size: clamp(9px, 1.1vw, 11px);
+            font-size: 12px;
           }
         }
       `}</style>

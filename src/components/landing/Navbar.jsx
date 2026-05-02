@@ -87,16 +87,7 @@ export default function Navbar() {
               color: "#22C55E",
               letterSpacing: "0.02em",
             }}>
-              AIAUR
-            </span>
-            <span style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontWeight: 800,
-              fontSize: 17,
-              color: "#A3E635",
-              letterSpacing: "0.02em",
-            }}>
-              A
+              AIAURA Fleet
             </span>
           </a>
 
@@ -218,16 +209,7 @@ export default function Navbar() {
               color: "#22C55E",
               letterSpacing: "0.02em",
             }}>
-              AIAUR
-            </span>
-            <span style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontWeight: 800,
-              fontSize: 20,
-              color: "#A3E635",
-              letterSpacing: "0.02em",
-            }}>
-              A
+              AIAURA Fleet
             </span>
           </a>
 
@@ -291,12 +273,7 @@ export default function Navbar() {
                     fontFamily: "'Bricolage Grotesque', sans-serif",
                     fontWeight: 800, fontSize: 16, color: "#22C55E",
                     letterSpacing: "0.02em",
-                  }}>AIAUR</span>
-                  <span style={{
-                    fontFamily: "'Bricolage Grotesque', sans-serif",
-                    fontWeight: 800, fontSize: 16, color: "#A3E635",
-                    letterSpacing: "0.02em",
-                  }}>A</span>
+                  }}>AIAURA Fleet</span>
                 </div>
               </div>
               <button
