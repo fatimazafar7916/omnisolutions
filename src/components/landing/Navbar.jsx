@@ -241,14 +241,14 @@ export default function Navbar() {
               width: 40,
               height: 40,
               borderRadius: "50%",
-              background: "#141419",
+              background: "transparent",
               border: "none",
               cursor: "pointer",
-              color: "#fff",
+              padding: 0,
             }}
             aria-label="Open menu"
           >
-            <Menu size={18} />
+            <Menu size={28} color="#22C55E" strokeWidth={2.5} />
           </button>
         </div>
       </motion.div>
