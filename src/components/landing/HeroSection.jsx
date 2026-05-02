@@ -1239,10 +1239,10 @@ export default function HeroSection() {
             >
               <h1
                 style={{
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontFamily: "'Merriweather', Georgia, serif",
                   fontWeight: 700,
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.02em",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.01em",
                   margin: "0 0 24px",
                   color: "#141419",
                 }}
@@ -1250,7 +1250,7 @@ export default function HeroSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(32px, 4.5vw, 56px)",
+                    fontSize: "clamp(25px, 4.5vw, 56px)",
                   }}
                 >
                   AI employees
@@ -1258,10 +1258,9 @@ export default function HeroSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(32px, 4.5vw, 56px)",
-                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontStyle: "normal",
+                    fontSize: "clamp(25px, 4.5vw, 56px)",
                     fontWeight: 400,
+                    fontStyle: "italic",
                     background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -1273,7 +1272,7 @@ export default function HeroSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "clamp(32px, 4.5vw, 56px)",
+                    fontSize: "clamp(25px, 4.5vw, 56px)",
                     background: "linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
