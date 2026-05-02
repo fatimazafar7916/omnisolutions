@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const RED = "#EF4444";
-const REDL = "#FEF2F2";
 const GR = "#6E6D7A";
+const GREEN = "#22C55E";
 
 const CORE_PROBLEMS = [
   {
@@ -17,20 +17,20 @@ const CORE_PROBLEMS = [
       "Last night: 11PM inquiry for Lamborghini — no reply",
       "This week: 23 DMs went cold before you responded",
     ],
-    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA",
   },
   {
     id: "slow-replies",
     stat: "42 min",
     subtitle: "your avg reply time",
     title: "First reply wins the booking",
-    desc: "78% of luxury renters book with whoever responds first. Your competitor across town uses AI — they reply in 4 seconds. You reply in 42 minutes. You lose.",
+    desc: "78% of luxury renters book with whoever responds first. Your competitor uses AI — they reply in 4 seconds. You reply in 42 minutes. You lose.",
     liveMessages: [
       "Right now: A competitor replied to your lead in 6 sec",
       "Today: You lost 3 leads to faster operators",
       "This hour: 2 people DM'd you and already booked elsewhere",
     ],
-    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A", urgencyLevel: "CRITICAL",
+    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A",
   },
   {
     id: "no-followup",
@@ -43,7 +43,7 @@ const CORE_PROBLEMS = [
       "Right now: Quote from 3 days ago still sitting unread",
       "Last week: $8,400 deal fell through — no follow-up sent",
     ],
-    color: "#22C55E", colorLight: "#F0FDF4", colorBorder: "#BBF7D0", urgencyLevel: "CRITICAL",
+    color: "#22C55E", colorLight: "#F0FDF4", colorBorder: "#BBF7D0",
   },
   {
     id: "instagram-comments",
@@ -56,7 +56,7 @@ const CORE_PROBLEMS = [
       "Today: 14 comment leads went unanswered on your posts",
       "This week: Reel got 43K views, you booked 1 car from it",
     ],
-    color: "#E1306C", colorLight: "#FDF2F8", colorBorder: "#F9A8D4", urgencyLevel: "HIGH",
+    color: "#E1306C", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
   },
   {
     id: "no-shows",
@@ -69,7 +69,7 @@ const CORE_PROBLEMS = [
       "This month: 8 no-shows, $14,400 in empty calendar slots",
       "Today: 3 pickups scheduled, 0 reminders sent",
     ],
-    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA",
   },
   {
     id: "bad-reviews",
@@ -82,7 +82,7 @@ const CORE_PROBLEMS = [
       "This week: 3 people read your bad reviews and bounced",
       "Today: Competitor at 4.9★ just took a $3,200 booking you lost",
     ],
-    color: "#EC4899", colorLight: "#FDF2F8", colorBorder: "#F9A8D4", urgencyLevel: "HIGH",
+    color: "#EC4899", colorLight: "#FDF2F8", colorBorder: "#F9A8D4",
   },
   {
     id: "manual-work",
@@ -95,20 +95,20 @@ const CORE_PROBLEMS = [
       "Today: 3 hours spent copy-pasting booking details",
       "Right now: Admin backlog = 2 hours to clear before bed",
     ],
-    color: "#8B5CF6", colorLight: "#F5F3FF", colorBorder: "#DDD6FE", urgencyLevel: "HIGH",
+    color: "#8B5CF6", colorLight: "#F5F3FF", colorBorder: "#DDD6FE",
   },
   {
     id: "seasonal-gaps",
     stat: "$28K",
     subtitle: "lost in off-peak months",
     title: "Fleet sits idle in slow season",
-    desc: "In off-peak months your fleet sits in the lot. No proactive outreach, no re-engagement campaigns, no discount nudges. Dead revenue every January and September.",
+    desc: "In off-peak months your fleet sits in the lot. No proactive outreach, no re-engagement campaigns, no discount nudges. Dead revenue every January.",
     liveMessages: [
       "Right now: 4 cars unbooked this entire week",
       "This month: 18 past clients didn't hear from you once",
       "Last Jan: Fleet was 23% utilized. Could've been 60%+",
     ],
-    color: "#06B6D4", colorLight: "#ECFEFF", colorBorder: "#A5F3FC", urgencyLevel: "MEDIUM",
+    color: "#06B6D4", colorLight: "#ECFEFF", colorBorder: "#A5F3FC",
   },
   {
     id: "upsell",
@@ -121,7 +121,7 @@ const CORE_PROBLEMS = [
       "Last week: $4,200 in delivery fees left on the table",
       "Right now: Urus booking confirmed — no upgrade offered",
     ],
-    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A", urgencyLevel: "MEDIUM",
+    color: "#F59E0B", colorLight: "#FFFBEB", colorBorder: "#FDE68A",
   },
   {
     id: "whatsapp-sms",
@@ -134,64 +134,100 @@ const CORE_PROBLEMS = [
       "Today: 6 SMS inquiries, 2 seen, 0 replied to",
       "This week: $12K booking came via WhatsApp you almost missed",
     ],
-    color: "#10B981", colorLight: "#ECFDF5", colorBorder: "#6EE7B7", urgencyLevel: "HIGH",
+    color: "#10B981", colorLight: "#ECFDF5", colorBorder: "#6EE7B7",
   },
   {
     id: "repeat-clients",
     stat: "71%",
     subtitle: "one-time customers",
     title: "Happy clients book competitors next",
-    desc: "71% of renters who loved their experience book a competitor next time — because you never reached out. A simple follow-up sequence would turn them into loyal repeats.",
+    desc: "71% of renters who loved their experience book a competitor next time — because you never reached out. A simple follow-up sequence turns them into loyal repeats.",
     liveMessages: [
       "This month: 19 past VIP clients booked elsewhere",
       "Right now: Client from 60 days ago — zero contact since",
       "This quarter: $47K in repeat revenue walked out the door",
     ],
-    color: "#6366F1", colorLight: "#EEF2FF", colorBorder: "#C7D2FE", urgencyLevel: "HIGH",
+    color: "#6366F1", colorLight: "#EEF2FF", colorBorder: "#C7D2FE",
   },
   {
     id: "competitors",
     stat: "5x",
     subtitle: "faster competitor growth",
     title: "AI operators are eating your market",
-    desc: "Operators using AI automation close 5x more leads, respond instantly 24/7, and run leaner. Every week you wait, they lock in more of your market. The gap grows daily.",
+    desc: "Operators using AI automation close 5x more leads, respond instantly 24/7, and run leaner. Every week you wait, they lock in more of your market.",
     liveMessages: [
       "This year: 3 Miami operators launched AI — all growing 40%+",
       "Right now: Your top competitor just closed a DM in 3 seconds",
       "This month: AI operators captured 12% more market share",
     ],
-    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA", urgencyLevel: "CRITICAL",
+    color: "#EF4444", colorLight: "#FEF2F2", colorBorder: "#FECACA",
   },
 ];
 
-const METRICS = [
-  { label: "Unanswered DM Revenue Loss", value: "$31K", period: "per month", trend: "23 cold leads this week alone", color: "#EF4444", lossPct: 0.78, monthlyLoss: "$31,000" },
-  { label: "Leads Lost to Slow Response", value: "78%", period: "book with 1st responder", trend: "Your avg reply time: 42 min", color: "#F59E0B", lossPct: 0.78, monthlyLoss: "$18,200" },
-  { label: "Quotes That Never Close", value: "91%", period: "never followed up", trend: "Only 2 of 27 quotes followed up", color: "#22C55E", lossPct: 0.91, monthlyLoss: "$15,000" },
-  { label: "Instagram Comment Leads Lost", value: "1,200+", period: "ignored monthly", trend: "14 comment leads ignored today", color: "#E1306C", lossPct: 0.82, monthlyLoss: "$9,600" },
-  { label: "No-Show Revenue Drain", value: "$14.4K", period: "per month", trend: "8 no-shows, 0 reminders sent", color: "#EF4444", lossPct: 0.34, monthlyLoss: "$14,400" },
-  { label: "Review Rating Penalty", value: "−50%", period: "bookings below 4.5★", trend: "New 2★ review unanswered", color: "#EC4899", lossPct: 0.50, monthlyLoss: "$22,000" },
-  { label: "Admin Time Wasted", value: "22hrs", period: "every week", trend: "1,144 hrs/year automatable", color: "#8B5CF6", lossPct: 0.55, monthlyLoss: "$4,400" },
-  { label: "Off-Peak Fleet Idle Loss", value: "$28K", period: "per slow month", trend: "Fleet at 23% utilization last Jan", color: "#06B6D4", lossPct: 0.77, monthlyLoss: "$28,000" },
-  { label: "Missed Upsell Revenue", value: "$9,800", period: "per month", trend: "0 upsells offered today", color: "#F59E0B", lossPct: 0.68, monthlyLoss: "$9,800" },
-  { label: "SMS/WhatsApp Leads Missed", value: "64%", period: "prefer these channels", trend: "6 SMS inquiries unseen today", color: "#10B981", lossPct: 0.64, monthlyLoss: "$12,000" },
-  { label: "Repeat Clients Walking Away", value: "$47K", period: "per quarter", trend: "19 VIP clients booked rivals", color: "#6366F1", lossPct: 0.71, monthlyLoss: "$15,700" },
-  { label: "AI Competitor Growth Gap", value: "5x", period: "faster competitor growth", trend: "3 rivals grew 40%+ with AI", color: "#EF4444", lossPct: 0.85, monthlyLoss: "∞" },
+const IMPACT_GROUPS = [
+  { impact: "$64.4K", phrase: "bleeding monthly — DMs, slow replies & dead quotes" },
+  { impact: "$46K",   phrase: "lost to ignored comments, no-shows & bad reviews" },
+  { impact: "$42.2K", phrase: "wasted on admin, idle fleet & missed upsells" },
+  { impact: "$27.7K", phrase: "gone via wrong channels, lost repeats & AI rivals" },
 ];
 
+/* ─── Optimized styles injected once ─── */
+const WIRE_STYLE = `
+@keyframes wireDraw {
+  from { stroke-dashoffset: 400; opacity: 0; }
+  to   { stroke-dashoffset: 0;   opacity: 0.7; }
+}
+@keyframes dotPop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes nodeIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wire-path { animation: wireDraw 0.7s ease-out forwards; }
+.wire-dot  { animation: dotPop 0.3s cubic-bezier(.34,1.56,.64,1) forwards; }
+.node-core { animation: nodeIn 0.4s cubic-bezier(.34,1.56,.64,1) 0.4s forwards; transform-box: fill-box; transform-origin: center; opacity: 0; }
+.node-ring1 { animation: nodeIn 0.5s ease-out 0.45s forwards; transform-box: fill-box; transform-origin: center; opacity: 0; }
+.node-text  { animation: fadeUp 0.35s ease-out forwards; opacity: 0; }
+`;
+
+function StyleOnce() {
+  const injected = useRef(false);
+  useEffect(() => {
+    if (injected.current) return;
+    injected.current = true;
+    const el = document.createElement("style");
+    el.textContent = WIRE_STYLE;
+    document.head.appendChild(el);
+  }, []);
+  return null;
+}
+
+/* ─── Rotating live message ─── */
 function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }) {
   const [idx, setIdx] = useState(0);
-
   useEffect(() => {
-    const t = setInterval(() => {
-      setIdx(i => (i + 1) % messages.length);
-    }, 2000);
+    const t = setInterval(() => setIdx(i => (i + 1) % messages.length), 2000);
     return () => clearInterval(t);
   }, [messages.length]);
 
   return (
-    <div style={{ background: colorLight, border: `1px solid ${colorBorder}`, borderRadius: 8, padding: small ? "5px 8px" : "7px 10px", display: "flex", alignItems: "center", gap: 6, overflow: "hidden", flexShrink: 0 }}>
-      <motion.div style={{ width: 5, height: 5, borderRadius: "50%", background: color, flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
+    <div style={{
+      background: colorLight, border: `1px solid ${colorBorder}`, borderRadius: 8,
+      padding: small ? "5px 8px" : "7px 10px",
+      display: "flex", alignItems: "center", gap: 6, overflow: "hidden", flexShrink: 0,
+    }}>
+      <motion.div
+        style={{ width: 5, height: 5, borderRadius: "50%", background: color, flexShrink: 0 }}
+        animate={{ opacity: [1, 0.4, 1] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+      />
       <AnimatePresence mode="wait">
         <motion.span
           key={idx}
@@ -208,6 +244,7 @@ function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }
   );
 }
 
+/* ─── Problem card (original, untouched) ─── */
 function ProblemCard({ problem, isFocused, small }) {
   const pad = small ? "10px 12px" : "16px 18px";
   return (
@@ -215,7 +252,7 @@ function ProblemCard({ problem, isFocused, small }) {
       width: "100%", height: "100%", background: "#fff", borderRadius: 16,
       border: `1.5px solid ${isFocused ? problem.color : problem.colorBorder}`,
       boxShadow: isFocused ? `0 8px 28px ${problem.color}22` : "0 1px 6px rgba(0,0,0,0.05)",
-      overflow: "hidden", display: "flex", flexDirection: "column", position: "relative",
+      overflow: "hidden", display: "flex", flexDirection: "column",
     }}>
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
       <div style={{ padding: pad, display: "flex", flexDirection: "column", flex: 1, gap: small ? 6 : 8 }}>
@@ -241,77 +278,181 @@ function ProblemCard({ problem, isFocused, small }) {
   );
 }
 
-function LossCard({ metric, isFocus, isVisible }) {
-  const radius = 26;
-  const circ = 2 * Math.PI * radius;
-  const pct = metric.lossPct ?? 0.7;
-  const dashOffset = circ - circ * pct;
+/*
+  ─── Optimized WireConvergence ───
+  Green circle with red text inside, fully mobile responsive.
+*/
+function WireConvergence({ groupIndex, colors, isMobile, animKey }) {
+  const { impact, phrase } = IMPACT_GROUPS[groupIndex % IMPACT_GROUPS.length];
+
+  const W = 680;
+  const visibleCount = isMobile ? 2 : 3;
+  const gap = 16;
+  const totalGaps = (visibleCount - 1) * gap;
+  const cardW = (W - totalGaps) / visibleCount;
+  const originXs = Array.from({ length: visibleCount }, (_, i) => i * (cardW + gap) + cardW / 2);
+
+  const nodeX = W / 2;
+  const wireLen = isMobile ? 140 : 160;
+  const nodeY = wireLen + 6;
+  const nodeR = isMobile ? 80 : 96;
+  const svgH = nodeY + nodeR + (isMobile ? 66 : 80);
+
+  // Optimized bezier curve for smoother wire paths
+  const wirePath = (ox) =>
+    `M${ox} 2 C${ox} ${wireLen * 0.35}, ${nodeX} ${wireLen * 0.65}, ${nodeX} ${nodeY - nodeR - 1}`;
+
+  // Optimized text content - shorter and punchier
+  const optimizePhrase = (text) => {
+    const optimizations = {
+      "bleeding monthly — DMs, slow replies & dead quotes": "DMs, replies & quotes",
+      "lost to ignored comments, no-shows & bad reviews": "comments, no-shows & reviews",
+      "wasted on admin, idle fleet & missed upsells": "admin, idle fleet & upsells",
+      "gone via wrong channels, lost repeats & AI rivals": "channels, repeats & AI rivals"
+    };
+    return optimizations[text] || text;
+  };
+
+  const optimizedPhrase = optimizePhrase(phrase);
+
+  // Smart text wrapping for responsive display
+  const wrapText = (text, maxChars) => {
+    if (text.length <= maxChars) return [text];
+    
+    // Try to split at natural break points
+    const parts = text.split(/([,&])/);
+    const lines = [];
+    let currentLine = '';
+    
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
+      const testLine = currentLine + part;
+      
+      if (testLine.trim().length <= maxChars || part.match(/[,&]/)) {
+        currentLine = testLine;
+      } else {
+        if (currentLine.trim()) lines.push(currentLine.trim());
+        currentLine = part;
+      }
+    }
+    if (currentLine.trim()) lines.push(currentLine.trim());
+    
+    return lines.length > 0 ? lines : [text];
+  };
+
+  const phraseLines = wrapText(optimizedPhrase, isMobile ? 24 : 32);
 
   return (
-    <div style={{
-      width: "100%",
-      background: "linear-gradient(145deg, #FAFAFA, #F5F5F5)",
-      borderRadius: 16,
-      border: `1.5px solid ${isFocus ? metric.color + "60" : "#E5E5E5"}`,
-      boxShadow: isFocus ? `0 0 40px ${metric.color}28, 0 4px 20px rgba(0,0,0,0.08)` : "0 2px 12px rgba(0,0,0,0.06)",
-      overflow: "hidden", display: "flex", flexDirection: "column", position: "relative",
-    }}>
-      <div style={{ position: "absolute", top: -30, right: -30, width: 110, height: 110, borderRadius: "50%", background: metric.color, opacity: 0.07, filter: "blur(36px)", pointerEvents: "none" }} />
-      <div style={{ height: 2, background: `linear-gradient(90deg, transparent 0%, ${metric.color} 50%, transparent 100%)`, flexShrink: 0 }} />
-      <div style={{ padding: "10px 10px", display: "flex", flexDirection: "column", gap: 7 }}>
-        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#6B7280", lineHeight: 1.2 }}>{metric.label}</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: 22, color: metric.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{metric.value}</div>
-            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, color: "#6B7280", marginTop: 2, lineHeight: 1.3 }}>{metric.period}</div>
-          </div>
-          <svg width={50} height={50} style={{ flexShrink: 0 }}>
-            <circle cx={25} cy={25} r={20} fill="none" stroke="#E5E5E5" strokeWidth={3.5} />
-            <motion.circle
-              cx={25} cy={25} r={20}
-              fill="none" stroke={metric.color} strokeWidth={3.5} strokeLinecap="round"
-              strokeDasharray={2 * Math.PI * 20}
-              initial={{ strokeDashoffset: 2 * Math.PI * 20 }}
-              animate={isVisible ? { strokeDashoffset: 2 * Math.PI * 20 - 2 * Math.PI * 20 * pct } : { strokeDashoffset: 2 * Math.PI * 20 }}
-              transition={{ duration: 1.6, delay: 0.3, ease: "easeOut" }}
-              transform="rotate(-90 25 25)"
-            />
-            <text x={25} y={29} textAnchor="middle" style={{ fontFamily: "'Inter',sans-serif", fontSize: 9, fontWeight: 800, fill: metric.color }}>
-              {Math.round(pct * 100)}%
-            </text>
-          </svg>
-        </div>
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 7.5, color: "#6B7280", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Monthly loss</span>
-            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 9.5, color: "#EF4444", fontWeight: 800 }}>{metric.monthlyLoss}</span>
-          </div>
-          <div style={{ height: 4, background: "#E5E5E5", borderRadius: 6, overflow: "hidden" }}>
-            <motion.div
-              style={{ height: "100%", borderRadius: 6, background: `linear-gradient(90deg, ${metric.color}55, ${metric.color})` }}
-              initial={{ width: "0%" }}
-              animate={isVisible ? { width: `${pct * 100}%` } : { width: "0%" }}
-              transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
-            />
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 6, padding: "4px 6px" }}>
-          <motion.div style={{ width: 4, height: 4, borderRadius: "50%", background: "#EF4444", flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8.5, fontWeight: 600, color: "#DC2626", lineHeight: 1.3 }}>{metric.trend}</span>
-        </div>
-      </div>
-    </div>
+    <svg
+      key={animKey}
+      width="100%"
+      viewBox={`0 0 ${W} ${svgH}`}
+      style={{ display: "block", overflow: "visible" }}
+      aria-hidden="true"
+    >
+      {/* Wires */}
+      {originXs.map((ox, i) => (
+        <path
+          key={i}
+          className="wire-path"
+          d={wirePath(ox)}
+          fill="none"
+          stroke={colors[i] || GREEN}
+          strokeWidth={2}
+          strokeDasharray="400"
+          strokeLinecap="round"
+          style={{ animationDelay: `${i * 0.08}s` }}
+        />
+      ))}
+
+      {/* Origin dots */}
+      {originXs.map((ox, i) => (
+        <circle
+          key={`d${i}`}
+          className="wire-dot"
+          cx={ox} cy={4} r={5}
+          fill={colors[i] || GREEN}
+          style={{ animationDelay: `${i * 0.08}s`, transformOrigin: `${ox}px 4px` }}
+        />
+      ))}
+
+      {/* Only 2 rings - outer ring */}
+      <circle
+        className="node-ring1"
+        cx={nodeX} cy={nodeY} r={nodeR + 12}
+        fill="none" stroke={GREEN} strokeWidth="0.7"
+        opacity="0"
+      />
+      
+      {/* Core circle - green */}
+      <circle
+        className="node-core"
+        cx={nodeX} cy={nodeY} r={nodeR}
+        fill="white" stroke={GREEN} strokeWidth="1.5"
+        opacity="0"
+      />
+
+      {/* Entry dot */}
+      <circle
+        className="wire-dot"
+        cx={nodeX} cy={nodeY - nodeR} r={5}
+        fill={GREEN}
+        style={{ animationDelay: "0.45s", transformOrigin: `${nodeX}px ${(nodeY - nodeR)}px` }}
+      />
+
+      {/* Label - RED */}
+      <text
+        className="node-text"
+        x={nodeX} y={nodeY - (isMobile ? 28 : 34)}
+        textAnchor="middle"
+        style={{
+          fontFamily: "'DM Sans',sans-serif", fontWeight: 700,
+          fontSize: isMobile ? 8.5 : 10, fill: RED, letterSpacing: "0.12em",
+          animationDelay: "0.6s",
+        }}
+      >MONTHLY BLEED</text>
+
+      {/* Impact amount - RED */}
+      <text
+        className="node-text"
+        x={nodeX} y={nodeY + (isMobile ? 16 : 20)}
+        textAnchor="middle"
+        style={{
+          fontFamily: "'Inter',sans-serif", fontWeight: 900,
+          fontSize: isMobile ? 34 : 42, fill: RED, letterSpacing: "-0.04em",
+          animationDelay: "0.65s",
+        }}
+      >{impact}</text>
+
+      {/* Description phrase - RED, responsive wrapping */}
+      <text
+        className="node-text"
+        x={nodeX}
+        y={nodeY + (isMobile ? 34 : 42)}
+        textAnchor="middle"
+        style={{
+          fontFamily: "'DM Sans',sans-serif", fontWeight: 600,
+          fontSize: isMobile ? 8.5 : 10, fill: RED,
+          animationDelay: "0.75s",
+        }}
+      >
+        {phraseLines.map((line, i) => (
+          <tspan key={i} x={nodeX} dy={i === 0 ? 0 : "1.25em"}>
+            {line}
+          </tspan>
+        ))}
+      </text>
+    </svg>
   );
 }
 
-function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, isMobile, onNext, onPrev, showDots }) {
+/* ─── Carousel with wires below ─── */
+function SharedCarousel({ items, renderCard, cardH, groupIndex, setGroupIndex, isMobile, onNext, onPrev }) {
   const total = items.length;
   const visibleCount = isMobile ? 2 : 3;
+  const totalGroups = Math.ceil(total / visibleCount);
   const cardWidth = isMobile ? "calc(50% - 8px)" : "calc(33.33% - 11px)";
   const dragStartX = useRef(null);
-
-  // Which group is currently shown (each group = visibleCount cards)
-  const groupIndex = Math.floor(startIndex / visibleCount);
   const groupStart = groupIndex * visibleCount;
 
   const visibleItems = Array.from({ length: visibleCount }, (_, i) => ({
@@ -319,10 +460,11 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
     slot: i,
   }));
 
+  const visibleColors = visibleItems.map(({ index }) => items[index]?.color || RED);
+
   const handleDragStart = (e) => {
     dragStartX.current = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
   };
-
   const handleDragEnd = (e) => {
     if (dragStartX.current === null) return;
     const endX = e.type === "touchend" ? e.changedTouches[0].clientX : e.clientX;
@@ -332,13 +474,13 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
   };
 
   return (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+
+      {/* Card row */}
       <div
-        style={{ width: "100%", height: cardH, minHeight: cardH === "auto" ? 0 : cardH, overflow: "hidden", cursor: "grab", userSelect: "none" }}
-        onMouseDown={handleDragStart}
-        onMouseUp={handleDragEnd}
-        onTouchStart={handleDragStart}
-        onTouchEnd={handleDragEnd}
+        style={{ width: "100%", height: cardH, overflow: "hidden", cursor: "grab", userSelect: "none" }}
+        onMouseDown={handleDragStart} onMouseUp={handleDragEnd}
+        onTouchStart={handleDragStart} onTouchEnd={handleDragEnd}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -346,7 +488,7 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             style={{ display: "flex", gap: 16, width: "100%", height: "100%" }}
           >
             {visibleItems.map(({ index, slot }) => (
@@ -364,30 +506,52 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
         </AnimatePresence>
       </div>
 
-      {showDots && !isMobile && (
-        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "center" }}>
-          <button onClick={onPrev} style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}>‹</button>
+      {/* Wires + node — seamless below cards, keyed to force CSS re-animation */}
+      <div style={{ width: "100%", marginTop: 0 }}>
+        <WireConvergence
+          groupIndex={groupIndex}
+          colors={visibleColors}
+          isMobile={isMobile}
+          animKey={groupIndex}
+        />
+      </div>
+
+      {/* Nav dots */}
+      <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "center", marginTop: 12 }}>
+        {!isMobile && (
+          <button
+            onClick={onPrev}
+            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: GR, flexShrink: 0 }}
+          >‹</button>
+        )}
+        {!isMobile && (
           <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            {Array.from({ length: Math.ceil(total / visibleCount) }, (_, gi) => (
+            {Array.from({ length: totalGroups }, (_, gi) => (
               <button
                 key={gi}
-                onClick={() => setStartIndex(gi * visibleCount)}
+                onClick={() => setGroupIndex(gi)}
                 style={{
                   width: gi === groupIndex ? 22 : 7, height: 7, borderRadius: 4,
                   background: gi === groupIndex ? (items[gi * visibleCount]?.color || "#7B74DC") : "#E3E2EB",
-                  border: "none", cursor: "pointer", transition: "all 0.4s ease-out", padding: 0
+                  border: "none", cursor: "pointer", transition: "all 0.4s ease-out", padding: 0,
                 }}
               />
             ))}
           </div>
-          <button onClick={onNext} style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}>›</button>
-        </div>
-      )}
+        )}
+        {!isMobile && (
+          <button
+            onClick={onNext}
+            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: GR, flexShrink: 0 }}
+          >›</button>
+        )}
+      </div>
     </div>
   );
 }
 
-function SyncedCarousels({ isVisible, isMobile }) {
+/* ─── Controller ─── */
+function SyncedCarousels({ isMobile }) {
   const visibleCount = isMobile ? 2 : 3;
   const totalGroups = Math.ceil(CORE_PROBLEMS.length / visibleCount);
   const [groupIndex, setGroupIndex] = useState(0);
@@ -405,51 +569,29 @@ function SyncedCarousels({ isVisible, isMobile }) {
     return () => clearInterval(timerRef.current);
   }, [totalGroups]);
 
-  const startIndex = groupIndex * visibleCount;
-
   const goNext = () => { setGroupIndex(g => (g + 1) % totalGroups); resetTimer(); };
   const goPrev = () => { setGroupIndex(g => (g - 1 + totalGroups) % totalGroups); resetTimer(); };
-  const handleSetIndex = (i) => { setGroupIndex(Math.floor(i / visibleCount)); resetTimer(); };
 
   return (
-    <>
-      <SharedCarousel
-        items={CORE_PROBLEMS}
-        renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
-        cardH={isMobile ? 210 : 270}
-        startIndex={startIndex}
-        setStartIndex={handleSetIndex}
-        isMobile={isMobile}
-        onNext={goNext}
-        onPrev={goPrev}
-        showDots={true}
-      />
-
-      <div style={{ textAlign: "center", margin: "36px 0 20px" }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAFAFA", border: "1px solid #EF444430", borderRadius: 12, padding: "8px 20px" }}>
-          <motion.div style={{ width: 6, height: 6, borderRadius: "50%", background: "#EF4444" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#EF4444", letterSpacing: "0.06em", textTransform: "uppercase" }}>Real financial bleeding — per month</span>
-        </div>
-      </div>
-
-      <SharedCarousel
-        items={METRICS}
-        renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
-        cardH={isMobile ? "auto" : "auto"}
-        startIndex={startIndex}
-        setStartIndex={handleSetIndex}
-        isMobile={isMobile}
-        onNext={goNext}
-        onPrev={goPrev}
-        showDots={false}
-      />
-    </>
+    <SharedCarousel
+      items={CORE_PROBLEMS}
+      renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
+      cardH={isMobile ? 210 : 270}
+      groupIndex={groupIndex}
+      setGroupIndex={(gi) => { setGroupIndex(gi); resetTimer(); }}
+      isMobile={isMobile}
+      onNext={goNext}
+      onPrev={goPrev}
+    />
   );
 }
 
+/* ─── Root export ─── */
 export default function ProblemSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -459,37 +601,99 @@ export default function ProblemSection() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.05 });
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.05 }
+    );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="problem" ref={sectionRef} style={{ background: "#FCFCFE", borderTop: "1px solid #E3E2EB", padding: "80px 0 60px", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(239,68,68,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.03) 1px, transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
+    <section
+      id="problem"
+      ref={sectionRef}
+      style={{
+        background: "#FCFCFE", borderTop: "1px solid #E3E2EB",
+        padding: "80px 0 60px", position: "relative", overflow: "hidden",
+      }}
+    >
+      <StyleOnce />
+
+      {/* grid bg */}
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: `linear-gradient(rgba(239,68,68,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.03) 1px, transparent 1px)`,
+        backgroundSize: "48px 48px", pointerEvents: "none",
+      }} />
 
       <div style={{ position: "relative", maxWidth: isMobile ? 420 : 960, margin: "0 auto", padding: "0 20px" }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: "easeOut" }} style={{ textAlign: "center", marginBottom: 44 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: 20, padding: "4px 14px", marginBottom: 14 }}>
-            <motion.span style={{ width: 5, height: 5, borderRadius: "50%", background: RED, display: "inline-block" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: RED }}>The Real Problem</span>
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ textAlign: "center", marginBottom: 44 }}
+        >
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.2)",
+            borderRadius: 20, padding: "4px 14px", marginBottom: 14,
+          }}>
+            <motion.span
+              style={{ width: 5, height: 5, borderRadius: "50%", background: RED, display: "inline-block" }}
+              animate={{ opacity: [1, 0.4, 1] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: RED }}>
+              The Real Problem
+            </span>
           </div>
-          <h2 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "clamp(22px,4vw,40px)", color: "#141419", letterSpacing: "-0.02em", margin: "0 0 12px", lineHeight: 1.15 }}>
-            You are losing real money<br /><span style={{ color: RED }}>$23,400 every single month.</span>
+          <h2 style={{
+            fontFamily: "'Inter',sans-serif", fontWeight: 700,
+            fontSize: "clamp(22px,4vw,40px)", color: "#141419",
+            letterSpacing: "-0.02em", margin: "0 0 12px", lineHeight: 1.15,
+          }}>
+            You are losing real money<br />
+            <span style={{ color: RED }}>$23,400 every single month.</span>
           </h2>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(13px,1.5vw,15px)", color: GR, maxWidth: 440, margin: "0 auto", lineHeight: 1.6 }}>
+          <p style={{
+            fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(13px,1.5vw,15px)",
+            color: GR, maxWidth: 440, margin: "0 auto", lineHeight: 1.6,
+          }}>
             These 12 problems are bleeding your exotic rental business dry — every missed message lets profit walk to competitors.
           </p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}>
-          <SyncedCarousels isVisible={isVisible} isMobile={isMobile} />
+        {/* Cards + wires */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+        >
+          <SyncedCarousels isMobile={isMobile} />
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }} style={{ textAlign: "center", marginTop: 32, padding: "16px 24px", background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))", border: "1px solid rgba(123,116,220,0.15)", borderRadius: 14 }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "clamp(13px,1.6vw,16px)", color: "#141419", letterSpacing: "-0.01em", margin: "0 0 4px" }}>Stop losing money the moment you start using our system.</p>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: GR, margin: 0 }}>See how we fix every single one of these — automatically.</p>
+        {/* Footer CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
+          style={{
+            textAlign: "center", marginTop: 32, padding: "16px 24px",
+            background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))",
+            border: "1px solid rgba(123,116,220,0.15)", borderRadius: 14,
+          }}
+        >
+          <p style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "clamp(13px,1.6vw,16px)", color: "#141419", letterSpacing: "-0.01em", margin: "0 0 4px" }}>
+            Stop losing money the moment you start using our system.
+          </p>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: GR, margin: 0 }}>
+            See how we fix every single one of these — automatically.
+          </p>
         </motion.div>
+
       </div>
     </section>
   );
