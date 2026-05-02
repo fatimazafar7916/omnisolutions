@@ -319,12 +319,13 @@ export default function StatsStrip() {
 
         /* ── Label & desc ── */
         .stat-label {
-          font-family: 'DM Sans', sans-serif;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           font-weight: 600;
           font-size: clamp(11px, 1.4vw, 13px);
           color: #334155;
           margin: 0 0 4px;
           line-height: 1.3;
+          letter-spacing: -0.01em;
         }
 
         .stat-desc {
