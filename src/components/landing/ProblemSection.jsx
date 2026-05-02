@@ -5,7 +5,6 @@ const RED = "#EF4444";
 const REDL = "#FEF2F2";
 const GR = "#6E6D7A";
 
-// Each problem has 3 rotating live messages shown while the card is focused
 const CORE_PROBLEMS = [
   {
     id: "missed-dms",
@@ -180,7 +179,6 @@ const METRICS = [
   { label: "AI Competitor Growth Gap", value: "5x", period: "faster competitor growth", trend: "3 rivals grew 40%+ with AI", color: "#EF4444", lossPct: 0.85, monthlyLoss: "∞" },
 ];
 
-// Rotating live message component — always cycles every 2s
 function RotatingLiveMessage({ messages, color, colorLight, colorBorder, small }) {
   const [idx, setIdx] = useState(0);
 
@@ -219,27 +217,18 @@ function ProblemCard({ problem, isFocused, small }) {
       boxShadow: isFocused ? `0 8px 28px ${problem.color}22` : "0 1px 6px rgba(0,0,0,0.05)",
       overflow: "hidden", display: "flex", flexDirection: "column", position: "relative",
     }}>
-      {/* Top accent bar */}
       <div style={{ height: 3, background: problem.color, flexShrink: 0, opacity: 0.85 }} />
-
       <div style={{ padding: pad, display: "flex", flexDirection: "column", flex: 1, gap: small ? 6 : 8 }}>
-        {/* Stat + subtitle row */}
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: small ? 22 : 30, color: problem.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{problem.stat}</span>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: small ? 9 : 10.5, color: GR, fontWeight: 500, lineHeight: 1.2 }}>{problem.subtitle}</span>
         </div>
-
-        {/* Title */}
         <h4 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: small ? 11 : 13.5, color: "#141419", margin: 0, lineHeight: 1.3 }}>{problem.title}</h4>
-
-        {/* Desc — limited to 3 lines */}
         <p style={{
           fontFamily: "'DM Sans',sans-serif", fontSize: small ? 10 : 11.5, color: GR,
           lineHeight: 1.5, margin: 0,
           display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{problem.desc}</p>
-
-        {/* Live message */}
         <RotatingLiveMessage
           messages={problem.liveMessages}
           color={problem.color}
@@ -269,16 +258,13 @@ function LossCard({ metric, isFocus, isVisible }) {
     }}>
       <div style={{ position: "absolute", top: -30, right: -30, width: 110, height: 110, borderRadius: "50%", background: metric.color, opacity: 0.07, filter: "blur(36px)", pointerEvents: "none" }} />
       <div style={{ height: 2, background: `linear-gradient(90deg, transparent 0%, ${metric.color} 50%, transparent 100%)`, flexShrink: 0 }} />
-
       <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280" }}>{metric.label}</span>
-
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontFamily: "'Inter',sans-serif", fontWeight: 900, fontSize: 30, color: metric.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{metric.value}</div>
             <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#6B7280", marginTop: 3, lineHeight: 1.3 }}>{metric.period}</div>
           </div>
-
           <svg width={64} height={64} style={{ flexShrink: 0 }}>
             <circle cx={32} cy={32} r={radius} fill="none" stroke="#E5E5E5" strokeWidth={4.5} />
             <motion.circle
@@ -295,7 +281,6 @@ function LossCard({ metric, isFocus, isVisible }) {
             </text>
           </svg>
         </div>
-
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 8.5, color: "#6B7280", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Monthly loss</span>
@@ -310,7 +295,6 @@ function LossCard({ metric, isFocus, isVisible }) {
             />
           </div>
         </div>
-
         <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 6, padding: "4px 8px" }}>
           <motion.div style={{ width: 5, height: 5, borderRadius: "50%", background: "#EF4444", flexShrink: 0 }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, fontWeight: 600, color: "#DC2626", lineHeight: 1.3 }}>{metric.trend}</span>
@@ -320,69 +304,34 @@ function LossCard({ metric, isFocus, isVisible }) {
   );
 }
 
-function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
-  const [active, setActive] = useState(0);
-  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 640 : false);
+function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, isMobile }) {
   const total = items.length;
-
-  useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth < 640);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setActive(a => (a + 1) % total);
-    }, interval);
-    return () => clearInterval(t);
-  }, [total, interval]);
-
   const visibleCount = isMobile ? 2 : 3;
-  const blurValues  = { 0: "none", 1: "blur(0.6px)", 2: "blur(0.6px)" };
-  const opacityValues = { 0: 1, 1: 0.75, 2: 0.65 };
-  const scaleValues  = { 0: 1, 1: 0.97, 2: 0.97 };
   const cardWidth = isMobile ? "calc(50% - 8px)" : "calc(33.33% - 11px)";
+  const opacityValues = [1, 0.75, 0.75];
+  const filterValues  = ["none", "blur(2px)", "blur(2px)"];
 
-  const cards = Array.from({ length: visibleCount }, (_, offset) => ({
-    index: (active + offset) % total,
-    offset,
+  const visibleItems = Array.from({ length: visibleCount }, (_, i) => ({
+    index: (startIndex + i) % total,
+    slot: i,
   }));
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-      <div style={{ position: "relative", width: "100%", height: cardH, overflow: "hidden" }}>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            style={{ display: "flex", gap: 16, position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-          >
-            {cards.map(({ index, offset }) => (
-              <motion.div
-                key={`${active}-${offset}`}
-                initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-                animate={{ 
-                  opacity: opacityValues[offset] ?? 0.65, 
-                  scale: scaleValues[offset] ?? 0.97,
-                  filter: blurValues[offset] || "none"
-                }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: offset * 0.08 }}
-                style={{
-                  flex: `0 0 ${cardWidth}`,
-                  height: "100%",
-                  transformOrigin: "center center",
-                }}
-              >
-                {renderCard(items[index], offset === 0)}
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+      <div style={{ width: "100%", height: cardH, overflow: "hidden" }}>
+        <div style={{ display: "flex", gap: 16, width: "100%", height: "100%" }}>
+          {visibleItems.map(({ index, slot }) => (
+            <motion.div
+              key={`slot${slot}-item${index}`}
+              initial={slot === visibleCount - 1 ? { opacity: 0, x: 30, filter: "blur(2px)" } : false}
+              animate={{ opacity: opacityValues[slot] ?? 0.72, x: 0, filter: filterValues[slot] ?? "blur(2px)" }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              style={{ flex: `0 0 ${cardWidth}`, height: "100%" }}
+            >
+              {renderCard(items[index], slot === 0)}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Dots - hidden on mobile */}
@@ -391,8 +340,13 @@ function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
           {items.map((item, i) => (
             <button
               key={i}
-              onClick={() => setActive(i)}
-              style={{ width: i === active ? 22 : 7, height: 7, borderRadius: 4, background: i === active ? (item.color || "#7B74DC") : "#E3E2EB", border: "none", cursor: "pointer", transition: "all 0.5s ease-out", padding: 0 }}
+              onClick={() => setStartIndex(i)}
+              style={{
+                width: i === startIndex ? 22 : 7, height: 7, borderRadius: 4,
+                background: i === startIndex ? (item.color || "#7B74DC") : "#E3E2EB",
+                border: "none", cursor: "pointer",
+                transition: "all 0.4s ease-out", padding: 0
+              }}
             />
           ))}
         </div>
@@ -401,25 +355,45 @@ function ThreeCarousel({ items, renderCard, cardH, interval = 6000 }) {
   );
 }
 
-function ProblemCarousel({ isVisible, isMobile }) {
-  return (
-    <ThreeCarousel
-      items={CORE_PROBLEMS}
-      renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
-      cardH={isMobile ? 210 : 270}
-      interval={6000}
-    />
-  );
-}
+function SyncedCarousels({ isVisible, isMobile }) {
+  const [startIndex, setStartIndex] = useState(0);
+  const total = CORE_PROBLEMS.length; // both arrays are length 12
+  const interval = 6000;
 
-function MetricsCarousel({ isVisible, isMobile }) {
+  useEffect(() => {
+    const t = setInterval(() => {
+      setStartIndex(s => (s + 1) % total);
+    }, interval);
+    return () => clearInterval(t);
+  }, [total]);
+
   return (
-    <ThreeCarousel
-      items={METRICS}
-      renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
-      cardH={isMobile ? 230 : 250}
-      interval={5000}
-    />
+    <>
+      <SharedCarousel
+        items={CORE_PROBLEMS}
+        renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
+        cardH={isMobile ? 210 : 270}
+        startIndex={startIndex}
+        setStartIndex={setStartIndex}
+        isMobile={isMobile}
+      />
+
+      <div style={{ textAlign: "center", margin: "36px 0 20px" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAFAFA", border: "1px solid #EF444430", borderRadius: 12, padding: "8px 20px" }}>
+          <motion.div style={{ width: 6, height: 6, borderRadius: "50%", background: "#EF4444" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#EF4444", letterSpacing: "0.06em", textTransform: "uppercase" }}>Real financial bleeding — per month</span>
+        </div>
+      </div>
+
+      <SharedCarousel
+        items={METRICS}
+        renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
+        cardH={isMobile ? 230 : 250}
+        startIndex={startIndex}
+        setStartIndex={setStartIndex}
+        isMobile={isMobile}
+      />
+    </>
   );
 }
 
@@ -459,18 +433,7 @@ export default function ProblemSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}>
-          <ProblemCarousel isVisible={isVisible} isMobile={isMobile} />
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }} style={{ textAlign: "center", margin: "36px 0 20px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#FAFAFA", border: "1px solid #EF444430", borderRadius: 12, padding: "8px 20px" }}>
-            <motion.div style={{ width: 6, height: 6, borderRadius: "50%", background: "#EF4444" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
-            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#EF4444", letterSpacing: "0.06em", textTransform: "uppercase" }}>Real financial bleeding — per month</span>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}>
-          <MetricsCarousel isVisible={isVisible} isMobile={isMobile} />
+          <SyncedCarousels isVisible={isVisible} isMobile={isMobile} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }} style={{ textAlign: "center", marginTop: 32, padding: "16px 24px", background: "linear-gradient(135deg, rgba(123,116,220,0.06), rgba(239,68,68,0.04))", border: "1px solid rgba(123,116,220,0.15)", borderRadius: 14 }}>
