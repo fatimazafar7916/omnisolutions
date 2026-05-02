@@ -304,21 +304,48 @@ function LossCard({ metric, isFocus, isVisible }) {
   );
 }
 
-function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, isMobile }) {
+function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, isMobile, onNext, onPrev, showDots }) {
   const total = items.length;
   const visibleCount = isMobile ? 2 : 3;
   const cardWidth = isMobile ? "calc(50% - 8px)" : "calc(33.33% - 11px)";
   const opacityValues = [1, 0.75, 0.75];
   const filterValues  = ["none", "blur(2px)", "blur(2px)"];
+  const dragStartX = useRef(null);
 
   const visibleItems = Array.from({ length: visibleCount }, (_, i) => ({
     index: (startIndex + i) % total,
     slot: i,
   }));
 
+  // Touch/mouse drag handlers
+  const handleDragStart = (e) => {
+    dragStartX.current = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+  };
+
+  const handleDragEnd = (e) => {
+    if (dragStartX.current === null) return;
+    const endX = e.type === "touchend" ? e.changedTouches[0].clientX : e.clientX;
+    const diff = dragStartX.current - endX;
+    if (Math.abs(diff) > 30) {
+      diff > 0 ? onNext() : onPrev();
+    }
+    dragStartX.current = null;
+  };
+
+  // Click on blurred card (slot 1 or 2) advances forward
+  const handleCardClick = (slot) => {
+    if (slot > 0) onNext();
+  };
+
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-      <div style={{ width: "100%", height: cardH, overflow: "hidden" }}>
+      <div
+        style={{ width: "100%", height: cardH, overflow: "hidden", cursor: "grab", userSelect: "none" }}
+        onMouseDown={handleDragStart}
+        onMouseUp={handleDragEnd}
+        onTouchStart={handleDragStart}
+        onTouchEnd={handleDragEnd}
+      >
         <div style={{ display: "flex", gap: 16, width: "100%", height: "100%" }}>
           {visibleItems.map(({ index, slot }) => (
             <motion.div
@@ -326,7 +353,12 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
               initial={slot === visibleCount - 1 ? { opacity: 0, x: 30, filter: "blur(2px)" } : false}
               animate={{ opacity: opacityValues[slot] ?? 0.72, x: 0, filter: filterValues[slot] ?? "blur(2px)" }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              style={{ flex: `0 0 ${cardWidth}`, height: "100%" }}
+              onClick={() => handleCardClick(slot)}
+              style={{
+                flex: `0 0 ${cardWidth}`,
+                height: "100%",
+                cursor: slot > 0 ? "pointer" : "grab",
+              }}
             >
               {renderCard(items[index], slot === 0)}
             </motion.div>
@@ -334,21 +366,36 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
         </div>
       </div>
 
-      {/* Dots - hidden on mobile */}
-      {!isMobile && (
-        <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-          {items.map((item, i) => (
-            <button
-              key={i}
-              onClick={() => setStartIndex(i)}
-              style={{
-                width: i === startIndex ? 22 : 7, height: 7, borderRadius: 4,
-                background: i === startIndex ? (item.color || "#7B74DC") : "#E3E2EB",
-                border: "none", cursor: "pointer",
-                transition: "all 0.4s ease-out", padding: 0
-              }}
-            />
-          ))}
+      {/* Dots + arrows */}
+      {showDots && !isMobile && (
+        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "center" }}>
+          {/* Prev arrow */}
+          <button
+            onClick={onPrev}
+            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}
+          >‹</button>
+
+          {/* Dots */}
+          <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            {items.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => setStartIndex(i)}
+                style={{
+                  width: i === startIndex ? 22 : 7, height: 7, borderRadius: 4,
+                  background: i === startIndex ? (item.color || "#7B74DC") : "#E3E2EB",
+                  border: "none", cursor: "pointer",
+                  transition: "all 0.4s ease-out", padding: 0
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Next arrow */}
+          <button
+            onClick={onNext}
+            style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid #E3E2EB", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, color: "#6E6D7A", flexShrink: 0 }}
+          >›</button>
         </div>
       )}
     </div>
@@ -357,15 +404,36 @@ function SharedCarousel({ items, renderCard, cardH, startIndex, setStartIndex, i
 
 function SyncedCarousels({ isVisible, isMobile }) {
   const [startIndex, setStartIndex] = useState(0);
-  const total = CORE_PROBLEMS.length; // both arrays are length 12
+  const total = CORE_PROBLEMS.length;
   const interval = 6000;
+  const timerRef = useRef(null);
 
-  useEffect(() => {
-    const t = setInterval(() => {
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setStartIndex(s => (s + 1) % total);
     }, interval);
-    return () => clearInterval(t);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => clearInterval(timerRef.current);
   }, [total]);
+
+  const goNext = () => {
+    setStartIndex(s => (s + 1) % total);
+    resetTimer();
+  };
+
+  const goPrev = () => {
+    setStartIndex(s => (s - 1 + total) % total);
+    resetTimer();
+  };
+
+  const handleSetIndex = (i) => {
+    setStartIndex(i);
+    resetTimer();
+  };
 
   return (
     <>
@@ -374,8 +442,11 @@ function SyncedCarousels({ isVisible, isMobile }) {
         renderCard={(p, focused) => <ProblemCard problem={p} isFocused={focused} small={isMobile} />}
         cardH={isMobile ? 210 : 270}
         startIndex={startIndex}
-        setStartIndex={setStartIndex}
+        setStartIndex={handleSetIndex}
         isMobile={isMobile}
+        onNext={goNext}
+        onPrev={goPrev}
+        showDots={true}
       />
 
       <div style={{ textAlign: "center", margin: "36px 0 20px" }}>
@@ -390,8 +461,11 @@ function SyncedCarousels({ isVisible, isMobile }) {
         renderCard={(m, focused) => <LossCard metric={m} isFocus={focused} isVisible={isVisible} />}
         cardH={isMobile ? 230 : 250}
         startIndex={startIndex}
-        setStartIndex={setStartIndex}
+        setStartIndex={handleSetIndex}
         isMobile={isMobile}
+        onNext={goNext}
+        onPrev={goPrev}
+        showDots={false}
       />
     </>
   );
